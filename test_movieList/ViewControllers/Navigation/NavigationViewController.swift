@@ -36,3 +36,7 @@ class NavigationController: UINavigationController {
         return topViewController?.shouldAutorotate
     }
 }
+
+extension NavigationController: UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+    
+}
