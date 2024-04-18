@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9wl-eU-1KN">
-                                <rect key="frame" x="15" y="59" width="363" height="759"/>
+                                <rect key="frame" x="15" y="74" width="363" height="744"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="peq-dX-CcX">
                                     <size key="itemSize" width="128" height="128"/>
@@ -33,7 +34,7 @@
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9wl-eU-1KN" secondAttribute="trailing" constant="15" id="MSX-8O-CkK"/>
                             <constraint firstItem="9wl-eU-1KN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="O5W-cf-HxC"/>
-                            <constraint firstItem="9wl-eU-1KN" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ZVo-V4-DTs"/>
+                            <constraint firstItem="9wl-eU-1KN" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="ZVo-V4-DTs"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="9wl-eU-1KN" secondAttribute="bottom" id="q8K-KD-lS0"/>
                         </constraints>
                     </view>
@@ -54,14 +55,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cqk-KJ-J6A">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="74" width="393" height="744"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qkv-jA-jZh"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cqk-KJ-J6A" firstAttribute="top" secondItem="qkv-jA-jZh" secondAttribute="top" id="Ebq-hr-2d2"/>
+                            <constraint firstItem="cqk-KJ-J6A" firstAttribute="top" secondItem="qkv-jA-jZh" secondAttribute="top" constant="15" id="Ebq-hr-2d2"/>
                             <constraint firstItem="cqk-KJ-J6A" firstAttribute="leading" secondItem="qkv-jA-jZh" secondAttribute="leading" id="TTV-7L-x0E"/>
                             <constraint firstItem="qkv-jA-jZh" firstAttribute="bottom" secondItem="cqk-KJ-J6A" secondAttribute="bottom" id="Wa6-v2-qEC"/>
                             <constraint firstItem="qkv-jA-jZh" firstAttribute="trailing" secondItem="cqk-KJ-J6A" secondAttribute="trailing" id="h9z-nN-FfO"/>

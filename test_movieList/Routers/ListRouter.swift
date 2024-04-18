@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 
 protocol ListRouting: BaseRouting, DismissRouting {
-    func showMoviesDetailForm(with movie: MovieListResponse.MovieList?, viewController: UIViewController, animated: Bool)
+//    func showMoviesDetailForm(with movie: MovieListResponse.MovieList?, viewController: UIViewController, animated: Bool)
+    func showTVShowDetailForm(with tvShow: TVShowListResponse.TVShow?, viewController: UIViewController, animated: Bool)
+    
 }
 
 class ListRouter: BaseRouter, ListRouting {
@@ -48,15 +50,26 @@ class ListRouter: BaseRouter, ListRouting {
         return navigationController!
     }
     
-    func showMoviesDetailForm(with movie: MovieListResponse.MovieList?, viewController: UIViewController, animated: Bool) {
-        
-        let vc: DetailsViewController = assembly.assemblyDetailsViewController(with: self)
-        vc.selectedMovie = movie
-        
-        
-        navigationController?.pushViewController(vc, animated: animated)
-        
-    }
+//    func showMoviesDetailForm(with movie: MovieListResponse.MovieList?, viewController: UIViewController, animated: Bool) {
+//        
+//        let vc: DetailsViewController = assembly.assemblyDetailsViewController(with: self)
+//        vc.selectedMovie = movie
+//        
+//        
+//        navigationController?.pushViewController(vc, animated: animated)
+//        
+//    }
+    
+        func showTVShowDetailForm(with tvShow: TVShowListResponse.TVShow?, viewController: UIViewController, animated: Bool) {
+    
+            let vc: DetailsViewController = assembly.assemblyDetailsViewController(with: self)
+            vc.selectedTVShow = tvShow
+    
+    
+            navigationController?.pushViewController(vc, animated: animated)
+    
+        }
+    
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {
         let CompletionBlock: () -> Void = { () -> () in

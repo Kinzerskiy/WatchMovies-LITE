@@ -15,6 +15,7 @@ class MovieListViewController: UIViewController {
     let apiManager = APIManager()
     let navigationView = NavigationHeaderView.loadView()
     var movies: [MovieListResponse.MovieList] = []
+    var tvShows: [TVShowListResponse.TVShow] = []
     
     var router: ListRouting?
     
@@ -47,9 +48,9 @@ class MovieListViewController: UIViewController {
     }
     
     func prepareUI() {
-        apiManager.fetchData { [weak self] movies, error in
-            if let movies = movies {
-                self?.movies = movies
+        apiManager.fetchData { [weak self] tvShows, error in
+            if let tvShows = tvShows {
+                self?.tvShows = tvShows
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                 }
@@ -59,14 +60,14 @@ class MovieListViewController: UIViewController {
         }
     }
     
-    private func handleLongPressOnCell(with movie: MovieListResponse.MovieList) {
+    private func handleLongPressOnCell(with tvShow: /*MovieListResponse.MovieList*/TVShowListResponse.TVShow) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "title == %@", movie.title)
+        fetchRequest.predicate = NSPredicate(format: "title == %@", tvShow.name)
         
         do {
             let existingMovies = try context.fetch(fetchRequest)
@@ -74,10 +75,10 @@ class MovieListViewController: UIViewController {
                 showAlertDialog(title: "Movie Already Exists", message: "\(existingMovie.title ?? "") is already in your collection.")
             } else {
                 let newMovie = Movie(context: context)
-                newMovie.title = movie.title
-                newMovie.overview = movie.overview
-                newMovie.posterImage = movie.posterPath
-                newMovie.releaseDate = movie.releaseDate
+                newMovie.title = tvShow.name
+                newMovie.overview = tvShow.overview
+                newMovie.posterImage = tvShow.posterPath
+                newMovie.releaseDate = tvShow.firstAirDate
                 try context.save()
                 showAlertDialog(title: "Movie Saved", message: "\(newMovie.title ?? "") has been added to your collection.")
             }
@@ -97,7 +98,7 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return tvShows.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -105,20 +106,23 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
             return UICollectionViewCell()
         }
         
-        let movieIndex = indexPath.item
-        if movieIndex < movies.count {
-            let movie = movies[movieIndex]
-            cell.fill(with: movie)
+//        let movieIndex = indexPath.item
+        let tvShowIndex = indexPath.item
+        if tvShowIndex < tvShows.count {
+//            let movie = movies[movieIndex]
+            let tvShow = tvShows[tvShowIndex]
+            cell.fill(with: tvShow)
             cell.longPressHandler = { [weak self] in
-                self?.handleLongPressOnCell(with: movie)
+                self?.handleLongPressOnCell(with: tvShow)
             }
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedMovie = movies[indexPath.item]
-        router?.showMoviesDetailForm(with: selectedMovie, viewController: self, animated: true)
+//        let selectedMovie = movies[indexPath.item]
+        let selectedTVShow = tvShows[indexPath.item]
+        router?.showTVShowDetailForm(with: selectedTVShow, viewController: self, animated: true)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -127,9 +131,14 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
         return CGSize(width: 160, height: 250)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 15, left: 10, bottom: 10, right: 10)
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+
 }
 
 extension MovieListViewController: NavigationHeaderViewDelegate {

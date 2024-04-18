@@ -30,13 +30,13 @@ class DescriptionTableViewCell: UITableViewCell {
         descriptionText.font = UIFont.systemFont(ofSize: 14.0)
     }
     
-    func fill(with movie: MovieListResponse.MovieList) {
+    func fill(with tvShow: TVShowListResponse.TVShow/*MovieListResponse.MovieList*/) {
         let baseURL = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURL + movie.posterPath)
+        let posterURL = URL(string: baseURL + tvShow.posterPath)
         moviewPoster.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
-        print("Overview Text: \(movie.overview)")
-        descriptionText.text = movie.overview
-        releaseDateLabel.text = "Release Date: \(movie.releaseDate)"
+        print("Overview Text: \(tvShow.overview)")
+        descriptionText.text = tvShow.overview
+        releaseDateLabel.text = "Release Date: \(tvShow.firstAirDate)"
     }
     
 }

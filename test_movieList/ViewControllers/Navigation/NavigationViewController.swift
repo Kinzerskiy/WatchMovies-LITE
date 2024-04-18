@@ -24,7 +24,6 @@ class NavigationController: UINavigationController {
     // MARK: - Orientation
     
     func supportedInterfaceOrientations() -> UIInterfaceOrientationMask? {
-        
         return topViewController?.supportedInterfaceOrientations
     }
     

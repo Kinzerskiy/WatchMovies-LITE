@@ -10,6 +10,8 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     var selectedMovie: MovieListResponse.MovieList?
+    var selectedTVShow: TVShowListResponse.TVShow?
+    
     var router: ListRouting?
     let navigationView = NavigationHeaderView.loadView()
     
@@ -52,8 +54,11 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as? DescriptionTableViewCell else {
             return UITableViewCell()
         }
-        if let movie = selectedMovie {
-            cell.fill(with: movie)
+//        if let movie = selectedMovie {
+//            cell.fill(with: movie)
+//        }
+        if let tvShow = selectedTVShow {
+            cell.fill(with: tvShow)
         }
         return cell
     }

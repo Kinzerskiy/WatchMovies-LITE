@@ -16,7 +16,6 @@ class ListCollectionViewCell: UICollectionViewCell {
     
     var longPressHandler: (() -> Void)?
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareUI()
@@ -35,13 +34,12 @@ class ListCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.orange.cgColor
     }
     
-    func fill(with movie: MovieListResponse.MovieList) {
-        titleLabel.text = movie.title
+    func fill(with tvShow: /*MovieListResponse.MovieList*/ TVShowListResponse.TVShow) {
+        titleLabel.text = tvShow.name
         let baseURL = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURL + movie.posterPath)
+        let posterURL = URL(string: baseURL + tvShow.posterPath)
         posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
     }
-    
     
     private func addLongPressGesture() {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
