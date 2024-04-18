@@ -56,7 +56,7 @@
             </constraints>
             <size key="customSize" width="160" height="245"/>
             <connections>
-                <outlet property="blurView" destination="oKA-20-30v" id="F9z-lO-OWi"/>
+                <outlet property="blurView" destination="oKA-20-30v" id="udD-FC-os7"/>
                 <outlet property="posterImageView" destination="KMc-ib-e81" id="2UB-Zo-e7W"/>
                 <outlet property="titleLabel" destination="0UG-0G-Kxd" id="cpF-hO-uqi"/>
             </connections>

@@ -9,7 +9,7 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
-    var selectedMovie: MovieListResponse.MovieList?
+    var selectedMovie: Movie?
     var selectedTVShow: TVShowListResponse.TVShow?
     
     var router: ListRouting?
@@ -41,6 +41,7 @@ class DetailsViewController: UIViewController {
         navigationView.titleName.text = selectedMovie?.title
         navigationView.titleImage.isHidden = true
         navigationView.titleName.textAlignment = .center
+        navigationView.searchButton.isHidden = true
     }
 }
 
@@ -65,6 +66,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension DetailsViewController: NavigationHeaderViewDelegate {
+    
     
     func leftButtonTapped() {
         router?.dissmiss(viewController: self, animated: true, completion: nil)

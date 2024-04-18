@@ -16,6 +16,7 @@ class NavigationHeaderView: UICollectionViewCell {
     @IBOutlet weak var titleImage: UIImageView!
     @IBOutlet weak var titleName: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     weak var delegate: NavigationHeaderViewDelegate?
     
@@ -47,5 +48,4 @@ class NavigationHeaderView: UICollectionViewCell {
     @IBAction func leftButtonTapped(_ sender: Any) {
         delegate?.leftButtonTapped()
     }
-    
 }

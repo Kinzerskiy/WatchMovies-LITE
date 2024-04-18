@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9wl-eU-1KN">
-                                <rect key="frame" x="15" y="74" width="363" height="744"/>
+                                <rect key="frame" x="5" y="104" width="383" height="714"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="peq-dX-CcX">
                                     <size key="itemSize" width="128" height="128"/>
@@ -28,23 +28,34 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fB-Z8-C6S" customClass="FilterView" customModule="test_movieList" customModuleProvider="target">
+                                <rect key="frame" x="15" y="64" width="363" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="x2T-ug-fu6"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9wl-eU-1KN" secondAttribute="trailing" constant="15" id="MSX-8O-CkK"/>
-                            <constraint firstItem="9wl-eU-1KN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="O5W-cf-HxC"/>
-                            <constraint firstItem="9wl-eU-1KN" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="ZVo-V4-DTs"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9wl-eU-1KN" secondAttribute="trailing" constant="5" id="31u-Xs-Hkp"/>
+                            <constraint firstItem="9wl-eU-1KN" firstAttribute="top" secondItem="5fB-Z8-C6S" secondAttribute="bottom" constant="5" id="Agw-iF-qUI"/>
+                            <constraint firstItem="5fB-Z8-C6S" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="DFG-cS-ykK"/>
+                            <constraint firstItem="9wl-eU-1KN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="5" id="O5W-cf-HxC"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="5fB-Z8-C6S" secondAttribute="trailing" constant="15" id="UQr-zh-7h5"/>
+                            <constraint firstItem="5fB-Z8-C6S" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="dKZ-If-fRo"/>
+                            <constraint firstItem="9wl-eU-1KN" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="hPa-pt-4Do"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="9wl-eU-1KN" secondAttribute="bottom" id="q8K-KD-lS0"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="9wl-eU-1KN" id="E4R-GJ-g2v"/>
+                        <outlet property="filterViewContainer" destination="5fB-Z8-C6S" id="g6W-HU-Vfr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="-2"/>
+            <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="doh-4a-ZVP">

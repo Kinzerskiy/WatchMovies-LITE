@@ -7,24 +7,6 @@
 
 import Foundation
 
-struct MovieListResponse: Codable {
-    
-    let results: [MovieList]
-    
-    struct MovieList: Codable {
-        let title: String
-        let overview: String
-        let posterPath: String
-        let releaseDate: String
-        
-        enum CodingKeys: String, CodingKey {
-            case title
-            case overview
-            case posterPath = "poster_path"
-            case releaseDate = "release_date"
-        }
-    }
-}
 
 struct TVShowListResponse: Codable {
     let results: [TVShow]
@@ -46,22 +28,85 @@ struct TVShowListResponse: Codable {
     }
 }
 
-class APIManager {
+struct Movie: Codable {
+    let title: String
+    let overview: String
+    let posterPath: String?
+    let releaseDate: String
+    let backdropPath: String?
+    let genreIds: [Int]
+    let id: Int
+    let originalLanguage: String
+    let originalTitle: String
+    let popularity: Double
+    let video: Bool
+    let voteAverage: Double
+    let voteCount: Int
     
-    let apiKey = "2ccc9fcb3e886fcb5f80015418735095"
-    let urlString = "https://api.themoviedb.org/3/tv/popular"
-    
-//    "https://api.themoviedb.org/3/discover/movie
-    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case overview
+        case posterPath = "poster_path"
+        case releaseDate = "release_date"
+        case backdropPath = "backdrop_path"
+        case genreIds = "genre_ids"
+        case id
+        case originalLanguage = "original_language"
+        case originalTitle = "original_title"
+        case popularity
+        case video
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
+    }
+}
 
+struct MovieListResponse: Codable {
+    let dates: Dates?
+    let page: Int
+    let results: [Movie]
+}
+
+struct Dates: Codable {
+    let maximum: String
+    let minimum: String
+}
+
+class APIManager {
+    let apiKey = "2ccc9fcb3e886fcb5f80015418735095"
     
-    var movies: [MovieListResponse.MovieList]?
-    var tvShows: [TVShowListResponse.TVShow]?
+    func fetchNowPlayingMovies(page: Int, completion: @escaping ([Movie], Error?) -> Void) {
+        fetchMovies(with: "https://api.themoviedb.org/3/movie/now_playing", page: page, completion: completion)
+    }
     
-    func fetchData(completion: @escaping ([TVShowListResponse.TVShow]?, Error?) -> Void) {
+    func fetchPopularMovies(page: Int, completion: @escaping ([Movie], Error?) -> Void) {
+        fetchMovies(with: "https://api.themoviedb.org/3/movie/popular", page: page, completion: completion)
+    }
+    
+    func fetchTopRatedMovies(page: Int, completion: @escaping ([Movie], Error?) -> Void) {
+        fetchMovies(with: "https://api.themoviedb.org/3/movie/top_rated", page: page, completion: completion)
+    }
+    
+    func fetchUpcomingMovies(page: Int, completion: @escaping ([Movie], Error?) -> Void) {
+        fetchMovies(with: "https://api.themoviedb.org/3/movie/upcoming", page: page, completion: completion)
+    }
+    
+    private func fetchMovies(with urlString: String, page: Int, completion: @escaping ([Movie], Error?) -> Void) {
+        fetchData(urlString: urlString, page: page) { (response: MovieListResponse?, error) in
+            guard let response = response else {
+                completion([], error)
+                return
+            }
+            
+            let movies = response.results
+            completion(movies, nil)
+        }
+    }
+    
+    func fetchData<T: Codable>(urlString: String, page: Int, completion: @escaping (T?, Error?) -> Void) {
         if var urlComponents = URLComponents(string: urlString) {
             urlComponents.queryItems = [
-                URLQueryItem(name: "api_key", value: apiKey)
+                URLQueryItem(name: "api_key", value: apiKey),
+                URLQueryItem(name: "page", value: String(page))
             ]
             
             guard let url = urlComponents.url else {
@@ -81,20 +126,8 @@ class APIManager {
                 
                 do {
                     let decoder = JSONDecoder()
-//                    let movieListResponse = try decoder.decode(MovieListResponse.self, from: data)
-                    let tvShowsResponse = try decoder.decode(TVShowListResponse.self, from: data)
-                    self.tvShows = tvShowsResponse.results
-                    
-                    print("TV Shows:")
-                       for show in self.tvShows ?? [] {
-                           print("Name: \(show.name)")
-                           print("Overview: \(show.overview)")
-                           print("Poster Path: \(show.posterPath)")
-                           print("First Air Date: \(show.firstAirDate)")
-                           print("------")
-                       }
-                    
-                    completion(self.tvShows, nil)
+                    let response = try decoder.decode(T.self, from: data)
+                    completion(response, nil)
                 } catch {
                     print("Error decoding JSON: \(error.localizedDescription)")
                     completion(nil, error)

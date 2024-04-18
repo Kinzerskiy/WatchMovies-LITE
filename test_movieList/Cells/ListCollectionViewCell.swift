@@ -8,6 +8,10 @@
 import UIKit
 import SDWebImage
 
+protocol ListCellConfigurable {
+    func configure(withData data: Any)
+}
+
 class ListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var posterImageView: UIImageView!
@@ -34,11 +38,18 @@ class ListCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.orange.cgColor
     }
     
-    func fill(with tvShow: /*MovieListResponse.MovieList*/ TVShowListResponse.TVShow) {
-        titleLabel.text = tvShow.name
-        let baseURL = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURL + tvShow.posterPath)
-        posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
+    func fill(withData data: Any) {
+        if let tvShow = data as? TVShowListResponse.TVShow {
+            titleLabel.text = tvShow.name
+            let baseURL = "https://image.tmdb.org/t/p/w500"
+            let posterURL = URL(string: baseURL + tvShow.posterPath)
+            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
+        } else if let movie = data as? Movie {
+            titleLabel.text = movie.title
+            let baseURL = "https://image.tmdb.org/t/p/w500"
+            let posterURL = URL(string: baseURL + (movie.posterPath ?? ""))
+            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
+        }
     }
     
     private func addLongPressGesture() {
@@ -50,5 +61,11 @@ class ListCollectionViewCell: UICollectionViewCell {
         if gesture.state == .began {
             longPressHandler?()
         }
+    }
+}
+
+extension ListCollectionViewCell: ListCellConfigurable {
+    func configure(withData data: Any) {
+        fill(withData: data)
     }
 }

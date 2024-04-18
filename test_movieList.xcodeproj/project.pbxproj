@@ -11,10 +11,11 @@
 		CE88E89E2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE88E89C2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib */; };
 		CE88E8A12B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88E89F2B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift */; };
 		CE88E8A92B710F7E00AFAF95 /* Movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CE88E8A82B710F7E00AFAF95 /* Movie.mp4 */; };
+		CE96C5242BD11638000ECB7B /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C5232BD11638000ECB7B /* FilterView.swift */; };
+		CE96C5282BD11665000ECB7B /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE96C5272BD11665000ECB7B /* FilterView.xib */; };
 		CECC78A42B6CE38C008815EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC78A32B6CE38C008815EF /* AppDelegate.swift */; };
 		CECC78A62B6CE38C008815EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC78A52B6CE38C008815EF /* SceneDelegate.swift */; };
 		CECC78AB2B6CE38C008815EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CECC78A92B6CE38C008815EF /* Main.storyboard */; };
-		CECC78AE2B6CE38C008815EF /* test_movieList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CECC78AC2B6CE38C008815EF /* test_movieList.xcdatamodeld */; };
 		CECC78B02B6CE396008815EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CECC78AF2B6CE396008815EF /* Assets.xcassets */; };
 		CECC78B32B6CE396008815EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CECC78B12B6CE396008815EF /* LaunchScreen.storyboard */; };
 		CECC78BB2B6CE41B008815EF /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC78BA2B6CE41B008815EF /* ApplicationAssembly.swift */; };
@@ -50,11 +51,12 @@
 		CE88E89C2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		CE88E89F2B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailsViewController.swift; sourceTree = "<group>"; };
 		CE88E8A82B710F7E00AFAF95 /* Movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie.mp4; sourceTree = "<group>"; };
+		CE96C5232BD11638000ECB7B /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		CE96C5272BD11665000ECB7B /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		CECC78A02B6CE38C008815EF /* test_movieList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test_movieList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECC78A32B6CE38C008815EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CECC78A52B6CE38C008815EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CECC78AA2B6CE38C008815EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CECC78AD2B6CE38C008815EF /* test_movieList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = test_movieList.xcdatamodel; sourceTree = "<group>"; };
 		CECC78AF2B6CE396008815EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CECC78B22B6CE396008815EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CECC78B42B6CE396008815EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,7 +131,6 @@
 				CE88E8A82B710F7E00AFAF95 /* Movie.mp4 */,
 				CECC78B12B6CE396008815EF /* LaunchScreen.storyboard */,
 				CECC78B42B6CE396008815EF /* Info.plist */,
-				CECC78AC2B6CE38C008815EF /* test_movieList.xcdatamodeld */,
 			);
 			path = test_movieList;
 			sourceTree = "<group>";
@@ -247,6 +248,8 @@
 			children = (
 				CEFE35ED2B6D61D500451F55 /* NavigationHeaderView.swift */,
 				CEFE35EE2B6D61D500451F55 /* NavigationHeaderView.xib */,
+				CE96C5232BD11638000ECB7B /* FilterView.swift */,
+				CE96C5272BD11665000ECB7B /* FilterView.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			files = (
 				CED28FAC2B6D5225007DB4A8 /* ListCollectionViewCell.xib in Resources */,
 				CEFE35F82B6D6F3D00451F55 /* DescriptionTableViewCell.xib in Resources */,
+				CE96C5282BD11665000ECB7B /* FilterView.xib in Resources */,
 				CECC78B32B6CE396008815EF /* LaunchScreen.storyboard in Resources */,
 				CECC78B02B6CE396008815EF /* Assets.xcassets in Resources */,
 				CED28F822B6CEE8D007DB4A8 /* List.storyboard in Resources */,
@@ -356,8 +360,8 @@
 				CED28F8F2B6CF22A007DB4A8 /* DetailsViewController.swift in Sources */,
 				CED28FAB2B6D5225007DB4A8 /* ListCollectionViewCell.swift in Sources */,
 				CECC78A42B6CE38C008815EF /* AppDelegate.swift in Sources */,
-				CECC78AE2B6CE38C008815EF /* test_movieList.xcdatamodeld in Sources */,
 				CE88E8A12B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift in Sources */,
+				CE96C5242BD11638000ECB7B /* FilterView.swift in Sources */,
 				CECC78BF2B6CE598008815EF /* BaseAssembly.swift in Sources */,
 				CECC78A62B6CE38C008815EF /* SceneDelegate.swift in Sources */,
 			);
@@ -608,19 +612,6 @@
 			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		CECC78AC2B6CE38C008815EF /* test_movieList.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CECC78AD2B6CE38C008815EF /* test_movieList.xcdatamodel */,
-			);
-			currentVersion = CECC78AD2B6CE38C008815EF /* test_movieList.xcdatamodel */;
-			path = test_movieList.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CECC78982B6CE38C008815EF /* Project object */;
 }
