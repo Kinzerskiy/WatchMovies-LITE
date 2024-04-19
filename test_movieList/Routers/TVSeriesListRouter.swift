@@ -1,23 +1,25 @@
 //
-//  FavoritesRouter.swift
+//  TVSeriesListRouter.swift
 //  test_movieList
 //
-//  Created by User on 02.02.2024.
+//  Created by User on 19.04.2024.
 //
 
 import Foundation
 import UIKit
 
-protocol FavoritesRouting: BaseRouting, DismissRouting {
-    func showFavoritesMoviesDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool)
+protocol TVSeriesListRouting: BaseRouting, DismissRouting {
+//    func showMoviesDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool)
+//    func showTVShowDetailForm(with tvShow: TVShowListResponse.TVShow?, viewController: UIViewController, animated: Bool)
+    
 }
 
-class FavoritesRouter: BaseRouter, FavoritesRouting {
+
+class TVSeriesListRouter: BaseRouter, TVSeriesListRouting {
     
     var mainRouter: MainRouting?
-    var listRouter: MovieListRouting?
     
-    private var favoritesMoviesViewController: FavoriteMoviesViewController?
+    private var movieListViewController: TVSeriesViewController?
     private var navigationController: UINavigationController?
     
     // MARK: - Memory management
@@ -26,35 +28,29 @@ class FavoritesRouter: BaseRouter, FavoritesRouting {
         super.init(with: assembly)
     }
     
-    // MARK: - FavoritesRouting
+    // MARK: - TVSeriesRouting
     
     override func initialViewController() -> UIViewController {
         
         if navigationController == nil {
-            let vc: FavoriteMoviesViewController = assembly.assemblyFavoriteMoviesViewController(with: self)
-            
-            let symbol = "heart.circle.fill"
+            let vc: TVSeriesViewController = assembly.assemblyTVSeriesListViewController(with: self)
+          
+            let symbol = "play.tv"
             let activeImage = UIImage(systemName: symbol)?.withTintColor(.orange, renderingMode: .alwaysOriginal)
             let inactiveImage = UIImage(systemName: symbol)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             
-            vc.tabBarItem.title = "Favorites"
+            vc.tabBarItem.title = "TV Series"
             vc.tabBarItem.image = inactiveImage
             vc.tabBarItem.selectedImage = activeImage
             
-            favoritesMoviesViewController = vc
+            movieListViewController = vc
             navigationController = assembly.assemblyNavigationController(with: vc)
             
             mainRouter = instantiateMainRouter()
         }
-        
         return navigationController!
     }
     
-    func showFavoritesMoviesDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool) {
-        let vc: FavoriteDetailsViewController = assembly.assemblyFavoriteDetailsViewController(with: self)
-        vc.favoriteMovie = movie
-        viewController.present(vc, animated: animated, completion: nil)
-    }
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {
         let CompletionBlock: () -> Void = { () -> () in
@@ -62,7 +58,7 @@ class FavoritesRouter: BaseRouter, FavoritesRouting {
                 completion()
             }
         }
-
+        
         if let insertedInNavigationStack = navigationController?.viewControllers.contains(viewController), !insertedInNavigationStack {
             viewController.dismiss(animated: animated, completion: completion)
             return
@@ -73,17 +69,17 @@ class FavoritesRouter: BaseRouter, FavoritesRouting {
             CompletionBlock()
             return
         }
+        
         navigationController?.popViewController(animated: animated)
         
         return
     }
 }
 
-extension FavoritesRouter {
+extension TVSeriesListRouter {
+    
     func instantiateMainRouter() -> MainRouter {
         let router = MainRouter.init(with: navigationController, assembly: assembly)
-        
         return router
     }
 }
-

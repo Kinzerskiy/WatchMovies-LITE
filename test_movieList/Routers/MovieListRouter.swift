@@ -8,13 +8,15 @@
 import Foundation
 import UIKit
 
-protocol ListRouting: BaseRouting, DismissRouting {
-//    func showMoviesDetailForm(with movie: MovieListResponse.MovieList?, viewController: UIViewController, animated: Bool)
-    func showTVShowDetailForm(with tvShow: TVShowListResponse.TVShow?, viewController: UIViewController, animated: Bool)
+protocol MovieListRouting: BaseRouting, DismissRouting {
+    func showDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool)
+//    func showTVShowDetailForm(with tvShow: TVShowListResponse.TVShow?, viewController: UIViewController, animated: Bool)
     
 }
 
-class ListRouter: BaseRouter, ListRouting {
+class MovieListRouter: BaseRouter, MovieListRouting {
+    
+    
     
     var mainRouter: MainRouting?
     
@@ -27,7 +29,7 @@ class ListRouter: BaseRouter, ListRouting {
         super.init(with: assembly)
     }
     
-    // MARK: - ListRouting
+    // MARK: - MovieListRouting
     
     override func initialViewController() -> UIViewController {
         
@@ -50,26 +52,9 @@ class ListRouter: BaseRouter, ListRouting {
         return navigationController!
     }
     
-//    func showMoviesDetailForm(with movie: MovieListResponse.MovieList?, viewController: UIViewController, animated: Bool) {
-//        
-//        let vc: DetailsViewController = assembly.assemblyDetailsViewController(with: self)
-//        vc.selectedMovie = movie
-//        
-//        
-//        navigationController?.pushViewController(vc, animated: animated)
-//        
-//    }
-    
-        func showTVShowDetailForm(with tvShow: TVShowListResponse.TVShow?, viewController: UIViewController, animated: Bool) {
-    
-            let vc: DetailsViewController = assembly.assemblyDetailsViewController(with: self)
-            vc.selectedTVShow = tvShow
-    
-    
-            navigationController?.pushViewController(vc, animated: animated)
-    
-        }
-    
+    func showDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool) {
+        mainRouter?.showDetailForm(with: movie, viewController: viewController, animated: true)
+    }
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {
         let CompletionBlock: () -> Void = { () -> () in
@@ -95,7 +80,7 @@ class ListRouter: BaseRouter, ListRouting {
     }
 }
 
-extension ListRouter {
+extension MovieListRouter {
     
     func instantiateMainRouter() -> MainRouter {
         let router = MainRouter.init(with: navigationController, assembly: assembly)

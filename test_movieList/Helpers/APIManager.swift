@@ -8,68 +8,6 @@
 import Foundation
 
 
-struct TVShowListResponse: Codable {
-    let results: [TVShow]
-    
-    struct TVShow: Codable {
-        let id: Int
-        let name: String
-        let overview: String
-        let posterPath: String
-        let firstAirDate: String
-        
-        enum CodingKeys: String, CodingKey {
-            case id
-            case name
-            case overview
-            case posterPath = "poster_path"
-            case firstAirDate = "first_air_date"
-        }
-    }
-}
-
-struct Movie: Codable {
-    let title: String
-    let overview: String
-    let posterPath: String?
-    let releaseDate: String
-    let backdropPath: String?
-    let genreIds: [Int]
-    let id: Int
-    let originalLanguage: String
-    let originalTitle: String
-    let popularity: Double
-    let video: Bool
-    let voteAverage: Double
-    let voteCount: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case title
-        case overview
-        case posterPath = "poster_path"
-        case releaseDate = "release_date"
-        case backdropPath = "backdrop_path"
-        case genreIds = "genre_ids"
-        case id
-        case originalLanguage = "original_language"
-        case originalTitle = "original_title"
-        case popularity
-        case video
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
-    }
-}
-
-struct MovieListResponse: Codable {
-    let dates: Dates?
-    let page: Int
-    let results: [Movie]
-}
-
-struct Dates: Codable {
-    let maximum: String
-    let minimum: String
-}
 
 class APIManager {
     let apiKey = "2ccc9fcb3e886fcb5f80015418735095"
@@ -90,6 +28,23 @@ class APIManager {
         fetchMovies(with: "https://api.themoviedb.org/3/movie/upcoming", page: page, completion: completion)
     }
     
+    func fetchAiringTodaySeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
+        fetchTVSeries(with: "https://api.themoviedb.org/3/tv/airing_today", page: page, completion: completion)
+    }
+    
+    func fetchOnTheAirSeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
+        fetchTVSeries(with: "https://api.themoviedb.org/3/tv/on_the_air", page: page, completion: completion)
+    }
+    
+    func fetchPopularSeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
+        fetchTVSeries(with: "https://api.themoviedb.org/3/tv/popular", page: page, completion: completion)
+    }
+    
+    func fetchTopRatedSeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
+        fetchTVSeries(with: "https://api.themoviedb.org/3/tv/top_rated", page: page, completion: completion)
+    }
+
+    
     private func fetchMovies(with urlString: String, page: Int, completion: @escaping ([Movie], Error?) -> Void) {
         fetchData(urlString: urlString, page: page) { (response: MovieListResponse?, error) in
             guard let response = response else {
@@ -99,6 +54,18 @@ class APIManager {
             
             let movies = response.results
             completion(movies, nil)
+        }
+    }
+    
+    private func fetchTVSeries(with urlString: String, page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
+        fetchData(urlString: urlString, page: page) { (response: TVSeriesListResponse?, error) in
+            guard let response = response else {
+                completion([], error)
+                return
+            }
+            
+            let tvSeries = response.results
+            completion(tvSeries, nil)
         }
     }
     

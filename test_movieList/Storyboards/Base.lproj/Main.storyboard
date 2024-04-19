@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -51,6 +52,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lf6-zD-awc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-146" y="-166"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="8Tm-Wx-Zkf">
+            <objects>
+                <viewController restorationIdentifier="DetailsViewController" storyboardIdentifier="DetailsViewController" id="DPP-mj-7Wt" customClass="DetailsViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z1F-i3-sPT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jDu-W2-tpP">
+                                <rect key="frame" x="0.0" y="74" width="393" height="744"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MM7-dw-y9y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MM7-dw-y9y" firstAttribute="trailing" secondItem="jDu-W2-tpP" secondAttribute="trailing" id="5zj-FB-zmw"/>
+                            <constraint firstItem="MM7-dw-y9y" firstAttribute="bottom" secondItem="jDu-W2-tpP" secondAttribute="bottom" id="Vsg-8C-Nc4"/>
+                            <constraint firstItem="jDu-W2-tpP" firstAttribute="leading" secondItem="MM7-dw-y9y" secondAttribute="leading" id="Y4M-e0-Q8m"/>
+                            <constraint firstItem="jDu-W2-tpP" firstAttribute="top" secondItem="MM7-dw-y9y" secondAttribute="top" constant="15" id="xcJ-GH-NqH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="jDu-W2-tpP" id="B3F-Bx-xFx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oj5-B5-3Rl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="569" y="-166"/>
         </scene>
     </scenes>
     <resources>

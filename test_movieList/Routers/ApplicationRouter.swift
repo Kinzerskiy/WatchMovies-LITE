@@ -9,7 +9,8 @@ import UIKit
 
 enum ApplicationStoryType {
     case main
-    case list
+    case movieList
+    case tvSeriesList
     case favorites
 }
 
@@ -27,7 +28,8 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
     private var previousStoryType: ApplicationStoryType?
     
     private var mainRouter: MainRouter?
-    private var listRouter: ListRouter?
+    private var movieListRouter: MovieListRouter?
+    private var tvSeriesListRouter: TVSeriesListRouter?
     private var favoritesRouter: FavoritesRouter?
     
     // MARK: - Memory management
@@ -40,7 +42,8 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
     
     private func setupRouters() {
         mainRouter = assemblyMainRouter()
-        listRouter = assemblyListRouter()
+        movieListRouter = assemblyMovieListRouter()
+        tvSeriesListRouter = assemblyTVSeriesListRouter()
         favoritesRouter = assemblyFavoritesRouter()
     }
     
@@ -49,8 +52,10 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
     func initialViewController() -> UIViewController? {
         
         let rootItem: Array<UIViewController> = [
-            intialialViewControllerForItem(with: .list),
+            intialialViewControllerForItem(with: .movieList),
+            intialialViewControllerForItem(with: .tvSeriesList),
             intialialViewControllerForItem(with: .favorites)
+            
         ]
         
         rootContentController = navigationAssembly().assemblyTabbarController(with: rootItem)
@@ -70,7 +75,7 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         Defaults.firstInitialization = false
         router.initialViewController().dismiss(animated: false)
         
-        switchToStory(with: .list)
+        switchToStory(with: .movieList)
     }
     
     // MARK: - Assembly
@@ -86,14 +91,20 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         return router
     }
     
-    func assemblyListRouter() -> ListRouter {
-        let router = ListRouter(with: navigationAssembly())
+    func assemblyMovieListRouter() -> MovieListRouter {
+        let router = MovieListRouter(with: navigationAssembly())
         
         return router
     }
     
     func assemblyFavoritesRouter() -> FavoritesRouter {
         let router = FavoritesRouter(with: navigationAssembly())
+        
+        return router
+    }
+    
+    func assemblyTVSeriesListRouter() -> TVSeriesListRouter {
+        let router = TVSeriesListRouter(with: navigationAssembly())
         
         return router
     }
@@ -113,12 +124,14 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
     private func intialialViewControllerForItem(with type: ApplicationStoryType) -> UIViewController {
         
         switch type {
-        case .list:
-            return (listRouter?.initialViewController())!
+        case .movieList:
+            return (movieListRouter?.initialViewController())!
         case .favorites:
             return (favoritesRouter?.initialViewController())!
         case .main:
             return (mainRouter?.initialViewController())!
+        case .tvSeriesList:
+            return (tvSeriesListRouter?.initialViewController())!
         }
     }
 }

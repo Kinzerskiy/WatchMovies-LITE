@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MainRouting: BaseRouting, DismissRouting, IntroViewControllerDelegate {
-    
+    func showDetailForm<T>(with item: T, viewController: UIViewController, animated: Bool)
 }
 
 protocol MainRouterDelegate {
@@ -35,7 +35,7 @@ class MainRouter: BaseRouter, MainRouting {
         self.navigationController = navigationController
     }
     
-    // MARK: - ListRouting
+    // MARK: - MovieListRouting
     
     override func initialViewController() -> UIViewController {
         
@@ -52,6 +52,19 @@ class MainRouter: BaseRouter, MainRouting {
         }
         return navigationController!
     }
+    
+    
+    func showDetailForm<T>(with item: T, viewController: UIViewController, animated: Bool) {
+        let vc: DetailsViewController = assembly.assemblyDetailsViewController(with: self)
+
+            if let movie = item as? Movie {
+                vc.selectedMovie = movie
+                navigationController?.pushViewController(vc, animated: true)
+            } else if let tvSeries = item as? TVSeries {
+                vc.selectedTVSeries = tvSeries
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {
         let CompletionBlock: () -> Void = { () -> () in

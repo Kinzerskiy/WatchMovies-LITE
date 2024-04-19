@@ -11,35 +11,29 @@ import CoreData
 class MovieListViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var filterViewContainer: UIView!
+    @IBOutlet weak var segmentBarView: UIView!
     
+    var router: MovieListRouting?
     let apiManager = APIManager()
     let navigationView = NavigationHeaderView.loadView()
+    let filterView = FilterView.loadView()
+    
     var movies: [Movie] = []
     private var currentPage = [0, 0, 0, 0]
-    var tvShows: [TVShowListResponse.TVShow] = []
-    
-    let filterView = FilterView.loadView()
-    var currentSegmentIndex = 0
-    
-    var router: ListRouting?
-    
+    private var currentSegmentIndex = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareUI()
         makeNavigationBar()
         prepareCollectionView()
-        filterViewContainer.addSubview(filterView)
-        filterView.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        prepareUI()
+        prepareSegmenBar()
     }
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
+        navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
     }
@@ -54,15 +48,22 @@ class MovieListViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
     }
     
+    
+    func prepareSegmenBar() {
+        let segmentTitles = ["Now playing", "Popular", "Top", "Upcoming"]
+        filterView.setSegmentTitles(titles: segmentTitles)
+        segmentBarView.addSubview(filterView)
+        filterView.delegate = self
+    }
+    
     func prepareUI() {
         fetchMovies(for: currentSegmentIndex, page: 1) { movies, error, segmentIndex in
                self.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
            }
-        let segmentTitles = ["Now playing", "Popular", "Top", "Upcoming"]
-        filterView.setSegmentTitles(titles: segmentTitles)
+       
     }
     
-
+    //вынести
     private func showAlertDialog(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -70,7 +71,6 @@ class MovieListViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
-
 
 extension MovieListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -84,7 +84,6 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
         }
         
         let movieIndex = indexPath.item
-//        let tvShowIndex = indexPath.item
         if movieIndex < movies.count {
 //            let movie = movies[movieIndex]
             let movie = movies[movieIndex]
@@ -97,9 +96,8 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let selectedMovie = movies[indexPath.item]
-        let selectedTVShow = tvShows[indexPath.item]
-        router?.showTVShowDetailForm(with: selectedTVShow, viewController: self, animated: true)
+        let selectedMovie = movies[indexPath.item]
+        router?.showDetailForm(with: selectedMovie, viewController: self, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -216,16 +214,11 @@ extension MovieListViewController: FilterViewDelegate {
     private func loadMoreMoviesIfNeeded(for segmentIndex: Int) {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems
         let lastVisibleIndexPath = visibleIndexPaths.last ?? IndexPath(item: 0, section: 0)
-        print("Last visible item index: \(lastVisibleIndexPath.item)")
-        print("Total movies count: \(movies.count)")
 
         if lastVisibleIndexPath.item >= movies.count - 4 {
             currentPage[segmentIndex] += 1
             fetchMovies(for: segmentIndex, page: currentPage[segmentIndex]) { movies, error, segmentIndex in
-                guard let movies = movies else {
-                   
-                    return
-                }
+                guard let movies = movies else { return }
                 self.movies += movies
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()

@@ -10,9 +10,9 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     var selectedMovie: Movie?
-    var selectedTVShow: TVShowListResponse.TVShow?
+    var selectedTVSeries: TVSeries?
     
-    var router: ListRouting?
+    var router: MainRouting?
     let navigationView = NavigationHeaderView.loadView()
     
     @IBOutlet weak var tableView: UITableView!
@@ -41,7 +41,6 @@ class DetailsViewController: UIViewController {
         navigationView.titleName.text = selectedMovie?.title
         navigationView.titleImage.isHidden = true
         navigationView.titleName.textAlignment = .center
-        navigationView.searchButton.isHidden = true
     }
 }
 
@@ -55,20 +54,17 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as? DescriptionTableViewCell else {
             return UITableViewCell()
         }
-//        if let movie = selectedMovie {
-//            cell.fill(with: movie)
-//        }
-        if let tvShow = selectedTVShow {
-            cell.fill(with: tvShow)
+        if let movie = selectedMovie {
+            cell.fill(with: movie)
         }
+        
         return cell
     }
 }
 
 extension DetailsViewController: NavigationHeaderViewDelegate {
     
-    
     func leftButtonTapped() {
-        router?.dissmiss(viewController: self, animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }

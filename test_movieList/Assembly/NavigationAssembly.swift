@@ -14,11 +14,16 @@ protocol CommonNavigationAssemblyProtocol {
 
 protocol MainNavigationAssemblyProtocol {
     func assemblyIntroViewController(with router: MainRouting) -> IntroViewController
+    func assemblyDetailsViewController(with router: MainRouting) -> DetailsViewController
 }
 
-protocol ListNavigationAssemblyProtocol {
-    func assemblyMovieListViewController(with router: ListRouting) -> MovieListViewController
-    func assemblyDetailsViewController(with router: ListRouting) -> DetailsViewController
+protocol MovieListNavigationAssemblyProtocol {
+    func assemblyMovieListViewController(with router: MovieListRouting) -> MovieListViewController
+}
+
+protocol TVSeriesListNavigationAssemblyProtocol {
+    func assemblyTVSeriesListViewController(with router: TVSeriesListRouting) -> TVSeriesViewController
+//    func assemblyDetailsViewController(with router: ListRouting) -> DetailsViewController
 }
 
 protocol FavoritesNavigationAssemblyProtocol {
@@ -28,15 +33,20 @@ protocol FavoritesNavigationAssemblyProtocol {
 
 protocol NavigationAssemblyProtocol: CommonNavigationAssemblyProtocol,
                                      MainNavigationAssemblyProtocol,
-                                     ListNavigationAssemblyProtocol,
-                                     FavoritesNavigationAssemblyProtocol {
+                                     MovieListNavigationAssemblyProtocol,
+                                     FavoritesNavigationAssemblyProtocol,
+                                     TVSeriesListNavigationAssemblyProtocol {
     
 }
 
 class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
+   
+    
+   
 
     private static let mainStoryboardName = "Main"
-    private static let listStoryboardName = "List"
+    private static let movieListStoryboardName = "MovieList"
+    private static let tvSeriesListStoryboardName = "TVSeriesList"
     private static let favoritesStoryboardName = "Favorites"
     
     // MARK: - Storyboard
@@ -45,8 +55,12 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
         return UIStoryboard(name: NavigationAssembly.mainStoryboardName, bundle: Bundle(for: NavigationAssembly.self))
     }
     
-    func listStoryboard() -> UIStoryboard {
-        return UIStoryboard(name: NavigationAssembly.listStoryboardName, bundle: Bundle(for: NavigationAssembly.self))
+    func movieListStoryboard() -> UIStoryboard {
+        return UIStoryboard(name: NavigationAssembly.movieListStoryboardName, bundle: Bundle(for: NavigationAssembly.self))
+    }
+    
+    func tvSeriesListStoryboard() -> UIStoryboard {
+        return UIStoryboard(name: NavigationAssembly.tvSeriesListStoryboardName, bundle: Bundle(for: NavigationAssembly.self))
     }
     
     func favoritesStoryboard() -> UIStoryboard {
@@ -79,22 +93,31 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
         return vc
     }
     
-    // MARK: List
+    func assemblyDetailsViewController(with router: MainRouting) -> DetailsViewController {
+        let vc: DetailsViewController = mainStoryboard().instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
+        
+        return vc
+    }
     
-    func assemblyMovieListViewController(with router: ListRouting) -> MovieListViewController {
-        let vc: MovieListViewController = listStoryboard().instantiateViewController(withIdentifier: String(describing: MovieListViewController.self)) as! MovieListViewController
+    // MARK: MovieList
+    
+    func assemblyMovieListViewController(with router: MovieListRouting) -> MovieListViewController {
+        let vc: MovieListViewController = movieListStoryboard().instantiateViewController(withIdentifier: String(describing: MovieListViewController.self)) as! MovieListViewController
         vc.router = router
         
         return vc
     }
     
-    func assemblyDetailsViewController(with router: ListRouting) -> DetailsViewController {
-        let vc: DetailsViewController = listStoryboard().instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
+    
+    // MARK: TVSeries
+    
+    func assemblyTVSeriesListViewController(with router: TVSeriesListRouting) -> TVSeriesViewController {
+        let vc: TVSeriesViewController = tvSeriesListStoryboard().instantiateViewController(withIdentifier: String(describing: TVSeriesViewController.self)) as! TVSeriesViewController
         vc.router = router
         
         return vc
     }
-
+    
     // MARK: Favorites
     
     func assemblyFavoriteMoviesViewController(with router: FavoritesRouting) -> FavoriteMoviesViewController {

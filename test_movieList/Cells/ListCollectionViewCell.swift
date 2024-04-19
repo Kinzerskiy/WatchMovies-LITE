@@ -39,12 +39,13 @@ class ListCollectionViewCell: UICollectionViewCell {
     }
     
     func fill(withData data: Any) {
-        if let tvShow = data as? TVShowListResponse.TVShow {
+        if let tvShow = data as? TVSeries {
             titleLabel.text = tvShow.name
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + tvShow.posterPath)
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
-        } else if let movie = data as? Movie {
+        } else 
+        if let movie = data as? Movie {
             titleLabel.text = movie.title
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (movie.posterPath ?? ""))
