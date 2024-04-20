@@ -7,10 +7,10 @@
 
 import Foundation
 
-
-
 class APIManager {
     let apiKey = "2ccc9fcb3e886fcb5f80015418735095"
+    
+    //MARK: Movies
     
     func fetchNowPlayingMovies(page: Int, completion: @escaping ([Movie], Error?) -> Void) {
         fetchMovies(with: "https://api.themoviedb.org/3/movie/now_playing", page: page, completion: completion)
@@ -28,6 +28,31 @@ class APIManager {
         fetchMovies(with: "https://api.themoviedb.org/3/movie/upcoming", page: page, completion: completion)
     }
     
+    private func fetchMovies(with urlString: String, page: Int, completion: @escaping ([Movie], Error?) -> Void) {
+        fetchData(urlString: urlString, page: page) { (response: MovieListResponse?, error) in
+            guard let response = response else {
+                completion([], error)
+                return
+            }
+            
+            let movies = response.results
+            completion(movies, nil)
+        }
+    }
+    
+    func fetchMovieDetails(movieId: Int, completion: @escaping (MovieDetailsResponse?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/movie/\(movieId)"
+        fetchData(urlString: urlString, completion: completion)
+    }
+    
+    func fetchSimilarMovies(movieId: Int, completion: @escaping (SimilarMoviesResponse?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/movie/\(movieId)"
+        fetchData(urlString: urlString, page: 1, completion: completion)
+    }
+    
+    
+    //MARK: Series
+    
     func fetchAiringTodaySeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
         fetchTVSeries(with: "https://api.themoviedb.org/3/tv/airing_today", page: page, completion: completion)
     }
@@ -43,19 +68,6 @@ class APIManager {
     func fetchTopRatedSeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
         fetchTVSeries(with: "https://api.themoviedb.org/3/tv/top_rated", page: page, completion: completion)
     }
-
-    
-    private func fetchMovies(with urlString: String, page: Int, completion: @escaping ([Movie], Error?) -> Void) {
-        fetchData(urlString: urlString, page: page) { (response: MovieListResponse?, error) in
-            guard let response = response else {
-                completion([], error)
-                return
-            }
-            
-            let movies = response.results
-            completion(movies, nil)
-        }
-    }
     
     private func fetchTVSeries(with urlString: String, page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
         fetchData(urlString: urlString, page: page) { (response: TVSeriesListResponse?, error) in
@@ -63,18 +75,26 @@ class APIManager {
                 completion([], error)
                 return
             }
-            
             let tvSeries = response.results
             completion(tvSeries, nil)
         }
     }
     
-    func fetchData<T: Codable>(urlString: String, page: Int, completion: @escaping (T?, Error?) -> Void) {
+    //MARK: Common
+    
+    func fetchData<T: Codable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {
+        fetchData(urlString: urlString, page: nil, completion: completion)
+    }
+    
+    func fetchData<T: Codable>(urlString: String, page: Int?, completion: @escaping (T?, Error?) -> Void) {
         if var urlComponents = URLComponents(string: urlString) {
-            urlComponents.queryItems = [
-                URLQueryItem(name: "api_key", value: apiKey),
-                URLQueryItem(name: "page", value: String(page))
+            var queryItems = [
+                URLQueryItem(name: "api_key", value: apiKey)
             ]
+            if let page = page {
+                queryItems.append(URLQueryItem(name: "page", value: String(page)))
+            }
+            urlComponents.queryItems = queryItems
             
             guard let url = urlComponents.url else {
                 fatalError("Invalid URL")

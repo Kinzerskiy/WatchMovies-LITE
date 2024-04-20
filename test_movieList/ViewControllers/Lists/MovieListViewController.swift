@@ -97,7 +97,7 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = movies[indexPath.item]
-        router?.showDetailForm(with: selectedMovie, viewController: self, animated: true)
+        router?.showDetailForm(with: selectedMovie.id, viewController: self, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -195,8 +195,6 @@ extension MovieListViewController: FilterViewDelegate {
         }
     }
 
-
-       
     private func handleFetchResponse(movies: [Movie]?, error: Error?, segmentIndex: Int) {
         guard let movies = movies else {
             showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")

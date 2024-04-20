@@ -26,8 +26,8 @@ class TVSeriesViewController: UIViewController {
         prepareCollectionView()
         makeNavigationBar()
         prepareSegmenBar()
+        prepareUI()
     }
-    
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
@@ -99,7 +99,7 @@ extension TVSeriesViewController: UICollectionViewDataSource, UICollectionViewDe
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 250)
+        return CGSize(width: 170, height: 250)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

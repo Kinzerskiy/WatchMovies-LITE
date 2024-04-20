@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MovieListRouting: BaseRouting, DismissRouting {
-    func showDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool)
+    func showDetailForm(with id: Int, viewController: UIViewController, animated: Bool)
 //    func showTVShowDetailForm(with tvShow: TVShowListResponse.TVShow?, viewController: UIViewController, animated: Bool)
     
 }
@@ -52,8 +52,8 @@ class MovieListRouter: BaseRouter, MovieListRouting {
         return navigationController!
     }
     
-    func showDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool) {
-        mainRouter?.showDetailForm(with: movie, viewController: viewController, animated: true)
+    func showDetailForm(with id: Int, viewController: UIViewController, animated: Bool) {
+        mainRouter?.showDetailForm(with: id, viewController: viewController, animated: true)
     }
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {
