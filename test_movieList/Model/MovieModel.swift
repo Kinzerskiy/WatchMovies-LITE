@@ -164,7 +164,7 @@ struct SpokenLanguage: Codable {
 
 struct SimilarMoviesResponse: Codable {
     let page: Int
-    let results: [Movie]
+    let results: [SimilarMovie]
     let totalPages: Int
     let totalResults: Int
     
@@ -173,5 +173,37 @@ struct SimilarMoviesResponse: Codable {
         case results
         case totalPages = "total_pages"
         case totalResults = "total_results"
+    }
+}
+
+struct SimilarMovie: Codable {
+    let id: Int
+    let title: String
+    let overview: String
+    let posterPath: String?
+    let backdropPath: String?
+    let releaseDate: String?
+    let genreIds: [Int]?
+    let originalLanguage: String?
+    let originalTitle: String?
+    let popularity: Double?
+    let video: Bool?
+    let voteAverage: Double?
+    let voteCount: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case overview
+        case posterPath = "poster_path"
+        case backdropPath = "backdrop_path"
+        case releaseDate = "release_date"
+        case genreIds = "genre_ids"
+        case originalLanguage = "original_language"
+        case originalTitle = "original_title"
+        case popularity
+        case video
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
     }
 }

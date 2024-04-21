@@ -44,11 +44,24 @@ class APIManager {
         let urlString = "https://api.themoviedb.org/3/movie/\(movieId)"
         fetchData(urlString: urlString, completion: completion)
     }
-    
+   
     func fetchSimilarMovies(movieId: Int, completion: @escaping (SimilarMoviesResponse?, Error?) -> Void) {
-        let urlString = "https://api.themoviedb.org/3/movie/\(movieId)"
-        fetchData(urlString: urlString, page: 1, completion: completion)
+        let urlString = "https://api.themoviedb.org/3/movie/\(movieId)/similar"
+        fetchData(urlString: urlString) { (response: SimilarMoviesResponse?, error) in
+            if let error = error {
+                print("Error fetching similar movies: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+
+            // Вывод данных, если все прошло успешно
+            if let response = response {
+                print("Fetched similar movies: \(response.results)")
+                completion(response, nil)
+            }
+        }
     }
+
     
     
     //MARK: Series
