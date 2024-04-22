@@ -21,15 +21,12 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
         prepareTableView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchMovieDetails { [weak self] in
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
                 self?.makeNavigationBar()
+                self?.tableView.reloadData()
             }
         }
     }
@@ -50,7 +47,6 @@ class DetailsViewController: UIViewController {
     func makeNavigationBar() {
         navigationView.delegate = self
         navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
         navigationItem.titleView = navigationView
         navigationView.titleName.text = movieDetails?.title
         navigationView.titleImage.isHidden = true
@@ -142,7 +138,9 @@ extension DetailsViewController: SimilarTableViewCellDelegate {
         fetchMovieDetails {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                }
                 self.makeNavigationBar()
             }
         }

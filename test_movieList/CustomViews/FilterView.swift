@@ -18,7 +18,7 @@ protocol FilterViewDelegate: AnyObject {
 class FilterView: UIView {
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
-    @IBOutlet weak var searchButton: UIButton!
+//    @IBOutlet weak var searchButton: UIButton!
     
     weak var delegate: FilterViewDelegate?
     
@@ -31,15 +31,22 @@ class FilterView: UIView {
     }
     
     
-    func setSegmentTitles(titles: [String]) {
+    func setSegmentTitles(titles: [String], font: UIFont, color: UIColor) {
         for (index, title) in titles.enumerated() {
             segmentControl.setTitle(title, forSegmentAt: index)
         }
+        let attributes = [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+        ]
+        segmentControl.setTitleTextAttributes(attributes, for: .normal)
     }
 
-    @IBAction func searchButtonTapped(_ sender: Any) {
-        delegate?.searchTapped()
-    }
+
+
+//    @IBAction func searchButtonTapped(_ sender: Any) {
+//        delegate?.searchTapped()
+//    }
     
     
     @IBAction func segmentTapped(_ sender: Any) {

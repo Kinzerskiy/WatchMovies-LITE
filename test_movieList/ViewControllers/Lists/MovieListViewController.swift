@@ -50,10 +50,20 @@ class MovieListViewController: UIViewController {
     
     
     func prepareSegmenBar() {
-        let segmentTitles = ["Now playing", "Popular", "Top", "Upcoming"]
-        filterView.setSegmentTitles(titles: segmentTitles)
         segmentBarView.addSubview(filterView)
         filterView.delegate = self
+        let segmentTitles = ["Now playing", "Popular", "Top", "Upcoming"]
+        let font = UIFont.lotaBold(ofSize: 12)
+        let color = UIColor.orange
+        filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
+        
+        filterView.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               filterView.topAnchor.constraint(equalTo: segmentBarView.topAnchor),
+               filterView.leadingAnchor.constraint(equalTo: segmentBarView.leadingAnchor),
+               filterView.bottomAnchor.constraint(equalTo: segmentBarView.bottomAnchor),
+               filterView.trailingAnchor.constraint(equalTo: segmentBarView.trailingAnchor)
+           ])
     }
     
     func prepareUI() {

@@ -33,15 +33,16 @@ class NavigationHeaderView: UICollectionViewCell {
     }
     
     override var intrinsicContentSize: CGSize {
-        return UIView.layoutFittingExpandedSize
+        return CGSize(width: UIView.noIntrinsicMetric, height: 400)
     }
-    
     
     func setupView() {
         contentView.backgroundColor = .white
         titleImage.contentMode = .scaleAspectFill
         titleImage.clipsToBounds = true
         titleName.font = UIFont.lotaBold(ofSize: 18)
+        titleName.numberOfLines = 2
+        titleName.lineBreakMode = .byWordWrapping
         backButton.setImage(UIImage(systemName: "arrowshape.turn.up.backward.fill"), for: .normal)
         backButton.tintColor = .orange
     }

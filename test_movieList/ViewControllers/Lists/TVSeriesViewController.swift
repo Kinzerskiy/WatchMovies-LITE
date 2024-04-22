@@ -40,9 +40,19 @@ class TVSeriesViewController: UIViewController {
     
     func prepareSegmenBar() {
         let segmentTitles = ["Today", "On the air", "Top", "Popular"]
-        filterView.setSegmentTitles(titles: segmentTitles)
+        let font = UIFont.lotaBold(ofSize: 12)
+        let color = UIColor.orange
+        filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
         segmentBarView.addSubview(filterView)
         filterView.delegate = self
+        
+        filterView.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               filterView.topAnchor.constraint(equalTo: segmentBarView.topAnchor),
+               filterView.leadingAnchor.constraint(equalTo: segmentBarView.leadingAnchor),
+               filterView.bottomAnchor.constraint(equalTo: segmentBarView.bottomAnchor),
+               filterView.trailingAnchor.constraint(equalTo: segmentBarView.trailingAnchor)
+           ])
     }
     
     func prepareCollectionView() {
