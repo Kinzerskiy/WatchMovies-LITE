@@ -10,10 +10,15 @@ import UIKit
 class SimilarCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var posterImage: UIImageView!
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("awakeFromNib11")
+        layer.shadowColor = UIColor.black.cgColor
+        layer.masksToBounds = false
+        layer.shadowOpacity = 0.8
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowRadius = 5
     }
     
     func fill(with similarMovie: SimilarMovie) {

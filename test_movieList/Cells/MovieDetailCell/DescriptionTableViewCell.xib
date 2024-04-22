@@ -70,7 +70,7 @@
             <connections>
                 <outlet property="companyLogo" destination="YPF-5v-THj" id="vl9-Z4-u37"/>
                 <outlet property="ganreName" destination="cL9-dN-IVX" id="O97-tK-ZwM"/>
-                <outlet property="moviewPoster" destination="NTa-Nh-Wzk" id="Xhn-Yx-fIi"/>
+                <outlet property="moviePoster" destination="NTa-Nh-Wzk" id="Xhn-Yx-fIi"/>
                 <outlet property="releaseDate" destination="546-YL-A8c" id="39f-uS-UWR"/>
                 <outlet property="voteAverage" destination="dRE-bR-rBe" id="Yg6-OJ-dLD"/>
             </connections>

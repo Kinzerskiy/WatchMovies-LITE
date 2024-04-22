@@ -29,6 +29,7 @@ class NavigationHeaderView: UICollectionViewCell {
     
     override func awakeFromNib() {
         setupView()
+        
     }
     
     override var intrinsicContentSize: CGSize {
@@ -40,6 +41,7 @@ class NavigationHeaderView: UICollectionViewCell {
         contentView.backgroundColor = .white
         titleImage.contentMode = .scaleAspectFill
         titleImage.clipsToBounds = true
+        titleName.font = UIFont.lotaBold(ofSize: 18)
         backButton.setImage(UIImage(systemName: "arrowshape.turn.up.backward.fill"), for: .normal)
         backButton.tintColor = .orange
     }

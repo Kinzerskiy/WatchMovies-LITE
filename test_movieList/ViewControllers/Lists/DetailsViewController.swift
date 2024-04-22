@@ -93,13 +93,10 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
-        case 0:
-            return UITableView.automaticDimension
-        case 1:
-            return 300
-        case 2: return 400
-        default:
-            return UITableView.automaticDimension
+        case 0: return UITableView.automaticDimension
+        case 1: return 200
+        case 2: return 300
+        default: return UITableView.automaticDimension
         }
     }
     
@@ -123,6 +120,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             cell.similarMovies = similarMovies
+            cell.delegate = self
             return cell
         } else {
             return UITableViewCell()
@@ -134,5 +132,27 @@ extension DetailsViewController: NavigationHeaderViewDelegate {
     
     func leftButtonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension DetailsViewController: SimilarTableViewCellDelegate {
+    func didSelectSimilarMovie(_ movie: SimilarMovie) {
+        selectedId = movie.id
+        similarMovies.removeAll()
+        fetchMovieDetails {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.makeNavigationBar()
+            }
+        }
+        fetchSimilarMovies {
+            DispatchQueue.main.async {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarTableViewCell {
+                    cell.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
 }

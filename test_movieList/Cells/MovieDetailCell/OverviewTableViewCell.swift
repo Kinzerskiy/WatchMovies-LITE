@@ -10,12 +10,16 @@ import UIKit
 class OverviewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var overviewText: UITextView!
+    @IBOutlet weak var overviewLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        overviewLabel.font = UIFont.lotaBold(ofSize: 18)
+        overviewLabel.textColor = UIColor.orange
+        overviewText.font = UIFont.lotaRegular(ofSize: 16)
+        overviewText.isEditable = false
+        overviewText.showsVerticalScrollIndicator = false
     }
-    
     
     func fill(with movieDetails: MovieDetailsResponse?) {
         guard let movieDetails = movieDetails else { return }

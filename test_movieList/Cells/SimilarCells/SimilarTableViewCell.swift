@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol SimilarTableViewCellDelegate: AnyObject {
+    func didSelectSimilarMovie(_ movie: SimilarMovie)
+}
+
 class SimilarTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var similarLabel: UILabel!
+    
+    weak var delegate: SimilarTableViewCellDelegate?
     
     var similarMovies: [SimilarMovie] = [] {
         didSet {
@@ -25,21 +31,34 @@ class SimilarTableViewCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "SimilarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SimilarCollectionViewCell")
-        
+        collectionView.showsHorizontalScrollIndicator = false
+        similarLabel.font = UIFont.lotaBold(ofSize: 18)
+        similarLabel.textColor = UIColor.orange
     }
 }
 
-extension SimilarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SimilarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let delegate = collectionView.delegate {
-            print("UICollectionView delegate is set \(String(describing: collectionView.delegate))")
-        } else {
-            print("UICollectionView delegate is nil")
-        }
-        print("Similar movies count: \(similarMovies.count)")
         return similarMovies.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+          return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+      }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = similarMovies[indexPath.item]
+        delegate?.didSelectSimilarMovie(selectedMovie)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+          return CGSize(width: 160, height: 240)
+      }
+      
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+          return 10
+      }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
          print("collectionView cellForItemAt indexPath: \(indexPath.item)")
