@@ -11,7 +11,6 @@ class SimilarCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var posterImage: UIImageView!
    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.shadowColor = UIColor.black.cgColor
@@ -21,15 +20,16 @@ class SimilarCollectionViewCell: UICollectionViewCell {
         layer.shadowRadius = 5
     }
     
-    func fill(with similarMovie: SimilarMovie) {
-        if let posterPath = similarMovie.posterPath {
-            let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-            posterImage.sd_setImage(with: posterUrl, placeholderImage: UIImage(named: "placeholder")) { (image, error, cacheType, imageUrl) in
-                if let error = error {
-                    print("Error loading image: \(error.localizedDescription)")
-                } else {
-                    print("Image loaded successfully")
-                }
+    func fill(with media: Any) {
+        if let similarMovie = media as? SimilarMovie {
+            if let posterPath = similarMovie.posterPath {
+                let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
+                posterImage.sd_setImage(with: posterUrl, placeholderImage: UIImage(named: "placeholder"))
+            }
+        } else if let similarTVSeries = media as? SimilarTVSeries {
+            if let posterPath = similarTVSeries.posterPath {
+                let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
+                posterImage.sd_setImage(with: posterUrl, placeholderImage: UIImage(named: "placeholder"))
             }
         }
     }

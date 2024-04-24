@@ -94,8 +94,8 @@
             filePath = "test_movieList/Routers/MainRouter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "introControllerDidFinishLoading(viewController:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -773,22 +773,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "26F8F870-5C2C-4183-ACB4-AC78361A3441"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/ViewControllers/Lists/DetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "008FD7DA-0C76-4084-B8DF-B2DA1D47C650"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -796,8 +780,8 @@
             filePath = "test_movieList/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "fetchData(urlString:page:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -812,8 +796,8 @@
             filePath = "test_movieList/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "fetchData(urlString:page:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -828,8 +812,8 @@
             filePath = "test_movieList/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "fetchData(urlString:page:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -844,8 +828,8 @@
             filePath = "test_movieList/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "fetchData(urlString:page:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -860,8 +844,8 @@
             filePath = "test_movieList/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "fetchData(urlString:page:completion:)"
             landmarkType = "7">
             <Locations>
@@ -908,10 +892,10 @@
             filePath = "test_movieList/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "fetchData(urlString:page:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -924,10 +908,10 @@
             filePath = "test_movieList/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "fetchData(urlString:page:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -940,153 +924,9 @@
             filePath = "test_movieList/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "fetchData(urlString:page:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FA1AE9C0-F934-4D71-9DC4-31B23F536F83"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/ViewControllers/Lists/DetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FD8E8377-0728-420F-BB7A-C1F22629EBFF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/Cells/SimilarCells/SimilarCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "fill(with:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FD8E8377-0728-420F-BB7A-C1F22629EBFF - c159e8f15d4f3a9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "test_movieList.SimilarCollectionViewCell.fill(with: test_movieList.SimilarMovie) -&gt; ()"
-                  moduleName = "test_movieList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "130">
-               </Location>
-               <Location
-                  uuid = "FD8E8377-0728-420F-BB7A-C1F22629EBFF - c159e8f15d4f3a9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "test_movieList.SimilarCollectionViewCell.fill(with: test_movieList.SimilarMovie) -&gt; ()"
-                  moduleName = "test_movieList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "177">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "099BA581-7FEA-4BCB-9147-208439674D34"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/Cells/SimilarCells/SimilarCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "fill(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "20F2D351-4C41-4732-AF29-FC2EC3DF00DD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/Cells/SimilarCells/SimilarCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "fill(with:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "20F2D351-4C41-4732-AF29-FC2EC3DF00DD - c159e8f15d4f3eb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "test_movieList.SimilarCollectionViewCell.fill(with: test_movieList.SimilarMovie) -&gt; ()"
-                  moduleName = "test_movieList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "476">
-               </Location>
-               <Location
-                  uuid = "20F2D351-4C41-4732-AF29-FC2EC3DF00DD - 112b6341eb9e2b34"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.UIImage&gt;, Swift.Optional&lt;Swift.Error&gt;, __C.SDImageCacheType, Swift.Optional&lt;Foundation.URL&gt;) -&gt; () in test_movieList.SimilarCollectionViewCell.fill(with: test_movieList.SimilarMovie) -&gt; ()"
-                  moduleName = "test_movieList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarCollectionViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "153">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5210A07E-A0C4-4C65-B826-2DF9FB0D5923"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/Cells/SimilarCells/SimilarCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "fill(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1100,8 +940,8 @@
             filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
             <Locations>
@@ -1148,8 +988,8 @@
             filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1164,8 +1004,8 @@
             filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
             <Locations>
@@ -1212,58 +1052,10 @@
             filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6F891E1E-E453-411F-9B4C-2A12FA00CF3B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6F891E1E-E453-411F-9B4C-2A12FA00CF3B - 1d6f923e136181d6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "test_movieList.SimilarTableViewCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
-                  moduleName = "test_movieList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "1280">
-               </Location>
-               <Location
-                  uuid = "6F891E1E-E453-411F-9B4C-2A12FA00CF3B - 1d6f923e136181f7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "test_movieList.SimilarTableViewCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
-                  moduleName = "test_movieList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "1257">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1276,26 +1068,10 @@
             filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "awakeFromNib()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "535F9210-F9A6-4989-9C9F-9654F064AF7D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "similarMovies"
-            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1308,72 +1084,56 @@
             filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "similarMovies"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "similarMovie"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2612B2FD-7FC9-42F1-9D31-1E35C5F8BC32"
+            uuid = "5974425C-431F-4CC1-A85C-7B692DC2E7D4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "test_movieList/ViewControllers/Lists/DetailsViewController.swift"
+            filePath = "test_movieList/Cells/MovieDetailCell/DescriptionTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "fetchSimilarMovies(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "99720515-0162-4676-A753-8C6C681BCB8D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/ViewControllers/Lists/DetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "fetchSimilarMovies(completion:)"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "fill(with:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "99720515-0162-4676-A753-8C6C681BCB8D - f91988f5f7438a1c"
+                  uuid = "5974425C-431F-4CC1-A85C-7B692DC2E7D4 - 8b8a0d0855c8f3b3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "test_movieList.DetailsViewController.fetchSimilarMovies(completion: () -&gt; ()) -&gt; ()"
+                  symbolName = "test_movieList.DescriptionTableViewCell.fill(with: test_movieList.MediaDetails) -&gt; ()"
                   moduleName = "test_movieList"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/ViewControllers/Lists/DetailsViewController.swift"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/MovieDetailCell/DescriptionTableViewCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "278">
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "395">
                </Location>
                <Location
-                  uuid = "99720515-0162-4676-A753-8C6C681BCB8D - 6ac1d8407c0b561d"
+                  uuid = "5974425C-431F-4CC1-A85C-7B692DC2E7D4 - 8b8a0d0855c8f3b3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;test_movieList.SimilarMoviesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in test_movieList.DetailsViewController.fetchSimilarMovies(completion: () -&gt; ()) -&gt; ()"
+                  symbolName = "test_movieList.DescriptionTableViewCell.fill(with: test_movieList.MediaDetails) -&gt; ()"
                   moduleName = "test_movieList"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/ViewControllers/Lists/DetailsViewController.swift"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/MovieDetailCell/DescriptionTableViewCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "252">
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "566">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1381,87 +1141,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C2000244-1CA5-4403-96A8-9287C049A3D4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/ViewControllers/Lists/DetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "fetchSimilarMovies(completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C2000244-1CA5-4403-96A8-9287C049A3D4 - 6ac1d8407c0b56fc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;test_movieList.SimilarMoviesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in test_movieList.DetailsViewController.fetchSimilarMovies(completion: () -&gt; ()) -&gt; ()"
-                  moduleName = "test_movieList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/ViewControllers/Lists/DetailsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "380">
-               </Location>
-               <Location
-                  uuid = "C2000244-1CA5-4403-96A8-9287C049A3D4 - 6ac1d8407c0b56fc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;test_movieList.SimilarMoviesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in test_movieList.DetailsViewController.fetchSimilarMovies(completion: () -&gt; ()) -&gt; ()"
-                  moduleName = "test_movieList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/ViewControllers/Lists/DetailsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "392">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1C5CCE8A-B8F2-4CD3-A2FC-99487D15ACA2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/ViewControllers/Lists/DetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "fetchSimilarMovies(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "287DCC8B-8F75-4248-A575-86E3915306F4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "test_movieList/ViewControllers/Lists/DetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "fetchSimilarMovies(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E2BA0549-F388-47A1-BCA8-9D5C24E7CF7D"
+            uuid = "6AB34A39-D8E1-4570-9144-FFDE4DB327ED"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1471,6 +1151,181 @@
             startingLineNumber = "45"
             endingLineNumber = "45"
             landmarkName = "fill(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E7998190-00A8-44DB-B1CF-64D073C40AB0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test_movieList/Cells/MovieDetailCell/DescriptionTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "fill(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43101727-C729-4A4C-BB6A-07D6003FEF96"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test_movieList/ViewControllers/Lists/MovieListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "871537A8-778A-4ED8-A70F-AFD9D9DC2BC3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "871537A8-778A-4ED8-A70F-AFD9D9DC2BC3 - 1d6f923e13618688"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "test_movieList.SimilarTableViewCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "test_movieList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1013">
+               </Location>
+               <Location
+                  uuid = "871537A8-778A-4ED8-A70F-AFD9D9DC2BC3 - 1d6f923e13618688"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "test_movieList.SimilarTableViewCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "test_movieList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1172">
+               </Location>
+               <Location
+                  uuid = "871537A8-778A-4ED8-A70F-AFD9D9DC2BC3 - 1d6f923e13618688"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "test_movieList.SimilarTableViewCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
+                  moduleName = "test_movieList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Cells/SimilarCells/SimilarTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1280">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3B5C94F3-5EDD-4C2D-AFBC-B3C6D67A29D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test_movieList/Helpers/APIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "fetchSimilarTVSeries(seriesId:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3B5C94F3-5EDD-4C2D-AFBC-B3C6D67A29D1 - 1ee2246c6f521e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "test_movieList.APIManager.fetchSimilarTVSeries(seriesId: Swift.Int, completion: (Swift.Optional&lt;test_movieList.SimilarTVSeriesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "test_movieList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Helpers/APIManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "418">
+               </Location>
+               <Location
+                  uuid = "3B5C94F3-5EDD-4C2D-AFBC-B3C6D67A29D1 - 996f5726c36e1495"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;test_movieList.SimilarTVSeriesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in test_movieList.APIManager.fetchSimilarTVSeries(seriesId: Swift.Int, completion: (Swift.Optional&lt;test_movieList.SimilarTVSeriesResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "test_movieList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/Helpers/APIManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "220">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D1A23025-CE78-48F2-BF44-83E6D90F32B9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test_movieList/Helpers/APIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "fetchSimilarTVSeries(seriesId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17CE54BC-07A7-42DB-AD76-E8CF503230E1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test_movieList/Helpers/APIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "fetchSimilarTVSeries(seriesId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

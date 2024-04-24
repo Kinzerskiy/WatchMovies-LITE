@@ -9,18 +9,23 @@ import UIKit
 
 protocol SimilarTableViewCellDelegate: AnyObject {
     func didSelectSimilarMovie(_ movie: SimilarMovie)
+    func didSelectSimilarTVSeries(_ tvSeries: SimilarTVSeries)
 }
-
-class SimilarTableViewCell: UITableViewCell {
+class SimilarMovieTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var similarLabel: UILabel!
     
     weak var delegate: SimilarTableViewCellDelegate?
     
-    var similarMovies: [SimilarMovie] = [] {
+    var similarMovie: [SimilarMovie] = [] {
         didSet {
-            print("Did set similarMovies. Count: \(similarMovies.count)")
+            collectionView.reloadData()
+        }
+    }
+    
+    var similarTVSeries: [SimilarTVSeries] = [] {
+        didSet {
             collectionView.reloadData()
         }
     }
@@ -37,10 +42,14 @@ class SimilarTableViewCell: UITableViewCell {
     }
 }
 
-extension SimilarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SimilarMovieTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return similarMovies.count
+        if !similarMovie.isEmpty {
+            return similarMovie.count
+        } else {
+            return similarTVSeries.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -48,10 +57,15 @@ extension SimilarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
       }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedMovie = similarMovies[indexPath.item]
-        delegate?.didSelectSimilarMovie(selectedMovie)
+        if !similarMovie.isEmpty {
+            let movie = similarMovie[indexPath.item]
+            delegate?.didSelectSimilarMovie(movie)
+        } else if !similarTVSeries.isEmpty {
+            let tvSeries = similarTVSeries[indexPath.item]
+            delegate?.didSelectSimilarTVSeries(tvSeries)
+        }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
           return CGSize(width: 160, height: 240)
       }
@@ -64,9 +78,13 @@ extension SimilarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
          print("collectionView cellForItemAt indexPath: \(indexPath.item)")
          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SimilarCollectionViewCell", for: indexPath) as! SimilarCollectionViewCell
          
-         let similarMovie = similarMovies[indexPath.item]
-         cell.fill(with: similarMovie)
-         
-         return cell
+        if !similarMovie.isEmpty {
+               let movie = similarMovie[indexPath.item]
+               cell.fill(with: movie)
+           } else if !similarTVSeries.isEmpty {
+               let tvSeries = similarTVSeries[indexPath.item]
+               cell.fill(with: tvSeries)
+           }
+           return cell
     }
  }

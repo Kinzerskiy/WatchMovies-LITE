@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OverviewTableViewCell: UITableViewCell {
+class OverviewTableViewCell: UITableViewCell, DescribableCell {
 
     @IBOutlet weak var overviewText: UITextView!
     @IBOutlet weak var overviewLabel: UILabel!
@@ -21,8 +21,7 @@ class OverviewTableViewCell: UITableViewCell {
         overviewText.showsVerticalScrollIndicator = false
     }
     
-    func fill(with movieDetails: MovieDetailsResponse?) {
-        guard let movieDetails = movieDetails else { return }
-        overviewText.text = movieDetails.overview
-    }
+    func fill(with data: MediaDetails) {
+           overviewText.text = data.overview
+       }
 }

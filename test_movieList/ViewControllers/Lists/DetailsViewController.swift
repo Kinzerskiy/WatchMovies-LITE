@@ -10,8 +10,12 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     var selectedId: Int?
-    var movieDetails: MovieDetailsResponse?
+    var movieDetails: MovieDetails?
+    var tvSeriesDetails: TVSeriesDetails?
     var similarMovies: [SimilarMovie] = []
+    var similarTVSeries: [SimilarTVSeries] = []
+    
+    var isMovie: Bool?
     
     var router: MainRouting?
     let navigationView = NavigationHeaderView.loadView()
@@ -23,12 +27,12 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         prepareTableView()
-        fetchMovieDetails { [weak self] in
+        fetchMediaDetails(isMovie: isMovie!, completion:  { [weak self] in
             DispatchQueue.main.async {
                 self?.makeNavigationBar()
                 self?.tableView.reloadData()
             }
-        }
+        })
     }
     
     func prepareTableView() {
@@ -37,7 +41,7 @@ class DetailsViewController: UIViewController {
         tableView.register(UINib(nibName: "DescriptionTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DescriptionTableViewCell")
         tableView.register(UINib(nibName: "OverviewTableViewCell", bundle: nil), forCellReuseIdentifier: "OverviewTableViewCell")
-        tableView.register(UINib(nibName: "SimilarTableViewCell", bundle: nil), forCellReuseIdentifier: "SimilarTableViewCell")
+        tableView.register(UINib(nibName: "SimilarMovieTableViewCell", bundle: nil), forCellReuseIdentifier: "SimilarMovieTableViewCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
@@ -48,34 +52,50 @@ class DetailsViewController: UIViewController {
         navigationView.delegate = self
         navigationItem.leftBarButtonItem = nil
         navigationItem.titleView = navigationView
-        navigationView.titleName.text = movieDetails?.title
+        
+        if isMovie! {
+            navigationView.titleName.text = movieDetails?.title
+        } else {
+            navigationView.titleName.text = tvSeriesDetails?.name
+        }
+        
         navigationView.titleImage.isHidden = true
         navigationView.titleName.textAlignment = .center
     }
     
-    func fetchMovieDetails(completion: @escaping () -> Void) {
+    func fetchMediaDetails(isMovie: Bool, completion: @escaping () -> Void) {
         guard let id = selectedId else { return }
         
-        apiManager.fetchMovieDetails(movieId: id) { [weak self] (response, error) in
-            guard let self = self, let response = response else { return }
-            self.movieDetails = response
-            self.fetchSimilarMovies {
-                completion()
+        if isMovie {
+            apiManager.fetchMovieDetails(movieId: id) { [weak self] (response, error) in
+                guard let self = self, let response = response else { return }
+                self.movieDetails = response
+                self.fetchSimilarMedia(completion: completion)
+            }
+        } else {
+            apiManager.fetchTVSeriesDetails(seriesId: id) { [weak self] (response, error) in
+                guard let self = self, let response = response else { return }
+                self.tvSeriesDetails = response
+                self.fetchSimilarMedia(completion: completion)
             }
         }
     }
     
-    func fetchSimilarMovies(completion: @escaping () -> Void) {
-        guard similarMovies.isEmpty else {
-            completion()
-            return
-        }
-        
+    func fetchSimilarMedia(completion: @escaping () -> Void) {
         guard let id = selectedId else { return }
-        apiManager.fetchSimilarMovies(movieId: id) { [weak self] (response, error) in
-            guard let self = self, let response = response else { return }
-            self.similarMovies = response.results
-            completion()
+        
+        if isMovie == true {
+            apiManager.fetchSimilarMovies(movieId: id) { [weak self] (response, error) in
+                guard let self = self, let response = response else { return }
+                self.similarMovies = response.results
+                completion()
+            }
+        } else {
+            apiManager.fetchSimilarTVSeries(seriesId: id) { [weak self] (response, error) in
+                guard let self = self, let response = response else { return }
+                self.similarTVSeries = response.results
+                completion()
+            }
         }
     }
 }
@@ -101,41 +121,49 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as? DescriptionTableViewCell else {
                 return UITableViewCell()
             }
-            if selectedId != nil {
+            if let movieDetails = movieDetails {
                 cell.fill(with: movieDetails)
+            } else if let tvSeriesDetails = tvSeriesDetails {
+                cell.fill(with: tvSeriesDetails)
             }
             return cell
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "OverviewTableViewCell", for: indexPath) as? OverviewTableViewCell else {
                 return UITableViewCell()
             }
-            cell.fill(with: movieDetails)
+            
+            if let movieDetails = movieDetails {
+                cell.fill(with: movieDetails)
+            } else if let tvSeriesDetails = tvSeriesDetails {
+                cell.fill(with: tvSeriesDetails)
+            }
             return cell
         } else if indexPath.row == 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarTableViewCell", for: indexPath) as? SimilarTableViewCell else {
-                return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarMovieTableViewCell", for: indexPath) as! SimilarMovieTableViewCell
+            if movieDetails != nil {
+                cell.similarMovie = similarMovies
+            } else {
+                cell.similarTVSeries = similarTVSeries
             }
-            cell.similarMovies = similarMovies
             cell.delegate = self
             return cell
-        } else {
-            return UITableViewCell()
         }
+        return UITableViewCell()
     }
 }
 
 extension DetailsViewController: NavigationHeaderViewDelegate {
-    
     func leftButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
 }
 
 extension DetailsViewController: SimilarTableViewCellDelegate {
-    func didSelectSimilarMovie(_ movie: SimilarMovie) {
-        selectedId = movie.id
+    
+    func didSelectSimilarTVSeries(_ tvSeries: SimilarTVSeries) {
+        selectedId = tvSeries.id
         similarMovies.removeAll()
-        fetchMovieDetails {
+        fetchMediaDetails(isMovie: false) {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -144,9 +172,31 @@ extension DetailsViewController: SimilarTableViewCellDelegate {
                 self.makeNavigationBar()
             }
         }
-        fetchSimilarMovies {
+        fetchSimilarMedia {
             DispatchQueue.main.async {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarTableViewCell {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarMovieTableViewCell {
+                    cell.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func didSelectSimilarMovie(_ movie: SimilarMovie) {
+        selectedId = movie.id
+        similarMovies.removeAll()
+        fetchMediaDetails(isMovie: true) {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                }
+                self.makeNavigationBar()
+            }
+        }
+        fetchSimilarMedia {
+            DispatchQueue.main.async {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarMovieTableViewCell {
                     cell.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
                 }
                 self.tableView.reloadData()

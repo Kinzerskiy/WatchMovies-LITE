@@ -40,7 +40,7 @@ class APIManager {
         }
     }
     
-    func fetchMovieDetails(movieId: Int, completion: @escaping (MovieDetailsResponse?, Error?) -> Void) {
+    func fetchMovieDetails(movieId: Int, completion: @escaping (MovieDetails?, Error?) -> Void) {
         let urlString = "https://api.themoviedb.org/3/movie/\(movieId)"
         fetchData(urlString: urlString, completion: completion)
     }
@@ -53,8 +53,6 @@ class APIManager {
                 completion(nil, error)
                 return
             }
-
-            // Вывод данных, если все прошло успешно
             if let response = response {
                 print("Fetched similar movies: \(response.results)")
                 completion(response, nil)
@@ -62,8 +60,6 @@ class APIManager {
         }
     }
 
-    
-    
     //MARK: Series
     
     func fetchAiringTodaySeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
@@ -93,6 +89,26 @@ class APIManager {
         }
     }
     
+    func fetchTVSeriesDetails(seriesId: Int, completion: @escaping (TVSeriesDetails?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/tv/\(seriesId)"
+        fetchData(urlString: urlString, completion: completion)
+    }
+    
+    func fetchSimilarTVSeries(seriesId: Int, completion: @escaping (SimilarTVSeriesResponse?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/tv/\(seriesId)/similar"
+        fetchData(urlString: urlString) { (response: SimilarTVSeriesResponse?, error) in
+            if let error = error {
+                print("Error fetching similar movies: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            if let response = response {
+                print("Fetched similar movies: \(response.results)")
+                completion(response, nil)
+            }
+        }
+    }
+
     //MARK: Common
     
     func fetchData<T: Codable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {

@@ -7,6 +7,15 @@
 
 import Foundation
 
+protocol MediaDetails {
+    var id: Int { get }
+    var posterPath: String? { get }
+    var genres: [Genre] { get }
+    var voteAverage: Double { get }
+    var releaseDate: String? { get }
+    var overview: String { get }
+}
+
 //MARK: - TVSeries
 
 struct TVSeries: Codable{
@@ -61,7 +70,8 @@ enum OriginalLanguage: String, Codable {
 
 //MARK: - TVSeriesDetails
 
-struct TVSeriesDetails: Codable {
+struct TVSeriesDetails: Codable, MediaDetails {
+    var releaseDate: String?
     let adult: Bool
     let backdropPath: String?
     let createdBy: [Creator]
@@ -210,5 +220,51 @@ struct Season: Codable {
         case posterPath = "poster_path"
         case seasonNumber = "season_number"
         case voteAverage = "vote_average"
+    }
+}
+
+//MARK: Similar
+
+
+struct SimilarTVSeriesResponse: Codable {
+    let page: Int
+    let results: [SimilarTVSeries]
+    let totalPages, totalResults: Int
+
+    enum CodingKeys: String, CodingKey {
+        case page, results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
+}
+
+struct SimilarTVSeries: Codable {
+    var releaseDate: String?
+    let adult: Bool
+    let backdropPath: String?
+    let genreIDS: [Int]
+    let id: Int
+    let originCountry: [String]
+    let originalLanguage, originalName, overview: String
+    let popularity: Double
+    let posterPath: String?
+    let firstAirDate, name: String
+    let voteAverage: Double
+    let voteCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case adult
+        case backdropPath = "backdrop_path"
+        case genreIDS = "genre_ids"
+        case id
+        case originCountry = "origin_country"
+        case originalLanguage = "original_language"
+        case originalName = "original_name"
+        case overview, popularity
+        case posterPath = "poster_path"
+        case firstAirDate = "first_air_date"
+        case name
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
     }
 }

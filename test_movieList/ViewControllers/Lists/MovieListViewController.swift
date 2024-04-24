@@ -107,7 +107,7 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = movies[indexPath.item]
-        router?.showDetailForm(with: selectedMovie.id, viewController: self, animated: true)
+        router?.showDetailForm(with: selectedMovie.id, isMovie: true, viewController: self, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
