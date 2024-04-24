@@ -25,10 +25,13 @@
 		CEADF0FA2BD6C10900A6B542 /* OverviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0F62BD6C10900A6B542 /* OverviewTableViewCell.xib */; };
 		CEADF0FB2BD6C10900A6B542 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0F72BD6C10900A6B542 /* DescriptionTableViewCell.swift */; };
 		CEADF0FC2BD6C10900A6B542 /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0F82BD6C10900A6B542 /* DescriptionTableViewCell.xib */; };
-		CEADF1012BD6C12500A6B542 /* SimilarMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0FD2BD6C12500A6B542 /* SimilarMovieTableViewCell.swift */; };
-		CEADF1022BD6C12500A6B542 /* SimilarMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0FE2BD6C12500A6B542 /* SimilarMovieTableViewCell.xib */; };
+		CEADF1012BD6C12500A6B542 /* SimilarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0FD2BD6C12500A6B542 /* SimilarTableViewCell.swift */; };
+		CEADF1022BD6C12500A6B542 /* SimilarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0FE2BD6C12500A6B542 /* SimilarTableViewCell.xib */; };
 		CEADF1032BD6C12500A6B542 /* SimilarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0FF2BD6C12500A6B542 /* SimilarCollectionViewCell.swift */; };
 		CEADF1042BD6C12500A6B542 /* SimilarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEADF1002BD6C12500A6B542 /* SimilarCollectionViewCell.xib */; };
+		CEC2856D2BD97C3700189979 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC2856C2BD97C3700189979 /* Search.storyboard */; };
+		CEC2856F2BD97C5400189979 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2856E2BD97C5400189979 /* SearchRouter.swift */; };
+		CEC285712BD97CC400189979 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC285702BD97CC400189979 /* SearchViewController.swift */; };
 		CECC78A42B6CE38C008815EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC78A32B6CE38C008815EF /* AppDelegate.swift */; };
 		CECC78A62B6CE38C008815EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC78A52B6CE38C008815EF /* SceneDelegate.swift */; };
 		CECC78AB2B6CE38C008815EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CECC78A92B6CE38C008815EF /* Main.storyboard */; };
@@ -79,10 +82,13 @@
 		CEADF0F62BD6C10900A6B542 /* OverviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverviewTableViewCell.xib; sourceTree = "<group>"; };
 		CEADF0F72BD6C10900A6B542 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		CEADF0F82BD6C10900A6B542 /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionTableViewCell.xib; sourceTree = "<group>"; };
-		CEADF0FD2BD6C12500A6B542 /* SimilarMovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarMovieTableViewCell.swift; sourceTree = "<group>"; };
-		CEADF0FE2BD6C12500A6B542 /* SimilarMovieTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimilarMovieTableViewCell.xib; sourceTree = "<group>"; };
+		CEADF0FD2BD6C12500A6B542 /* SimilarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarTableViewCell.swift; sourceTree = "<group>"; };
+		CEADF0FE2BD6C12500A6B542 /* SimilarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimilarTableViewCell.xib; sourceTree = "<group>"; };
 		CEADF0FF2BD6C12500A6B542 /* SimilarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEADF1002BD6C12500A6B542 /* SimilarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimilarCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEC2856C2BD97C3700189979 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		CEC2856E2BD97C5400189979 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		CEC285702BD97CC400189979 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CECC78A02B6CE38C008815EF /* test_movieList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test_movieList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECC78A32B6CE38C008815EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CECC78A52B6CE38C008815EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,8 +149,8 @@
 			children = (
 				CEADF0FF2BD6C12500A6B542 /* SimilarCollectionViewCell.swift */,
 				CEADF1002BD6C12500A6B542 /* SimilarCollectionViewCell.xib */,
-				CEADF0FD2BD6C12500A6B542 /* SimilarMovieTableViewCell.swift */,
-				CEADF0FE2BD6C12500A6B542 /* SimilarMovieTableViewCell.xib */,
+				CEADF0FD2BD6C12500A6B542 /* SimilarTableViewCell.swift */,
+				CEADF0FE2BD6C12500A6B542 /* SimilarTableViewCell.xib */,
 			);
 			path = SimilarCells;
 			sourceTree = "<group>";
@@ -204,6 +210,7 @@
 				CED28F812B6CEE8D007DB4A8 /* MovieList.storyboard */,
 				CE0F05DD2BD28028003BF2AD /* TVSeriesList.storyboard */,
 				CED28F832B6CEEA6007DB4A8 /* Favorites.storyboard */,
+				CEC2856C2BD97C3700189979 /* Search.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -216,6 +223,7 @@
 				CECC78C02B6CE649008815EF /* MainRouter.swift */,
 				CECC78C62B6CEA40008815EF /* MovieListRouter.swift */,
 				CE0F05DB2BD27BFC003BF2AD /* TVSeriesListRouter.swift */,
+				CEC2856E2BD97C5400189979 /* SearchRouter.swift */,
 				CED28F902B6CF394007DB4A8 /* FavoritesRouter.swift */,
 			);
 			path = Routers;
@@ -268,6 +276,7 @@
 				CED28F8C2B6CF1FC007DB4A8 /* MovieListViewController.swift */,
 				CE0F05D92BD27648003BF2AD /* TVSeriesViewController.swift */,
 				CED28F8E2B6CF22A007DB4A8 /* DetailsViewController.swift */,
+				CEC285702BD97CC400189979 /* SearchViewController.swift */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
@@ -389,7 +398,8 @@
 				CE96C5282BD11665000ECB7B /* FilterView.xib in Resources */,
 				CEADF1042BD6C12500A6B542 /* SimilarCollectionViewCell.xib in Resources */,
 				CEADF0EF2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf in Resources */,
-				CEADF1022BD6C12500A6B542 /* SimilarMovieTableViewCell.xib in Resources */,
+				CEC2856D2BD97C3700189979 /* Search.storyboard in Resources */,
+				CEADF1022BD6C12500A6B542 /* SimilarTableViewCell.xib in Resources */,
 				CECC78B32B6CE396008815EF /* LaunchScreen.storyboard in Resources */,
 				CEADF0F02BD66B3100A6B542 /* LotaGrotesque-Bold.otf in Resources */,
 				CEADF0FA2BD6C10900A6B542 /* OverviewTableViewCell.xib in Resources */,
@@ -432,10 +442,12 @@
 				CED28FA82B6D4975007DB4A8 /* APIManager.swift in Sources */,
 				CECC78BB2B6CE41B008815EF /* ApplicationAssembly.swift in Sources */,
 				CED28F8F2B6CF22A007DB4A8 /* DetailsViewController.swift in Sources */,
+				CEC285712BD97CC400189979 /* SearchViewController.swift in Sources */,
 				CE96C52C2BD18D63000ECB7B /* TVSeriesModel.swift in Sources */,
 				CEADF0F92BD6C10900A6B542 /* OverviewTableViewCell.swift in Sources */,
 				CED28FAB2B6D5225007DB4A8 /* ListCollectionViewCell.swift in Sources */,
-				CEADF1012BD6C12500A6B542 /* SimilarMovieTableViewCell.swift in Sources */,
+				CEADF1012BD6C12500A6B542 /* SimilarTableViewCell.swift in Sources */,
+				CEC2856F2BD97C5400189979 /* SearchRouter.swift in Sources */,
 				CECC78A42B6CE38C008815EF /* AppDelegate.swift in Sources */,
 				CEADF0FB2BD6C10900A6B542 /* DescriptionTableViewCell.swift in Sources */,
 				CE88E8A12B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift in Sources */,

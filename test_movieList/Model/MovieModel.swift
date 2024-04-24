@@ -55,6 +55,7 @@ struct Dates: Codable {
 // MARK: - MovieDetails
 
 struct MovieDetails: Codable, MediaDetails {
+    var firstAirDate: String?
     var genres: [Genre]
     var releaseDate: String?
     let adult: Bool
@@ -178,6 +179,8 @@ struct SimilarMoviesResponse: Codable {
 }
 
 struct SimilarMovie: Codable, MediaDetails {
+    var firstAirDate: String?
+    
     var genres: [Genre]
     
     let id: Int

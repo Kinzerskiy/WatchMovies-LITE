@@ -11,7 +11,7 @@ protocol SimilarTableViewCellDelegate: AnyObject {
     func didSelectSimilarMovie(_ movie: SimilarMovie)
     func didSelectSimilarTVSeries(_ tvSeries: SimilarTVSeries)
 }
-class SimilarMovieTableViewCell: UITableViewCell {
+class SimilarTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var similarLabel: UILabel!
@@ -42,7 +42,7 @@ class SimilarMovieTableViewCell: UITableViewCell {
     }
 }
 
-extension SimilarMovieTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SimilarTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if !similarMovie.isEmpty {

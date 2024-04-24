@@ -95,7 +95,6 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
         
         let movieIndex = indexPath.item
         if movieIndex < movies.count {
-//            let movie = movies[movieIndex]
             let movie = movies[movieIndex]
             cell.fill(withData: movie)
 //            cell.longPressHandler = { [weak self] in

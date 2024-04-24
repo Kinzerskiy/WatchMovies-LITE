@@ -11,6 +11,7 @@ enum ApplicationStoryType {
     case main
     case movieList
     case tvSeriesList
+    case search
     case favorites
 }
 
@@ -31,6 +32,7 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
     private var movieListRouter: MovieListRouter?
     private var tvSeriesListRouter: TVSeriesListRouter?
     private var favoritesRouter: FavoritesRouter?
+    private var searchRouter: SearchRouter?
     
     // MARK: - Memory management
     
@@ -45,6 +47,7 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         movieListRouter = assemblyMovieListRouter()
         tvSeriesListRouter = assemblyTVSeriesListRouter()
         favoritesRouter = assemblyFavoritesRouter()
+        searchRouter = assemblySearchRouter()
     }
     
     // MARK: - BaseRouting
@@ -54,8 +57,8 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         let rootItem: Array<UIViewController> = [
             intialialViewControllerForItem(with: .movieList),
             intialialViewControllerForItem(with: .tvSeriesList),
+            intialialViewControllerForItem(with: .search),
             intialialViewControllerForItem(with: .favorites)
-            
         ]
         
         rootContentController = navigationAssembly().assemblyTabbarController(with: rootItem)
@@ -109,6 +112,12 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         return router
     }
     
+    func assemblySearchRouter() -> SearchRouter {
+        let router = SearchRouter(with: navigationAssembly())
+        
+        return router
+    }
+    
     // MARK: - Private
     
     private func switchToStory(with type: ApplicationStoryType) {
@@ -132,6 +141,8 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
             return (mainRouter?.initialViewController())!
         case .tvSeriesList:
             return (tvSeriesListRouter?.initialViewController())!
+        case .search:
+            return (searchRouter?.initialViewController())!
         }
     }
 }

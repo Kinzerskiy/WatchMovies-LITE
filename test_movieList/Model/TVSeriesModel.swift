@@ -13,6 +13,7 @@ protocol MediaDetails {
     var genres: [Genre] { get }
     var voteAverage: Double { get }
     var releaseDate: String? { get }
+    var firstAirDate: String? { get }
     var overview: String { get }
 }
 
@@ -71,12 +72,13 @@ enum OriginalLanguage: String, Codable {
 //MARK: - TVSeriesDetails
 
 struct TVSeriesDetails: Codable, MediaDetails {
+    var firstAirDate: String?
+    
     var releaseDate: String?
     let adult: Bool
     let backdropPath: String?
     let createdBy: [Creator]
     let episodeRunTime: [Int]
-    let firstAirDate: String
     let genres: [Genre]
     let homepage: String
     let id: Int

@@ -41,7 +41,7 @@ class DetailsViewController: UIViewController {
         tableView.register(UINib(nibName: "DescriptionTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DescriptionTableViewCell")
         tableView.register(UINib(nibName: "OverviewTableViewCell", bundle: nil), forCellReuseIdentifier: "OverviewTableViewCell")
-        tableView.register(UINib(nibName: "SimilarMovieTableViewCell", bundle: nil), forCellReuseIdentifier: "SimilarMovieTableViewCell")
+        tableView.register(UINib(nibName: "SimilarTableViewCell", bundle: nil), forCellReuseIdentifier: "SimilarTableViewCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
@@ -58,7 +58,6 @@ class DetailsViewController: UIViewController {
         } else {
             navigationView.titleName.text = tvSeriesDetails?.name
         }
-        
         navigationView.titleImage.isHidden = true
         navigationView.titleName.textAlignment = .center
     }
@@ -106,7 +105,6 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
         return 3
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0: return UITableView.automaticDimension
@@ -139,7 +137,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
             }
             return cell
         } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarMovieTableViewCell", for: indexPath) as! SimilarMovieTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarTableViewCell", for: indexPath) as! SimilarTableViewCell
             if movieDetails != nil {
                 cell.similarMovie = similarMovies
             } else {
@@ -174,7 +172,7 @@ extension DetailsViewController: SimilarTableViewCellDelegate {
         }
         fetchSimilarMedia {
             DispatchQueue.main.async {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarMovieTableViewCell {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarTableViewCell {
                     cell.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
                 }
                 self.tableView.reloadData()
@@ -196,7 +194,7 @@ extension DetailsViewController: SimilarTableViewCellDelegate {
         }
         fetchSimilarMedia {
             DispatchQueue.main.async {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarMovieTableViewCell {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarTableViewCell {
                     cell.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
                 }
                 self.tableView.reloadData()

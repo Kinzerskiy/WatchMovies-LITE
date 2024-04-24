@@ -1,22 +1,22 @@
 //
-//  ListRouter.swift
+//  SearchRouter.swift
 //  test_movieList
 //
-//  Created by User on 02.02.2024.
+//  Created by User on 24.04.2024.
 //
 
 import Foundation
 import UIKit
 
-protocol MovieListRouting: BaseRouting, DismissRouting {
-    func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
+protocol SearchRouting: BaseRouting, DismissRouting {
+  
 }
 
-class MovieListRouter: BaseRouter, MovieListRouting {
+class SearchRouter: BaseRouter, SearchRouting {
     
     var mainRouter: MainRouting?
     
-    private var movieListViewController: MovieListViewController?
+    private var searchViewController: SearchViewController?
     private var navigationController: UINavigationController?
     
     // MARK: - Memory management
@@ -30,17 +30,17 @@ class MovieListRouter: BaseRouter, MovieListRouting {
     override func initialViewController() -> UIViewController {
         
         if navigationController == nil {
-            let vc: MovieListViewController = assembly.assemblyMovieListViewController(with: self)
-          
-            let symbol = "popcorn.fill"
+            let vc: SearchViewController = assembly.assemblySearchViewController(with: self)
+            
+            let symbol = "sparkle.magnifyingglass"
             let activeImage = UIImage(systemName: symbol)?.withTintColor(.orange, renderingMode: .alwaysOriginal)
             let inactiveImage = UIImage(systemName: symbol)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             
-            vc.tabBarItem.title = "Movie List"
+            vc.tabBarItem.title = "Search"
             vc.tabBarItem.image = inactiveImage
             vc.tabBarItem.selectedImage = activeImage
             
-            movieListViewController = vc
+            searchViewController = vc
             navigationController = assembly.assemblyNavigationController(with: vc)
             
             mainRouter = instantiateMainRouter()
@@ -48,9 +48,6 @@ class MovieListRouter: BaseRouter, MovieListRouting {
         return navigationController!
     }
     
-    func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool) {
-        mainRouter?.showDetailForm(with: id, isMovie: isMovie, viewController: viewController, animated: true)
-    }
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {
         let CompletionBlock: () -> Void = { () -> () in
@@ -76,7 +73,7 @@ class MovieListRouter: BaseRouter, MovieListRouting {
     }
 }
 
-extension MovieListRouter {
+extension SearchRouter {
     
     func instantiateMainRouter() -> MainRouter {
         let router = MainRouter.init(with: navigationController, assembly: assembly)

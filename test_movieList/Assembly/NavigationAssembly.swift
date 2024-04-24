@@ -23,7 +23,10 @@ protocol MovieListNavigationAssemblyProtocol {
 
 protocol TVSeriesListNavigationAssemblyProtocol {
     func assemblyTVSeriesListViewController(with router: TVSeriesListRouting) -> TVSeriesViewController
-//    func assemblyDetailsViewController(with router: ListRouting) -> DetailsViewController
+}
+
+protocol SearchNavigationAssemblyProtocol {
+    func assemblySearchViewController(with router: SearchRouting) -> SearchViewController
 }
 
 protocol FavoritesNavigationAssemblyProtocol {
@@ -35,19 +38,18 @@ protocol NavigationAssemblyProtocol: CommonNavigationAssemblyProtocol,
                                      MainNavigationAssemblyProtocol,
                                      MovieListNavigationAssemblyProtocol,
                                      FavoritesNavigationAssemblyProtocol,
-                                     TVSeriesListNavigationAssemblyProtocol {
+                                     TVSeriesListNavigationAssemblyProtocol,
+                                     SearchNavigationAssemblyProtocol {
     
 }
 
 class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
    
-    
-   
-
     private static let mainStoryboardName = "Main"
     private static let movieListStoryboardName = "MovieList"
     private static let tvSeriesListStoryboardName = "TVSeriesList"
     private static let favoritesStoryboardName = "Favorites"
+    private static let searchStoryboardName = "Search"
     
     // MARK: - Storyboard
     
@@ -65,6 +67,10 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     
     func favoritesStoryboard() -> UIStoryboard {
         return UIStoryboard(name: NavigationAssembly.favoritesStoryboardName, bundle: Bundle(for: NavigationAssembly.self))
+    }
+    
+    func searchStoryboard() -> UIStoryboard {
+        return UIStoryboard(name: NavigationAssembly.searchStoryboardName, bundle: Bundle(for: NavigationAssembly.self))
     }
     
     // MARK: Common
@@ -113,6 +119,15 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     
     func assemblyTVSeriesListViewController(with router: TVSeriesListRouting) -> TVSeriesViewController {
         let vc: TVSeriesViewController = tvSeriesListStoryboard().instantiateViewController(withIdentifier: String(describing: TVSeriesViewController.self)) as! TVSeriesViewController
+        vc.router = router
+        
+        return vc
+    }
+    
+    // MARK: Search
+    
+    func assemblySearchViewController(with router: SearchRouting) -> SearchViewController {
+        let vc: SearchViewController = searchStoryboard().instantiateViewController(withIdentifier: String(describing: SearchViewController.self)) as! SearchViewController
         vc.router = router
         
         return vc
