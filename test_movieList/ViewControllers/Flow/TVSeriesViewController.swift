@@ -132,7 +132,6 @@ extension TVSeriesViewController: NavigationHeaderViewDelegate {
     func leftButtonTapped() { }
 }
 
-
 extension TVSeriesViewController: FilterViewDelegate {
     
     func segment1() {
@@ -174,11 +173,6 @@ extension TVSeriesViewController: FilterViewDelegate {
             self.collectionView.setContentOffset(CGPoint.zero, animated: true)
         }
     }
-    
-    func searchTapped() {
-        
-    }
-    
     
     private func fetchTVSeries(for segmentIndex: Int, page: Int, completion: @escaping ([TVSeries]?, Error?, Int) -> Void) {
         switch segmentIndex {

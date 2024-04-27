@@ -17,7 +17,7 @@ class MainTabBarViewController: UITabBarController {
     
     func prepareUI() {
         UITabBarItem.appearance(whenContainedInInstancesOf: [MainTabBarViewController.self])
-            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(patternImage: UIImage(named: "orange")!)], for: .selected)
+            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.orange], for: .selected)
     }
     
     let separatorLine: UIView = {

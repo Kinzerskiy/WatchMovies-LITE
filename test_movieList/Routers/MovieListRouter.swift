@@ -36,7 +36,7 @@ class MovieListRouter: BaseRouter, MovieListRouting {
             let activeImage = UIImage(systemName: symbol)?.withTintColor(.orange, renderingMode: .alwaysOriginal)
             let inactiveImage = UIImage(systemName: symbol)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             
-            vc.tabBarItem.title = "Movie List"
+            vc.tabBarItem.title = "Movies"
             vc.tabBarItem.image = inactiveImage
             vc.tabBarItem.selectedImage = activeImage
             

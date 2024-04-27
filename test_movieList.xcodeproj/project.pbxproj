@@ -209,8 +209,8 @@
 				CECC78A92B6CE38C008815EF /* Main.storyboard */,
 				CED28F812B6CEE8D007DB4A8 /* MovieList.storyboard */,
 				CE0F05DD2BD28028003BF2AD /* TVSeriesList.storyboard */,
-				CED28F832B6CEEA6007DB4A8 /* Favorites.storyboard */,
 				CEC2856C2BD97C3700189979 /* Search.storyboard */,
+				CED28F832B6CEEA6007DB4A8 /* Favorites.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -235,7 +235,7 @@
 				CED28FA52B6D2102007DB4A8 /* Navigation */,
 				CED28FA42B6D20F8007DB4A8 /* TabBar */,
 				CED28FA62B6D210D007DB4A8 /* Intro */,
-				CED28FA32B6D20E6007DB4A8 /* Lists */,
+				CED28FA32B6D20E6007DB4A8 /* Flow */,
 				CED28FA22B6D20D9007DB4A8 /* Favorites */,
 			);
 			path = ViewControllers;
@@ -270,15 +270,15 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
-		CED28FA32B6D20E6007DB4A8 /* Lists */ = {
+		CED28FA32B6D20E6007DB4A8 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
 				CED28F8C2B6CF1FC007DB4A8 /* MovieListViewController.swift */,
 				CE0F05D92BD27648003BF2AD /* TVSeriesViewController.swift */,
-				CED28F8E2B6CF22A007DB4A8 /* DetailsViewController.swift */,
 				CEC285702BD97CC400189979 /* SearchViewController.swift */,
+				CED28F8E2B6CF22A007DB4A8 /* DetailsViewController.swift */,
 			);
-			path = Lists;
+			path = Flow;
 			sourceTree = "<group>";
 		};
 		CED28FA42B6D20F8007DB4A8 /* TabBar */ = {

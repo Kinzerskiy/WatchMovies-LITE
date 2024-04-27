@@ -58,6 +58,7 @@ class MainRouter: BaseRouter, MainRouting {
     func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool) {
         let vc: DetailsViewController = assembly.assemblyDetailsViewController(with: self)
         
+        vc.hidesBottomBarWhenPushed = true
         vc.selectedId = id
         vc.isMovie = isMovie
         navigationController?.pushViewController(vc, animated: true)

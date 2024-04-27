@@ -59,8 +59,21 @@ class APIManager {
             }
         }
     }
+    
+    func fetchSearchMovies(query: String, page: Int, includeAdult: Bool? = nil, primaryReleaseYear: String? = nil, ganres: String? = nil, sortedBy: String, region: String? = nil, completion: @escaping ([Movie], Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/discover/movie"
+        fetchData(urlString: urlString, query: query, includeAdult: includeAdult, primaryReleaseYear: primaryReleaseYear, sortedBy: "popularity.desc", region: region, ganres: ganres, page: page) { (response: SearchMovieResponse?, error) in
+            guard let response = response else {
+                completion([], error)
+                return
+            }
+            
+            let movies = response.results
+            completion(movies, nil)
+        }
+    }
 
-    //MARK: Series
+    //MARK: TVSeries
     
     func fetchAiringTodaySeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
         fetchTVSeries(with: "https://api.themoviedb.org/3/tv/airing_today", page: page, completion: completion)
@@ -108,6 +121,18 @@ class APIManager {
             }
         }
     }
+    
+    func fetchSearchTVSeries(query: String, page: Int, includeAdult: Bool? = nil, firstAirDateYear: String? = nil, region: String? = nil, sortedBy: String, ganres: String? = nil, completion: @escaping ([TVSeries], Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/discover/tv"
+        fetchData(urlString: urlString, query: query, includeAdult: includeAdult, sortedBy: "popularity.desc", firstAirDateYear: firstAirDateYear, ganres: ganres, page: page) { (response: SearchTVResponse?, error) in
+            guard let response = response else {
+                completion([], error)
+                return
+            }
+            let tvSeries = response.results
+            completion(tvSeries, nil)
+        }
+    }
 
     //MARK: Common
     
@@ -115,11 +140,32 @@ class APIManager {
         fetchData(urlString: urlString, page: nil, completion: completion)
     }
     
-    func fetchData<T: Codable>(urlString: String, page: Int?, completion: @escaping (T?, Error?) -> Void) {
+    func fetchData<T: Codable>(urlString: String, query: String? = nil, includeAdult: Bool? = nil, primaryReleaseYear: String? = nil, sortedBy: String? = nil,  firstAirDateYear: String? = nil, region: String? = nil, ganres: String? = nil, page: Int? = nil, completion: @escaping (T?, Error?) -> Void) {
         if var urlComponents = URLComponents(string: urlString) {
             var queryItems = [
                 URLQueryItem(name: "api_key", value: apiKey)
             ]
+            if let query = query {
+                queryItems.append(URLQueryItem(name: "query", value: query))
+            }
+            if let includeAdult = includeAdult {
+                queryItems.append(URLQueryItem(name: "include_adult", value: String(includeAdult)))
+            }
+            if let primaryReleaseYear = primaryReleaseYear {
+                queryItems.append(URLQueryItem(name: "primary_release_year", value: primaryReleaseYear))
+            }
+            if let firstAirDateYear = firstAirDateYear {
+                queryItems.append(URLQueryItem(name: "first_air_date_year", value: primaryReleaseYear))
+            }
+            if let region = region {
+                queryItems.append(URLQueryItem(name: "region", value: region))
+            }
+            if let ganres = ganres {
+                queryItems.append(URLQueryItem(name: "with_genres", value: ganres))
+            }
+            if let sortedBy = sortedBy {
+                queryItems.append(URLQueryItem(name: "sort_by", value: sortedBy))
+            }
             if let page = page {
                 queryItems.append(URLQueryItem(name: "page", value: String(page)))
             }

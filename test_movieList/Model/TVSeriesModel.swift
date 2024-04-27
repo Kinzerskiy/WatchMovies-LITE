@@ -270,3 +270,43 @@ struct SimilarTVSeries: Codable {
         case voteCount = "vote_count"
     }
 }
+
+
+// MARK: - Search
+
+struct SearchTVResponse: Codable {
+    let page: Int
+    let results: [TVSeries]
+    let totalPages, totalResults: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case page, results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
+}
+
+//MARK: GenreID
+
+enum TVGenreID: String, CaseIterable {
+    case actionAdventure = "10759"
+    case animation = "16"
+    case comedy = "35"
+    case crime = "80"
+    case documentary = "99"
+    case drama = "18"
+    case family = "10751"
+    case kids = "10762"
+    case mystery = "9648"
+    case news = "10763"
+    case reality = "10764"
+    case sciFiFantasy = "10765"
+    case soap = "10766"
+    case talk = "10767"
+    case warPolitics = "10768"
+    case western = "37"
+    
+    static var allCases: [TVGenreID] {
+        return [.actionAdventure, .animation, .comedy, .crime, .documentary, .drama, .family, .kids, .mystery, .news, .reality, .sciFiFantasy, .soap, .talk, .warPolitics, .western]
+    }
+}

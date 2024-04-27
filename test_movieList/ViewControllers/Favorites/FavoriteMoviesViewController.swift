@@ -33,7 +33,7 @@ class FavoriteMoviesViewController: UIViewController {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
-        navigationView.titleImage.image = UIImage(named: "Favorite")
+        navigationView.titleImage.image = UIImage(named: "Favorites")
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
     }

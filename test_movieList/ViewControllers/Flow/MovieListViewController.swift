@@ -34,6 +34,7 @@ class MovieListViewController: UIViewController {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
+        navigationView.titleImage.image = UIImage(named: "Movies")
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
     }
@@ -174,10 +175,6 @@ extension MovieListViewController: FilterViewDelegate {
         DispatchQueue.main.async {
             self.collectionView.setContentOffset(CGPoint.zero, animated: true)
         }
-    }
-    
-    func searchTapped() {
-        
     }
     
     

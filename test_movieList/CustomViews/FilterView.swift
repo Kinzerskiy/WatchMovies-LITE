@@ -8,7 +8,6 @@
 import UIKit
 
 protocol FilterViewDelegate: AnyObject {
-    func searchTapped()
     func segment1()
     func segment2()
     func segment3()
@@ -18,7 +17,6 @@ protocol FilterViewDelegate: AnyObject {
 class FilterView: UIView {
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
-//    @IBOutlet weak var searchButton: UIButton!
     
     weak var delegate: FilterViewDelegate?
     
@@ -26,27 +24,21 @@ class FilterView: UIView {
     
     class func loadView() -> FilterView {
         let view: FilterView = Bundle.main.loadNibNamed(String(describing: FilterView.self), owner: nil)?.first as! FilterView
-        
         return view
     }
     
-    
     func setSegmentTitles(titles: [String], font: UIFont, color: UIColor) {
-        for (index, title) in titles.enumerated() {
-            segmentControl.setTitle(title, forSegmentAt: index)
+        segmentControl.removeAllSegments()
+        for title in titles {
+            segmentControl.insertSegment(withTitle: title, at: segmentControl.numberOfSegments, animated: false)
         }
         let attributes = [
             NSAttributedString.Key.font: font,
             NSAttributedString.Key.foregroundColor: color
         ]
         segmentControl.setTitleTextAttributes(attributes, for: .normal)
+        segmentControl.selectedSegmentIndex = 0
     }
-
-
-
-//    @IBAction func searchButtonTapped(_ sender: Any) {
-//        delegate?.searchTapped()
-//    }
     
     
     @IBAction func segmentTapped(_ sender: Any) {

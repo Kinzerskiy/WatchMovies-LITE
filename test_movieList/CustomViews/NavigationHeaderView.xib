@@ -24,18 +24,15 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVX-6O-nRe">
-                        <rect key="frame" x="104.33333333333333" y="10" width="41.333333333333329" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="ERl-t0-ysm"/>
-                        </constraints>
+                        <rect key="frame" x="104.33333333333333" y="14.999999999999998" width="41.333333333333329" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sk5-5B-Ltf">
-                        <rect key="frame" x="5" y="8" width="20" height="34"/>
+                        <rect key="frame" x="5" y="5" width="25" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="Cpo-aj-JEv"/>
+                            <constraint firstAttribute="width" constant="25" id="Cpo-aj-JEv"/>
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <connections>
@@ -46,15 +43,17 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="aVX-6O-nRe" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="0Ly-IE-YOp"/>
                 <constraint firstItem="bPK-tY-3DC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EzH-zh-cbO"/>
-                <constraint firstItem="aVX-6O-nRe" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="G0c-Ky-KHU"/>
                 <constraint firstItem="bPK-tY-3DC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Lf1-kj-ogA"/>
-                <constraint firstItem="aVX-6O-nRe" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="V4z-CZ-IEz"/>
-                <constraint firstItem="sk5-5B-Ltf" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="fQT-0n-CsH"/>
+                <constraint firstItem="sk5-5B-Ltf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="X2T-Wu-LRg"/>
+                <constraint firstAttribute="bottom" secondItem="sk5-5B-Ltf" secondAttribute="bottom" constant="5" id="ZP7-RV-DXU"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aVX-6O-nRe" secondAttribute="trailing" constant="10" id="b3t-0c-5Kp"/>
+                <constraint firstItem="aVX-6O-nRe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sk5-5B-Ltf" secondAttribute="trailing" constant="10" id="cU8-lF-aQh"/>
                 <constraint firstAttribute="bottom" secondItem="bPK-tY-3DC" secondAttribute="bottom" id="jdd-vl-EfP"/>
                 <constraint firstItem="sk5-5B-Ltf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="mxm-rE-gYo"/>
-                <constraint firstItem="aVX-6O-nRe" firstAttribute="leading" secondItem="sk5-5B-Ltf" secondAttribute="trailing" constant="79.333333333333329" id="qgF-vT-VkK"/>
                 <constraint firstAttribute="trailing" secondItem="bPK-tY-3DC" secondAttribute="trailing" id="s5Y-SF-Ygj"/>
+                <constraint firstItem="aVX-6O-nRe" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="wXC-oZ-7Wc"/>
             </constraints>
             <size key="customSize" width="250" height="50"/>
             <connections>
