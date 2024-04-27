@@ -25,7 +25,7 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
+      
         prepareTableView()
         fetchMediaDetails(isMovie: isMovie!, completion:  { [weak self] in
             DispatchQueue.main.async {
@@ -50,6 +50,7 @@ class DetailsViewController: UIViewController {
     
     func makeNavigationBar() {
         navigationView.delegate = self
+        navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = nil
         navigationItem.titleView = navigationView
         

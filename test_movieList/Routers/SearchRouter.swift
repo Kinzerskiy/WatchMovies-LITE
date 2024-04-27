@@ -9,10 +9,15 @@ import Foundation
 import UIKit
 
 protocol SearchRouting: BaseRouting, DismissRouting {
-  
+    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool)
+    
+    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool)
+    
+    func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
 }
 
 class SearchRouter: BaseRouter, SearchRouting {
+  
     
     var mainRouter: MainRouting?
     
@@ -48,6 +53,33 @@ class SearchRouter: BaseRouter, SearchRouting {
         return navigationController!
     }
     
+    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, ganreID: String?, year: String?,  viewController: UIViewController, animated: Bool) {
+        
+        let vc: SearchResultViewController = assembly.assemblySearchResultViewController(with: self)
+        vc.searchResults = movies
+        vc.isMovie = isMovie
+        vc.genreName = genreName
+        vc.ganreID = ganreID
+        vc.year = year
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool) {
+        let vc: SearchResultViewController = assembly.assemblySearchResultViewController(with: self)
+        vc.searchResults = tvSeries
+        vc.isMovie = isMovie
+        vc.genreName = genreName
+        vc.ganreID = ganreID
+        vc.year = year
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool) {
+        mainRouter?.showDetailForm(with: id, isMovie: isMovie, viewController: viewController, animated: true)
+    }
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {
         let CompletionBlock: () -> Void = { () -> () in

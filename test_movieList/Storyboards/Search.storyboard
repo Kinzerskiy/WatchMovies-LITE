@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="45" id="Crf-Jg-8Fo"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jt-tA-OZy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jt-tA-OZy">
                                 <rect key="frame" x="20" y="743" width="353" height="45"/>
                                 <color key="backgroundColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -32,13 +32,13 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Search"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
                                 <connections>
                                     <action selector="searchAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jQR-Cn-8bp"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6j8-ns-cSt">
-                                <rect key="frame" x="0.0" y="159" width="393" height="216"/>
+                                <rect key="frame" x="0.0" y="169" width="393" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYz-Do-Rrh">
                                         <rect key="frame" x="0.0" y="0.0" width="197" height="216"/>
@@ -49,7 +49,7 @@
                                 </subviews>
                             </stackView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iWe-Ut-Y5r">
-                                <rect key="frame" x="329" y="386.66666666666669" width="51" height="31"/>
+                                <rect key="frame" x="329" y="396.66666666666669" width="51" height="31"/>
                                 <color key="onTintColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -57,7 +57,7 @@
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include Adult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ug-VR-CfM">
-                                <rect key="frame" x="244.66666666666666" y="395" width="74.333333333333343" height="14.333333333333314"/>
+                                <rect key="frame" x="244.66666666666666" y="405" width="74.333333333333343" height="14.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -75,7 +75,7 @@
                             <constraint firstItem="3jt-tA-OZy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="LWh-Tr-lEL"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="iWe-Ut-Y5r" secondAttribute="trailing" constant="15" id="OUp-0o-hcF"/>
                             <constraint firstItem="7ug-VR-CfM" firstAttribute="top" secondItem="VLA-zF-nvl" secondAttribute="bottom" constant="20" id="WiF-yu-0VW"/>
-                            <constraint firstItem="6j8-ns-cSt" firstAttribute="top" secondItem="Ivu-fF-x3D" secondAttribute="bottom" constant="50" id="Z2R-Ia-5lj"/>
+                            <constraint firstItem="6j8-ns-cSt" firstAttribute="top" secondItem="Ivu-fF-x3D" secondAttribute="bottom" constant="60" id="Z2R-Ia-5lj"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ivu-fF-x3D" secondAttribute="trailing" constant="15" id="Zn9-Eo-hmd"/>
                             <constraint firstItem="Ivu-fF-x3D" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="bTl-1r-5dl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3jt-tA-OZy" secondAttribute="trailing" constant="20" id="uVb-Nm-xLG"/>
@@ -83,6 +83,7 @@
                     </view>
                     <connections>
                         <outlet property="ganrePicker" destination="iYz-Do-Rrh" id="ZSU-B5-3ab"/>
+                        <outlet property="includeAdultLabel" destination="7ug-VR-CfM" id="wTN-HZ-bx2"/>
                         <outlet property="searchButton" destination="3jt-tA-OZy" id="18n-Ld-tgj"/>
                         <outlet property="segmentBarView" destination="Ivu-fF-x3D" id="xhP-B8-qoL"/>
                         <outlet property="yearPicker" destination="VLA-zF-nvl" id="pMg-Lr-l6a"/>
@@ -91,6 +92,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="9.9236641221374047" y="-2.1126760563380285"/>
+        </scene>
+        <!--Search Result View Controller-->
+        <scene sceneID="CE4-iz-AMU">
+            <objects>
+                <viewController restorationIdentifier="SearchResultViewController" storyboardIdentifier="SearchResultViewController" id="SUG-Mr-BaN" customClass="SearchResultViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CHy-eC-a5H">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E9X-I6-1PW">
+                                <rect key="frame" x="15" y="59" width="363" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6gL-oD-iK7">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Uqe-Ey-3yZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="E9X-I6-1PW" firstAttribute="leading" secondItem="Uqe-Ey-3yZ" secondAttribute="leading" constant="15" id="Fdx-bH-FRh"/>
+                            <constraint firstItem="Uqe-Ey-3yZ" firstAttribute="trailing" secondItem="E9X-I6-1PW" secondAttribute="trailing" constant="15" id="T27-9c-eWY"/>
+                            <constraint firstItem="E9X-I6-1PW" firstAttribute="top" secondItem="Uqe-Ey-3yZ" secondAttribute="top" id="TjF-Ei-5S0"/>
+                            <constraint firstItem="Uqe-Ey-3yZ" firstAttribute="bottom" secondItem="E9X-I6-1PW" secondAttribute="bottom" id="xgH-1T-D2G"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="E9X-I6-1PW" id="PKr-Tx-4yl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHe-jC-cdM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="741" y="-2"/>
         </scene>
     </scenes>
     <resources>

@@ -27,6 +27,7 @@ protocol TVSeriesListNavigationAssemblyProtocol {
 
 protocol SearchNavigationAssemblyProtocol {
     func assemblySearchViewController(with router: SearchRouting) -> SearchViewController
+    func assemblySearchResultViewController(with router: SearchRouting) -> SearchResultViewController
 }
 
 protocol FavoritesNavigationAssemblyProtocol {
@@ -128,6 +129,13 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     
     func assemblySearchViewController(with router: SearchRouting) -> SearchViewController {
         let vc: SearchViewController = searchStoryboard().instantiateViewController(withIdentifier: String(describing: SearchViewController.self)) as! SearchViewController
+        vc.router = router
+        
+        return vc
+    }
+    
+    func assemblySearchResultViewController(with router: SearchRouting) -> SearchResultViewController {
+        let vc: SearchResultViewController = searchStoryboard().instantiateViewController(withIdentifier: String(describing: SearchResultViewController.self)) as! SearchResultViewController
         vc.router = router
         
         return vc

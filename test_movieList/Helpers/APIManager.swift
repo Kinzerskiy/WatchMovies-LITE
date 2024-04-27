@@ -9,7 +9,7 @@ import Foundation
 
 class APIManager {
     let apiKey = "2ccc9fcb3e886fcb5f80015418735095"
-    
+  
     //MARK: Movies
     
     func fetchNowPlayingMovies(page: Int, completion: @escaping ([Movie], Error?) -> Void) {
@@ -60,9 +60,9 @@ class APIManager {
         }
     }
     
-    func fetchSearchMovies(query: String, page: Int, includeAdult: Bool? = nil, primaryReleaseYear: String? = nil, ganres: String? = nil, sortedBy: String, region: String? = nil, completion: @escaping ([Movie], Error?) -> Void) {
+    func fetchSearchMovies(page: Int, includeAdult: Bool? = nil, primaryReleaseYear: String? = nil, ganre: String? = nil, completion: @escaping ([Movie], Error?) -> Void) {
         let urlString = "https://api.themoviedb.org/3/discover/movie"
-        fetchData(urlString: urlString, query: query, includeAdult: includeAdult, primaryReleaseYear: primaryReleaseYear, sortedBy: "popularity.desc", region: region, ganres: ganres, page: page) { (response: SearchMovieResponse?, error) in
+        fetchData(urlString: urlString, includeAdult: includeAdult, primaryReleaseYear: primaryReleaseYear, ganre: ganre, page: page) { (response: SearchMovieResponse?, error) in
             guard let response = response else {
                 completion([], error)
                 return
@@ -122,9 +122,9 @@ class APIManager {
         }
     }
     
-    func fetchSearchTVSeries(query: String, page: Int, includeAdult: Bool? = nil, firstAirDateYear: String? = nil, region: String? = nil, sortedBy: String, ganres: String? = nil, completion: @escaping ([TVSeries], Error?) -> Void) {
+    func fetchSearchTVSeries(page: Int, includeAdult: Bool? = nil, firstAirDateYear: String? = nil, genre: String? = nil, completion: @escaping ([TVSeries], Error?) -> Void) {
         let urlString = "https://api.themoviedb.org/3/discover/tv"
-        fetchData(urlString: urlString, query: query, includeAdult: includeAdult, sortedBy: "popularity.desc", firstAirDateYear: firstAirDateYear, ganres: ganres, page: page) { (response: SearchTVResponse?, error) in
+        fetchData(urlString: urlString, includeAdult: includeAdult, firstAirDateYear: firstAirDateYear, ganre: genre, page: page) { (response: SearchTVResponse?, error) in
             guard let response = response else {
                 completion([], error)
                 return
@@ -133,21 +133,18 @@ class APIManager {
             completion(tvSeries, nil)
         }
     }
-
+    
     //MARK: Common
     
     func fetchData<T: Codable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {
         fetchData(urlString: urlString, page: nil, completion: completion)
     }
     
-    func fetchData<T: Codable>(urlString: String, query: String? = nil, includeAdult: Bool? = nil, primaryReleaseYear: String? = nil, sortedBy: String? = nil,  firstAirDateYear: String? = nil, region: String? = nil, ganres: String? = nil, page: Int? = nil, completion: @escaping (T?, Error?) -> Void) {
+    func fetchData<T: Codable>(urlString: String, includeAdult: Bool? = nil, primaryReleaseYear: String? = nil,  firstAirDateYear: String? = nil, ganre: String? = nil, page: Int? = nil, completion: @escaping (T?, Error?) -> Void) {
         if var urlComponents = URLComponents(string: urlString) {
             var queryItems = [
                 URLQueryItem(name: "api_key", value: apiKey)
             ]
-            if let query = query {
-                queryItems.append(URLQueryItem(name: "query", value: query))
-            }
             if let includeAdult = includeAdult {
                 queryItems.append(URLQueryItem(name: "include_adult", value: String(includeAdult)))
             }
@@ -157,14 +154,8 @@ class APIManager {
             if let firstAirDateYear = firstAirDateYear {
                 queryItems.append(URLQueryItem(name: "first_air_date_year", value: primaryReleaseYear))
             }
-            if let region = region {
-                queryItems.append(URLQueryItem(name: "region", value: region))
-            }
-            if let ganres = ganres {
-                queryItems.append(URLQueryItem(name: "with_genres", value: ganres))
-            }
-            if let sortedBy = sortedBy {
-                queryItems.append(URLQueryItem(name: "sort_by", value: sortedBy))
+            if let ganre = ganre {
+                queryItems.append(URLQueryItem(name: "with_genres", value: ganre))
             }
             if let page = page {
                 queryItems.append(URLQueryItem(name: "page", value: String(page)))
@@ -178,6 +169,7 @@ class APIManager {
             var request = URLRequest(url: url)
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyY2NjOWZjYjNlODg2ZmNiNWY4MDAxNTQxODczNTA5NSIsInN1YiI6IjY1Yjc0MTJiYTBiNjkwMDE3YmNlZjhmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Hhl93oP6hoKiYuXMis5VT-MVRfv1KZXhJjSncyCkhpw", forHTTPHeaderField: "Authorization")
+         
             
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 guard let data = data, error == nil else {

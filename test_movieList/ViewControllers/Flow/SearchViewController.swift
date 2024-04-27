@@ -13,15 +13,24 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var yearPicker: UIPickerView!
     @IBOutlet weak var ganrePicker: UIPickerView!
+    @IBOutlet weak var includeAdultLabel: UILabel!
+    
+    var searchButtonEnabled: Bool {
+        return selectedYear != nil && selectedGenre != nil
+    }
     
     var currentSegmentIndex: Int = 0
     var movieGenres = [String]()
     var tvGenres = [String]()
-
+    
+    var selectedYear: String?
+    var selectedGenre: String?
+    var includeAdult: Bool = false
     
     var router: SearchRouting?
     let navigationView = NavigationHeaderView.loadView()
     let filterView = FilterView.loadView()
+    let apiManager = APIManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +38,13 @@ class SearchViewController: UIViewController {
         prepareUI()
         prepareSegmenBar()
         updateGenrePicker()
+        searchButton.isEnabled = searchButtonEnabled
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
     }
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
+        navigationItem.hidesBackButton = true
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.titleImage.image = UIImage(named: "Search")
@@ -62,8 +70,9 @@ class SearchViewController: UIViewController {
     }
     
     func prepareUI() {
+        includeAdultLabel.font = UIFont.lotaBold(ofSize: 15)
         searchButton.layer.cornerRadius = 15
-        searchButton.titleLabel?.text = "Search"
+        searchButton.setTitle("Search", for: .normal)
         searchButton.titleLabel?.font = UIFont.lotaBold(ofSize: 20)
         
         let currentYear = Calendar.current.component(.year, from: Date())
@@ -85,11 +94,37 @@ class SearchViewController: UIViewController {
         view.endEditing(true)
     }
     
+    
+    
     @IBAction func searchAction(_ sender: Any) {
+        let selectedYearRow = yearPicker.selectedRow(inComponent: 0)
+        let selectedGenreRow = ganrePicker.selectedRow(inComponent: 0)
         
+        if selectedYearRow != 0 {
+            selectedYear = String(Calendar.current.component(.year, from: Date()) - selectedYearRow + 1)
+        }
+        
+        if selectedGenreRow != 0 {
+            selectedGenre = currentSegmentIndex == 0 ? String(MovieGenreID.allCases[selectedGenreRow].rawValue) : String(TVGenreID.allCases[selectedGenreRow].rawValue)
+        }
+        
+        let genreName = currentSegmentIndex == 0 ? movieGenres[selectedGenreRow] : tvGenres[selectedGenreRow]
+        
+        searchMoviesOrTVSeries(year: selectedYear, genre: selectedGenre, includeAdult: includeAdult) { [weak self] (result, error) in
+            if let error = error {
+                print("Error searching: \(error.localizedDescription)")
+            } else if let result = result {
+                if let movies = result as? [Movie] {
+                    self?.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
+                } else if let tvSeries = result as? [TVSeries] {
+                    self?.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
+                }
+            }
+        }
     }
     
     @IBAction func didTapSwitch(_ sender: UISwitch) {
+        includeAdult = sender.isOn
         let circleColor: UIColor = sender.isOn ? .white : .gray
         sender.thumbTintColor = circleColor
     }
@@ -165,7 +200,6 @@ extension SearchViewController: FilterViewDelegate {
             ganrePicker.reloadAllComponents()
         }
     }
-
 }
 
 extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -234,24 +268,42 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return label
     }
 
-
-
-
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == yearPicker {
-            // Handle year selection
+            let currentYear = Calendar.current.component(.year, from: Date())
+            selectedYear = String(currentYear - row)
         } else if pickerView == ganrePicker {
-            var genreID: String?
-            if currentSegmentIndex == 0 {
-                if row != 0 {
-                    genreID = MovieGenreID.allCases[row - 1].rawValue
-                }
-            } else {
-                if row != 0 {
-                    genreID = TVGenreID.allCases[row - 1].rawValue
+            selectedGenre = row == 0 ? nil : currentSegmentIndex == 0 ? movieGenres[row] : tvGenres[row]
+        }
+        searchButton.isEnabled = selectedYear != nil || selectedGenre != nil
+    }
+
+    
+    func searchMoviesOrTVSeries(year: String?, genre: String?, includeAdult: Bool, completion: @escaping ([Any]?, Error?) -> Void) {
+        let page = 1
+
+        if currentSegmentIndex == 0 {
+            apiManager.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, ganre: genre) { (movies, error) in
+                if let error = error {
+                    print("Error searching movies: \(error.localizedDescription)")
+                    completion(nil, error)
+                } else {
+                    DispatchQueue.main.async {
+                        completion(movies, nil)
+                    }
                 }
             }
-            // Use genreID for your request
+        } else {
+            apiManager.fetchSearchTVSeries(page: page, includeAdult: includeAdult, firstAirDateYear: year, genre: genre) { (tvSeries, error) in
+                if let error = error {
+                    print("Error searching TV series: \(error.localizedDescription)")
+                    completion(nil, error)
+                } else {
+                    DispatchQueue.main.async {
+                        completion(tvSeries, nil)
+                    }
+                }
+            }
         }
     }
 }
