@@ -22,6 +22,8 @@ class SearchResultViewController: UIViewController {
     var genreName: String?
     var ganreID: String?
     var year: String?
+    var includeAdult: Bool?
+    
     var currentPage = 1
     var isFetchingData = false
     
@@ -56,32 +58,28 @@ class SearchResultViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
     }
     
-    func fetchSearchResults(page: Int, completion: @escaping ([Any]?, Error?) -> Void) {
+    func fetchSearchResults(page: Int, genreName: String? = nil, genreID: String? = nil, completion: @escaping ([Any]?, Error?) -> Void) {
         let mediaType: MediaType = isMovie ?? false ? .movie : .tvSeries
 
         switch mediaType {
         case .movie:
-            apiManager.fetchSearchMovies(page: page) { movies, error in
-                completion(movies as [Any], nil)
+            apiManager.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, ganre: genreID) { movies, error in
+                completion(movies, error)
             }
         case .tvSeries:
-            apiManager.fetchSearchTVSeries(page: page) { tvSeries, error in
+            apiManager.fetchSearchTVSeries(page: page, includeAdult: includeAdult, firstAirDateYear: year, genre: genreID) { tvSeries, error in
                 completion(tvSeries as [Any], nil)
             }
         }
     }
 
-
-
-
-    
     private func loadMoreSearchResultsIfNeeded() {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems
         let lastVisibleIndexPath = visibleIndexPaths.last ?? IndexPath(item: 0, section: 0)
 
         if lastVisibleIndexPath.item >= searchResults.count - 4 {
             currentPage += 1
-            fetchSearchResults(page: currentPage) { [weak self] newSearchResults, error in
+            fetchSearchResults(page: currentPage, genreName: genreName, genreID: ganreID) { [weak self] newSearchResults, error in
                 guard let self = self, let newSearchResults = newSearchResults else { return }
                 self.searchResults += newSearchResults
                 DispatchQueue.main.async {
@@ -90,6 +88,7 @@ class SearchResultViewController: UIViewController {
             }
         }
     }
+
 }
 
 extension SearchResultViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

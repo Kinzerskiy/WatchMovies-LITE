@@ -54,11 +54,25 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lP3-Xo-CBa">
+                        <rect key="frame" x="342" y="275" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="Drb-Vs-YTn"/>
+                            <constraint firstAttribute="height" constant="30" id="Fbz-a0-odd"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
+                        <connections>
+                            <action selector="bookmarkDidTap:" destination="KGk-i7-Jjw" eventType="touchUpOutside" id="vpV-yq-jJP"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ekI-kg-Gwf" firstAttribute="top" secondItem="YPF-5v-THj" secondAttribute="bottom" constant="5" id="8iy-UJ-YE8"/>
+                    <constraint firstAttribute="trailing" secondItem="lP3-Xo-CBa" secondAttribute="trailing" constant="30" id="Bnp-Vz-50u"/>
                     <constraint firstItem="YPF-5v-THj" firstAttribute="top" secondItem="NTa-Nh-Wzk" secondAttribute="bottom" constant="5" id="Hld-X1-pUl"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ekI-kg-Gwf" secondAttribute="trailing" constant="10" id="YYs-WT-zUb"/>
+                    <constraint firstItem="lP3-Xo-CBa" firstAttribute="centerY" secondItem="YPF-5v-THj" secondAttribute="centerY" id="dkQ-XM-nzs"/>
                     <constraint firstItem="NTa-Nh-Wzk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="foh-4Z-hcw"/>
                     <constraint firstItem="NTa-Nh-Wzk" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="k3v-uk-pIv"/>
                     <constraint firstAttribute="bottom" secondItem="ekI-kg-Gwf" secondAttribute="bottom" constant="20" id="lUa-wZ-CkO"/>
@@ -68,6 +82,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bookMark" destination="lP3-Xo-CBa" id="llr-6M-AEM"/>
                 <outlet property="companyLogo" destination="YPF-5v-THj" id="vl9-Z4-u37"/>
                 <outlet property="ganreName" destination="cL9-dN-IVX" id="O97-tK-ZwM"/>
                 <outlet property="moviePoster" destination="NTa-Nh-Wzk" id="Xhn-Yx-fIi"/>
@@ -77,4 +92,7 @@
             <point key="canvasLocation" x="44" y="83"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="bookmark" catalog="system" width="110" height="128"/>
+    </resources>
 </document>

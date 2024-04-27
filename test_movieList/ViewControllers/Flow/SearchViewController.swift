@@ -115,9 +115,9 @@ class SearchViewController: UIViewController {
                 print("Error searching: \(error.localizedDescription)")
             } else if let result = result {
                 if let movies = result as? [Movie] {
-                    self?.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
+                    self?.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, includeAdult: self?.includeAdult, viewController: self!, animated: true)
                 } else if let tvSeries = result as? [TVSeries] {
-                    self?.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
+                    self?.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, includeAdult: self?.includeAdult, viewController: self!, animated: true)
                 }
             }
         }

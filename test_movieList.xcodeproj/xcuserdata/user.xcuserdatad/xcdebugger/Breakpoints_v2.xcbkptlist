@@ -1242,8 +1242,8 @@
             filePath = "test_movieList/ViewControllers/Flow/SearchResultViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1258,8 +1258,8 @@
             filePath = "test_movieList/ViewControllers/Flow/SearchResultViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1267,49 +1267,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6B10BB88-BF88-46C8-9046-7FFD01C72965"
+            uuid = "ABA5A6D2-9E9B-450A-96F2-5FFC7ED4AA79"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "test_movieList/ViewControllers/Flow/SearchResultViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "fetchSearchResults(page:completion:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "fetchSearchResults(page:genreName:genreID:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6B10BB88-BF88-46C8-9046-7FFD01C72965 - b03905b94dce82f5"
+                  uuid = "ABA5A6D2-9E9B-450A-96F2-5FFC7ED4AA79 - 84afd18620836240"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "test_movieList.SearchResultViewController.fetchSearchResults(page: Swift.Int, completion: (Swift.Optional&lt;Swift.Array&lt;Any&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "test_movieList.SearchResultViewController.fetchSearchResults(page: Swift.Int, genreName: Swift.Optional&lt;Swift.String&gt;, genreID: Swift.Optional&lt;Swift.String&gt;, completion: (Swift.Optional&lt;Swift.Array&lt;Any&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "test_movieList"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/ViewControllers/Flow/SearchResultViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "210">
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "327">
                </Location>
                <Location
-                  uuid = "6B10BB88-BF88-46C8-9046-7FFD01C72965 - 824d5293248a1bf1"
+                  uuid = "ABA5A6D2-9E9B-450A-96F2-5FFC7ED4AA79 - 6de6f5d6770605da"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;test_movieList.Movie&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in test_movieList.SearchResultViewController.fetchSearchResults(page: Swift.Int, completion: (Swift.Optional&lt;Swift.Array&lt;Any&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Array&lt;test_movieList.Movie&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in test_movieList.SearchResultViewController.fetchSearchResults(page: Swift.Int, genreName: Swift.Optional&lt;Swift.String&gt;, genreID: Swift.Optional&lt;Swift.String&gt;, completion: (Swift.Optional&lt;Swift.Array&lt;Any&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "test_movieList"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/user/Desktop/Projects/apps/test_movieList/test_movieList/ViewControllers/Flow/SearchResultViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "64">
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4A766A01-BC4F-493A-9F5E-818014447ADC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "test_movieList/Cells/MovieDetailCell/DescriptionTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "bookmarkDidTap(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

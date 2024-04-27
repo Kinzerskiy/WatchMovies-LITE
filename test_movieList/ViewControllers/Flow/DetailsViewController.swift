@@ -46,6 +46,7 @@ class DetailsViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
+        tableView.isUserInteractionEnabled = true
     }
     
     func makeNavigationBar() {

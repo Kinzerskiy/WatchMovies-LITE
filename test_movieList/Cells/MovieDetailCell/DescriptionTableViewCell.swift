@@ -20,6 +20,9 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
     @IBOutlet weak var ganreName: UILabel!
     @IBOutlet weak var voteAverage: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
+    @IBOutlet weak var bookMark: UIButton!
+    
+    var bookmarkActionHandler: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,9 +36,25 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
         moviePoster.layer.shadowOpacity = 0.8
         moviePoster.layer.shadowOffset = CGSize(width: 0, height: 5)
         moviePoster.layer.shadowRadius = 5
-        contentView.isUserInteractionEnabled = false
+        contentView.isUserInteractionEnabled = true
         
+        bookMark.tintColor = .orange
+        bookMark.isSelected = false
     }
+    
+    
+    @IBAction func bookmarkDidTap(_ sender: UIButton) {
+        bookmarkActionHandler?()
+        print("Bookmark button tapped")
+        sender.isSelected.toggle()
+        
+        if sender.isSelected {
+            sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        }
+    }
+
     
     func fill(with data: MediaDetails) {
         if let posterPath = data.posterPath, let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
