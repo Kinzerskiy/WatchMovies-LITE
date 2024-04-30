@@ -95,7 +95,7 @@
 		CEC2856C2BD97C3700189979 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		CEC2856E2BD97C5400189979 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		CEC285702BD97CC400189979 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		CECC78A02B6CE38C008815EF /* test_movieList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test_movieList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CECC78A02B6CE38C008815EF /* WatchMovies LITE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchMovies LITE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECC78A32B6CE38C008815EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CECC78A52B6CE38C008815EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CECC78AA2B6CE38C008815EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 		CECC78972B6CE38C008815EF = {
 			isa = PBXGroup;
 			children = (
-				CECC78A22B6CE38C008815EF /* test_movieList */,
+				CECC78A22B6CE38C008815EF /* WatchMovies LITE */,
 				CECC78A12B6CE38C008815EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -181,12 +181,12 @@
 		CECC78A12B6CE38C008815EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CECC78A02B6CE38C008815EF /* test_movieList.app */,
+				CECC78A02B6CE38C008815EF /* WatchMovies LITE.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CECC78A22B6CE38C008815EF /* test_movieList */ = {
+		CECC78A22B6CE38C008815EF /* WatchMovies LITE */ = {
 			isa = PBXGroup;
 			children = (
 				CECC78A32B6CE38C008815EF /* AppDelegate.swift */,
@@ -207,7 +207,7 @@
 				CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */,
 				CECC78B42B6CE396008815EF /* Info.plist */,
 			);
-			path = test_movieList;
+			path = "WatchMovies LITE";
 			sourceTree = "<group>";
 		};
 		CED28F852B6CEEAF007DB4A8 /* Storyboards */ = {
@@ -333,9 +333,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CECC789F2B6CE38C008815EF /* test_movieList */ = {
+		CECC789F2B6CE38C008815EF /* WatchMovies LITE */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CECC78B72B6CE396008815EF /* Build configuration list for PBXNativeTarget "test_movieList" */;
+			buildConfigurationList = CECC78B72B6CE396008815EF /* Build configuration list for PBXNativeTarget "WatchMovies LITE" */;
 			buildPhases = (
 				CECC789C2B6CE38C008815EF /* Sources */,
 				CECC789D2B6CE38C008815EF /* Frameworks */,
@@ -345,13 +345,13 @@
 			);
 			dependencies = (
 			);
-			name = test_movieList;
+			name = "WatchMovies LITE";
 			packageProductDependencies = (
 				CED28FAF2B6D5602007DB4A8 /* SDWebImage */,
 				CED28FB12B6D5602007DB4A8 /* SDWebImageMapKit */,
 			);
 			productName = test_movieList;
-			productReference = CECC78A02B6CE38C008815EF /* test_movieList.app */;
+			productReference = CECC78A02B6CE38C008815EF /* WatchMovies LITE.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -369,7 +369,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CECC789B2B6CE38C008815EF /* Build configuration list for PBXProject "test_movieList" */;
+			buildConfigurationList = CECC789B2B6CE38C008815EF /* Build configuration list for PBXProject "WatchMovies LITE" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -385,7 +385,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CECC789F2B6CE38C008815EF /* test_movieList */,
+				CECC789F2B6CE38C008815EF /* WatchMovies LITE */,
 			);
 		};
 /* End PBXProject section */
@@ -625,7 +625,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kinzerskiy.test-movieList";
+				PRODUCT_BUNDLE_IDENTIFIER = "kinzerskiy.lite-watchMovies";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -654,7 +654,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kinzerskiy.test-movieList";
+				PRODUCT_BUNDLE_IDENTIFIER = "kinzerskiy.lite-watchMovies";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -665,7 +665,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CECC789B2B6CE38C008815EF /* Build configuration list for PBXProject "test_movieList" */ = {
+		CECC789B2B6CE38C008815EF /* Build configuration list for PBXProject "WatchMovies LITE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CECC78B52B6CE396008815EF /* Debug */,
@@ -674,7 +674,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CECC78B72B6CE396008815EF /* Build configuration list for PBXNativeTarget "test_movieList" */ = {
+		CECC78B72B6CE396008815EF /* Build configuration list for PBXNativeTarget "WatchMovies LITE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CECC78B82B6CE396008815EF /* Debug */,

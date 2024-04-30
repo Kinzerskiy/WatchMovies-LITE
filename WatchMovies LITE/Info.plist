@@ -7,8 +7,6 @@
 		<string>LotaGrotesque-Regular.otf</string>
 		<string>LotaGrotesque-Bold.otf</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
