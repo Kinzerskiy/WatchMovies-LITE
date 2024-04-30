@@ -19,7 +19,6 @@
 		CE96C52C2BD18D63000ECB7B /* TVSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C52B2BD18D63000ECB7B /* TVSeriesModel.swift */; };
 		CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6602BE1089200694428 /* UIViewController+extension.swift */; };
 		CE96C6632BE1136C00694428 /* Movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CE96C6622BE1136700694428 /* Movie.mp4 */; };
-		CE96C6662BE16F1D00694428 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CECC78B42B6CE396008815EF /* Info.plist */; };
 		CEADF0EF2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */; };
 		CEADF0F02BD66B3100A6B542 /* LotaGrotesque-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */; };
 		CEADF0F42BD670CA00A6B542 /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */; };
@@ -405,7 +404,6 @@
 				CEADF1022BD6C12500A6B542 /* SimilarTableViewCell.xib in Resources */,
 				CECC78B32B6CE396008815EF /* LaunchScreen.storyboard in Resources */,
 				CEADF0F02BD66B3100A6B542 /* LotaGrotesque-Bold.otf in Resources */,
-				CE96C6662BE16F1D00694428 /* Info.plist in Resources */,
 				CEADF0FA2BD6C10900A6B542 /* OverviewTableViewCell.xib in Resources */,
 				CECC78B02B6CE396008815EF /* Assets.xcassets in Resources */,
 				CED28F822B6CEE8D007DB4A8 /* MovieList.storyboard in Resources */,
