@@ -8,6 +8,7 @@
 import Foundation
 
 class APIManager {
+    
     let apiKey = "2ccc9fcb3e886fcb5f80015418735095"
   
     //MARK: Movies
@@ -170,21 +171,26 @@ class APIManager {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyY2NjOWZjYjNlODg2ZmNiNWY4MDAxNTQxODczNTA5NSIsInN1YiI6IjY1Yjc0MTJiYTBiNjkwMDE3YmNlZjhmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Hhl93oP6hoKiYuXMis5VT-MVRfv1KZXhJjSncyCkhpw", forHTTPHeaderField: "Authorization")
          
-            
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 guard let data = data, error == nil else {
                     print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                    completion(nil, error)
+                    DispatchQueue.main.async {
+                        completion(nil, error)
+                    }
                     return
                 }
                 print(String(data: data, encoding: .utf8) ?? "Data could not be printed")
                 do {
                     let decoder = JSONDecoder()
                     let response = try decoder.decode(T.self, from: data)
-                    completion(response, nil)
+                    DispatchQueue.main.async {
+                        completion(response, nil)
+                    }
                 } catch {
                     print("Error decoding JSON: \(error.localizedDescription)")
-                    completion(nil, error)
+                    DispatchQueue.main.async {
+                        completion(nil, error)
+                    }
                 }
             }
             task.resume()

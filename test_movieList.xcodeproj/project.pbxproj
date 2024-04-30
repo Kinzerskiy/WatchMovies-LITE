@@ -13,12 +13,12 @@
 		CE78C7552BDD367600C4221D /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78C7532BDD367500C4221D /* SearchResultViewController.swift */; };
 		CE88E89D2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88E89B2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift */; };
 		CE88E89E2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE88E89C2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib */; };
-		CE88E8A12B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88E89F2B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift */; };
 		CE88E8A92B710F7E00AFAF95 /* Movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CE88E8A82B710F7E00AFAF95 /* Movie.mp4 */; };
 		CE96C5242BD11638000ECB7B /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C5232BD11638000ECB7B /* FilterView.swift */; };
 		CE96C5282BD11665000ECB7B /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE96C5272BD11665000ECB7B /* FilterView.xib */; };
 		CE96C52A2BD18CB8000ECB7B /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C5292BD18CB8000ECB7B /* MovieModel.swift */; };
 		CE96C52C2BD18D63000ECB7B /* TVSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C52B2BD18D63000ECB7B /* TVSeriesModel.swift */; };
+		CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6602BE1089200694428 /* UIViewController+extension.swift */; };
 		CEADF0EF2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */; };
 		CEADF0F02BD66B3100A6B542 /* LotaGrotesque-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */; };
 		CEADF0F42BD670CA00A6B542 /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */; };
@@ -73,12 +73,12 @@
 		CE78C7532BDD367500C4221D /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		CE88E89B2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		CE88E89C2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
-		CE88E89F2B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailsViewController.swift; sourceTree = "<group>"; };
 		CE88E8A82B710F7E00AFAF95 /* Movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie.mp4; sourceTree = "<group>"; };
 		CE96C5232BD11638000ECB7B /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		CE96C5272BD11665000ECB7B /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		CE96C5292BD18CB8000ECB7B /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		CE96C52B2BD18D63000ECB7B /* TVSeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSeriesModel.swift; sourceTree = "<group>"; };
+		CE96C6602BE1089200694428 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LotaGrotesqueAlt1-Regular.otf"; sourceTree = "<group>"; };
 		CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LotaGrotesque-Bold.otf"; sourceTree = "<group>"; };
 		CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
@@ -243,7 +243,6 @@
 				CED28FA42B6D20F8007DB4A8 /* TabBar */,
 				CED28FA62B6D210D007DB4A8 /* Intro */,
 				CED28FA32B6D20E6007DB4A8 /* Flow */,
-				CED28FA22B6D20D9007DB4A8 /* Favorites */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -265,17 +264,9 @@
 				CED28FA72B6D4974007DB4A8 /* APIManager.swift */,
 				CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */,
 				CEAE15172BDE900700958CCC /* CoreDataManager.swift */,
+				CE96C6602BE1089200694428 /* UIViewController+extension.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		CED28FA22B6D20D9007DB4A8 /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				CED28F932B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift */,
-				CE88E89F2B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift */,
-			);
-			path = Favorites;
 			sourceTree = "<group>";
 		};
 		CED28FA32B6D20E6007DB4A8 /* Flow */ = {
@@ -286,6 +277,7 @@
 				CEC285702BD97CC400189979 /* SearchViewController.swift */,
 				CE78C7532BDD367500C4221D /* SearchResultViewController.swift */,
 				CED28F8E2B6CF22A007DB4A8 /* DetailsViewController.swift */,
+				CED28F932B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -445,6 +437,7 @@
 				CEFE35EF2B6D61D500451F55 /* NavigationHeaderView.swift in Sources */,
 				CECC78C72B6CEA40008815EF /* MovieListRouter.swift in Sources */,
 				CED28F942B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift in Sources */,
+				CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */,
 				CED28F912B6CF394007DB4A8 /* FavoritesRouter.swift in Sources */,
 				CED28F9A2B6CFB4D007DB4A8 /* Defaults.swift in Sources */,
 				CEADF0F42BD670CA00A6B542 /* UIFont+extension.swift in Sources */,
@@ -462,7 +455,6 @@
 				CEC2856F2BD97C5400189979 /* SearchRouter.swift in Sources */,
 				CECC78A42B6CE38C008815EF /* AppDelegate.swift in Sources */,
 				CEADF0FB2BD6C10900A6B542 /* DescriptionTableViewCell.swift in Sources */,
-				CE88E8A12B6E9A2D00AFAF95 /* FavoriteDetailsViewController.swift in Sources */,
 				CE96C5242BD11638000ECB7B /* FilterView.swift in Sources */,
 				CE96C52A2BD18CB8000ECB7B /* MovieModel.swift in Sources */,
 				CE0F05DC2BD27BFC003BF2AD /* TVSeriesListRouter.swift in Sources */,

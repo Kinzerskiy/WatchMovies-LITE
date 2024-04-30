@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailsViewController: UIViewController {
     
@@ -25,15 +26,22 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
         prepareTableView()
         fetchMediaDetails(isMovie: isMovie!, completion:  { [weak self] in
             DispatchQueue.main.async {
                 self?.makeNavigationBar()
                 self?.tableView.reloadData()
+                self?.tableView.alpha = 1.0
             }
         })
+        tableView.alpha = 0.0
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.setHidesBackButton(true, animated: false)
+    }
+
     
     func prepareTableView() {
         tableView.dataSource = self
@@ -99,6 +107,19 @@ class DetailsViewController: UIViewController {
             }
         }
     }
+    
+    private func checkIfInFavorites(mediaId: Int) -> Bool {
+        let context = CoreDataManager.shared.context
+        let fetchRequest: NSFetchRequest<Favorites> = Favorites.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "mediaId == %ld", Int64(mediaId))
+        do {
+            let result = try context.fetch(fetchRequest)
+            return !result.isEmpty
+        } catch {
+            print("Error checking if in favorites: \(error)")
+            return false
+        }
+    }
 }
 
 extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -118,15 +139,16 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as? DescriptionTableViewCell else {
-                return UITableViewCell()
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as? DescriptionTableViewCell {
+                if let movieDetails = movieDetails {
+                    cell.fill(with: movieDetails)
+                    cell.updateFavoriteStatus(isFavorite: checkIfInFavorites(mediaId: Int(Int64(movieDetails.id))))
+                } else if let tvSeriesDetails = tvSeriesDetails {
+                    cell.fill(with: tvSeriesDetails)
+                    cell.updateFavoriteStatus(isFavorite: checkIfInFavorites(mediaId: Int(Int64(tvSeriesDetails.id))))
+                }
+                return cell
             }
-            if let movieDetails = movieDetails {
-                cell.fill(with: movieDetails)
-            } else if let tvSeriesDetails = tvSeriesDetails {
-                cell.fill(with: tvSeriesDetails)
-            }
-            return cell
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "OverviewTableViewCell", for: indexPath) as? OverviewTableViewCell else {
                 return UITableViewCell()

@@ -65,10 +65,16 @@ class SearchResultViewController: UIViewController {
         case .movie:
             apiManager.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, ganre: genreID) { movies, error in
                 completion(movies, error)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         case .tvSeries:
             apiManager.fetchSearchTVSeries(page: page, includeAdult: includeAdult, firstAirDateYear: year, genre: genreID) { tvSeries, error in
                 completion(tvSeries as [Any], nil)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         }
     }

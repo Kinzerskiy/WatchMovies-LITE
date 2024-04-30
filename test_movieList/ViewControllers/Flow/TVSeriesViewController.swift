@@ -70,14 +70,7 @@ class TVSeriesViewController: UIViewController {
                self.handleFetchResponse(tvSeries: tvSeries, error: error, segmentIndex: segmentIndex)
            }
     }
-    
-    //вынести
-    private func showAlertDialog(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-    }
+
 }
 
 extension TVSeriesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -179,18 +172,30 @@ extension TVSeriesViewController: FilterViewDelegate {
         case 0:
             apiManager.fetchAiringTodaySeries(page: page) { tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         case 1:
             apiManager.fetchOnTheAirSeries(page: page) { tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         case 2:
             apiManager.fetchPopularSeries(page: page) { tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         case 3:
             apiManager.fetchTopRatedSeries(page: page) { tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         default:
             break

@@ -16,16 +16,27 @@ class FavoriteMoviesViewController: UIViewController {
     let navigationView = NavigationHeaderView.loadView()
     var router: FavoritesRouting?
     
+    let emptyLabel: UILabel = {
+          let label = UILabel()
+          label.text = "Nothing here yet"
+          label.textAlignment = .center
+          label.textColor = .gray
+          label.font = UIFont.lotaBold(ofSize: 25)
+          label.translatesAutoresizingMaskIntoConstraints = false
+          return label
+      }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        fetchFavoriteMovies()
+        setupEmptyLabel()
+        fetchFavoriteMedia()
         makeNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchFavoriteMovies()
+        fetchFavoriteMedia()
     }
     
     
@@ -43,26 +54,64 @@ class FavoriteMoviesViewController: UIViewController {
         tableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
     }
     
-    func fetchFavoriteMovies() {
+    func updateEmptyLabelVisibility() {
+          emptyLabel.isHidden = !favorites.isEmpty
+      }
+    
+    func setupEmptyLabel() {
+        view.addSubview(emptyLabel)
+        NSLayoutConstraint.activate([
+            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        emptyLabel.isHidden = true
+    }
+      
+    
+    func fetchFavoriteMedia() {
+           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+               return
+           }
+           let context = appDelegate.persistentContainer.viewContext
+           
+           do {
+               favorites = try context.fetch(Favorites.fetchRequest())
+               tableView.reloadData()
+               updateEmptyLabelVisibility()
+           } catch {
+               print("Error fetching favorite movies: \(error)")
+           }
+       }
+    
+    func handleFavoriteAction(for indexPath: IndexPath) {
+        let selectedMedia = favorites[indexPath.row]
+        deleteFavoriteFromCoreData(selectedMedia) { [weak self] success in
+            if success {
+                self?.fetchFavoriteMedia()
+            }
+        }
+    }
+
+    func deleteFavoriteFromCoreData(_ favorite: Favorites, completion: @escaping (Bool) -> Void) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            completion(false)
             return
         }
         let context = appDelegate.persistentContainer.viewContext
         
-        do {
-            favorites = try context.fetch(Favorites.fetchRequest())
-            tableView.reloadData()
-        } catch {
-            print("Error fetching favorite movies: \(error)")
+        context.perform {
+            do {
+                context.delete(favorite)
+                try context.save()
+                completion(true)
+            } catch {
+                print("Error deleting movie from Core Data: \(error)")
+                completion(false)
+            }
         }
     }
-    
-    func handleFavoriteAction(for indexPath: IndexPath) {
-        let selectedMedia = favorites[indexPath.row]
-        selectedMedia.isFavorite.toggle()
-        saveChanges()
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
+
+
     
     
     func saveChanges() {
@@ -114,10 +163,12 @@ extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let favorite = favorites[indexPath.item]
-//        router?.showFavoritesMoviesDetailForm(with: selectedMovie, viewController: self, animated: true)
+        let favorite = favorites[indexPath.row]
+        let id = favorite.mediaId
+        router?.showDetailForm(with: Int(id), isMovie: favorite.isMovie, viewController: self, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true

@@ -229,7 +229,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
         let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont.lotaRegular(ofSize: 15)
+            NSAttributedString.Key.font: UIFont.lotaBold(ofSize: 15)
         ]
 
         if pickerView == yearPicker {

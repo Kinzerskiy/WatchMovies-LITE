@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol FavoritesRouting: BaseRouting, DismissRouting {
-    func showFavoritesMoviesDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool)
+    func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
 }
 
 class FavoritesRouter: BaseRouter, FavoritesRouting {
@@ -50,10 +50,8 @@ class FavoritesRouter: BaseRouter, FavoritesRouting {
         return navigationController!
     }
     
-    func showFavoritesMoviesDetailForm(with movie: Movie, viewController: UIViewController, animated: Bool) {
-        let vc: FavoriteDetailsViewController = assembly.assemblyFavoriteDetailsViewController(with: self)
-        vc.favoriteMovie = movie
-        viewController.present(vc, animated: animated, completion: nil)
+    func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool) {
+        mainRouter?.showDetailForm(with: id, isMovie: isMovie, viewController: viewController, animated: true)
     }
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {

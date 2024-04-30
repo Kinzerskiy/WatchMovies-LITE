@@ -32,7 +32,6 @@ protocol SearchNavigationAssemblyProtocol {
 
 protocol FavoritesNavigationAssemblyProtocol {
     func assemblyFavoriteMoviesViewController(with router: FavoritesRouting) -> FavoriteMoviesViewController
-    func assemblyFavoriteDetailsViewController(with router: FavoritesRouting) -> FavoriteDetailsViewController
 }
 
 protocol NavigationAssemblyProtocol: CommonNavigationAssemblyProtocol,
@@ -151,10 +150,4 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     }
     
     
-    func assemblyFavoriteDetailsViewController(with router: FavoritesRouting) -> FavoriteDetailsViewController {
-        let vc: FavoriteDetailsViewController = favoritesStoryboard().instantiateViewController(withIdentifier: String(describing: FavoriteDetailsViewController.self)) as! FavoriteDetailsViewController
-        vc.router = router
-        
-        return vc
-    }
 }

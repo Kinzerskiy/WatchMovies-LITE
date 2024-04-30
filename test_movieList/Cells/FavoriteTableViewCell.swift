@@ -31,11 +31,10 @@ class FavoriteTableViewCell: UITableViewCell {
         let posterURL = URL(string: baseURL + (media.posterPath ?? ""))
         moviePoster.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
         
-        
         if media.isFavorite {
-            movieButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        } else {
             movieButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        } else {
+            movieButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
         }
         movieButton.tintColor = .orange
         movieButton.isSelected = false

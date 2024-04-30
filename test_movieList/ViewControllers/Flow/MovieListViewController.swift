@@ -72,14 +72,7 @@ class MovieListViewController: UIViewController {
            }
        
     }
-    
-    //вынести
-    private func showAlertDialog(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-    }
+
 }
 
 extension MovieListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -182,18 +175,30 @@ extension MovieListViewController: FilterViewDelegate {
         case 0:
             apiManager.fetchNowPlayingMovies(page: page) { movies, error in
                 completion(movies, error, segmentIndex)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         case 1:
             apiManager.fetchPopularMovies(page: page) { movies, error in
                 completion(movies, error, segmentIndex)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         case 2:
             apiManager.fetchTopRatedMovies(page: page) { movies, error in
                 completion(movies, error, segmentIndex)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         case 3:
             apiManager.fetchUpcomingMovies(page: page) { movies, error in
                 completion(movies, error, segmentIndex)
+                if let error = error {
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                }
             }
         default:
             break
