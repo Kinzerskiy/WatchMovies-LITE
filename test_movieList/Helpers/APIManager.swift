@@ -151,7 +151,7 @@ class APIManager {
             if let primaryReleaseYear = primaryReleaseYear {
                 queryItems.append(URLQueryItem(name: "primary_release_year", value: primaryReleaseYear))
             }
-            if let firstAirDateYear = firstAirDateYear {
+            if firstAirDateYear != nil {
                 queryItems.append(URLQueryItem(name: "first_air_date_year", value: primaryReleaseYear))
             }
             if let ganre = ganre {
@@ -177,7 +177,7 @@ class APIManager {
                     completion(nil, error)
                     return
                 }
-                
+                print(String(data: data, encoding: .utf8) ?? "Data could not be printed")
                 do {
                     let decoder = JSONDecoder()
                     let response = try decoder.decode(T.self, from: data)

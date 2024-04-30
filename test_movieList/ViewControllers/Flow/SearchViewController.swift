@@ -47,7 +47,6 @@ class SearchViewController: UIViewController {
         navigationItem.hidesBackButton = true
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
-        navigationView.titleImage.image = UIImage(named: "Search")
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
     }

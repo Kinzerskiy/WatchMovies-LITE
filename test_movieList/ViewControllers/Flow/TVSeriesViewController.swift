@@ -33,7 +33,7 @@ class TVSeriesViewController: UIViewController {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
-        navigationView.titleImage.image = UIImage(named: "TV Series")
+       
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
     }

@@ -13,6 +13,13 @@ class SimilarCollectionViewCell: UICollectionViewCell {
    
     override func awakeFromNib() {
         super.awakeFromNib()
+       
+        if let placeholderImageName = posterImage.image?.accessibilityIdentifier, placeholderImageName == "Popcorn" {
+            posterImage.contentMode = .scaleAspectFit
+        } else {
+            posterImage.contentMode = .scaleAspectFill
+        }
+        
         layer.shadowColor = UIColor.black.cgColor
         layer.masksToBounds = false
         layer.shadowOpacity = 0.8
@@ -24,12 +31,12 @@ class SimilarCollectionViewCell: UICollectionViewCell {
         if let similarMovie = media as? SimilarMovie {
             if let posterPath = similarMovie.posterPath {
                 let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-                posterImage.sd_setImage(with: posterUrl, placeholderImage: UIImage(named: "placeholder"))
+                posterImage.sd_setImage(with: posterUrl, placeholderImage: UIImage(named: "Popcorn"))
             }
         } else if let similarTVSeries = media as? SimilarTVSeries {
             if let posterPath = similarTVSeries.posterPath {
                 let posterUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-                posterImage.sd_setImage(with: posterUrl, placeholderImage: UIImage(named: "placeholder"))
+                posterImage.sd_setImage(with: posterUrl, placeholderImage: UIImage(named: "Popcorn"))
             }
         }
     }

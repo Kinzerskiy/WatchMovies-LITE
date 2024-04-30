@@ -30,6 +30,8 @@
 		CEADF1022BD6C12500A6B542 /* SimilarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0FE2BD6C12500A6B542 /* SimilarTableViewCell.xib */; };
 		CEADF1032BD6C12500A6B542 /* SimilarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0FF2BD6C12500A6B542 /* SimilarCollectionViewCell.swift */; };
 		CEADF1042BD6C12500A6B542 /* SimilarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEADF1002BD6C12500A6B542 /* SimilarCollectionViewCell.xib */; };
+		CEAE15122BDE799C00958CCC /* Favorites.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEAE15102BDE799C00958CCC /* Favorites.xcdatamodeld */; };
+		CEAE15182BDE900700958CCC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE15172BDE900700958CCC /* CoreDataManager.swift */; };
 		CEC2856D2BD97C3700189979 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC2856C2BD97C3700189979 /* Search.storyboard */; };
 		CEC2856F2BD97C5400189979 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2856E2BD97C5400189979 /* SearchRouter.swift */; };
 		CEC285712BD97CC400189979 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC285702BD97CC400189979 /* SearchViewController.swift */; };
@@ -88,6 +90,8 @@
 		CEADF0FE2BD6C12500A6B542 /* SimilarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimilarTableViewCell.xib; sourceTree = "<group>"; };
 		CEADF0FF2BD6C12500A6B542 /* SimilarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEADF1002BD6C12500A6B542 /* SimilarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimilarCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEAE15112BDE799C00958CCC /* Favorites.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorites.xcdatamodel; sourceTree = "<group>"; };
+		CEAE15172BDE900700958CCC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CEC2856C2BD97C3700189979 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		CEC2856E2BD97C5400189979 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		CEC285702BD97CC400189979 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				CEFE35F12B6D649700451F55 /* CustomViews */,
 				CED28F9B2B6CFB8B007DB4A8 /* Helpers */,
 				CECC78AF2B6CE396008815EF /* Assets.xcassets */,
+				CEAE15102BDE799C00958CCC /* Favorites.xcdatamodeld */,
 				CE88E8A82B710F7E00AFAF95 /* Movie.mp4 */,
 				CECC78B12B6CE396008815EF /* LaunchScreen.storyboard */,
 				CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */,
@@ -259,6 +264,7 @@
 				CED28F992B6CFB4D007DB4A8 /* Defaults.swift */,
 				CED28FA72B6D4974007DB4A8 /* APIManager.swift */,
 				CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */,
+				CEAE15172BDE900700958CCC /* CoreDataManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				CED28F8D2B6CF1FC007DB4A8 /* MovieListViewController.swift in Sources */,
 				CE0F05DA2BD27648003BF2AD /* TVSeriesViewController.swift in Sources */,
 				CECC78C12B6CE649008815EF /* MainRouter.swift in Sources */,
+				CEAE15122BDE799C00958CCC /* Favorites.xcdatamodeld in Sources */,
 				CE88E89D2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift in Sources */,
 				CEFE35EF2B6D61D500451F55 /* NavigationHeaderView.swift in Sources */,
 				CECC78C72B6CEA40008815EF /* MovieListRouter.swift in Sources */,
@@ -450,6 +457,7 @@
 				CE78C7552BDD367600C4221D /* SearchResultViewController.swift in Sources */,
 				CEADF0F92BD6C10900A6B542 /* OverviewTableViewCell.swift in Sources */,
 				CED28FAB2B6D5225007DB4A8 /* ListCollectionViewCell.swift in Sources */,
+				CEAE15182BDE900700958CCC /* CoreDataManager.swift in Sources */,
 				CEADF1012BD6C12500A6B542 /* SimilarTableViewCell.swift in Sources */,
 				CEC2856F2BD97C5400189979 /* SearchRouter.swift in Sources */,
 				CECC78A42B6CE38C008815EF /* AppDelegate.swift in Sources */,
@@ -708,6 +716,19 @@
 			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		CEAE15102BDE799C00958CCC /* Favorites.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CEAE15112BDE799C00958CCC /* Favorites.xcdatamodel */,
+			);
+			currentVersion = CEAE15112BDE799C00958CCC /* Favorites.xcdatamodel */;
+			path = Favorites.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CECC78982B6CE38C008815EF /* Project object */;
 }

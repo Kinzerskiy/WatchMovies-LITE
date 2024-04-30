@@ -30,26 +30,30 @@ class ListCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
         contentView.clipsToBounds = true
-        posterImageView.contentMode = .scaleAspectFill
+       
+        if let placeholderImageName = posterImageView.image?.accessibilityIdentifier, placeholderImageName == "Popcorn" {
+            posterImageView.contentMode = .scaleAspectFit
+        } else {
+            posterImageView.contentMode = .scaleAspectFill
+        }
+        
         posterImageView.clipsToBounds = true
         blurView.backgroundColor = UIColor(white: 1, alpha: 0.4)
         contentView.isUserInteractionEnabled = true
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.orange.cgColor
     }
     
     func fill(withData data: Any) {
         if let tvShow = data as? TVSeries {
             titleLabel.text = tvShow.name
             let baseURL = "https://image.tmdb.org/t/p/w500"
-            let posterURL = URL(string: baseURL + tvShow.posterPath)
-            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
-        } else 
+            let posterURL = URL(string: baseURL + (tvShow.posterPath ?? ""))
+            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
+        } else
         if let movie = data as? Movie {
             titleLabel.text = movie.title
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (movie.posterPath ?? ""))
-            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
+            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
         }
     }
     

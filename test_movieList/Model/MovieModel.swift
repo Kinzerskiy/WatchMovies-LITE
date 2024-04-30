@@ -182,7 +182,6 @@ struct SimilarMovie: Codable, MediaDetails {
     var firstAirDate: String?
     
     var genres: [Genre]
-    
     let id: Int
     let title: String
     let overview: String

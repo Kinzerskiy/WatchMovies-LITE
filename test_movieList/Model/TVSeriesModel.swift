@@ -19,28 +19,32 @@ protocol MediaDetails {
 
 //MARK: - TVSeries
 
-struct TVSeries: Codable{
+struct TVSeries: Codable {
     let adult: Bool
     let backdropPath: String?
-    let genreIDS: [Int]
+    let genreIds: [Int]
     let id: Int
     let originCountry: [String]
-//    let originalLanguage: OriginalLanguage?
-    let originalName, overview: String
+    let originalLanguage: String
+    let originalName: String
+    let overview: String
     let popularity: Double
-    let posterPath, firstAirDate, name: String
+    let posterPath: String?
+    let firstAirDate: String
+    let name: String
     let voteAverage: Double
     let voteCount: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"
-        case genreIDS = "genre_ids"
+        case genreIds = "genre_ids"
         case id
         case originCountry = "origin_country"
-//        case originalLanguage = "original_language"
+        case originalLanguage = "original_language"
         case originalName = "original_name"
-        case overview, popularity
+        case overview
+        case popularity
         case posterPath = "poster_path"
         case firstAirDate = "first_air_date"
         case name
@@ -52,10 +56,12 @@ struct TVSeries: Codable{
 struct TVSeriesListResponse: Codable {
     let results: [TVSeries]
     let page: Int
-    let totalPages, totalResults: Int
-    
+    let totalPages: Int
+    let totalResults: Int
+
     enum CodingKeys: String, CodingKey {
-        case page, results
+        case results
+        case page
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
@@ -227,7 +233,6 @@ struct Season: Codable {
 
 //MARK: Similar
 
-
 struct SimilarTVSeriesResponse: Codable {
     let page: Int
     let results: [SimilarTVSeries]
@@ -241,6 +246,7 @@ struct SimilarTVSeriesResponse: Codable {
 }
 
 struct SimilarTVSeries: Codable {
+   
     var releaseDate: String?
     let adult: Bool
     let backdropPath: String?
@@ -250,7 +256,7 @@ struct SimilarTVSeries: Codable {
     let originalLanguage, originalName, overview: String
     let popularity: Double
     let posterPath: String?
-    let firstAirDate, name: String
+    let firstAirDate, name: String?
     let voteAverage: Double
     let voteCount: Int
     

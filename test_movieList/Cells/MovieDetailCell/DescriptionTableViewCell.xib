@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,42 +55,47 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lP3-Xo-CBa">
-                        <rect key="frame" x="342" y="275" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleAspectFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lP3-Xo-CBa">
+                        <rect key="frame" x="327" y="262.66666666666669" width="55" height="55"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Drb-Vs-YTn"/>
-                            <constraint firstAttribute="height" constant="30" id="Fbz-a0-odd"/>
+                            <constraint firstAttribute="width" constant="55" id="53Q-0C-51P"/>
+                            <constraint firstAttribute="height" constant="55" id="qc1-JW-kWg"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageReference key="image" image="bookmark" catalog="system" symbolScale="default" renderingMode="original" variableValue="0.0"/>
+                        </state>
                         <connections>
-                            <action selector="bookmarkDidTap:" destination="KGk-i7-Jjw" eventType="touchUpOutside" id="vpV-yq-jJP"/>
+                            <action selector="bookmarkDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BuS-xh-XKv"/>
                         </connections>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ekI-kg-Gwf" firstAttribute="top" secondItem="YPF-5v-THj" secondAttribute="bottom" constant="5" id="8iy-UJ-YE8"/>
-                    <constraint firstAttribute="trailing" secondItem="lP3-Xo-CBa" secondAttribute="trailing" constant="30" id="Bnp-Vz-50u"/>
                     <constraint firstItem="YPF-5v-THj" firstAttribute="top" secondItem="NTa-Nh-Wzk" secondAttribute="bottom" constant="5" id="Hld-X1-pUl"/>
+                    <constraint firstAttribute="trailing" secondItem="lP3-Xo-CBa" secondAttribute="trailing" constant="20" id="NWV-tn-izd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ekI-kg-Gwf" secondAttribute="trailing" constant="10" id="YYs-WT-zUb"/>
-                    <constraint firstItem="lP3-Xo-CBa" firstAttribute="centerY" secondItem="YPF-5v-THj" secondAttribute="centerY" id="dkQ-XM-nzs"/>
                     <constraint firstItem="NTa-Nh-Wzk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="foh-4Z-hcw"/>
                     <constraint firstItem="NTa-Nh-Wzk" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="k3v-uk-pIv"/>
                     <constraint firstAttribute="bottom" secondItem="ekI-kg-Gwf" secondAttribute="bottom" constant="20" id="lUa-wZ-CkO"/>
                     <constraint firstItem="ekI-kg-Gwf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="phU-6z-p3P"/>
+                    <constraint firstItem="lP3-Xo-CBa" firstAttribute="centerY" secondItem="YPF-5v-THj" secondAttribute="centerY" id="vf9-aJ-t64"/>
                     <constraint firstItem="YPF-5v-THj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="w3B-tW-Gly"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="bookMark" destination="lP3-Xo-CBa" id="llr-6M-AEM"/>
+                <outlet property="bookMark" destination="lP3-Xo-CBa" id="Fwh-Ic-VWS"/>
                 <outlet property="companyLogo" destination="YPF-5v-THj" id="vl9-Z4-u37"/>
                 <outlet property="ganreName" destination="cL9-dN-IVX" id="O97-tK-ZwM"/>
                 <outlet property="moviePoster" destination="NTa-Nh-Wzk" id="Xhn-Yx-fIi"/>
                 <outlet property="releaseDate" destination="546-YL-A8c" id="39f-uS-UWR"/>
                 <outlet property="voteAverage" destination="dRE-bR-rBe" id="Yg6-OJ-dLD"/>
             </connections>
-            <point key="canvasLocation" x="44" y="83"/>
+            <point key="canvasLocation" x="42.748091603053432" y="82.74647887323944"/>
         </tableViewCell>
     </objects>
     <resources>
