@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         if Defaults.firstInitialization {
-            applicationRouter?.showIntroForm(from: window?.rootViewController, animated:false, completion:nil)
+            applicationRouter?.showIntroForm(from: window?.rootViewController, animated: false, completion: nil)
         }
     }
 }

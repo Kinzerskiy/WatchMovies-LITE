@@ -12,20 +12,20 @@
         <!--Intro View Controller-->
         <scene sceneID="Hfu-m2-ce3">
             <objects>
-                <viewController restorationIdentifier="IntroViewController" storyboardIdentifier="IntroViewController" id="rvu-wz-q8a" customClass="IntroViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="IntroViewController" storyboardIdentifier="IntroViewController" id="rvu-wz-q8a" customClass="IntroViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qJN-zz-QBo">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0T-Ci-glH">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9tl-rs-S9e"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="A0T-Ci-glH" firstAttribute="bottom" secondItem="9tl-rs-S9e" secondAttribute="bottom" id="AvH-G7-BJ2"/>
+                            <constraint firstItem="A0T-Ci-glH" firstAttribute="bottom" secondItem="qJN-zz-QBo" secondAttribute="bottom" id="AvH-G7-BJ2"/>
                             <constraint firstItem="A0T-Ci-glH" firstAttribute="top" secondItem="qJN-zz-QBo" secondAttribute="top" id="JWY-wL-3N7"/>
                             <constraint firstItem="9tl-rs-S9e" firstAttribute="trailing" secondItem="A0T-Ci-glH" secondAttribute="trailing" id="ejx-ZW-kuT"/>
                             <constraint firstItem="A0T-Ci-glH" firstAttribute="leading" secondItem="9tl-rs-S9e" secondAttribute="leading" id="s6T-g1-48f"/>
@@ -42,7 +42,7 @@
         <!--Main Tab Bar View Controller-->
         <scene sceneID="i0Y-Wd-Yoh">
             <objects>
-                <tabBarController restorationIdentifier="MainTabBarViewController" storyboardIdentifier="MainTabBarViewController" id="DRh-PM-dGa" customClass="MainTabBarViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="MainTabBarViewController" storyboardIdentifier="MainTabBarViewController" id="DRh-PM-dGa" customClass="MainTabBarViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bdV-ZY-n1J">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -56,7 +56,7 @@
         <!--Details View Controller-->
         <scene sceneID="8Tm-Wx-Zkf">
             <objects>
-                <viewController restorationIdentifier="DetailsViewController" storyboardIdentifier="DetailsViewController" id="DPP-mj-7Wt" customClass="DetailsViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="DetailsViewController" storyboardIdentifier="DetailsViewController" id="DPP-mj-7Wt" customClass="DetailsViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z1F-i3-sPT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
