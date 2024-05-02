@@ -11,6 +11,7 @@ import UIKit
 
 protocol MainRouting: BaseRouting, DismissRouting, IntroViewControllerDelegate {
     func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
+    func showDoubleTapForm(viewController: UIViewController, animated: Bool)
 }
 
 protocol MainRouterDelegate {
@@ -54,7 +55,6 @@ class MainRouter: BaseRouter, MainRouting {
         return navigationController!
     }
     
-    
     func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool) {
         let vc: DetailsViewController = assembly.assemblyDetailsViewController(with: self)
         
@@ -62,6 +62,13 @@ class MainRouter: BaseRouter, MainRouting {
         vc.selectedId = id
         vc.isMovie = isMovie
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func showDoubleTapForm(viewController: UIViewController, animated: Bool) {
+        let vc: DoubleTapViewController = assembly.assemblyDoubleTapViewController(with: self)
+        
+        vc.modalPresentationStyle = .overFullScreen
+        navigationController?.present(vc, animated: false)
     }
     
     

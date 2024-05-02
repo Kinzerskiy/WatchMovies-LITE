@@ -7,7 +7,6 @@
 
 import UIKit
 import SDWebImage
-import CoreData
 
 protocol DescribableCell {
     associatedtype DataType
@@ -23,7 +22,6 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var bookMark: UIButton!
     
-    var bookmarkActionHandler: (() -> Void)?
     var favorite: Favorites?
     var data: MediaDetails?
     
@@ -53,64 +51,18 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
         bookMark.setImage(isFavorite ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
     }
     
-    private func saveToFavorites(in context: NSManagedObjectContext) {
-        guard let data = data else { return }
-        let favorite = Favorites(context: context)
-        
-        if let movieDetails = data as? MovieDetails {
-            favorite.posterPath = movieDetails.posterPath
-            favorite.mediaId = Int64(movieDetails.id)
-            favorite.title = movieDetails.title
-            favorite.isMovie = true
-            favorite.isFavorite = true
-        } else if let tvSeriesDetails = data as? TVSeriesDetails {
-            favorite.posterPath = tvSeriesDetails.posterPath
-            favorite.mediaId = Int64(tvSeriesDetails.id)
-            favorite.title = tvSeriesDetails.name
-            favorite.isMovie = false
-            favorite.isFavorite = true
-        }
-        CoreDataManager.shared.saveContext()
-    }
-
-
-   
-    func fetchFavoriteMedia(for data: MediaDetails, in context: NSManagedObjectContext) -> Favorites? {
-        let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
-        request.predicate = NSPredicate(format: "mediaId == %ld", data.id)
-        request.fetchLimit = 1
-
-        do {
-            let favorites = try context.fetch(request)
-            return favorites.first
-        } catch {
-            print("Error fetching favorite movie: \(error)")
-            return nil
-        }
-    }
-
-    
     @IBAction func bookmarkDidTap(_ sender: UIButton) {
-        bookmarkActionHandler?()
-          print("Bookmark button tapped")
-          sender.isSelected.toggle()
+        sender.isSelected.toggle()
+        guard let data = data else { return }
         
-     
-        if let existingFavorite = fetchFavoriteMedia(for: data!, in: CoreDataManager.shared.context) {
-            CoreDataManager.shared.context.delete(existingFavorite)
-            } else {
-                saveToFavorites(in: CoreDataManager.shared.context)
-            }
-            
-            CoreDataManager.shared.saveContext()
-            
-            if sender.isSelected {
-                sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-            } else {
-                sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            }
+        if let existingFavorite = FavoritesManager.shared.fetchFavoriteMedia(for: data) {
+            FavoritesManager.shared.deleteFavorite(favorite: existingFavorite)
+        } else {
+            FavoritesManager.shared.saveToFavorites(data: data)
         }
-
+        updateFavoriteStatus(isFavorite: sender.isSelected)
+    }
+    
     
     func fill(with data: MediaDetails) {
         self.data = data
@@ -147,7 +99,6 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
             releaseDateText.append(releaseDateValue)
             releaseDate.attributedText = releaseDateText
             
-            // Check if the movie is in favorites and update the bookmark button
             if let favorite = favorite, favorite.mediaId == Int64(movieDetails.id) {
                 bookMark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             } else {
@@ -163,7 +114,6 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
             releaseDateText.append(releaseDateValue)
             releaseDate.attributedText = releaseDateText
             
-            // Check if the TV series is in favorites and update the bookmark button
             if let favorite = favorite, favorite.mediaId == Int64(tvSeriesDetails.id) {
                 bookMark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             } else {
@@ -171,5 +121,4 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
             }
         }
     }
-
 }

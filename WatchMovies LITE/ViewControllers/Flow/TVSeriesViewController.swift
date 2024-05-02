@@ -97,7 +97,12 @@ extension TVSeriesViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedTVSeries = tvSeries[indexPath.item]
-        router?.showDetailForm(with: selectedTVSeries.id, isMovie: false, viewController: self, animated: true)
+        if Defaults.didShowTap {
+            Defaults.didShowTap = false
+            router?.showDoubleTapForm(viewController: self, animated: false)
+        } else {
+            router?.showDetailForm(with: selectedTVSeries.id, isMovie: true, viewController: self, animated: true)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -70,9 +70,7 @@ class MovieListViewController: UIViewController {
         fetchMovies(for: currentSegmentIndex, page: 1) { movies, error, segmentIndex in
                self.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
            }
-       
     }
-
 }
 
 extension MovieListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -90,16 +88,18 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
         if movieIndex < movies.count {
             let movie = movies[movieIndex]
             cell.fill(withData: movie)
-//            cell.longPressHandler = { [weak self] in
-//                self?.handleLongPressOnCell(with: movie)
-//            }
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = movies[indexPath.item]
-        router?.showDetailForm(with: selectedMovie.id, isMovie: true, viewController: self, animated: true)
+        if Defaults.didShowTap {
+            Defaults.didShowTap = false
+            router?.showDoubleTapForm(viewController: self, animated: false)
+        } else {
+            router?.showDetailForm(with: selectedMovie.id, isMovie: true, viewController: self, animated: true)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -235,33 +235,3 @@ extension MovieListViewController: FilterViewDelegate {
         }
     }
 }
-
-
-
-//    private func handleLongPressOnCell(with tvShow: /*MovieListResponse.MovieList*/TVShowListResponse.TVShow) {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//            return
-//        }
-//
-//        let context = appDelegate.persistentContainer.viewContext
-//        let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "title == %@", tvShow.name)
-//
-//        do {
-//            let existingMovies = try context.fetch(fetchRequest)
-//            if let existingMovie = existingMovies.first {
-//                showAlertDialog(title: "Movie Already Exists", message: "\(existingMovie.title ?? "") is already in your collection.")
-//            } else {
-//                let newMovie = Movie(context: context)
-//                newMovie.title = tvShow.name
-//                newMovie.overview = tvShow.overview
-//                newMovie.posterImage = tvShow.posterPath
-//                newMovie.releaseDate = tvShow.firstAirDate
-//                try context.save()
-//                showAlertDialog(title: "Movie Saved", message: "\(newMovie.title ?? "") has been added to your collection.")
-//            }
-//        } catch {
-//            showAlertDialog(title: "Error", message: "Error saving movie to Core Data.")
-//        }
-//    }
-    

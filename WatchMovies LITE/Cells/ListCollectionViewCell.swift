@@ -18,12 +18,12 @@ class ListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var longPressHandler: (() -> Void)?
+    var doubleTapHandler: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareUI()
-        addLongPressGesture()
+        addDoubleTapGesture()
     }
     
     func prepareUI() {
@@ -55,16 +55,18 @@ class ListCollectionViewCell: UICollectionViewCell {
             let posterURL = URL(string: baseURL + (movie.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
         }
+        addDoubleTapGesture()
     }
     
-    private func addLongPressGesture() {
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
-        contentView.addGestureRecognizer(longPressGesture)
+    private func addDoubleTapGesture() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        doubleTapGesture.numberOfTapsRequired = 2
+        contentView.addGestureRecognizer(doubleTapGesture)
     }
     
-    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .began {
-            longPressHandler?()
+    @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
+        if gesture.state == .recognized {
+            doubleTapHandler?()
         }
     }
 }

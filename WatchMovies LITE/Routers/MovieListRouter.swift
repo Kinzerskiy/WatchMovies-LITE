@@ -10,6 +10,7 @@ import UIKit
 
 protocol MovieListRouting: BaseRouting, DismissRouting {
     func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
+    func showDoubleTapForm(viewController: UIViewController, animated: Bool)
 }
 
 class MovieListRouter: BaseRouter, MovieListRouting {
@@ -48,8 +49,13 @@ class MovieListRouter: BaseRouter, MovieListRouting {
         return navigationController!
     }
     
+    
     func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool) {
         mainRouter?.showDetailForm(with: id, isMovie: isMovie, viewController: viewController, animated: true)
+    }
+    
+    func showDoubleTapForm(viewController: UIViewController, animated: Bool) {
+        mainRouter?.showDoubleTapForm(viewController: viewController, animated: true)
     }
     
     func dissmiss(viewController: UIViewController, animated: Bool, completion: (() -> ())?) {

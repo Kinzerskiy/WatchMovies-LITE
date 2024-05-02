@@ -15,6 +15,7 @@ protocol CommonNavigationAssemblyProtocol {
 protocol MainNavigationAssemblyProtocol {
     func assemblyIntroViewController(with router: MainRouting) -> IntroViewController
     func assemblyDetailsViewController(with router: MainRouting) -> DetailsViewController
+    func assemblyDoubleTapViewController(with router: MainRouting) -> DoubleTapViewController
 }
 
 protocol MovieListNavigationAssemblyProtocol {
@@ -101,6 +102,12 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     
     func assemblyDetailsViewController(with router: MainRouting) -> DetailsViewController {
         let vc: DetailsViewController = mainStoryboard().instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
+        
+        return vc
+    }
+    
+    func assemblyDoubleTapViewController(with router: MainRouting) -> DoubleTapViewController {
+        let vc: DoubleTapViewController = mainStoryboard().instantiateViewController(withIdentifier: String(describing: DoubleTapViewController.self)) as! DoubleTapViewController
         
         return vc
     }
