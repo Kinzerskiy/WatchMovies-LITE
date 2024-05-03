@@ -20,7 +20,7 @@
 		CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6602BE1089200694428 /* UIViewController+extension.swift */; };
 		CE96C6632BE1136C00694428 /* Movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CE96C6622BE1136700694428 /* Movie.mp4 */; };
 		CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */; };
-		CEA6B1412BE36E7700A14530 /* DoubleTapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B1402BE36E7700A14530 /* DoubleTapViewController.swift */; };
+		CEA6B1412BE36E7700A14530 /* LongTapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B1402BE36E7700A14530 /* LongTapViewController.swift */; };
 		CEADF0EF2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */; };
 		CEADF0F02BD66B3100A6B542 /* LotaGrotesque-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */; };
 		CEADF0F42BD670CA00A6B542 /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */; };
@@ -82,7 +82,7 @@
 		CE96C6602BE1089200694428 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		CE96C6622BE1136700694428 /* Movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie.mp4; sourceTree = "<group>"; };
 		CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
-		CEA6B1402BE36E7700A14530 /* DoubleTapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapViewController.swift; sourceTree = "<group>"; };
+		CEA6B1402BE36E7700A14530 /* LongTapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTapViewController.swift; sourceTree = "<group>"; };
 		CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LotaGrotesqueAlt1-Regular.otf"; sourceTree = "<group>"; };
 		CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LotaGrotesque-Bold.otf"; sourceTree = "<group>"; };
 		CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 		CEA6B1422BE36E8200A14530 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				CEA6B1402BE36E7700A14530 /* DoubleTapViewController.swift */,
+				CEA6B1402BE36E7700A14530 /* LongTapViewController.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -452,7 +452,7 @@
 				CECC78C52B6CE693008815EF /* ApplicationRouter.swift in Sources */,
 				CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */,
 				CECC78C32B6CE677008815EF /* BaseRouter.swift in Sources */,
-				CEA6B1412BE36E7700A14530 /* DoubleTapViewController.swift in Sources */,
+				CEA6B1412BE36E7700A14530 /* LongTapViewController.swift in Sources */,
 				CED28F8D2B6CF1FC007DB4A8 /* MovieListViewController.swift in Sources */,
 				CE0F05DA2BD27648003BF2AD /* TVSeriesViewController.swift in Sources */,
 				CECC78C12B6CE649008815EF /* MainRouter.swift in Sources */,

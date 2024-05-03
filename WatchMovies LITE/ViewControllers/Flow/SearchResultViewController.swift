@@ -109,7 +109,7 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
         }
         
         let data = searchResults[indexPath.item]
-        cell.configure(withData: data)
+        cell.fill(withData: data)
         return cell
     }
     

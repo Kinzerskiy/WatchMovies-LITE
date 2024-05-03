@@ -9,11 +9,14 @@ import Foundation
 
 // MARK: - MovieList
 
-struct Movie: Codable {
+struct Movie: Codable, MediaDetails {
+    var genres: [Genre]
+    var firstAirDate: String?
+    
+    var releaseDate: String?
     let title: String
     let overview: String
     let posterPath: String?
-    let releaseDate: String
     let backdropPath: String?
     let genreIds: [Int]
     let id: Int
@@ -39,7 +42,26 @@ struct Movie: Codable {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        title = try container.decode(String.self, forKey: .title)
+        overview = try container.decode(String.self, forKey: .overview)
+        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
+        backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath)
+        releaseDate = try container.decodeIfPresent(String.self, forKey: .releaseDate)
+        genreIds = try container.decodeIfPresent([Int].self, forKey: .genreIds) ?? []
+        originalLanguage = try container.decodeIfPresent(String.self, forKey: .originalLanguage) ?? ""
+        originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle) ?? ""
+        popularity = try container.decodeIfPresent(Double.self, forKey: .popularity) ?? 0.0
+        video = try container.decodeIfPresent(Bool.self, forKey: .video) ?? false
+        voteAverage = try container.decode(Double.self, forKey: .voteAverage)
+        voteCount = try container.decode(Int.self, forKey: .voteCount)
+        genres = genreIds.map { Genre(id: $0, name: "") }
+    }
 }
+
 
 struct MovieListResponse: Codable {
     let dates: Dates?

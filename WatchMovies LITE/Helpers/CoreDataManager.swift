@@ -7,28 +7,23 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class CoreDataManager {
-    static let shared = CoreDataManager()
+    static var shared = CoreDataManager()
     
-    private init() {}
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Favorites")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
+    var persistentContainer: NSPersistentContainer
     
     var context: NSManagedObjectContext {
-        return persistentContainer.viewContext
+         return persistentContainer.viewContext
+     }
+    
+    init() {
+        self.persistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     }
     
-  
     func saveContext() {
+        let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()

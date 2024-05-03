@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DoubleTapViewController: UIViewController {
+class LongTapViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var doubleTapImage: UIImageView!
@@ -29,7 +29,7 @@ class DoubleTapViewController: UIViewController {
     func prepareUI() {
         self.view.backgroundColor = .clear
         contentView.backgroundColor = .clear
-        doubleTapLabel.text = "Double tap to add in favorites"
+        doubleTapLabel.text = "Hold to add in favorites"
         doubleTapLabel.layer.backgroundColor = UIColor.black.cgColor
         doubleTapLabel.layer.cornerRadius = 10
         doubleTapButton.titleLabel?.font = UIFont.lotaBold(ofSize: 20)

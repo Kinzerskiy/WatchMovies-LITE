@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "transparent-bookmark-ribbon-5e3c1fa4aa5246.9192731415809985646976.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

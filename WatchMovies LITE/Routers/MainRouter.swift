@@ -65,7 +65,7 @@ class MainRouter: BaseRouter, MainRouting {
     }
     
     func showDoubleTapForm(viewController: UIViewController, animated: Bool) {
-        let vc: DoubleTapViewController = assembly.assemblyDoubleTapViewController(with: self)
+        let vc: LongTapViewController = assembly.assemblyDoubleTapViewController(with: self)
         
         vc.modalPresentationStyle = .overFullScreen
         navigationController?.present(vc, animated: false)

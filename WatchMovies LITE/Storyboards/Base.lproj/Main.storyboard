@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="569" y="-166"/>
         </scene>
-        <!--Double Tap View Controller-->
+        <!--Long Tap View Controller-->
         <scene sceneID="2ll-NA-xAR">
             <objects>
-                <viewController restorationIdentifier="DoubleTapViewController" storyboardIdentifier="DoubleTapViewController" id="MT0-hp-euh" customClass="DoubleTapViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="LongTapViewController" storyboardIdentifier="LongTapViewController" id="MT0-hp-euh" customClass="LongTapViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xv5-rT-NTH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
