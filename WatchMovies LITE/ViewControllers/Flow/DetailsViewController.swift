@@ -15,12 +15,13 @@ class DetailsViewController: UIViewController {
     var tvSeriesDetails: TVSeriesDetails?
     var similarMovies: [SimilarMovie] = []
     var similarTVSeries: [SimilarTVSeries] = []
+    var videoId: String?
     
     var isMovie: Bool?
     
     var router: MainRouting?
     let navigationView = NavigationHeaderView.loadView()
-    let apiManager =  APIManager()
+    let apiManager = APIManager()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -50,6 +51,7 @@ class DetailsViewController: UIViewController {
                            forCellReuseIdentifier: "DescriptionTableViewCell")
         tableView.register(UINib(nibName: "OverviewTableViewCell", bundle: nil), forCellReuseIdentifier: "OverviewTableViewCell")
         tableView.register(UINib(nibName: "SimilarTableViewCell", bundle: nil), forCellReuseIdentifier: "SimilarTableViewCell")
+        tableView.register(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: "VideoTableViewCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.showsVerticalScrollIndicator = false
         tableView.allowsSelection = false
@@ -80,12 +82,14 @@ class DetailsViewController: UIViewController {
                 guard let self = self, let response = response else { return }
                 self.movieDetails = response
                 self.fetchSimilarMedia(completion: completion)
+                self.fetchVideos()
             }
         } else {
             apiManager.fetchTVSeriesDetails(seriesId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 self.tvSeriesDetails = response
                 self.fetchSimilarMedia(completion: completion)
+                self.fetchVideos()
             }
         }
     }
@@ -108,6 +112,33 @@ class DetailsViewController: UIViewController {
         }
     }
     
+    func fetchVideos() {
+            guard let id = selectedId else { return }
+            if isMovie == true {
+                apiManager.fetchMovieVideos(movieId: id) { [weak self] (response, error) in
+                    guard let self = self, let response = response else { return }
+                    let trailers = response.results.filter { $0.type.lowercased() == "trailer" }
+                    if let trailer = trailers.first {
+                        self.videoId = trailer.key
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            } else {
+                apiManager.fetchTVVideos(tvSeriesId: id) { [weak self] (response, error) in
+                    guard let self = self, let response = response else { return }
+                    let trailers = response.results.filter { $0.type.lowercased() == "trailer" }
+                    if let trailer = trailers.first {
+                        self.videoId = trailer.key
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+
     private func checkIfInFavorites(mediaId: Int) -> Bool {
         let context = CoreDataManager.shared.context
         let fetchRequest: NSFetchRequest<Favorites> = Favorites.fetchRequest()
@@ -125,35 +156,40 @@ class DetailsViewController: UIViewController {
 extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        var rowCount = 2
+        if videoId != nil {
+            rowCount += 1
+        }
+        if !similarMovies.isEmpty || !similarTVSeries.isEmpty {
+            rowCount += 1
+        }
+        return rowCount
     }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0: return UITableView.automaticDimension
         case 1: return 200
-        case 2: return 300
+        case 2: return 200
+        case 3: return 300
         default: return UITableView.automaticDimension
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as? DescriptionTableViewCell {
-                if let movieDetails = movieDetails {
-                    cell.fill(with: movieDetails)
-                    cell.updateFavoriteStatus(isFavorite: checkIfInFavorites(mediaId: Int(Int64(movieDetails.id))))
-                } else if let tvSeriesDetails = tvSeriesDetails {
-                    cell.fill(with: tvSeriesDetails)
-                    cell.updateFavoriteStatus(isFavorite: checkIfInFavorites(mediaId: Int(Int64(tvSeriesDetails.id))))
-                }
-                return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as! DescriptionTableViewCell
+            if let movieDetails = movieDetails {
+                cell.fill(with: movieDetails)
+                cell.updateFavoriteStatus(isFavorite: checkIfInFavorites(mediaId: Int(Int64(movieDetails.id))))
+            } else if let tvSeriesDetails = tvSeriesDetails {
+                cell.fill(with: tvSeriesDetails)
+                cell.updateFavoriteStatus(isFavorite: checkIfInFavorites(mediaId: Int(Int64(tvSeriesDetails.id))))
             }
+            return cell
         } else if indexPath.row == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "OverviewTableViewCell", for: indexPath) as? OverviewTableViewCell else {
-                return UITableViewCell()
-            }
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OverviewTableViewCell", for: indexPath) as! OverviewTableViewCell
             if let movieDetails = movieDetails {
                 cell.fill(with: movieDetails)
             } else if let tvSeriesDetails = tvSeriesDetails {
@@ -161,6 +197,10 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
             }
             return cell
         } else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "VideoTableViewCell", for: indexPath) as! VideoTableViewCell
+           
+            return cell
+        } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarTableViewCell", for: indexPath) as! SimilarTableViewCell
             if movieDetails != nil {
                 cell.similarMovie = similarMovies
@@ -172,6 +212,12 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         return UITableViewCell()
     }
+ 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+           if let videoCell = cell as? VideoTableViewCell {
+               videoCell.fill(with: videoId ?? "")
+           }
+       }
 }
 
 extension DetailsViewController: NavigationHeaderViewDelegate {
@@ -193,6 +239,7 @@ extension DetailsViewController: SimilarTableViewCellDelegate {
                 }
                 self.makeNavigationBar()
             }
+            self.videoId = nil
         }
         fetchSimilarMedia {
             DispatchQueue.main.async {
@@ -215,6 +262,7 @@ extension DetailsViewController: SimilarTableViewCellDelegate {
                 }
                 self.makeNavigationBar()
             }
+            self.videoId = nil
         }
         fetchSimilarMedia {
             DispatchQueue.main.async {

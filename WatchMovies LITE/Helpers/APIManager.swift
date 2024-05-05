@@ -73,6 +73,21 @@ class APIManager {
             completion(movies, nil)
         }
     }
+    
+    func fetchMovieVideos(movieId: Int, completion: @escaping (MovieVideosResponse?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/movie/\(movieId)/videos"
+        fetchData(urlString: urlString) { (response: MovieVideosResponse?, error) in
+            if let error = error {
+                print("Error fetching movie videos: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            if let response = response {
+                print("Fetched movie videos: \(response.results)")
+                completion(response, nil)
+            }
+        }
+    }
 
     //MARK: TVSeries
     
@@ -132,6 +147,21 @@ class APIManager {
             }
             let tvSeries = response.results
             completion(tvSeries, nil)
+        }
+    }
+    
+    func fetchTVVideos(tvSeriesId: Int, completion: @escaping (TVVideosResponse?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/movie/\(tvSeriesId)/videos"
+        fetchData(urlString: urlString) { (response: TVVideosResponse?, error) in
+            if let error = error {
+                print("Error fetching movie videos: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            if let response = response {
+                print("Fetched movie videos: \(response.results)")
+                completion(response, nil)
+            }
         }
     }
     

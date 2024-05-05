@@ -15,6 +15,15 @@ class MovieListViewController: UIViewController {
     
     var router: MovieListRouting?
     let apiManager = APIManager()
+//    var apiManager: APIManager
+//    init(apiManager: APIManager) {
+//        self.apiManager = apiManager
+//        super.init(nibName: nil, bundle: nil)
+//    }
+    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     let navigationView = NavigationHeaderView.loadView()
     let filterView = FilterView.loadView()
     
