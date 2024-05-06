@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CastCollectionViewCell" reuseIdentifier="CastCollectionViewCell" id="99O-05-CZd" customClass="CastCollectionViewCell" customModule="WatchMovies_LITE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="288" height="248"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FJf-ep-dWM">
+                <rect key="frame" x="0.0" y="0.0" width="288" height="248"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gNR-Ed-Oy9">
+                        <rect key="frame" x="69" y="5" width="150" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="fBN-iq-zKn"/>
+                            <constraint firstAttribute="width" constant="150" id="hTY-ke-Gf1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uut-3G-eTi">
+                        <rect key="frame" x="10" y="165" width="268" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqz-g5-Q9c">
+                        <rect key="frame" x="10" y="196" width="268" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hqz-g5-Q9c" firstAttribute="top" secondItem="Uut-3G-eTi" secondAttribute="bottom" constant="10" id="2AU-sv-qcn"/>
+                    <constraint firstItem="hqz-g5-Q9c" firstAttribute="leading" secondItem="FJf-ep-dWM" secondAttribute="leading" constant="10" id="B71-3e-H7l"/>
+                    <constraint firstAttribute="trailing" secondItem="hqz-g5-Q9c" secondAttribute="trailing" constant="10" id="HNv-Yg-bjB"/>
+                    <constraint firstItem="gNR-Ed-Oy9" firstAttribute="top" secondItem="FJf-ep-dWM" secondAttribute="top" constant="5" id="NbI-Xb-hXP"/>
+                    <constraint firstItem="Uut-3G-eTi" firstAttribute="top" secondItem="gNR-Ed-Oy9" secondAttribute="bottom" constant="10" id="RUy-1Z-b7e"/>
+                    <constraint firstItem="gNR-Ed-Oy9" firstAttribute="centerX" secondItem="FJf-ep-dWM" secondAttribute="centerX" id="a29-44-WJV"/>
+                    <constraint firstItem="Uut-3G-eTi" firstAttribute="leading" secondItem="FJf-ep-dWM" secondAttribute="leading" constant="10" id="i8r-7y-u9y"/>
+                    <constraint firstAttribute="trailing" secondItem="Uut-3G-eTi" secondAttribute="trailing" constant="10" id="oYl-46-jbw"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="288" height="248"/>
+            <connections>
+                <outlet property="knownForDepartmentLabel" destination="hqz-g5-Q9c" id="c5A-WB-KWW"/>
+                <outlet property="nameLabel" destination="Uut-3G-eTi" id="ydY-3Z-BTv"/>
+                <outlet property="personImage" destination="gNR-Ed-Oy9" id="Uaj-uZ-XNh"/>
+            </connections>
+            <point key="canvasLocation" x="229.00763358778624" y="134.50704225352112"/>
+        </collectionViewCell>
+    </objects>
+</document>

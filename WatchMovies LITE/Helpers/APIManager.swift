@@ -89,6 +89,21 @@ class APIManager {
         }
     }
 
+    func fetchMovieCredits(movieId: Int, completion: @escaping (MovieCreditsResponse?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/movie/\(movieId)/credits"
+        fetchData(urlString: urlString) { (response: MovieCreditsResponse?, error) in
+            if let error = error {
+                print("Error fetching movie credits: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            if let response = response {
+                print("Fetched movie credits: \(response)")
+                completion(response, nil)
+            }
+        }
+    }
+
     //MARK: TVSeries
     
     func fetchAiringTodaySeries(page: Int, completion: @escaping ([TVSeries], Error?) -> Void) {
@@ -160,6 +175,21 @@ class APIManager {
             }
             if let response = response {
                 print("Fetched movie videos: \(response.results)")
+                completion(response, nil)
+            }
+        }
+    }
+    
+    func fetchTVSeriesCredits(tvSeriesId: Int, completion: @escaping (TVShowCreditsResponse?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/tv/\(tvSeriesId)/credits"
+        fetchData(urlString: urlString) { (response: TVShowCreditsResponse?, error) in
+            if let error = error {
+                print("Error fetching TV show credits: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            if let response = response {
+                print("Fetched TV show credits: \(response)")
                 completion(response, nil)
             }
         }
