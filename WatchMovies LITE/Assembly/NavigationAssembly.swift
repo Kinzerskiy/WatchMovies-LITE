@@ -15,6 +15,7 @@ protocol CommonNavigationAssemblyProtocol {
 protocol MainNavigationAssemblyProtocol {
     func assemblyIntroViewController(with router: MainRouting) -> IntroViewController
     func assemblyDetailsViewController(with router: MainRouting) -> DetailsViewController
+    func assemblyPersonViewController(with router: MainRouting) -> PersonViewController
 }
 
 protocol MovieListNavigationAssemblyProtocol {
@@ -101,9 +102,17 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     
     func assemblyDetailsViewController(with router: MainRouting) -> DetailsViewController {
         let vc: DetailsViewController = mainStoryboard().instantiateViewController(withIdentifier: String(describing: DetailsViewController.self)) as! DetailsViewController
+        vc.router = router
         
         return vc
     }
+    func assemblyPersonViewController(with router: MainRouting) -> PersonViewController {
+        let vc: PersonViewController = mainStoryboard().instantiateViewController(withIdentifier: String(describing: PersonViewController.self)) as! PersonViewController
+        vc.router = router
+        
+        return vc
+    }
+    
     
     // MARK: MovieList
     

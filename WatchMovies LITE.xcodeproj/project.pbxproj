@@ -28,6 +28,12 @@
 		CEACE5262BE8DE6E00B81A63 /* CastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */; };
 		CEACE5292BE8DF4C00B81A63 /* CastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5272BE8DF4C00B81A63 /* CastCollectionViewCell.swift */; };
 		CEACE52A2BE8DF4C00B81A63 /* CastCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEACE5282BE8DF4C00B81A63 /* CastCollectionViewCell.xib */; };
+		CEACE52D2BE8F75400B81A63 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE52C2BE8F75400B81A63 /* PersonModel.swift */; };
+		CEACE52F2BE91D1F00B81A63 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE52E2BE91D1F00B81A63 /* PersonViewController.swift */; };
+		CEACE5322BE92BF400B81A63 /* PersonPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5302BE92BF400B81A63 /* PersonPhotoTableViewCell.swift */; };
+		CEACE5332BE92BF400B81A63 /* PersonPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEACE5312BE92BF400B81A63 /* PersonPhotoTableViewCell.xib */; };
+		CEACE5372BE9711200B81A63 /* CastMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5352BE9711200B81A63 /* CastMediaTableViewCell.swift */; };
+		CEACE5382BE9711200B81A63 /* CastMediaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEACE5362BE9711200B81A63 /* CastMediaTableViewCell.xib */; };
 		CEADF0EF2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */; };
 		CEADF0F02BD66B3100A6B542 /* LotaGrotesque-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */; };
 		CEADF0F42BD670CA00A6B542 /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */; };
@@ -96,6 +102,12 @@
 		CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastTableViewCell.xib; sourceTree = "<group>"; };
 		CEACE5272BE8DF4C00B81A63 /* CastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEACE5282BE8DF4C00B81A63 /* CastCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEACE52C2BE8F75400B81A63 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
+		CEACE52E2BE91D1F00B81A63 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		CEACE5302BE92BF400B81A63 /* PersonPhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPhotoTableViewCell.swift; sourceTree = "<group>"; };
+		CEACE5312BE92BF400B81A63 /* PersonPhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		CEACE5352BE9711200B81A63 /* CastMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastMediaTableViewCell.swift; sourceTree = "<group>"; };
+		CEACE5362BE9711200B81A63 /* CastMediaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastMediaTableViewCell.xib; sourceTree = "<group>"; };
 		CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LotaGrotesqueAlt1-Regular.otf"; sourceTree = "<group>"; };
 		CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LotaGrotesque-Bold.otf"; sourceTree = "<group>"; };
 		CEADF0F32BD670CA00A6B542 /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
@@ -186,6 +198,7 @@
 			children = (
 				CE96C5292BD18CB8000ECB7B /* MovieModel.swift */,
 				CE96C52B2BD18D63000ECB7B /* TVSeriesModel.swift */,
+				CEACE52C2BE8F75400B81A63 /* PersonModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,6 +233,17 @@
 				CEACE5282BE8DF4C00B81A63 /* CastCollectionViewCell.xib */,
 			);
 			path = CastCells;
+			sourceTree = "<group>";
+		};
+		CEACE5342BE970E300B81A63 /* PersonCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEACE5302BE92BF400B81A63 /* PersonPhotoTableViewCell.swift */,
+				CEACE5312BE92BF400B81A63 /* PersonPhotoTableViewCell.xib */,
+				CEACE5352BE9711200B81A63 /* CastMediaTableViewCell.swift */,
+				CEACE5362BE9711200B81A63 /* CastMediaTableViewCell.xib */,
+			);
+			path = PersonCell;
 			sourceTree = "<group>";
 		};
 		CECC78972B6CE38C008815EF = {
@@ -330,6 +354,7 @@
 				CE78C7532BDD367500C4221D /* SearchResultViewController.swift */,
 				CED28F8E2B6CF22A007DB4A8 /* DetailsViewController.swift */,
 				CED28F932B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift */,
+				CEACE52E2BE91D1F00B81A63 /* PersonViewController.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -361,6 +386,7 @@
 		CED28FAD2B6D5232007DB4A8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CEACE5342BE970E300B81A63 /* PersonCell */,
 				CEACE5222BE8DE1A00B81A63 /* ListCells */,
 				CE9247F12BD3B0730082033F /* MovieDetailCells */,
 				CE9247F62BD3B2480082033F /* SimilarCells */,
@@ -460,8 +486,10 @@
 				CEADF0FA2BD6C10900A6B542 /* OverviewTableViewCell.xib in Resources */,
 				CECC78B02B6CE396008815EF /* Assets.xcassets in Resources */,
 				CEACE5262BE8DE6E00B81A63 /* CastTableViewCell.xib in Resources */,
+				CEACE5332BE92BF400B81A63 /* PersonPhotoTableViewCell.xib in Resources */,
 				CED28F822B6CEE8D007DB4A8 /* MovieList.storyboard in Resources */,
 				CEFE35F02B6D61D500451F55 /* NavigationHeaderView.xib in Resources */,
+				CEACE5382BE9711200B81A63 /* CastMediaTableViewCell.xib in Resources */,
 				CE0F05DE2BD28028003BF2AD /* TVSeriesList.storyboard in Resources */,
 				CE88E89E2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib in Resources */,
 				CEADF0FC2BD6C10900A6B542 /* DescriptionTableViewCell.xib in Resources */,
@@ -485,15 +513,19 @@
 				CECC78C52B6CE693008815EF /* ApplicationRouter.swift in Sources */,
 				CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */,
 				CECC78C32B6CE677008815EF /* BaseRouter.swift in Sources */,
+				CEACE52F2BE91D1F00B81A63 /* PersonViewController.swift in Sources */,
+				CEACE52D2BE8F75400B81A63 /* PersonModel.swift in Sources */,
 				CED28F8D2B6CF1FC007DB4A8 /* MovieListViewController.swift in Sources */,
 				CE0F05DA2BD27648003BF2AD /* TVSeriesViewController.swift in Sources */,
 				CECC78C12B6CE649008815EF /* MainRouter.swift in Sources */,
 				CEAE15122BDE799C00958CCC /* Favorites.xcdatamodeld in Sources */,
 				CE88E89D2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift in Sources */,
 				CEFE35EF2B6D61D500451F55 /* NavigationHeaderView.swift in Sources */,
+				CEACE5322BE92BF400B81A63 /* PersonPhotoTableViewCell.swift in Sources */,
 				CECC78C72B6CEA40008815EF /* MovieListRouter.swift in Sources */,
 				CED28F942B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift in Sources */,
 				CEACE5292BE8DF4C00B81A63 /* CastCollectionViewCell.swift in Sources */,
+				CEACE5372BE9711200B81A63 /* CastMediaTableViewCell.swift in Sources */,
 				CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */,
 				CED28F912B6CF394007DB4A8 /* FavoritesRouter.swift in Sources */,
 				CED28F9A2B6CFB4D007DB4A8 /* Defaults.swift in Sources */,

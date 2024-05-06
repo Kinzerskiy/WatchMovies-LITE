@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-
 protocol MainRouting: BaseRouting, DismissRouting, IntroViewControllerDelegate {
     func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
+    func showPersonForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
 }
 
 protocol MainRouterDelegate {
@@ -61,6 +61,14 @@ class MainRouter: BaseRouter, MainRouting {
         vc.selectedId = id
         vc.isMovie = isMovie
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func showPersonForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool) {
+        let vc: PersonViewController = assembly.assemblyPersonViewController(with: self)
+        
+        vc.pesonId = id
+        vc.isMovie = isMovie
+        viewController.present(vc, animated: animated, completion: nil)
     }
     
     

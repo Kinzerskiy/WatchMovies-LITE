@@ -8,8 +8,7 @@
 import UIKit
 
 protocol CastTableViewCellDelegate: AnyObject {
-    func didselsectMovieCast(_ cast: MovieCast)
-    func didselsectTVCast(_ cast: TVSeriesCast)
+    func didselsectCredential(with id: Int)
 }
 
 class CastTableViewCell: UITableViewCell {
@@ -61,10 +60,10 @@ extension CastTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !movieCast.isEmpty {
             let cast = movieCast[indexPath.item]
-            delegate?.didselsectMovieCast(cast)
+            delegate?.didselsectCredential(with: cast.id)
         } else if !tvSeriesCast.isEmpty {
             let cast = tvSeriesCast[indexPath.item]
-            delegate?.didselsectTVCast(cast)
+            delegate?.didselsectCredential(with: cast.id)
         }
     }
 

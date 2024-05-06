@@ -195,6 +195,55 @@ class APIManager {
         }
     }
     
+    //MARK: Person
+    
+    func fetchPersonDetails(personId: Int, completion: @escaping (Person?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/person/\(personId)"
+        fetchData(urlString: urlString) { (response: Person?, error) in
+            if let error = error {
+                print("Error fetching person details: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            if let response = response {
+                print("Fetched person details: \(response)")
+                completion(response, nil)
+            }
+        }
+    }
+    
+    func fetchPersonMoviePersonCredits(personId: Int, completion: @escaping (MovieCastRequest?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/person/\(personId)/movie_credits"
+        fetchData(urlString: urlString) { (response: MovieCastRequest?, error) in
+            if let error = error {
+                print("Error fetching person movie credits: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            if let response = response {
+                print("Fetched person movie credits: \(response)")
+                
+                completion(response, nil)
+            }
+        }
+    }
+    
+    func fetchPersonTVPersonCredits(personId: Int, completion: @escaping (TVSeriesCastRequest?, Error?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/person/\(personId)/tv_credits"
+        fetchData(urlString: urlString) { (response: TVSeriesCastRequest?, error) in
+            if let error = error {
+                print("Error fetching person movie credits: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            if let response = response {
+                print("Fetched person movie credits: \(response)")
+                completion(response, nil)
+            }
+        }
+    }
+
+    
     //MARK: Common
     
     func fetchData<T: Codable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {
@@ -240,6 +289,7 @@ class APIManager {
                     return
                 }
                 print(String(data: data, encoding: .utf8) ?? "Data could not be printed")
+                print("JSON Response: \(String(data: data, encoding: .utf8) ?? "Data could not be printed")")
                 do {
                     let decoder = JSONDecoder()
                     let response = try decoder.decode(T.self, from: data)

@@ -83,6 +83,36 @@
             </objects>
             <point key="canvasLocation" x="569" y="-166"/>
         </scene>
+        <!--Person View Controller-->
+        <scene sceneID="veh-Ua-gug">
+            <objects>
+                <viewController restorationIdentifier="PersonViewController" storyboardIdentifier="PersonViewController" id="dw9-qa-M9A" customClass="PersonViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zcX-hB-RAf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="q0u-i3-aTh">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Wgo-9l-plZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Wgo-9l-plZ" firstAttribute="trailing" secondItem="q0u-i3-aTh" secondAttribute="trailing" id="ITP-X0-XxZ"/>
+                            <constraint firstItem="Wgo-9l-plZ" firstAttribute="bottom" secondItem="q0u-i3-aTh" secondAttribute="bottom" id="NOQ-UW-yDd"/>
+                            <constraint firstItem="q0u-i3-aTh" firstAttribute="leading" secondItem="Wgo-9l-plZ" secondAttribute="leading" id="kCc-Y1-UZq"/>
+                            <constraint firstItem="q0u-i3-aTh" firstAttribute="top" secondItem="Wgo-9l-plZ" secondAttribute="top" id="uvQ-LY-Vsf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="q0u-i3-aTh" id="LT6-ns-E5Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j8w-F4-4QX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305" y="-166"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

@@ -17,13 +17,10 @@ class ListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    
-    var doubleTapHandler: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareUI()
-        addDoubleTapGesture()
     }
     
     func prepareUI() {
@@ -48,26 +45,27 @@ class ListCollectionViewCell: UICollectionViewCell {
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (tvShow.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
-        } else
-        if let movie = data as? Movie {
+        } else if let movie = data as? Movie {
             titleLabel.text = movie.title
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (movie.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
+        } else if let movieCast = data as? Movie {
+            titleLabel.text = movieCast.originalTitle
+            let baseURL = "https://image.tmdb.org/t/p/w500"
+            let posterURL = URL(string: baseURL + (movieCast.posterPath ?? ""))
+            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
+        } else if let tvCast = data as? TVSeriesMember {
+            titleLabel.text = tvCast.originalName
+            let baseURL = "https://image.tmdb.org/t/p/w500"
+            let posterURL = URL(string: baseURL + (tvCast.posterPath ?? ""))
+            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
         }
-        addDoubleTapGesture()
-    }
-    
-    private func addDoubleTapGesture() {
-        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
-        doubleTapGesture.numberOfTapsRequired = 2
-        contentView.addGestureRecognizer(doubleTapGesture)
-    }
-    
-    @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
-        if gesture.state == .recognized {
-            doubleTapHandler?()
-        }
+        
+        
+        
+        
+       
     }
 }
 

@@ -11,6 +11,7 @@ protocol SimilarTableViewCellDelegate: AnyObject {
     func didSelectSimilarMovie(_ movie: SimilarMovie)
     func didSelectSimilarTVSeries(_ tvSeries: SimilarTVSeries)
 }
+
 class SimilarTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
