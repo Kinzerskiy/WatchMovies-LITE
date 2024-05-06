@@ -9,7 +9,6 @@ import Foundation
 
 private enum DefaultsKey: String {
     case firstInitialization = "firstInitialization"
-    case didShowTap = "didShowTap"
 }
 
 final class Defaults {
@@ -23,15 +22,6 @@ final class Defaults {
             _set(value: newValue, key: .firstInitialization)
         } get {
             return _get(valueForKay: .firstInitialization) as? Bool ?? true
-        }
-    }
-    
-    static var didShowTap: Bool {
-        set {
-            _set(value: newValue, key: .didShowTap)
-        }
-        get {
-            return _get(valueForKay: .didShowTap) as? Bool ?? true
         }
     }
     

@@ -9,11 +9,14 @@ import UIKit
 import YouTubeiOSPlayerHelper
 
 class VideoTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var playerView: YTPlayerView!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        playerView.isHidden = true
+        thumbnailImageView.isHidden = false
         playerView.clipsToBounds = true
         playerView.layer.borderWidth = 1.0
         playerView.layer.borderColor = UIColor.orange.cgColor
@@ -24,9 +27,19 @@ class VideoTableViewCell: UITableViewCell {
         playerView.layer.masksToBounds = false
     }
     
+    
     func fill(with videoId: String) {
-        if let ytPlayerView = playerView {
-            ytPlayerView.load(withVideoId: videoId)
-        }
+        thumbnailImageView.isHidden = false
+        playerView.isHidden = true
+        thumbnailImageView.image = UIImage(named: "youTube")
+        playerView.load(withVideoId: videoId)
+    }
+}
+
+extension VideoTableViewCell: YTPlayerViewDelegate {
+    
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        thumbnailImageView.isHidden = true
+        playerView.isHidden = false
     }
 }

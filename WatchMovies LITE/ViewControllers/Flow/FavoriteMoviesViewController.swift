@@ -185,5 +185,9 @@ extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelega
 }
 
 extension FavoriteMoviesViewController: NavigationHeaderViewDelegate {
+    func rightButtonTapped() {
+        showRateAndSupportActionSheet()
+    }
+    
     func leftButtonTapped() { }
 }

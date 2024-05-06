@@ -9,6 +9,7 @@ import UIKit
 
 protocol NavigationHeaderViewDelegate: AnyObject {
     func leftButtonTapped()
+    func rightButtonTapped()
 }
 
 class NavigationHeaderView: UICollectionViewCell {
@@ -16,6 +17,7 @@ class NavigationHeaderView: UICollectionViewCell {
     @IBOutlet weak var titleImage: UIImageView!
     @IBOutlet weak var titleName: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var optionsButton: UIButton!
     
     weak var delegate: NavigationHeaderViewDelegate?
     
@@ -45,9 +47,16 @@ class NavigationHeaderView: UICollectionViewCell {
         titleName.lineBreakMode = .byWordWrapping
         backButton.setImage(UIImage(systemName: "arrowshape.turn.up.backward.fill"), for: .normal)
         backButton.tintColor = .orange
+        
+        optionsButton.tintColor = .orange
     }
     
     @IBAction func leftButtonTapped(_ sender: Any) {
         delegate?.leftButtonTapped()
     }
+    
+    @IBAction func rightButtonTapped(_ sender: Any) {
+        delegate?.rightButtonTapped()
+    }
+    
 }

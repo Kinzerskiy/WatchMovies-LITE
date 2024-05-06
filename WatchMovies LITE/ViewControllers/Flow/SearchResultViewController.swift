@@ -143,6 +143,10 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
 
 
 extension SearchResultViewController: NavigationHeaderViewDelegate {
+    func rightButtonTapped() {
+        showRateAndSupportActionSheet()
+    }
+    
     func leftButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }

@@ -4,27 +4,28 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="NavigationHeaderView" reuseIdentifier="NavigationHeaderView" id="gTV-IL-0wX" customClass="NavigationHeaderView" customModule="test_movieList" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="NavigationHeaderView" reuseIdentifier="NavigationHeaderView" id="gTV-IL-0wX" customClass="NavigationHeaderView" customModule="WatchMovies_LITE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="318" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="318" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Movie LIST" translatesAutoresizingMaskIntoConstraints="NO" id="bPK-tY-3DC">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="318" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="nCR-B3-cw0"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVX-6O-nRe">
-                        <rect key="frame" x="104.33333333333333" y="14.999999999999998" width="41.333333333333329" height="20.333333333333329"/>
+                        <rect key="frame" x="138.33333333333334" y="14.999999999999998" width="41.333333333333343" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
@@ -39,11 +40,23 @@
                             <action selector="leftButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="bX8-MS-jej"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ah-cC-cuL">
+                        <rect key="frame" x="270" y="5" width="43" height="40"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain">
+                            <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="large"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="rightButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="edh-qr-Y5y"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="aVX-6O-nRe" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="0Ly-IE-YOp"/>
+                <constraint firstAttribute="trailing" secondItem="4ah-cC-cuL" secondAttribute="trailing" constant="5" id="3Pi-ZR-pMo"/>
+                <constraint firstItem="4ah-cC-cuL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="4HH-Av-dI6"/>
                 <constraint firstItem="bPK-tY-3DC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EzH-zh-cbO"/>
                 <constraint firstItem="bPK-tY-3DC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Lf1-kj-ogA"/>
                 <constraint firstItem="sk5-5B-Ltf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="X2T-Wu-LRg"/>
@@ -51,20 +64,24 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aVX-6O-nRe" secondAttribute="trailing" constant="10" id="b3t-0c-5Kp"/>
                 <constraint firstItem="aVX-6O-nRe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sk5-5B-Ltf" secondAttribute="trailing" constant="10" id="cU8-lF-aQh"/>
                 <constraint firstAttribute="bottom" secondItem="bPK-tY-3DC" secondAttribute="bottom" id="jdd-vl-EfP"/>
+                <constraint firstItem="4ah-cC-cuL" firstAttribute="leading" secondItem="sk5-5B-Ltf" secondAttribute="trailing" constant="240" id="js2-SP-FeD"/>
                 <constraint firstItem="sk5-5B-Ltf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="mxm-rE-gYo"/>
+                <constraint firstAttribute="bottom" secondItem="4ah-cC-cuL" secondAttribute="bottom" constant="5" id="o9o-To-D4h"/>
                 <constraint firstAttribute="trailing" secondItem="bPK-tY-3DC" secondAttribute="trailing" id="s5Y-SF-Ygj"/>
                 <constraint firstItem="aVX-6O-nRe" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="wXC-oZ-7Wc"/>
             </constraints>
-            <size key="customSize" width="250" height="50"/>
+            <size key="customSize" width="318" height="50"/>
             <connections>
                 <outlet property="backButton" destination="sk5-5B-Ltf" id="sto-Nh-P20"/>
+                <outlet property="optionsButton" destination="4ah-cC-cuL" id="Jck-9c-hgh"/>
                 <outlet property="titleImage" destination="bPK-tY-3DC" id="ZFF-F1-Vx0"/>
                 <outlet property="titleName" destination="aVX-6O-nRe" id="0qP-PJ-3Ga"/>
             </connections>
-            <point key="canvasLocation" x="178.62595419847327" y="19.718309859154932"/>
+            <point key="canvasLocation" x="229.00763358778624" y="19.718309859154932"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="Movie LIST" width="1000" height="200"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
     </resources>
 </document>

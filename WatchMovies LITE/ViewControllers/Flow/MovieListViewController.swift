@@ -103,12 +103,7 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = movies[indexPath.item]
-        if Defaults.didShowTap {
-            Defaults.didShowTap = false
-            router?.showDoubleTapForm(viewController: self, animated: false)
-        } else {
-            router?.showDetailForm(with: selectedMovie.id, isMovie: true, viewController: self, animated: true)
-        }
+        router?.showDetailForm(with: selectedMovie.id, isMovie: true, viewController: self, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -132,6 +127,10 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
 }
 
 extension MovieListViewController: NavigationHeaderViewDelegate {
+    func rightButtonTapped() {
+        showRateAndSupportActionSheet()
+    }
+    
     
     func leftButtonTapped() { }
 }

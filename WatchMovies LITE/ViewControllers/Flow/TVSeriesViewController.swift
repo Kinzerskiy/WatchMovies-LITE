@@ -97,12 +97,7 @@ extension TVSeriesViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedTVSeries = tvSeries[indexPath.item]
-        if Defaults.didShowTap {
-            Defaults.didShowTap = false
-            router?.showDoubleTapForm(viewController: self, animated: false)
-        } else {
-            router?.showDetailForm(with: selectedTVSeries.id, isMovie: true, viewController: self, animated: true)
-        }
+        router?.showDetailForm(with: selectedTVSeries.id, isMovie: true, viewController: self, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -127,6 +122,10 @@ extension TVSeriesViewController: UICollectionViewDataSource, UICollectionViewDe
 
 
 extension TVSeriesViewController: NavigationHeaderViewDelegate {
+    func rightButtonTapped() {
+        showRateAndSupportActionSheet()
+    }
+    
     func leftButtonTapped() { }
 }
 

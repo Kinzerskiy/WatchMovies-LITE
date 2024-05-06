@@ -21,6 +21,7 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
     @IBOutlet weak var voteAverage: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var bookMark: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
     var favorite: Favorites?
     var data: MediaDetails?
@@ -44,6 +45,9 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
         contentView.isUserInteractionEnabled = true
         bookMark.tintColor = .orange
         bookMark.isSelected = false
+        
+        shareButton.tintColor = .orange
+        shareButton.isSelected = false
     }
     
     func updateFavoriteStatus(isFavorite: Bool) {
@@ -63,6 +67,17 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
         updateFavoriteStatus(isFavorite: sender.isSelected)
     }
     
+    @IBAction func shareAction(_ sender: Any) {
+        guard let posterImage = moviePoster.image else { return }
+        let activityViewController = UIActivityViewController(activityItems: [posterImage], applicationActivities: nil)
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceView = self
+            popoverController.sourceRect = self.bounds
+        }
+        if let viewController = self.parentViewController {
+            viewController.present(activityViewController, animated: true, completion: nil)
+        }
+    }
     
     func fill(with data: MediaDetails) {
         self.data = data

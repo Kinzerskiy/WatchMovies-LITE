@@ -13,20 +13,23 @@ class SimilarCollectionViewCell: UICollectionViewCell {
    
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        prepareUI()
         if let placeholderImageName = posterImage.image?.accessibilityIdentifier, placeholderImageName == "Popcorn" {
             posterImage.contentMode = .scaleAspectFit
         } else {
             posterImage.contentMode = .scaleAspectFill
         }
-        
-        layer.shadowColor = UIColor.black.cgColor
+    }
+    
+    func prepareUI() {
+        posterImage.layer.cornerRadius = 8
         layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.8
         layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowRadius = 5
     }
-    
+
     func fill(with media: Any) {
         if let similarMovie = media as? SimilarMovie {
             if let posterPath = similarMovie.posterPath {

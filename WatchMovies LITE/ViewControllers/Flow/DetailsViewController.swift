@@ -19,6 +19,9 @@ class DetailsViewController: UIViewController {
     
     var isMovie: Bool?
     
+    private var isLoading = false
+    private var activityIndicator: UIActivityIndicatorView!
+    
     var router: MainRouting?
     let navigationView = NavigationHeaderView.loadView()
     let apiManager = APIManager()
@@ -27,22 +30,40 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareTableView()
-        fetchMediaDetails(isMovie: isMovie!, completion:  { [weak self] in
-            DispatchQueue.main.async {
-                self?.makeNavigationBar()
-                self?.tableView.reloadData()
-                self?.tableView.alpha = 1.0
-            }
-        })
         tableView.alpha = 0.0
+        prepareTableView()
+        setupActivityIndicator()
+        fetchMediaDetailsInBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.setHidesBackButton(true, animated: false)
     }
-
+    
+    private func setupActivityIndicator() {
+          activityIndicator = UIActivityIndicatorView(style: .medium)
+          activityIndicator.center = view.center
+          activityIndicator.hidesWhenStopped = true
+          view.addSubview(activityIndicator)
+      }
+    
+    private func fetchMediaDetailsInBackground() {
+        isLoading = true
+        activityIndicator.startAnimating()
+        
+        DispatchQueue.global().async { [weak self] in
+            self?.fetchMediaDetails(isMovie: self?.isMovie ?? false) {
+                DispatchQueue.main.async {
+                    self?.makeNavigationBar()
+                    self?.tableView.reloadData()
+                    self?.tableView.alpha = 1.0
+                    self?.isLoading = false
+                    self?.activityIndicator.stopAnimating()
+                }
+            }
+        }
+    }
     
     func prepareTableView() {
         tableView.dataSource = self
@@ -57,10 +78,12 @@ class DetailsViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.isUserInteractionEnabled = true
+        tableView.rowHeight = 0
     }
     
     func makeNavigationBar() {
         navigationView.delegate = self
+        navigationView.optionsButton?.isHidden = true
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = nil
         navigationItem.titleView = navigationView
@@ -198,7 +221,7 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "VideoTableViewCell", for: indexPath) as! VideoTableViewCell
-           
+            cell.playerView.delegate = cell
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarTableViewCell", for: indexPath) as! SimilarTableViewCell
@@ -221,6 +244,8 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension DetailsViewController: NavigationHeaderViewDelegate {
+    func rightButtonTapped() { }
+    
     func leftButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -243,7 +268,7 @@ extension DetailsViewController: SimilarTableViewCellDelegate {
         }
         fetchSimilarMedia {
             DispatchQueue.main.async {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarTableViewCell {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? SimilarTableViewCell {
                     cell.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
                 }
                 self.tableView.reloadData()
@@ -266,7 +291,7 @@ extension DetailsViewController: SimilarTableViewCellDelegate {
         }
         fetchSimilarMedia {
             DispatchQueue.main.async {
-                if let cell = self.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SimilarTableViewCell {
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? SimilarTableViewCell {
                     cell.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
                 }
                 self.tableView.reloadData()

@@ -131,6 +131,10 @@ class SearchViewController: UIViewController {
 
 
 extension SearchViewController: NavigationHeaderViewDelegate {
+    func rightButtonTapped() {
+        showRateAndSupportActionSheet()
+    }
+    
     func leftButtonTapped() { }
 }
 
