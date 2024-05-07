@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jrO-mQ-d8q">
-                        <rect key="frame" x="0.0" y="51" width="324" height="389"/>
+                        <rect key="frame" x="25" y="51" width="274" height="389"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GbG-Uw-Njn">
                             <size key="itemSize" width="128" height="128"/>
@@ -29,17 +29,17 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmH-dC-Zd7">
-                        <rect key="frame" x="15" y="15" width="42" height="21"/>
+                        <rect key="frame" x="25" y="15" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="jrO-mQ-d8q" secondAttribute="trailing" id="0pJ-IV-loN"/>
-                    <constraint firstItem="jrO-mQ-d8q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NrD-7P-F5y"/>
+                    <constraint firstAttribute="trailing" secondItem="jrO-mQ-d8q" secondAttribute="trailing" constant="25" id="0pJ-IV-loN"/>
+                    <constraint firstItem="jrO-mQ-d8q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="NrD-7P-F5y"/>
                     <constraint firstItem="jrO-mQ-d8q" firstAttribute="top" secondItem="rmH-dC-Zd7" secondAttribute="bottom" constant="15" id="SRJ-Xq-q4o"/>
-                    <constraint firstItem="rmH-dC-Zd7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Woo-7U-dOa"/>
+                    <constraint firstItem="rmH-dC-Zd7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="Woo-7U-dOa"/>
                     <constraint firstAttribute="bottom" secondItem="jrO-mQ-d8q" secondAttribute="bottom" id="YgQ-Xm-LGK"/>
                     <constraint firstItem="rmH-dC-Zd7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="oKd-ZX-osn"/>
                 </constraints>

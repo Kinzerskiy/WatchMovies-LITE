@@ -119,6 +119,7 @@ class DetailsViewController: UIViewController {
                 self.tvSeriesDetails = response
                 self.fetchSimilarMedia(completion: completion)
                 self.fetchVideos()
+                self.fetchCast()
             }
         }
     }
@@ -168,9 +169,10 @@ class DetailsViewController: UIViewController {
         }
     }
     
+
     private func fetchCast() {
         guard let id = selectedId else { return }
-        if isMovie == true {
+        if isMovie ?? false {
             apiManager.fetchMovieCredits(movieId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 self.movieCast = response.cast
@@ -188,6 +190,7 @@ class DetailsViewController: UIViewController {
             }
         }
     }
+    
     
     private func checkIfInFavorites(mediaId: Int) -> Bool {
         let context = CoreDataManager.shared.context

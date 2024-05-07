@@ -13,7 +13,7 @@ struct Person: Codable {
     let biography: String?
     let birthday: String?
     let deathday: String?
-    let gender: Int
+    let gender: Int?
     let homepage: String?
     let id: Int
     let imdbId: String?
@@ -41,11 +41,9 @@ struct Person: Codable {
     }
 }
 
-
 // MARK: - MovieCastRequest
 struct MovieCastRequest: Codable {
-    let crew: [MovieCastMember]
-    let cast: [Movie]
+    let crew, cast: [MovieCastMember]
     let id: Int
 }
 
@@ -54,23 +52,23 @@ struct MovieCastRequest: Codable {
 struct MovieCastMember: Codable {
     let adult: Bool
     let backdropPath: String?
-    let genreIds: [Int]
-    let id: Int
-    let originalLanguage: String
-    let originalTitle: String
-    let overview: String
-    let popularity: Double
+    let genreIds: [Int]?
+    let id: Int?
+    let originalLanguage: String?
+    let originalTitle: String?
+    let overview: String?
+    let popularity: Double?
     let posterPath: String?
-    let releaseDate: String
-    let title: String
-    let video: Bool
-    let voteAverage: Double
-    let voteCount: Int
-    let character: String
-    let creditId: String
-    let order: Int
-    let department: String
-    let job: String
+    let releaseDate: String?
+    let title: String?
+    let video: Bool?
+    let voteAverage: Double?
+    let voteCount: Int?
+    let character: String?
+    let creditId: String?
+    let order: Int?
+    let department: String?
+    let job: String?
     
     enum CodingKeys: String, CodingKey {
         case adult
@@ -99,21 +97,21 @@ struct TVSeriesCastRequest: Codable {
 }
 
 struct TVSeriesMember: Codable {
-    let adult: Bool
+    let adult: Bool?
     let backdropPath: String?
-    let genreIDS: [Int]
-    let id: Int
-    let originCountry: [OriginCountry]
-    let originalLanguage: String
-    let originalName, overview: String
-    let popularity: Double
+    let genreIDS: [Int]?
+    let id: Int?
+    let originCountry: [OriginCountry]?
+    let originalLanguage: String?
+    let originalName, overview: String?
+    let popularity: Double?
     let posterPath: String?
-    let firstAirDate, name: String
-    let voteAverage: Double
-    let voteCount: Int
+    let firstAirDate, name: String?
+    let voteAverage: Double?
+    let voteCount: Int?
     let character: String?
     let creditID: String
-    let episodeCount: Int
+    let episodeCount: Int?
     let department, job: String?
     
     enum CodingKeys: String, CodingKey {

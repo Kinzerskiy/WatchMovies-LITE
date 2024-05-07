@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CastMediaTableViewCellDelegate: AnyObject {
-    func didSelectMovieCast(_ movieCast: Movie)
+    func didSelectMovieCast(_ movieCast: MovieCastMember)
     func didSelectTVSeriesCast(_ tvCast: TVSeriesMember)
 }
 
@@ -19,7 +19,7 @@ class CastMediaTableViewCell: UITableViewCell {
     
     weak var delegate: CastMediaTableViewCellDelegate?
     
-    var movieCast: [Movie] = [] {
+    var movieCast: [MovieCastMember] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -33,9 +33,17 @@ class CastMediaTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        prepareUI()
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(UINib(nibName: "ListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ListCollectionViewCell")
+    }
+    
+    func prepareUI() {
+        castMediaLabel.font = UIFont.lotaBold(ofSize: 18)
+        castMediaLabel.textColor = UIColor.orange
+        castMediaLabel.text = "CAST MEMBER"
     }
 }
 
@@ -66,12 +74,12 @@ extension CastMediaTableViewCell: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print("collectionView cellForItemAt indexPath: \(indexPath.item)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCollectionViewCell", for: indexPath) as! ListCollectionViewCell
-        
-        if !movieCast.isEmpty {
+
+        if !movieCast.isEmpty && indexPath.item < movieCast.count {
             let movieCast = movieCast[indexPath.item]
             cell.fill(withData: movieCast)
-        } else if !tvCast.isEmpty {
-            let tvSeriesCast = tvCast[indexPath.item]
+        } else if !tvCast.isEmpty && indexPath.item - movieCast.count < tvCast.count {
+            let tvSeriesCast = tvCast[indexPath.item - movieCast.count]
             cell.fill(withData: tvSeriesCast)
         }
         return cell

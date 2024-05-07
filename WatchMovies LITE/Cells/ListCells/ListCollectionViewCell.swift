@@ -50,7 +50,7 @@ class ListCollectionViewCell: UICollectionViewCell {
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (movie.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
-        } else if let movieCast = data as? Movie {
+        } else if let movieCast = data as? MovieCastMember {
             titleLabel.text = movieCast.originalTitle
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (movieCast.posterPath ?? ""))
@@ -61,11 +61,6 @@ class ListCollectionViewCell: UICollectionViewCell {
             let posterURL = URL(string: baseURL + (tvCast.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
         }
-        
-        
-        
-        
-       
     }
 }
 
