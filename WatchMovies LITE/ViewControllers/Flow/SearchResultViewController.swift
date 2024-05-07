@@ -43,6 +43,7 @@ class SearchResultViewController: UIViewController {
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.titleView = navigationView
+        navigationView.titleLabel.isHidden = true
         navigationView.titleImage.isHidden = true
         navigationView.titleName.textAlignment = .center
         navigationView.titleName.text = genreName

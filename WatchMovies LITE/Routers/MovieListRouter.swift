@@ -36,9 +36,11 @@ class MovieListRouter: BaseRouter, MovieListRouting {
             let activeImage = UIImage(systemName: symbol)?.withTintColor(.orange, renderingMode: .alwaysOriginal)
             let inactiveImage = UIImage(systemName: symbol)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             
+            
             vc.tabBarItem.title = "Movies"
             vc.tabBarItem.image = inactiveImage
             vc.tabBarItem.selectedImage = activeImage
+            vc.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
             
             movieListViewController = vc
             navigationController = assembly.assemblyNavigationController(with: vc)

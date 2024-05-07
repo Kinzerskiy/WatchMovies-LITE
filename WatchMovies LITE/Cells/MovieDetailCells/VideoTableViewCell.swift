@@ -18,12 +18,10 @@ class VideoTableViewCell: UITableViewCell {
         playerView.isHidden = true
         thumbnailImageView.isHidden = false
         playerView.clipsToBounds = true
-        playerView.layer.borderWidth = 1.0
-        playerView.layer.borderColor = UIColor.orange.cgColor
-        playerView.layer.shadowColor = UIColor.orange.cgColor
+        playerView.layer.shadowColor = UIColor.black.cgColor
         playerView.layer.shadowOpacity = 0.5
-        playerView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        playerView.layer.shadowRadius = 2
+        playerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        playerView.layer.shadowRadius = 4
         playerView.layer.masksToBounds = false
     }
     

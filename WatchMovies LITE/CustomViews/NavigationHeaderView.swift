@@ -18,6 +18,8 @@ class NavigationHeaderView: UICollectionViewCell {
     @IBOutlet weak var titleName: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     
     weak var delegate: NavigationHeaderViewDelegate?
     
@@ -43,12 +45,13 @@ class NavigationHeaderView: UICollectionViewCell {
         titleImage.contentMode = .scaleAspectFill
         titleImage.clipsToBounds = true
         titleName.font = UIFont.lotaBold(ofSize: 18)
+        titleLabel.font = UIFont.lotaBold(ofSize: 30)
+        titleLabel.textColor = .black
         titleName.numberOfLines = 2
         titleName.lineBreakMode = .byWordWrapping
         backButton.setImage(UIImage(systemName: "arrowshape.turn.up.backward.fill"), for: .normal)
-        backButton.tintColor = .orange
-        
-        optionsButton.tintColor = .orange
+        backButton.tintColor = .black
+        optionsButton.tintColor = .black
     }
     
     @IBAction func leftButtonTapped(_ sender: Any) {

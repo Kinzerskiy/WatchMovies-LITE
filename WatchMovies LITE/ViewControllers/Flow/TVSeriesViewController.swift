@@ -33,7 +33,7 @@ class TVSeriesViewController: UIViewController {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
-       
+        navigationView.titleLabel.text = "TV SERIES"
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
     }
@@ -41,7 +41,7 @@ class TVSeriesViewController: UIViewController {
     func prepareSegmenBar() {
         let segmentTitles = ["Today", "On the air", "Top", "Popular"]
         let font = UIFont.lotaBold(ofSize: 12)
-        let color = UIColor.orange
+        let color = UIColor.black
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
         segmentBarView.addSubview(filterView)
         filterView.delegate = self
@@ -53,6 +53,7 @@ class TVSeriesViewController: UIViewController {
                filterView.bottomAnchor.constraint(equalTo: segmentBarView.bottomAnchor),
                filterView.trailingAnchor.constraint(equalTo: segmentBarView.trailingAnchor)
            ])
+        filterView.setupView()
     }
     
     func prepareCollectionView() {

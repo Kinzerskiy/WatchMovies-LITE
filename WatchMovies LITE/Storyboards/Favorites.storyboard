@@ -12,7 +12,7 @@
         <!--Favorite Movies View Controller-->
         <scene sceneID="Wea-kb-ig2">
             <objects>
-                <viewController restorationIdentifier="FavoriteMoviesViewController" storyboardIdentifier="FavoriteMoviesViewController" id="Nvk-D8-tIq" customClass="FavoriteMoviesViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="FavoriteMoviesViewController" storyboardIdentifier="FavoriteMoviesViewController" id="Nvk-D8-tIq" customClass="FavoriteMoviesViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x7S-aG-yXT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

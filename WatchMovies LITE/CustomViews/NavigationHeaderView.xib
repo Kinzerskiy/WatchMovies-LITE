@@ -41,7 +41,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ah-cC-cuL">
-                        <rect key="frame" x="270" y="5" width="43" height="40"/>
+                        <rect key="frame" x="270" y="5" width="48" height="40"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain">
                             <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="large"/>
@@ -50,13 +50,21 @@
                             <action selector="rightButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="edh-qr-Y5y"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifI-Tf-Tfy">
+                        <rect key="frame" x="0.0" y="14.666666666666664" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="aVX-6O-nRe" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="0Ly-IE-YOp"/>
-                <constraint firstAttribute="trailing" secondItem="4ah-cC-cuL" secondAttribute="trailing" constant="5" id="3Pi-ZR-pMo"/>
+                <constraint firstAttribute="trailing" secondItem="4ah-cC-cuL" secondAttribute="trailing" id="3Pi-ZR-pMo"/>
                 <constraint firstItem="4ah-cC-cuL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="4HH-Av-dI6"/>
+                <constraint firstItem="ifI-Tf-Tfy" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="6R6-BZ-A0N"/>
+                <constraint firstItem="ifI-Tf-Tfy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8Ia-sb-kUF"/>
                 <constraint firstItem="bPK-tY-3DC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EzH-zh-cbO"/>
                 <constraint firstItem="bPK-tY-3DC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Lf1-kj-ogA"/>
                 <constraint firstItem="sk5-5B-Ltf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="X2T-Wu-LRg"/>
@@ -75,6 +83,7 @@
                 <outlet property="backButton" destination="sk5-5B-Ltf" id="sto-Nh-P20"/>
                 <outlet property="optionsButton" destination="4ah-cC-cuL" id="Jck-9c-hgh"/>
                 <outlet property="titleImage" destination="bPK-tY-3DC" id="ZFF-F1-Vx0"/>
+                <outlet property="titleLabel" destination="ifI-Tf-Tfy" id="QVG-Ar-udl"/>
                 <outlet property="titleName" destination="aVX-6O-nRe" id="0qP-PJ-3Ga"/>
             </connections>
             <point key="canvasLocation" x="229.00763358778624" y="19.718309859154932"/>

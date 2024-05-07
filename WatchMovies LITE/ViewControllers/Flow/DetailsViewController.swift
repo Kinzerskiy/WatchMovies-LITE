@@ -82,11 +82,13 @@ class DetailsViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.isUserInteractionEnabled = true
         tableView.rowHeight = 0
+        tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
     }
     
     func makeNavigationBar() {
         navigationView.delegate = self
         navigationView.optionsButton?.isHidden = true
+        navigationView.titleLabel.isHidden = true
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = nil
         navigationItem.titleView = navigationView

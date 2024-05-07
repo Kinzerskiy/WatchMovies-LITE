@@ -12,13 +12,13 @@
         <!--Series View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController restorationIdentifier="TVSeriesViewController" storyboardIdentifier="TVSeriesViewController" id="Y6W-OH-hqX" customClass="TVSeriesViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="TVSeriesViewController" storyboardIdentifier="TVSeriesViewController" id="Y6W-OH-hqX" customClass="TVSeriesViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMu-Ti-Xvx">
-                                <rect key="frame" x="15" y="64" width="363" height="45"/>
+                                <rect key="frame" x="10" y="64" width="373" height="45"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="6Bj-Je-kPy"/>
@@ -39,11 +39,11 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="YMu-Ti-Xvx" secondAttribute="trailing" constant="15" id="9Td-nT-bdJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="YMu-Ti-Xvx" secondAttribute="trailing" constant="10" id="9Td-nT-bdJ"/>
                             <constraint firstItem="YMu-Ti-Xvx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="9WX-rP-ltU"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XLo-Af-v5I" secondAttribute="trailing" constant="15" id="RZz-l4-SpE"/>
                             <constraint firstItem="XLo-Af-v5I" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="csF-xr-Ovb"/>
-                            <constraint firstItem="YMu-Ti-Xvx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="d4y-l1-wiB"/>
+                            <constraint firstItem="YMu-Ti-Xvx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="d4y-l1-wiB"/>
                             <constraint firstItem="XLo-Af-v5I" firstAttribute="top" secondItem="YMu-Ti-Xvx" secondAttribute="bottom" constant="5" id="gx6-pf-Rki"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="XLo-Af-v5I" secondAttribute="bottom" id="mCT-O7-ORa"/>
                         </constraints>

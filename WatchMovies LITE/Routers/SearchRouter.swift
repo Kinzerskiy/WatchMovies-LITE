@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 protocol SearchRouting: BaseRouting, DismissRouting {
-    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, includeAdult: Bool?, viewController: UIViewController, animated: Bool)
+    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool)
     
-    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, includeAdult: Bool?, viewController: UIViewController, animated: Bool)
+    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool)
     
     func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
 }
@@ -44,6 +44,7 @@ class SearchRouter: BaseRouter, SearchRouting {
             vc.tabBarItem.title = "Search"
             vc.tabBarItem.image = inactiveImage
             vc.tabBarItem.selectedImage = activeImage
+            vc.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
             
             searchViewController = vc
             navigationController = assembly.assemblyNavigationController(with: vc)
@@ -53,7 +54,7 @@ class SearchRouter: BaseRouter, SearchRouting {
         return navigationController!
     }
     
-    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, includeAdult: Bool?, viewController: UIViewController, animated: Bool) {
+    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool) {
         
         let vc: SearchResultViewController = assembly.assemblySearchResultViewController(with: self)
         vc.searchResults = movies
@@ -61,20 +62,20 @@ class SearchRouter: BaseRouter, SearchRouting {
         vc.genreName = genreName
         vc.ganreID = ganreID
         vc.year = year
-        vc.includeAdult = includeAdult
-        vc.hidesBottomBarWhenPushed = true
+       
+//        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, includeAdult: Bool?, viewController: UIViewController, animated: Bool) {
+    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool) {
         let vc: SearchResultViewController = assembly.assemblySearchResultViewController(with: self)
         vc.searchResults = tvSeries
         vc.isMovie = isMovie
         vc.genreName = genreName
         vc.ganreID = ganreID
         vc.year = year
-        vc.includeAdult = includeAdult
-        vc.hidesBottomBarWhenPushed = true
+        
+//        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -43,6 +43,7 @@ class FavoriteMoviesViewController: UIViewController {
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
+        navigationView.titleLabel.text = "FAVORITES"
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.backButton.isHidden = true
         navigationView.delegate = self

@@ -26,13 +26,14 @@ class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
+        prepareSegmenBar()
         makeNavigationBar()
         prepareCollectionView()
-        prepareSegmenBar()
     }
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
+        navigationView.titleLabel.text = "MOVIES"
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.backButton.isHidden = true
@@ -55,7 +56,7 @@ class MovieListViewController: UIViewController {
         filterView.delegate = self
         let segmentTitles = ["Now playing", "Popular", "Top", "Upcoming"]
         let font = UIFont.lotaBold(ofSize: 12)
-        let color = UIColor.orange
+        let color = UIColor.black
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
         
         filterView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,6 +66,7 @@ class MovieListViewController: UIViewController {
                filterView.bottomAnchor.constraint(equalTo: segmentBarView.bottomAnchor),
                filterView.trailingAnchor.constraint(equalTo: segmentBarView.trailingAnchor)
            ])
+        filterView.setupView()
     }
     
     func prepareUI() {

@@ -12,7 +12,7 @@
         <!--Movie List View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController restorationIdentifier="MovieListViewController" storyboardIdentifier="MovieListViewController" id="Y6W-OH-hqX" customClass="MovieListViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MovieListViewController" storyboardIdentifier="MovieListViewController" id="Y6W-OH-hqX" customClass="MovieListViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,8 +28,8 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fB-Z8-C6S" customClass="FilterView" customModule="test_movieList" customModuleProvider="target">
-                                <rect key="frame" x="15" y="64" width="358" height="45"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fB-Z8-C6S" customClass="FilterView" customModule="WatchMovies_LITE" customModuleProvider="target">
+                                <rect key="frame" x="10" y="64" width="373" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="x2T-ug-fu6"/>
                                 </constraints>
@@ -42,8 +42,8 @@
                             <constraint firstItem="9wl-eU-1KN" firstAttribute="top" secondItem="5fB-Z8-C6S" secondAttribute="bottom" constant="5" id="Agw-iF-qUI"/>
                             <constraint firstItem="5fB-Z8-C6S" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="DFG-cS-ykK"/>
                             <constraint firstItem="9wl-eU-1KN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="O5W-cf-HxC"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="5fB-Z8-C6S" secondAttribute="trailing" constant="20" id="UQr-zh-7h5"/>
-                            <constraint firstItem="5fB-Z8-C6S" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="dKZ-If-fRo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="5fB-Z8-C6S" secondAttribute="trailing" constant="10" id="UQr-zh-7h5"/>
+                            <constraint firstItem="5fB-Z8-C6S" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="dKZ-If-fRo"/>
                             <constraint firstItem="9wl-eU-1KN" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="hPa-pt-4Do"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="9wl-eU-1KN" secondAttribute="bottom" id="q8K-KD-lS0"/>
                         </constraints>

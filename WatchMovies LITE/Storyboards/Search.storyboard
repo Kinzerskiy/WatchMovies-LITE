@@ -12,7 +12,7 @@
         <!--Search View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController restorationIdentifier="SearchViewController" storyboardIdentifier="SearchViewController" id="Y6W-OH-hqX" customClass="SearchViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SearchViewController" storyboardIdentifier="SearchViewController" id="Y6W-OH-hqX" customClass="SearchViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,14 +25,17 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jt-tA-OZy">
-                                <rect key="frame" x="20" y="743" width="353" height="45"/>
-                                <color key="backgroundColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="40" y="743" width="313" height="45"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="coX-yY-QiO"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="searchAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jQR-Cn-8bp"/>
                                 </connections>
@@ -41,49 +44,30 @@
                                 <rect key="frame" x="0.0" y="169" width="393" height="216"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYz-Do-Rrh">
-                                        <rect key="frame" x="0.0" y="0.0" width="197" height="216"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="216"/>
                                     </pickerView>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLA-zF-nvl">
-                                        <rect key="frame" x="197" y="0.0" width="196" height="216"/>
+                                        <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="216"/>
                                     </pickerView>
                                 </subviews>
                             </stackView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iWe-Ut-Y5r">
-                                <rect key="frame" x="329" y="396.66666666666669" width="51" height="31"/>
-                                <color key="onTintColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="didTapSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="ol8-06-qGt"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include Adult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ug-VR-CfM">
-                                <rect key="frame" x="244.66666666666666" y="405" width="74.333333333333343" height="14.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="3jt-tA-OZy" secondAttribute="bottom" constant="30" id="10G-9f-oYG"/>
                             <constraint firstAttribute="trailing" secondItem="6j8-ns-cSt" secondAttribute="trailing" id="9rL-9D-6nb"/>
-                            <constraint firstItem="7ug-VR-CfM" firstAttribute="centerY" secondItem="iWe-Ut-Y5r" secondAttribute="centerY" id="9rS-Tu-5hQ"/>
                             <constraint firstItem="Ivu-fF-x3D" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="BOz-hH-SoR"/>
-                            <constraint firstItem="iWe-Ut-Y5r" firstAttribute="leading" secondItem="7ug-VR-CfM" secondAttribute="trailing" constant="10" id="ECz-wb-HsL"/>
                             <constraint firstItem="6j8-ns-cSt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LNk-bq-Njg"/>
-                            <constraint firstItem="3jt-tA-OZy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="LWh-Tr-lEL"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="iWe-Ut-Y5r" secondAttribute="trailing" constant="15" id="OUp-0o-hcF"/>
-                            <constraint firstItem="7ug-VR-CfM" firstAttribute="top" secondItem="VLA-zF-nvl" secondAttribute="bottom" constant="20" id="WiF-yu-0VW"/>
+                            <constraint firstItem="3jt-tA-OZy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="LWh-Tr-lEL"/>
                             <constraint firstItem="6j8-ns-cSt" firstAttribute="top" secondItem="Ivu-fF-x3D" secondAttribute="bottom" constant="60" id="Z2R-Ia-5lj"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ivu-fF-x3D" secondAttribute="trailing" constant="15" id="Zn9-Eo-hmd"/>
                             <constraint firstItem="Ivu-fF-x3D" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="bTl-1r-5dl"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3jt-tA-OZy" secondAttribute="trailing" constant="20" id="uVb-Nm-xLG"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3jt-tA-OZy" secondAttribute="trailing" constant="40" id="uVb-Nm-xLG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ganrePicker" destination="iYz-Do-Rrh" id="ZSU-B5-3ab"/>
-                        <outlet property="includeAdultLabel" destination="7ug-VR-CfM" id="wTN-HZ-bx2"/>
                         <outlet property="searchButton" destination="3jt-tA-OZy" id="18n-Ld-tgj"/>
                         <outlet property="segmentBarView" destination="Ivu-fF-x3D" id="xhP-B8-qoL"/>
                         <outlet property="yearPicker" destination="VLA-zF-nvl" id="pMg-Lr-l6a"/>
@@ -96,7 +80,7 @@
         <!--Search Result View Controller-->
         <scene sceneID="CE4-iz-AMU">
             <objects>
-                <viewController restorationIdentifier="SearchResultViewController" storyboardIdentifier="SearchResultViewController" id="SUG-Mr-BaN" customClass="SearchResultViewController" customModule="test_movieList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SearchResultViewController" storyboardIdentifier="SearchResultViewController" hidesBottomBarWhenPushed="YES" id="SUG-Mr-BaN" customClass="SearchResultViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CHy-eC-a5H">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

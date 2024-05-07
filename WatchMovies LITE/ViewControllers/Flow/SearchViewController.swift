@@ -13,7 +13,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var yearPicker: UIPickerView!
     @IBOutlet weak var ganrePicker: UIPickerView!
-    @IBOutlet weak var includeAdultLabel: UILabel!
     
     var searchButtonEnabled: Bool {
         return selectedYear != nil && selectedGenre != nil
@@ -39,13 +38,13 @@ class SearchViewController: UIViewController {
         prepareSegmenBar()
         updateGenrePicker()
         searchButton.isEnabled = searchButtonEnabled
-        
     }
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
         navigationItem.hidesBackButton = true
         navigationView.titleName.isHidden = true
+        navigationView.titleLabel.text = "SEARCH"
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
@@ -56,7 +55,7 @@ class SearchViewController: UIViewController {
         filterView.delegate = self
         let segmentTitles = ["Movie", "TV"]
         let font = UIFont.lotaBold(ofSize: 12)
-        let color = UIColor.orange
+        let color = UIColor.black
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
         
         filterView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,13 +65,14 @@ class SearchViewController: UIViewController {
             filterView.bottomAnchor.constraint(equalTo: segmentBarView.bottomAnchor),
             filterView.trailingAnchor.constraint(equalTo: segmentBarView.trailingAnchor)
         ])
+        filterView.setupView()
     }
     
     func prepareUI() {
-        includeAdultLabel.font = UIFont.lotaBold(ofSize: 15)
-        searchButton.layer.cornerRadius = 15
+        searchButton.layer.cornerRadius = 10
         searchButton.setTitle("Search", for: .normal)
         searchButton.titleLabel?.font = UIFont.lotaBold(ofSize: 20)
+        
         
         let currentYear = Calendar.current.component(.year, from: Date())
         var years = [String]()
@@ -109,23 +109,17 @@ class SearchViewController: UIViewController {
         
         let genreName = currentSegmentIndex == 0 ? movieGenres[selectedGenreRow] : tvGenres[selectedGenreRow]
         
-        searchMoviesOrTVSeries(year: selectedYear, genre: selectedGenre, includeAdult: includeAdult) { [weak self] (result, error) in
+        searchMoviesOrTVSeries(year: selectedYear, genre: selectedGenre) { [weak self] (result, error) in
             if let error = error {
                 print("Error searching: \(error.localizedDescription)")
             } else if let result = result {
                 if let movies = result as? [Movie] {
-                    self?.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, includeAdult: self?.includeAdult, viewController: self!, animated: true)
+                    self?.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
                 } else if let tvSeries = result as? [TVSeries] {
-                    self?.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, includeAdult: self?.includeAdult, viewController: self!, animated: true)
+                    self?.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
                 }
             }
         }
-    }
-    
-    @IBAction func didTapSwitch(_ sender: UISwitch) {
-        includeAdult = sender.isOn
-        let circleColor: UIColor = sender.isOn ? .white : .gray
-        sender.thumbTintColor = circleColor
     }
 }
 
@@ -241,30 +235,33 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             let year = currentYear - row + 1
             if row == 0 {
                 label.attributedText = NSAttributedString(string: "Select Year", attributes: attributes)
-                label.backgroundColor = UIColor.white
-                label.textColor = UIColor.orange
+                label.backgroundColor = UIColor.clear
+                label.textColor = UIColor.black
             } else {
                 label.attributedText = NSAttributedString(string: "\(year)", attributes: attributes)
-                label.backgroundColor = UIColor.orange
+                label.backgroundColor = UIColor.black
+                label.textColor = UIColor.white
             }
         } else if pickerView == ganrePicker {
             if currentSegmentIndex == 0 {
                 if row == 0 {
                     label.attributedText = NSAttributedString(string: "Select Genre", attributes: attributes)
                     label.backgroundColor = UIColor.clear
-                    label.textColor = UIColor.orange
+                    label.textColor = UIColor.black
                 } else if row < movieGenres.count {
                     label.attributedText = NSAttributedString(string: movieGenres[row], attributes: attributes)
-                    label.backgroundColor = UIColor.orange
+                    label.backgroundColor = UIColor.black
+                    label.textColor = UIColor.white
                 }
             } else {
                 if row == 0 {
                     label.attributedText = NSAttributedString(string: "Select Genre", attributes: attributes)
                     label.backgroundColor = UIColor.clear
-                    label.textColor = UIColor.orange
+                    label.textColor = UIColor.black
                 } else if row < tvGenres.count {
                     label.attributedText = NSAttributedString(string: tvGenres[row], attributes: attributes)
-                    label.backgroundColor = UIColor.orange
+                    label.backgroundColor = UIColor.black
+                    label.textColor = UIColor.white
                 }
             }
         }
@@ -282,11 +279,11 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     
-    func searchMoviesOrTVSeries(year: String?, genre: String?, includeAdult: Bool, completion: @escaping ([Any]?, Error?) -> Void) {
+    func searchMoviesOrTVSeries(year: String?, genre: String?, completion: @escaping ([Any]?, Error?) -> Void) {
         let page = 1
 
         if currentSegmentIndex == 0 {
-            apiManager.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, ganre: genre) { (movies, error) in
+            apiManager.fetchSearchMovies(page: page, primaryReleaseYear: year, ganre: genre) { (movies, error) in
                 if let error = error {
                     print("Error searching movies: \(error.localizedDescription)")
                     completion(nil, error)
@@ -297,7 +294,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
                 }
             }
         } else {
-            apiManager.fetchSearchTVSeries(page: page, includeAdult: includeAdult, firstAirDateYear: year, genre: genre) { (tvSeries, error) in
+            apiManager.fetchSearchTVSeries(page: page, firstAirDateYear: year, genre: genre) { (tvSeries, error) in
                 if let error = error {
                     print("Error searching TV series: \(error.localizedDescription)")
                     completion(nil, error)

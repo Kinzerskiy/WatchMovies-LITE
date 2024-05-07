@@ -27,6 +27,19 @@ class FilterView: UIView {
         return view
     }
     
+    func setupView() {
+        segmentControl.layer.cornerRadius = segmentControl.bounds.height / 3
+        segmentControl.clipsToBounds = true
+        segmentControl.layer.shadowColor = UIColor.black.cgColor
+        segmentControl.layer.shadowOffset = CGSize(width: 0, height: 2)
+        segmentControl.layer.shadowRadius = 4
+        segmentControl.layer.shadowOpacity = 0.4
+        segmentControl.layer.masksToBounds = false
+        segmentControl.backgroundColor = UIColor.white
+        segmentControl.tintColor = UIColor.clear
+        segmentControl.setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+    }
+    
     func setSegmentTitles(titles: [String], font: UIFont, color: UIColor) {
         segmentControl.removeAllSegments()
         for title in titles {

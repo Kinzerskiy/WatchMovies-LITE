@@ -40,6 +40,7 @@ class TVSeriesListRouter: BaseRouter, TVSeriesListRouting {
             vc.tabBarItem.title = "TV Series"
             vc.tabBarItem.image = inactiveImage
             vc.tabBarItem.selectedImage = activeImage
+            vc.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
             
             movieListViewController = vc
             navigationController = assembly.assemblyNavigationController(with: vc)

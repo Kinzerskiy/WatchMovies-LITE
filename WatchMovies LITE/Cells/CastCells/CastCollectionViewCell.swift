@@ -15,11 +15,13 @@ class CastCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        personImage.layer.borderWidth = 2.0
+        layer.masksToBounds = false
         personImage.layer.masksToBounds = false
-        personImage.layer.borderColor = UIColor.orange.cgColor
         personImage.layer.cornerRadius = personImage.frame.size.width / 2
         personImage.clipsToBounds = true
+        nameLabel.font = UIFont.lotaRegular(ofSize: 15)
+        knownForDepartmentLabel.font = UIFont.lotaRegular(ofSize: 12)
+        knownForDepartmentLabel.layer.opacity = 0.8
     }
     
     func fill(with cast: MovieCast) {

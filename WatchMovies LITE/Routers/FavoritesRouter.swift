@@ -40,6 +40,7 @@ class FavoritesRouter: BaseRouter, FavoritesRouting {
             vc.tabBarItem.title = "Favorites"
             vc.tabBarItem.image = inactiveImage
             vc.tabBarItem.selectedImage = activeImage
+            UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
             
             favoritesMoviesViewController = vc
             navigationController = assembly.assemblyNavigationController(with: vc)
