@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="SimilarTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="SimilarTableViewCell" rowHeight="490" id="KGk-i7-Jjw" customClass="SimilarTableViewCell" customModule="test_movieList" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="SimilarTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="SimilarTableViewCell" rowHeight="490" id="KGk-i7-Jjw" customClass="SimilarTableViewCell" customModule="WatchMovies_LITE" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="728" height="490"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TY6-rP-pHN">
-                        <rect key="frame" x="15" y="40.333333333333343" width="698" height="449.66666666666663"/>
+                        <rect key="frame" x="0.0" y="40.333333333333343" width="713" height="449.66666666666663"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2q9-Jb-bHQ">
                             <size key="itemSize" width="128" height="128"/>
@@ -41,7 +41,7 @@
                     <constraint firstAttribute="bottom" secondItem="TY6-rP-pHN" secondAttribute="bottom" id="QFZ-zE-tFG"/>
                     <constraint firstAttribute="trailing" secondItem="TY6-rP-pHN" secondAttribute="trailing" constant="15" id="SlH-FF-g8k"/>
                     <constraint firstAttribute="trailing" secondItem="xxI-YA-S80" secondAttribute="trailing" constant="10" id="bB5-ri-blO"/>
-                    <constraint firstItem="TY6-rP-pHN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="ctZ-Yd-fMP"/>
+                    <constraint firstItem="TY6-rP-pHN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ctZ-Yd-fMP"/>
                     <constraint firstItem="TY6-rP-pHN" firstAttribute="top" secondItem="xxI-YA-S80" secondAttribute="bottom" constant="10" identifier="SimilarTableViewCell" id="m1t-dv-dIK"/>
                 </constraints>
             </tableViewCellContentView>
