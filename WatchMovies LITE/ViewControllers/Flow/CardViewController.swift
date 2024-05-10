@@ -18,8 +18,7 @@ class CardViewController: UIViewController {
     
     let filterView = FilterView.loadView()
     let navigationView = NavigationHeaderView.loadView()
-    
-    let apiManager = APIManager()
+
     var movies: [Movie] = []
     var tvSeries: [TVSeries] = []
     
@@ -27,6 +26,27 @@ class CardViewController: UIViewController {
     
     let plusImage = UIImage(systemName: "heart.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 60, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
     let minusImage = UIImage(systemName: "hand.thumbsdown.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 60, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
+    
+    lazy var loadMoreButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "arrow.counterclockwise"), for: .normal)
+        button.tintColor = .orange
+        button.addTarget(self, action: #selector(loadMoreButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+
+    @objc func loadMoreButtonTapped() {
+        switch currentSegmentIndex {
+        case 0:
+            loadMoreMovies(for: currentSegmentIndex)
+        case 1:
+            loadMoreTVSeries(for: currentSegmentIndex)
+        default:
+            break
+        }
+    }
 
     lazy var plusImageView: UIImageView = {
         let imageView = UIImageView(image: self.plusImage)
@@ -100,6 +120,7 @@ class CardViewController: UIViewController {
         
         view.addSubview(plusImageView)
         view.addSubview(minusImageView)
+        view.addSubview(loadMoreButton)
         
         NSLayoutConstraint.activate([
             plusImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -109,8 +130,17 @@ class CardViewController: UIViewController {
             minusImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
         
+        
+        NSLayoutConstraint.activate([
+            loadMoreButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadMoreButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadMoreButton.widthAnchor.constraint(equalToConstant: 80),
+            loadMoreButton.heightAnchor.constraint(equalToConstant: 80)
+        ])
+        
         plusImageView.isHidden = true
         minusImageView.isHidden = true
+        loadMoreButton.isHidden = true
     }
     
     func makeNavigationBar() {
@@ -141,7 +171,7 @@ class CardViewController: UIViewController {
     }
     
     private func fetchTVSeries(page: Int? = nil, completion: @escaping ([TVSeries]?, Error?) -> Void) {
-        apiManager.fetchPopularSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
+        APIManager.shared.fetchPopularSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
             completion(tvSeries, error)
             if let error = error {
                 self?.showAlertDialog(title: "Error", message: error.localizedDescription)
@@ -151,7 +181,7 @@ class CardViewController: UIViewController {
     
     private func fetchMovies(page: Int? = nil, completion: @escaping ([Movie]?, Error?) -> Void) {
         
-        apiManager.fetchPopularMovies(page: fetchRandomPage()) { [weak self] movies, error in
+        APIManager.shared.fetchPopularMovies(page: fetchRandomPage()) { [weak self] movies, error in
             completion(movies, error)
             if let error = error {
                 self?.showAlertDialog(title: "Error", message: error.localizedDescription)
@@ -195,6 +225,8 @@ class CardViewController: UIViewController {
                 self.movies += newMovies
                 let indexes = (startIndex..<self.movies.count).map { $0 }
                 self.cardSwiper.insertCards(at: indexes)
+                self.cardSwiper.reloadData()
+                self.loadMoreButton.isHidden = true
             }
         }
     }
@@ -208,6 +240,8 @@ class CardViewController: UIViewController {
             self.tvSeries += newTVSeries
             let indexes = (startIndex..<self.tvSeries.count).map { $0 }
             self.cardSwiper.insertCards(at: indexes)
+            self.cardSwiper.reloadData()
+            self.loadMoreButton.isHidden = true
         }
     }
 }
@@ -242,12 +276,7 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
         }
         return CardCollectionViewCell()
     }
-    
-    func didScroll(verticalCardSwiperView: VerticalCardSwiperView) {
-        if let currentIndex = cardSwiper.focussedCardIndex {
-            _ = cardSwiper.scrollToCard(at: currentIndex + 1, animated: true)
-        }
-    }
+
     
     func willSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
         var media: MediaDetails?
@@ -308,8 +337,13 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
         default:
             break
         }
-        plusImageView.isHidden = true
+        
+        if index == (cardSwiper.focussedCardIndex ?? 1) - 1 {
+            loadMoreButton.isHidden = false
+        }
+        
         minusImageView.isHidden = true
+        plusImageView.isHidden = true
     }
     
     func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
@@ -329,6 +363,7 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
           default:
               break
           }
+        loadMoreButton.removeFromSuperview()
       }
 }
 

@@ -29,7 +29,6 @@ class SearchViewController: UIViewController {
     var router: SearchRouting?
     let navigationView = NavigationHeaderView.loadView()
     let filterView = FilterView.loadView()
-    let apiManager = APIManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -282,7 +281,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         let page = 1
 
         if currentSegmentIndex == 0 {
-            apiManager.fetchSearchMovies(page: page, primaryReleaseYear: year, ganre: genre) { [weak self] (movies, error) in
+            APIManager.shared.fetchSearchMovies(page: page, primaryReleaseYear: year, ganre: genre) { [weak self] (movies, error) in
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription )
                     completion(nil, error)
@@ -293,7 +292,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
                 }
             }
         } else {
-            apiManager.fetchSearchTVSeries(page: page, firstAirDateYear: year, genre: genre) { [weak self] (tvSeries, error) in
+            APIManager.shared.fetchSearchTVSeries(page: page, firstAirDateYear: year, genre: genre) { [weak self] (tvSeries, error) in
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                     completion(nil, error)

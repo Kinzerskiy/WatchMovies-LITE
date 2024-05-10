@@ -26,7 +26,6 @@ class DetailsViewController: UIViewController {
     
     var router: MainRouting?
     let navigationView = NavigationHeaderView.loadView()
-    let apiManager = APIManager()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -106,7 +105,7 @@ class DetailsViewController: UIViewController {
         guard let id = selectedId else { return }
         
         if isMovie {
-            apiManager.fetchMovieDetails(movieId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchMovieDetails(movieId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 self.movieDetails = response
                 self.fetchSimilarMedia(completion: completion)
@@ -114,7 +113,7 @@ class DetailsViewController: UIViewController {
                 self.fetchCast()
             }
         } else {
-            apiManager.fetchTVSeriesDetails(seriesId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchTVSeriesDetails(seriesId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 self.tvSeriesDetails = response
                 self.fetchSimilarMedia(completion: completion)
@@ -128,13 +127,13 @@ class DetailsViewController: UIViewController {
         guard let id = selectedId else { return }
         
         if isMovie == true {
-            apiManager.fetchSimilarMovies(movieId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchSimilarMovies(movieId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 self.similarMovies = response.results
                 completion()
             }
         } else {
-            apiManager.fetchSimilarTVSeries(seriesId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchSimilarTVSeries(seriesId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 self.similarTVSeries = response.results
                 completion()
@@ -145,7 +144,7 @@ class DetailsViewController: UIViewController {
     private func fetchVideos() {
         guard let id = selectedId else { return }
         if isMovie == true {
-            apiManager.fetchMovieVideos(movieId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchMovieVideos(movieId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 let trailers = response.results.filter { $0.type.lowercased() == "trailer" }
                 if let trailer = trailers.first {
@@ -156,7 +155,7 @@ class DetailsViewController: UIViewController {
                 }
             }
         } else {
-            apiManager.fetchTVVideos(tvSeriesId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchTVVideos(tvSeriesId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 let trailers = response.results.filter { $0.type.lowercased() == "trailer" }
                 if let trailer = trailers.first {
@@ -172,7 +171,7 @@ class DetailsViewController: UIViewController {
     private func fetchCast() {
         guard let id = selectedId else { return }
         if isMovie ?? false {
-            apiManager.fetchMovieCredits(movieId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchMovieCredits(movieId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 self.movieCast = response.cast
                 DispatchQueue.main.async {
@@ -180,7 +179,7 @@ class DetailsViewController: UIViewController {
                 }
             }
         } else {
-            apiManager.fetchTVSeriesCredits(tvSeriesId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchTVSeriesCredits(tvSeriesId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 self.tvSeriesCast = response.cast
                 DispatchQueue.main.async {

@@ -9,6 +9,9 @@ import Foundation
 
 class APIManager {
     
+    static let shared = APIManager()
+    private init() {}
+    
     let apiKey = "2ccc9fcb3e886fcb5f80015418735095"
   
     //MARK: Movies

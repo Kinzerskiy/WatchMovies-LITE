@@ -14,8 +14,7 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var segmentBarView: UIView!
     
     var router: MovieListRouting?
-    let apiManager = APIManager()
-
+    
     let navigationView = NavigationHeaderView.loadView()
     let filterView = FilterView.loadView()
     
@@ -171,28 +170,28 @@ extension MovieListViewController: FilterViewDelegate {
     private func fetchMovies(for segmentIndex: Int, page: Int, completion: @escaping ([Movie]?, Error?, Int) -> Void) {
         switch segmentIndex {
         case 0:
-            apiManager.fetchNowPlayingMovies(page: page) { [weak self] movies, error in
+            APIManager.shared.fetchNowPlayingMovies(page: page) { [weak self] movies, error in
                 completion(movies, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 1:
-            apiManager.fetchPopularMovies(page: page) { [weak self] movies, error in
+            APIManager.shared.fetchPopularMovies(page: page) { [weak self] movies, error in
                 completion(movies, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 2:
-            apiManager.fetchTopRatedMovies(page: page) { [weak self] movies, error in
+            APIManager.shared.fetchTopRatedMovies(page: page) { [weak self] movies, error in
                 completion(movies, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 3:
-            apiManager.fetchUpcomingMovies(page: page) { movies, error in
+            APIManager.shared.fetchUpcomingMovies(page: page) { movies, error in
                 completion(movies, error, segmentIndex)
                 if let error = error {
                     self.showAlertDialog(title: "Error", message: error.localizedDescription)

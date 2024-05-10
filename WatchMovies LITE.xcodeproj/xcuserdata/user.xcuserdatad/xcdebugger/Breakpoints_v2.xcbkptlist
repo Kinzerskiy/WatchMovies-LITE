@@ -1530,8 +1530,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "350"
-            endingLineNumber = "350"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
             landmarkName = "didselsectCredential(with:)"
             landmarkType = "7">
             <Locations>
@@ -1785,8 +1785,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1801,8 +1801,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
             <Locations>
@@ -1880,8 +1880,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "fetchCast(isMovie:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1896,8 +1896,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "fetchCast(isMovie:)"
             landmarkType = "7">
             <Locations>
@@ -1944,8 +1944,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "fetchCast(isMovie:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1960,8 +1960,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "fetchCast(isMovie:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1976,8 +1976,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "fetchCast(isMovie:)"
             landmarkType = "7">
             <Locations>
@@ -2024,10 +2024,10 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "APIManager"
-            landmarkType = "3">
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "fetchPersonTVPersonCredits(personId:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2040,8 +2040,8 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "fetchPersonTVPersonCredits(personId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2056,8 +2056,8 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "fetchPersonMoviePersonCredits(personId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2072,8 +2072,8 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "fetchPersonMoviePersonCredits(personId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2088,8 +2088,8 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "fetchPersonMoviePersonCredits(personId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2104,8 +2104,8 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "fetchPersonMoviePersonCredits(personId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2228,8 +2228,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
             <Locations>
@@ -2276,8 +2276,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "fetchPersonDetailsAndCast()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2324,8 +2324,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "fetchMediaDetails(isMovie:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2340,8 +2340,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/TVSeriesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2356,8 +2356,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "fetchMediaDetails(isMovie:completion:)"
             landmarkType = "7">
             <Locations>
@@ -2404,8 +2404,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "fetchMediaDetails(isMovie:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2420,8 +2420,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "fetchMediaDetails(isMovie:completion:)"
             landmarkType = "7">
             <Locations>
@@ -2468,8 +2468,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "fetchPersonDetailsAndCast()"
             landmarkType = "7">
             <Locations>
@@ -2516,8 +2516,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "fetchCast()"
             landmarkType = "7">
             <Locations>
@@ -2564,8 +2564,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/DetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "fetchCast()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2580,8 +2580,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2596,8 +2596,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "fetchCast(isMovie:)"
             landmarkType = "7">
             <Locations>
@@ -2644,8 +2644,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/PersonViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "fetchCast(isMovie:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2660,8 +2660,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/CardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "cardForItemAt(verticalCardSwiperView:cardForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2676,8 +2676,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/CardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "cardForItemAt(verticalCardSwiperView:cardForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -18,7 +18,6 @@ class PersonViewController: UIViewController {
     var tvCastMember: [TVSeriesMember] = []
     
     var router: MainRouting?
-    let apiManager = APIManager()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,7 +30,7 @@ class PersonViewController: UIViewController {
     func fetchPersonDetailsAndCast() {
         guard let id = pesonId else { return }
         
-        apiManager.fetchPersonDetails(personId: id) { [weak self] (response, error) in
+        APIManager.shared.fetchPersonDetails(personId: id) { [weak self] (response, error) in
             guard let self = self, let response = response else { return }
             self.person = response
             if let isMovie = isMovie {
@@ -44,7 +43,7 @@ class PersonViewController: UIViewController {
         guard let id = pesonId else { return }
         
         if isMovie {
-            apiManager.fetchPersonMoviePersonCredits(personId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchPersonMoviePersonCredits(personId: id) { [weak self] (response, error) in
                 guard let self = self else { return }
                 if let cast = response?.cast {
                     self.movieCastMember = cast
@@ -52,7 +51,7 @@ class PersonViewController: UIViewController {
                 }
             }
         } else {
-            apiManager.fetchPersonTVPersonCredits(personId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchPersonTVPersonCredits(personId: id) { [weak self] (response, error) in
                 guard let self = self else { return }
                 if let cast = response?.cast {
                     self.tvCastMember = cast

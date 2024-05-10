@@ -15,7 +15,6 @@ class TVSeriesViewController: UIViewController {
     var router: TVSeriesListRouting?
     let navigationView = NavigationHeaderView.loadView()
     let filterView = FilterView.loadView()
-    let apiManager = APIManager()
     
     var tvSeries: [TVSeries] = []
     private var currentPage = [0, 0, 0, 0]
@@ -169,28 +168,28 @@ extension TVSeriesViewController: FilterViewDelegate {
     private func fetchTVSeries(for segmentIndex: Int, page: Int, completion: @escaping ([TVSeries]?, Error?, Int) -> Void) {
         switch segmentIndex {
         case 0:
-            apiManager.fetchAiringTodaySeries(page: page) { [weak self] tvSeries, error in
+            APIManager.shared.fetchAiringTodaySeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 1:
-            apiManager.fetchOnTheAirSeries(page: page) { [weak self] tvSeries, error in
+            APIManager.shared.fetchOnTheAirSeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 2:
-            apiManager.fetchPopularSeries(page: page) { [weak self] tvSeries, error in
+            APIManager.shared.fetchPopularSeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 3:
-            apiManager.fetchTopRatedSeries(page: page) { [weak self] tvSeries, error in
+            APIManager.shared.fetchTopRatedSeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
