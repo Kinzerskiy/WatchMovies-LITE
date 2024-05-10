@@ -100,9 +100,7 @@ extension TVSeriesViewController: UICollectionViewDataSource, UICollectionViewDe
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         loadMoreMoviesIfNeeded(for: currentSegmentIndex)
     }
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    
+        
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 170, height: 250)
     }
@@ -171,31 +169,31 @@ extension TVSeriesViewController: FilterViewDelegate {
     private func fetchTVSeries(for segmentIndex: Int, page: Int, completion: @escaping ([TVSeries]?, Error?, Int) -> Void) {
         switch segmentIndex {
         case 0:
-            apiManager.fetchAiringTodaySeries(page: page) { tvSeries, error in
+            apiManager.fetchAiringTodaySeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 1:
-            apiManager.fetchOnTheAirSeries(page: page) { tvSeries, error in
+            apiManager.fetchOnTheAirSeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 2:
-            apiManager.fetchPopularSeries(page: page) { tvSeries, error in
+            apiManager.fetchPopularSeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 3:
-            apiManager.fetchTopRatedSeries(page: page) { tvSeries, error in
+            apiManager.fetchTopRatedSeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         default:
@@ -203,8 +201,6 @@ extension TVSeriesViewController: FilterViewDelegate {
         }
     }
 
-
-       
     private func handleFetchResponse(tvSeries: [TVSeries]?, error: Error?, segmentIndex: Int) {
         guard let tvSeries = tvSeries else {
             showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")

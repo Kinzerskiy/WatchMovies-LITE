@@ -55,7 +55,6 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched similar movies: \(response.results)")
                 completion(response, nil)
             }
         }
@@ -83,7 +82,6 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched movie videos: \(response.results)")
                 completion(response, nil)
             }
         }
@@ -98,7 +96,6 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched movie credits: \(response)")
                 completion(response, nil)
             }
         }
@@ -147,7 +144,6 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched similar movies: \(response.results)")
                 completion(response, nil)
             }
         }
@@ -174,7 +170,6 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched movie videos: \(response.results)")
                 completion(response, nil)
             }
         }
@@ -189,7 +184,6 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched TV show credits: \(response)")
                 completion(response, nil)
             }
         }
@@ -206,7 +200,6 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched person details: \(response)")
                 completion(response, nil)
             }
         }
@@ -221,8 +214,6 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched person movie credits: \(response)")
-                
                 completion(response, nil)
             }
         }
@@ -237,12 +228,10 @@ class APIManager {
                 return
             }
             if let response = response {
-                print("Fetched person movie credits: \(response)")
                 completion(response, nil)
             }
         }
     }
-
     
     //MARK: Common
     
@@ -288,8 +277,6 @@ class APIManager {
                     }
                     return
                 }
-                print(String(data: data, encoding: .utf8) ?? "Data could not be printed")
-                print("JSON Response: \(String(data: data, encoding: .utf8) ?? "Data could not be printed")")
                 do {
                     let decoder = JSONDecoder()
                     let response = try decoder.decode(T.self, from: data)

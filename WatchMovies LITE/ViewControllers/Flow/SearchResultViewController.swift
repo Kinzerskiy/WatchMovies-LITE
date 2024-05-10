@@ -64,17 +64,17 @@ class SearchResultViewController: UIViewController {
 
         switch mediaType {
         case .movie:
-            apiManager.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, ganre: genreID) { movies, error in
+            apiManager.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, ganre: genreID) { [weak self] movies, error in
                 completion(movies, error)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case .tvSeries:
-            apiManager.fetchSearchTVSeries(page: page, includeAdult: includeAdult, firstAirDateYear: year, genre: genreID) { tvSeries, error in
+            apiManager.fetchSearchTVSeries(page: page, includeAdult: includeAdult, firstAirDateYear: year, genre: genreID) { [weak self] tvSeries, error in
                 completion(tvSeries as [Any], nil)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         }
@@ -126,9 +126,7 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         loadMoreSearchResultsIfNeeded()
     }
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    
+        
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 160, height: 250)
     }

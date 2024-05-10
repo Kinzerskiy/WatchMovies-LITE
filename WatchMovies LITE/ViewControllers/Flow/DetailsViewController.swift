@@ -190,7 +190,6 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    
     private func checkIfInFavorites(mediaId: Int) -> Bool {
         let context = CoreDataManager.shared.context
         let fetchRequest: NSFetchRequest<Favorites> = Favorites.fetchRequest()

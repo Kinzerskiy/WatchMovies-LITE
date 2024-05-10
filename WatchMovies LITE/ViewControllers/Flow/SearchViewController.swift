@@ -123,7 +123,6 @@ class SearchViewController: UIViewController {
     }
 }
 
-
 extension SearchViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
         showRateAndSupportActionSheet()
@@ -283,9 +282,9 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         let page = 1
 
         if currentSegmentIndex == 0 {
-            apiManager.fetchSearchMovies(page: page, primaryReleaseYear: year, ganre: genre) { (movies, error) in
+            apiManager.fetchSearchMovies(page: page, primaryReleaseYear: year, ganre: genre) { [weak self] (movies, error) in
                 if let error = error {
-                    print("Error searching movies: \(error.localizedDescription)")
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription )
                     completion(nil, error)
                 } else {
                     DispatchQueue.main.async {
@@ -294,9 +293,9 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
                 }
             }
         } else {
-            apiManager.fetchSearchTVSeries(page: page, firstAirDateYear: year, genre: genre) { (tvSeries, error) in
+            apiManager.fetchSearchTVSeries(page: page, firstAirDateYear: year, genre: genre) { [weak self] (tvSeries, error) in
                 if let error = error {
-                    print("Error searching TV series: \(error.localizedDescription)")
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                     completion(nil, error)
                 } else {
                     DispatchQueue.main.async {

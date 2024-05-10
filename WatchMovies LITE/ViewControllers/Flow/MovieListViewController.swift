@@ -70,8 +70,8 @@ class MovieListViewController: UIViewController {
     }
     
     func prepareUI() {
-        fetchMovies(for: currentSegmentIndex, page: 1) { movies, error, segmentIndex in
-               self.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
+        fetchMovies(for: currentSegmentIndex, page: 1) { [weak self]  movies, error, segmentIndex in
+               self?.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
            }
     }
 }
@@ -103,9 +103,7 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         loadMoreMoviesIfNeeded(for: currentSegmentIndex)
     }
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    
+        
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 160, height: 250)
     }
@@ -117,14 +115,12 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
-
 }
 
 extension MovieListViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
         showRateAndSupportActionSheet()
     }
-    
     
     func leftButtonTapped() { }
 }
@@ -175,24 +171,24 @@ extension MovieListViewController: FilterViewDelegate {
     private func fetchMovies(for segmentIndex: Int, page: Int, completion: @escaping ([Movie]?, Error?, Int) -> Void) {
         switch segmentIndex {
         case 0:
-            apiManager.fetchNowPlayingMovies(page: page) { movies, error in
+            apiManager.fetchNowPlayingMovies(page: page) { [weak self] movies, error in
                 completion(movies, error, segmentIndex)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 1:
-            apiManager.fetchPopularMovies(page: page) { movies, error in
+            apiManager.fetchPopularMovies(page: page) { [weak self] movies, error in
                 completion(movies, error, segmentIndex)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 2:
-            apiManager.fetchTopRatedMovies(page: page) { movies, error in
+            apiManager.fetchTopRatedMovies(page: page) { [weak self] movies, error in
                 completion(movies, error, segmentIndex)
                 if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 3:
@@ -219,7 +215,6 @@ extension MovieListViewController: FilterViewDelegate {
             self.collectionView.reloadData()
         }
     }
-
        
     private func loadMoreMoviesIfNeeded(for segmentIndex: Int) {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems

@@ -76,14 +76,14 @@ class CardViewController: UIViewController {
         let group = DispatchGroup()
         
         group.enter()
-        fetchMovies(page: fetchRandomPage()) { movies, error in
-            self.handleMovieResponse(movies: movies, error: error)
+        fetchMovies(page: fetchRandomPage()) { [weak self] movies, error in
+            self?.handleMovieResponse(movies: movies, error: error)
             group.leave()
         }
         
         group.enter()
-        fetchTVSeries(page: fetchRandomPage()) { tvSeries, error in
-            self.handleTVResponse(tvSeries: tvSeries, error: error)
+        fetchTVSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
+            self?.handleTVResponse(tvSeries: tvSeries, error: error)
             group.leave()
         }
         
@@ -141,20 +141,20 @@ class CardViewController: UIViewController {
     }
     
     private func fetchTVSeries(page: Int? = nil, completion: @escaping ([TVSeries]?, Error?) -> Void) {
-        apiManager.fetchPopularSeries(page: fetchRandomPage()) { tvSeries, error in
+        apiManager.fetchPopularSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
             completion(tvSeries, error)
             if let error = error {
-                self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                self?.showAlertDialog(title: "Error", message: error.localizedDescription)
             }
         }
     }
     
     private func fetchMovies(page: Int? = nil, completion: @escaping ([Movie]?, Error?) -> Void) {
         
-        apiManager.fetchPopularMovies(page: fetchRandomPage()) { movies, error in
+        apiManager.fetchPopularMovies(page: fetchRandomPage()) { [weak self] movies, error in
             completion(movies, error)
             if let error = error {
-                self.showAlertDialog(title: "Error", message: error.localizedDescription)
+                self?.showAlertDialog(title: "Error", message: error.localizedDescription)
             }
         }
     }
