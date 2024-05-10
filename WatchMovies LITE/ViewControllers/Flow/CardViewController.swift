@@ -25,6 +25,41 @@ class CardViewController: UIViewController {
     
     private var currentSegmentIndex = 0
     
+    let plusImage = UIImage(systemName: "heart.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 60, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
+    let minusImage = UIImage(systemName: "hand.thumbsdown.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 60, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
+
+    lazy var plusImageView: UIImageView = {
+        let imageView = UIImageView(image: self.plusImage)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    func animatePlusImage() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.plusImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.plusImageView.transform = .identity
+            }
+        }
+    }
+
+    func animateMinusImage() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.minusImageView.center.y -= 20
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.minusImageView.center.y += 20
+            }
+        }
+    }
+
+    lazy var minusImageView: UIImageView = {
+        let imageView = UIImageView(image: self.minusImage)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchInitialData()
@@ -62,13 +97,27 @@ class CardViewController: UIViewController {
         cardSwiper.datasource = self
         cardSwiper.delegate = self
         cardSwiper.register(nib: UINib(nibName: "CardCell", bundle: nil), forCellWithReuseIdentifier: "CardCell")
+        
+        view.addSubview(plusImageView)
+        view.addSubview(minusImageView)
+        
+        NSLayoutConstraint.activate([
+            plusImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            plusImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            minusImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            minusImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        
+        plusImageView.isHidden = true
+        minusImageView.isHidden = true
     }
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
-        navigationView.titleLabel.text = "Random"
+        navigationView.titleLabel.text = "Let's roll"
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
     }
@@ -136,7 +185,7 @@ class CardViewController: UIViewController {
         }
     }
     
-    private func loadMoreMoviesIfNeeded(for segmentIndex: Int) {
+    private func loadMoreMovies(for segmentIndex: Int) {
         fetchMovies(page: fetchRandomPage()) { movies, error in
             guard let newMovies = movies else {
                 return
@@ -150,7 +199,7 @@ class CardViewController: UIViewController {
         }
     }
     
-    private func loadMoreTVSeriesIfNeeded(for segmentIndex: Int) {
+    private func loadMoreTVSeries(for segmentIndex: Int) {
         fetchTVSeries(page: fetchRandomPage()) { tvSeries, error in
             guard let newTVSeries = tvSeries else {
                 return
@@ -217,7 +266,16 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
         }
         
         if swipeDirection == .Right, let media = media {
-            FavoritesManager.shared.saveToFavorites(data: media)
+            if !FavoritesManager.shared.isMediaFavorite(media: media) {
+                FavoritesManager.shared.saveToFavorites(data: media)
+            }
+            minusImageView.isHidden = true
+            plusImageView.isHidden = false
+            animatePlusImage()
+        } else if swipeDirection == .Left {
+            plusImageView.isHidden = true
+            minusImageView.isHidden = false
+            animateMinusImage()
         }
         
         switch currentSegmentIndex {
@@ -237,10 +295,41 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
     
     func didSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
         let threshold = 5
-        if index == movies.count - threshold {
-            loadMoreMoviesIfNeeded(for: currentSegmentIndex)
+        
+        switch currentSegmentIndex {
+        case 0:
+            if index == movies.count - threshold {
+                loadMoreMovies(for: currentSegmentIndex)
+            }
+        case 1:
+            if index == tvSeries.count - threshold {
+                loadMoreTVSeries(for: currentSegmentIndex)
+            }
+        default:
+            break
         }
+        plusImageView.isHidden = true
+        minusImageView.isHidden = true
     }
+    
+    func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
+          var mediaDetails: MediaDetails?
+          
+          switch currentSegmentIndex {
+          case 0:
+              if index < movies.count {
+                  mediaDetails = movies[index]
+                  router?.showDetailForm(with: mediaDetails!.id, isMovie: true, viewController: self, animated: false)
+              }
+          case 1:
+              if index < tvSeries.count {
+                  mediaDetails = tvSeries[index]
+                  router?.showDetailForm(with: mediaDetails!.id, isMovie: false, viewController: self, animated: false)
+              }
+          default:
+              break
+          }
+      }
 }
 
 extension CardViewController: NavigationHeaderViewDelegate {
@@ -276,6 +365,3 @@ extension CardViewController: FilterViewDelegate {
     
     func segment4() { }
 }
-
-
-

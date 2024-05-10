@@ -21,13 +21,10 @@ protocol MediaDetails {
 
 struct TVSeries: Codable, MediaDetails {
     
-    
-    
     var voteAverage: Double
     var genres: [Genre]
     var releaseDate: String?
     var firstAirDate: String?
-    
     let adult: Bool
     let backdropPath: String?
     let genreIds: [Int]
@@ -39,7 +36,6 @@ struct TVSeries: Codable, MediaDetails {
     let overview: String
     let popularity: Double?
     let posterPath: String?
-//    let firstAirDate: String
     let name: String?
     let voteCount: Int?
     let video: Bool?

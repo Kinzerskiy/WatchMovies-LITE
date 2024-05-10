@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 protocol CardsRouting: BaseRouting, DismissRouting {
+    func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
 }
 
 class CardsRouter: BaseRouter, CardsRouting {
@@ -47,6 +48,10 @@ class CardsRouter: BaseRouter, CardsRouting {
         }
         
         return navigationController!
+    }
+    
+    func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool) {
+        mainRouter?.showDetailForm(with: id, isMovie: isMovie, viewController: viewController, animated: true)
     }
     
     

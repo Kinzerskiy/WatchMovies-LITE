@@ -362,6 +362,7 @@
 		CED28FA32B6D20E6007DB4A8 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				CE50153A2BECEDBA0086887A /* CardViewController.swift */,
 				CED28F8C2B6CF1FC007DB4A8 /* MovieListViewController.swift */,
 				CE0F05D92BD27648003BF2AD /* TVSeriesViewController.swift */,
 				CEC285702BD97CC400189979 /* SearchViewController.swift */,
@@ -369,7 +370,6 @@
 				CED28F8E2B6CF22A007DB4A8 /* DetailsViewController.swift */,
 				CED28F932B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift */,
 				CEACE52E2BE91D1F00B81A63 /* PersonViewController.swift */,
-				CE50153A2BECEDBA0086887A /* CardViewController.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -726,7 +726,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = P724DK85JV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchMovies LITE/Info.plist";
@@ -759,7 +759,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = P724DK85JV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchMovies LITE/Info.plist";

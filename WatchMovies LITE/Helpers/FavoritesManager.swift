@@ -46,6 +46,21 @@ class FavoritesManager {
         CoreDataManager.shared.saveContext()
     }
     
+    func isMediaFavorite(media: MediaDetails) -> Bool {
+        let context = CoreDataManager.shared.context
+        let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
+        request.predicate = NSPredicate(format: "mediaId == %ld", media.id)
+        request.fetchLimit = 1
+        
+        do {
+            let favorites = try context.fetch(request)
+            return !favorites.isEmpty
+        } catch {
+            print("Error fetching favorite media: \(error)")
+            return false
+        }
+    }
+    
     func fetchFavoriteMedia(for data: MediaDetails) -> Favorites? {
         let context = CoreDataManager.shared.context
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()

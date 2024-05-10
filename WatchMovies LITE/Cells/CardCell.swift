@@ -15,16 +15,19 @@ class CardCollectionViewCell: CardCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        prepareUI()
+    }
+    
+    func prepareUI() {
+        layer.masksToBounds = false
         imageView.clipsToBounds = true
+        self.layer.cornerRadius = 15
+        imageView.layer.cornerRadius = 15
+        nameLabel.font = UIFont.lotaRegular(ofSize: 25)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.layer.cornerRadius = 12
     }
     
     func fill(withData data: Any) {
