@@ -19,21 +19,30 @@ protocol MediaDetails {
 
 //MARK: - TVSeries
 
-struct TVSeries: Codable {
+struct TVSeries: Codable, MediaDetails {
+    
+    
+    
+    var voteAverage: Double
+    var genres: [Genre]
+    var releaseDate: String?
+    var firstAirDate: String?
+    
     let adult: Bool
     let backdropPath: String?
     let genreIds: [Int]
     let id: Int
-    let originCountry: [String]
-    let originalLanguage: String
-    let originalName: String
+    let originCountry: [String]?
+    let originalLanguage: String?
+    let originalTitle: String?
+    let originalName: String?
     let overview: String
-    let popularity: Double
+    let popularity: Double?
     let posterPath: String?
-    let firstAirDate: String
-    let name: String
-    let voteAverage: Double
-    let voteCount: Int
+//    let firstAirDate: String
+    let name: String?
+    let voteCount: Int?
+    let video: Bool?
 
     enum CodingKeys: String, CodingKey {
         case adult
@@ -41,15 +50,41 @@ struct TVSeries: Codable {
         case genreIds = "genre_ids"
         case id
         case originCountry = "origin_country"
+        case releaseDate = "release_date"
         case originalLanguage = "original_language"
+        case originalTitle = "original_title"
+        
         case originalName = "original_name"
         case overview
         case popularity
         case posterPath = "poster_path"
         case firstAirDate = "first_air_date"
         case name
+        case video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        originalName = try container.decode(String.self, forKey: .originalName)
+        overview = try container.decode(String.self, forKey: .overview)
+        backdropPath = try container.decodeIfPresent(String.self, forKey: .backdropPath)
+        genreIds = try container.decodeIfPresent([Int].self, forKey: .genreIds) ?? []
+        originalLanguage = try container.decodeIfPresent(String.self, forKey: .originalLanguage) ?? ""
+        originalTitle = try container.decodeIfPresent(String.self, forKey: .originalTitle) ?? ""
+        genres = genreIds.map { Genre(id: $0, name: "") }
+        releaseDate = try container.decodeIfPresent(String.self, forKey: .releaseDate)
+        firstAirDate = try container.decodeIfPresent(String.self, forKey: .firstAirDate)
+        adult = try container.decode(Bool.self, forKey: .adult)
+        originCountry = try container.decodeIfPresent([String].self, forKey: .originCountry)
+        popularity = try container.decodeIfPresent(Double.self, forKey: .popularity) ?? 0.0
+        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
+        voteCount = try container.decodeIfPresent(Int.self, forKey: .voteCount)
+        video = try container.decodeIfPresent(Bool.self, forKey: .video)
+        voteAverage = try container.decode(Double.self, forKey: .voteAverage)
     }
 }
 

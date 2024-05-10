@@ -71,7 +71,6 @@ class TVSeriesViewController: UIViewController {
                self.handleFetchResponse(tvSeries: tvSeries, error: error, segmentIndex: segmentIndex)
            }
     }
-
 }
 
 extension TVSeriesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

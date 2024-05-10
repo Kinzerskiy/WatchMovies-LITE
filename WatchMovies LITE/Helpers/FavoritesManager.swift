@@ -29,6 +29,18 @@ class FavoritesManager {
             favorite.title = tvSeriesDetails.name
             favorite.isMovie = false
             favorite.isFavorite = true
+        } else if let movie = data as? Movie {
+            favorite.posterPath = movie.posterPath
+            favorite.mediaId = Int64(movie.id)
+            favorite.title = movie.title
+            favorite.isMovie = true
+            favorite.isFavorite = true
+        } else if let  tvSeries = data as? TVSeries {
+            favorite.posterPath =  tvSeries.posterPath
+            favorite.mediaId = Int64( tvSeries.id)
+            favorite.title =  tvSeries.name
+            favorite.isMovie = false
+            favorite.isFavorite = true
         }
         
         CoreDataManager.shared.saveContext()

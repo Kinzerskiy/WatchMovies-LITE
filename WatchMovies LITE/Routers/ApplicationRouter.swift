@@ -13,6 +13,7 @@ enum ApplicationStoryType {
     case tvSeriesList
     case search
     case favorites
+    case cards
 }
 
 protocol ApplicationRouting: BaseRouting {
@@ -33,6 +34,7 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
     private var tvSeriesListRouter: TVSeriesListRouter?
     private var favoritesRouter: FavoritesRouter?
     private var searchRouter: SearchRouter?
+    private var cardsRouter: CardsRouter?
     
     // MARK: - Memory management
     
@@ -48,6 +50,7 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         tvSeriesListRouter = assemblyTVSeriesListRouter()
         favoritesRouter = assemblyFavoritesRouter()
         searchRouter = assemblySearchRouter()
+        cardsRouter = assemblyCardsRouter()
     }
     
     // MARK: - BaseRouting
@@ -55,6 +58,7 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
     func initialViewController() -> UIViewController? {
         
         let rootItem: Array<UIViewController> = [
+            intialialViewControllerForItem(with: .cards),
             intialialViewControllerForItem(with: .movieList),
             intialialViewControllerForItem(with: .tvSeriesList),
             intialialViewControllerForItem(with: .search),
@@ -78,7 +82,7 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         Defaults.firstInitialization = false
         router.initialViewController().dismiss(animated: false)
         
-        switchToStory(with: .movieList)
+        switchToStory(with: .cards)
     }
     
     // MARK: - Assembly
@@ -118,6 +122,12 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         return router
     }
     
+    func assemblyCardsRouter() -> CardsRouter {
+        let router = CardsRouter(with: navigationAssembly())
+        
+        return router
+    }
+    
     // MARK: - Private
     
     private func switchToStory(with type: ApplicationStoryType) {
@@ -143,6 +153,8 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
             return (tvSeriesListRouter?.initialViewController())!
         case .search:
             return (searchRouter?.initialViewController())!
+        case .cards:
+            return (cardsRouter?.initialViewController())!
         }
     }
 }

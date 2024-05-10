@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "verticalcardswiper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JoniVR/VerticalCardSwiper",
+      "state" : {
+        "revision" : "16e5a996ee9b6951a1323a9e875da1074741d96c",
+        "version" : "2.3.1"
+      }
+    },
+    {
       "identity" : "youtube-ios-player-helper",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/youtube/youtube-ios-player-helper.git",

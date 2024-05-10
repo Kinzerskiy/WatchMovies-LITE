@@ -62,8 +62,6 @@ class SearchRouter: BaseRouter, SearchRouting {
         vc.genreName = genreName
         vc.ganreID = ganreID
         vc.year = year
-       
-//        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -75,7 +73,6 @@ class SearchRouter: BaseRouter, SearchRouting {
         vc.ganreID = ganreID
         vc.year = year
         
-//        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     

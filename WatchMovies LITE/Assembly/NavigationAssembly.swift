@@ -35,12 +35,18 @@ protocol FavoritesNavigationAssemblyProtocol {
     func assemblyFavoriteMoviesViewController(with router: FavoritesRouting) -> FavoriteMoviesViewController
 }
 
+protocol CardNavigationAssemblyProtocol {
+    func assemblyCardViewController(with router: CardsRouting) -> CardViewController
+}
+
 protocol NavigationAssemblyProtocol: CommonNavigationAssemblyProtocol,
                                      MainNavigationAssemblyProtocol,
                                      MovieListNavigationAssemblyProtocol,
                                      FavoritesNavigationAssemblyProtocol,
                                      TVSeriesListNavigationAssemblyProtocol,
-                                     SearchNavigationAssemblyProtocol {
+                                     SearchNavigationAssemblyProtocol,
+                                     CardNavigationAssemblyProtocol
+{
     
 }
 
@@ -51,7 +57,8 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     private static let tvSeriesListStoryboardName = "TVSeriesList"
     private static let favoritesStoryboardName = "Favorites"
     private static let searchStoryboardName = "Search"
-    
+    private static let cardsStoryboardName = "Cards"
+
     // MARK: - Storyboard
     
     func mainStoryboard() -> UIStoryboard {
@@ -72,6 +79,10 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     
     func searchStoryboard() -> UIStoryboard {
         return UIStoryboard(name: NavigationAssembly.searchStoryboardName, bundle: Bundle(for: NavigationAssembly.self))
+    }
+    
+    func cardsStoryboard() -> UIStoryboard {
+        return UIStoryboard(name: NavigationAssembly.cardsStoryboardName, bundle: Bundle(for: NavigationAssembly.self))
     }
     
     // MARK: Common
@@ -153,6 +164,15 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     
     func assemblyFavoriteMoviesViewController(with router: FavoritesRouting) -> FavoriteMoviesViewController {
         let vc: FavoriteMoviesViewController = favoritesStoryboard().instantiateViewController(withIdentifier: String(describing: FavoriteMoviesViewController.self)) as! FavoriteMoviesViewController
+        vc.router = router
+        
+        return vc
+    }
+    
+    // MARK: Cards
+    
+    func assemblyCardViewController(with router: CardsRouting) -> CardViewController {
+        let vc: CardViewController = cardsStoryboard().instantiateViewController(withIdentifier: String(describing: CardViewController.self)) as! CardViewController
         vc.router = router
         
         return vc

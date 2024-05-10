@@ -10,6 +10,12 @@
 		CE0F05DA2BD27648003BF2AD /* TVSeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F05D92BD27648003BF2AD /* TVSeriesViewController.swift */; };
 		CE0F05DC2BD27BFC003BF2AD /* TVSeriesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F05DB2BD27BFC003BF2AD /* TVSeriesListRouter.swift */; };
 		CE0F05DE2BD28028003BF2AD /* TVSeriesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0F05DD2BD28028003BF2AD /* TVSeriesList.storyboard */; };
+		CE5015372BECD8940086887A /* VerticalCardSwiper in Frameworks */ = {isa = PBXBuildFile; productRef = CE5015362BECD8940086887A /* VerticalCardSwiper */; };
+		CE5015392BECD9650086887A /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5015382BECD9650086887A /* Cards.storyboard */; };
+		CE50153B2BECEDBA0086887A /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50153A2BECEDBA0086887A /* CardViewController.swift */; };
+		CE50153D2BECEDD50086887A /* CardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50153C2BECEDD50086887A /* CardRouter.swift */; };
+		CE5015422BED19BC0086887A /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5015402BED19BC0086887A /* CardCell.swift */; };
+		CE5015432BED19BC0086887A /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5015412BED19BC0086887A /* CardCell.xib */; };
 		CE78C7552BDD367600C4221D /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78C7532BDD367500C4221D /* SearchResultViewController.swift */; };
 		CE838D962BE7C34B00298CEF /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE838D942BE7C34B00298CEF /* VideoTableViewCell.swift */; };
 		CE838D972BE7C34B00298CEF /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE838D952BE7C34B00298CEF /* VideoTableViewCell.xib */; };
@@ -85,6 +91,11 @@
 		CE0F05D92BD27648003BF2AD /* TVSeriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSeriesViewController.swift; sourceTree = "<group>"; };
 		CE0F05DB2BD27BFC003BF2AD /* TVSeriesListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSeriesListRouter.swift; sourceTree = "<group>"; };
 		CE0F05DD2BD28028003BF2AD /* TVSeriesList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TVSeriesList.storyboard; sourceTree = "<group>"; };
+		CE5015382BECD9650086887A /* Cards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
+		CE50153A2BECEDBA0086887A /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		CE50153C2BECEDD50086887A /* CardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRouter.swift; sourceTree = "<group>"; };
+		CE5015402BED19BC0086887A /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		CE5015412BED19BC0086887A /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		CE78C7532BDD367500C4221D /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		CE838D942BE7C34B00298CEF /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		CE838D952BE7C34B00298CEF /* VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
@@ -160,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5015372BECD8940086887A /* VerticalCardSwiper in Frameworks */,
 				CED28FB22B6D5602007DB4A8 /* SDWebImageMapKit in Frameworks */,
 				CED28FB02B6D5602007DB4A8 /* SDWebImage in Frameworks */,
 				CE838D9A2BE7C56200298CEF /* YouTubeiOSPlayerHelper in Frameworks */,
@@ -295,6 +307,7 @@
 				CE0F05DD2BD28028003BF2AD /* TVSeriesList.storyboard */,
 				CEC2856C2BD97C3700189979 /* Search.storyboard */,
 				CED28F832B6CEEA6007DB4A8 /* Favorites.storyboard */,
+				CE5015382BECD9650086887A /* Cards.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -309,6 +322,7 @@
 				CE0F05DB2BD27BFC003BF2AD /* TVSeriesListRouter.swift */,
 				CEC2856E2BD97C5400189979 /* SearchRouter.swift */,
 				CED28F902B6CF394007DB4A8 /* FavoritesRouter.swift */,
+				CE50153C2BECEDD50086887A /* CardRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -355,6 +369,7 @@
 				CED28F8E2B6CF22A007DB4A8 /* DetailsViewController.swift */,
 				CED28F932B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift */,
 				CEACE52E2BE91D1F00B81A63 /* PersonViewController.swift */,
+				CE50153A2BECEDBA0086887A /* CardViewController.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -391,6 +406,8 @@
 				CE9247F12BD3B0730082033F /* MovieDetailCells */,
 				CE9247F62BD3B2480082033F /* SimilarCells */,
 				CEACE52B2BE8E07500B81A63 /* CastCells */,
+				CE5015402BED19BC0086887A /* CardCell.swift */,
+				CE5015412BED19BC0086887A /* CardCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -426,6 +443,7 @@
 				CED28FAF2B6D5602007DB4A8 /* SDWebImage */,
 				CED28FB12B6D5602007DB4A8 /* SDWebImageMapKit */,
 				CE838D992BE7C56200298CEF /* YouTubeiOSPlayerHelper */,
+				CE5015362BECD8940086887A /* VerticalCardSwiper */,
 			);
 			productName = test_movieList;
 			productReference = CECC78A02B6CE38C008815EF /* WatchMovies LITE.app */;
@@ -458,6 +476,7 @@
 			packageReferences = (
 				CED28FAE2B6D5602007DB4A8 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
+				CE5015352BECD8930086887A /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */,
 			);
 			productRefGroup = CECC78A12B6CE38C008815EF /* Products */;
 			projectDirPath = "";
@@ -477,12 +496,14 @@
 				CED28FAC2B6D5225007DB4A8 /* ListCollectionViewCell.xib in Resources */,
 				CE96C5282BD11665000ECB7B /* FilterView.xib in Resources */,
 				CEADF1042BD6C12500A6B542 /* SimilarCollectionViewCell.xib in Resources */,
+				CE5015392BECD9650086887A /* Cards.storyboard in Resources */,
 				CEADF0EF2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf in Resources */,
 				CEC2856D2BD97C3700189979 /* Search.storyboard in Resources */,
 				CEADF1022BD6C12500A6B542 /* SimilarTableViewCell.xib in Resources */,
 				CE838D972BE7C34B00298CEF /* VideoTableViewCell.xib in Resources */,
 				CECC78B32B6CE396008815EF /* LaunchScreen.storyboard in Resources */,
 				CEADF0F02BD66B3100A6B542 /* LotaGrotesque-Bold.otf in Resources */,
+				CE5015432BED19BC0086887A /* CardCell.xib in Resources */,
 				CEADF0FA2BD6C10900A6B542 /* OverviewTableViewCell.xib in Resources */,
 				CECC78B02B6CE396008815EF /* Assets.xcassets in Resources */,
 				CEACE5262BE8DE6E00B81A63 /* CastTableViewCell.xib in Resources */,
@@ -528,8 +549,10 @@
 				CEACE5372BE9711200B81A63 /* CastMediaTableViewCell.swift in Sources */,
 				CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */,
 				CED28F912B6CF394007DB4A8 /* FavoritesRouter.swift in Sources */,
+				CE50153D2BECEDD50086887A /* CardRouter.swift in Sources */,
 				CED28F9A2B6CFB4D007DB4A8 /* Defaults.swift in Sources */,
 				CEADF0F42BD670CA00A6B542 /* UIFont+extension.swift in Sources */,
+				CE5015422BED19BC0086887A /* CardCell.swift in Sources */,
 				CECC78BD2B6CE4A7008815EF /* NavigationAssembly.swift in Sources */,
 				CED28FA82B6D4975007DB4A8 /* APIManager.swift in Sources */,
 				CECC78BB2B6CE41B008815EF /* ApplicationAssembly.swift in Sources */,
@@ -550,6 +573,7 @@
 				CE96C52A2BD18CB8000ECB7B /* MovieModel.swift in Sources */,
 				CE0F05DC2BD27BFC003BF2AD /* TVSeriesListRouter.swift in Sources */,
 				CECC78BF2B6CE598008815EF /* BaseAssembly.swift in Sources */,
+				CE50153B2BECEDBA0086887A /* CardViewController.swift in Sources */,
 				CECC78A62B6CE38C008815EF /* SceneDelegate.swift in Sources */,
 				CEACE5252BE8DE6E00B81A63 /* CastTableViewCell.swift in Sources */,
 			);
@@ -786,6 +810,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CE5015352BECD8930086887A /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JoniVR/VerticalCardSwiper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
 		CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper.git";
@@ -805,6 +837,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CE5015362BECD8940086887A /* VerticalCardSwiper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE5015352BECD8930086887A /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */;
+			productName = VerticalCardSwiper;
+		};
 		CE838D992BE7C56200298CEF /* YouTubeiOSPlayerHelper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;

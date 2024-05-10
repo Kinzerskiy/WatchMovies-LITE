@@ -169,7 +169,6 @@ class DetailsViewController: UIViewController {
         }
     }
     
-
     private func fetchCast() {
         guard let id = selectedId else { return }
         if isMovie ?? false {

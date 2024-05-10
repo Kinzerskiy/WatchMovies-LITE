@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Card View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController restorationIdentifier="CardViewController" storyboardIdentifier="CardViewController" id="Y6W-OH-hqX" customClass="CardViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7v0-kA-ipn">
+                                <rect key="frame" x="10" y="64" width="373" height="45"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="ddO-Bf-tfL"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7u-bp-j6U" customClass="VerticalCardSwiper" customModule="VerticalCardSwiper">
+                                <rect key="frame" x="15" y="117" width="363" height="686"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7v0-kA-ipn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="2V8-9Z-Mvr"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Q7u-bp-j6U" secondAttribute="bottom" constant="15" id="AtN-gS-o91"/>
+                            <constraint firstItem="Q7u-bp-j6U" firstAttribute="top" secondItem="7v0-kA-ipn" secondAttribute="bottom" constant="8" symbolic="YES" id="SLT-9p-ngp"/>
+                            <constraint firstItem="7v0-kA-ipn" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="ZJV-3G-H61"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7v0-kA-ipn" secondAttribute="trailing" constant="10" id="gfI-cu-jra"/>
+                            <constraint firstItem="Q7u-bp-j6U" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="rgo-Bv-y9x"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Q7u-bp-j6U" secondAttribute="trailing" constant="15" id="wLm-vq-h7H"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cardSwiper" destination="Q7u-bp-j6U" id="c4K-MQ-PLx"/>
+                        <outlet property="segmentBarView" destination="7v0-kA-ipn" id="vI0-LO-zFB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
