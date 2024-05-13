@@ -60,6 +60,11 @@ class ListCollectionViewCell: UICollectionViewCell {
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (tvCast.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
+        } else if let favorite = data as? Favorites {
+            titleLabel.text = favorite.title
+            let baseURL = "https://image.tmdb.org/t/p/w500"
+            let posterURL = URL(string: baseURL + (favorite.posterPath ?? ""))
+            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
         }
     }
 }

@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 protocol SearchRouting: BaseRouting, DismissRouting {
-    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool)
+    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, genreID: String?, year: String?, viewController: UIViewController, animated: Bool)
     
-    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool)
+    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, genreID: String?, year: String?, viewController: UIViewController, animated: Bool)
     
     func showDetailForm(with id: Int, isMovie: Bool, viewController: UIViewController, animated: Bool)
 }
@@ -54,23 +54,23 @@ class SearchRouter: BaseRouter, SearchRouting {
         return navigationController!
     }
     
-    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool) {
+    func showSearchResultForm(with movies: [Movie], isMovie: Bool, genreName: String?, genreID: String?, year: String?, viewController: UIViewController, animated: Bool) {
         
         let vc: SearchResultViewController = assembly.assemblySearchResultViewController(with: self)
         vc.searchResults = movies
         vc.isMovie = isMovie
         vc.genreName = genreName
-        vc.ganreID = ganreID
+        vc.genreID = genreID
         vc.year = year
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, ganreID: String?, year: String?, viewController: UIViewController, animated: Bool) {
+    func showSearchResultForm(with tvSeries: [TVSeries], isMovie: Bool, genreName: String?, genreID: String?, year: String?, viewController: UIViewController, animated: Bool) {
         let vc: SearchResultViewController = assembly.assemblySearchResultViewController(with: self)
         vc.searchResults = tvSeries
         vc.isMovie = isMovie
         vc.genreName = genreName
-        vc.ganreID = ganreID
+        vc.genreID = genreID
         vc.year = year
         
         navigationController?.pushViewController(vc, animated: true)

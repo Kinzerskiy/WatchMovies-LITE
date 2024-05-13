@@ -20,7 +20,7 @@ class SearchResultViewController: UIViewController {
     var firsId: Int?
     
     var genreName: String?
-    var ganreID: String?
+    var genreID: String?
     var year: String?
     var includeAdult: Bool?
     
@@ -63,7 +63,7 @@ class SearchResultViewController: UIViewController {
 
         switch mediaType {
         case .movie:
-            APIManager.shared.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, ganre: genreID) { [weak self] movies, error in
+            APIManager.shared.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, genre: genreID) { [weak self] movies, error in
                 completion(movies, error)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
@@ -85,7 +85,7 @@ class SearchResultViewController: UIViewController {
 
         if lastVisibleIndexPath.item >= searchResults.count - 4 {
             currentPage += 1
-            fetchSearchResults(page: currentPage, genreName: genreName, genreID: ganreID) { [weak self] newSearchResults, error in
+            fetchSearchResults(page: currentPage, genreName: genreName, genreID: genreID) { [weak self] newSearchResults, error in
                 guard let self = self, let newSearchResults = newSearchResults else { return }
                 self.searchResults += newSearchResults
                 DispatchQueue.main.async {

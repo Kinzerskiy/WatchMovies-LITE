@@ -21,22 +21,33 @@ class FavoritesManager {
             favorite.posterPath = movieDetails.posterPath
             favorite.mediaId = Int64(movieDetails.id)
             favorite.title = movieDetails.title
+            let genres = movieDetails.genres.map { $0.name }.joined(separator: ", ")
+              favorite.genre = genres
+              print("Saving favorite with genres: \(genres)")
+
             favorite.isMovie = true
             favorite.isFavorite = true
         } else if let tvSeriesDetails = data as? TVSeriesDetails {
             favorite.posterPath = tvSeriesDetails.posterPath
+            let genres = tvSeriesDetails.genres.map { $0.name }.joined(separator: ", ")
+              favorite.genre = genres
+              print("Saving favorite with genres: \(genres)")
             favorite.mediaId = Int64(tvSeriesDetails.id)
             favorite.title = tvSeriesDetails.name
             favorite.isMovie = false
             favorite.isFavorite = true
         } else if let movie = data as? Movie {
             favorite.posterPath = movie.posterPath
+            let genres = movie.genres.map { $0.name }.joined(separator: ", ")
+              favorite.genre = genres
+              print("Saving favorite with genres: \(genres)")
             favorite.mediaId = Int64(movie.id)
             favorite.title = movie.title
             favorite.isMovie = true
             favorite.isFavorite = true
         } else if let  tvSeries = data as? TVSeries {
             favorite.posterPath =  tvSeries.posterPath
+            favorite.genre = tvSeries.genres.map { $0.name }.joined(separator: ", ")
             favorite.mediaId = Int64( tvSeries.id)
             favorite.title =  tvSeries.name
             favorite.isMovie = false
@@ -44,6 +55,7 @@ class FavoritesManager {
         }
         
         CoreDataManager.shared.saveContext()
+        
     }
     
     func isMediaFavorite(media: MediaDetails) -> Bool {

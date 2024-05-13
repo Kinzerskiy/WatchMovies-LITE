@@ -21,7 +21,11 @@ class OverviewTableViewCell: UITableViewCell, DescribableCell {
         overviewText.showsVerticalScrollIndicator = false
     }
     
-    func fill(with data: MediaDetails) {
-           overviewText.text = data.overview
-       }
+    func fill(with data: Any) {
+        if let data = data as? MovieDetails {
+            overviewText.text = data.overview
+        } else if let data = data as? TVSeriesDetails {
+            overviewText.text = data.overview
+        }
+    }
 }

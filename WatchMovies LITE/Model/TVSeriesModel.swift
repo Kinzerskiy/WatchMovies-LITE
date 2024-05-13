@@ -7,20 +7,17 @@
 
 import Foundation
 
-protocol MediaDetails {
-    var id: Int { get }
-    var posterPath: String? { get }
-    var genres: [Genre] { get }
-    var voteAverage: Double { get }
-    var releaseDate: String? { get }
-    var firstAirDate: String? { get }
-    var overview: String { get }
-}
+//protocol MediaDetails {
+//    var id: Int { get }
+//    var isMovie: Bool? { get }
+//    var isWatched: Bool? { get }
+//}
 
 //MARK: - TVSeries
 
-struct TVSeries: Codable, MediaDetails {
-    
+struct TVSeries: Codable {
+    var isMovie: Bool?
+    var isWatched: Bool?
     var voteAverage: Double
     var genres: [Genre]
     var releaseDate: String?
@@ -108,7 +105,7 @@ enum OriginalLanguage: String, Codable {
 
 //MARK: - TVSeriesDetails
 
-struct TVSeriesDetails: Codable, MediaDetails {
+struct TVSeriesDetails: Codable /*MediaDetails*/ {
     var firstAirDate: String?
     
     var releaseDate: String?

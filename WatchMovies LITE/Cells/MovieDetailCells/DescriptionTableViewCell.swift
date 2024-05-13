@@ -17,7 +17,7 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
     
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var companyLogo: UIImageView!
-    @IBOutlet weak var ganreName: UILabel!
+    @IBOutlet weak var genreName: UILabel!
     @IBOutlet weak var voteAverage: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var bookMark: UIButton!
@@ -97,7 +97,7 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
         let genres = data.genres.map({ $0.name }).joined(separator: ", ")
         let genresText = NSAttributedString(string: genres, attributes: blackAttributes)
         genreText.append(genresText)
-        ganreName.attributedText = genreText
+        genreName.attributedText = genreText
         
         let rateText = NSMutableAttributedString(string: "Rate: ", attributes: orangeAttributes)
         let rateValue = NSAttributedString(string: "\(data.voteAverage)", attributes: blackAttributes)

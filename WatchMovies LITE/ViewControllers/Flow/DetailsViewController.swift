@@ -107,6 +107,7 @@ class DetailsViewController: UIViewController {
         if isMovie {
             APIManager.shared.fetchMovieDetails(movieId: id) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
+                print(response)
                 self.movieDetails = response
                 self.fetchSimilarMedia(completion: completion)
                 self.fetchVideos()

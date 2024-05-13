@@ -110,7 +110,7 @@
             <connections>
                 <outlet property="bookMark" destination="lP3-Xo-CBa" id="Fwh-Ic-VWS"/>
                 <outlet property="companyLogo" destination="YPF-5v-THj" id="vl9-Z4-u37"/>
-                <outlet property="ganreName" destination="cL9-dN-IVX" id="O97-tK-ZwM"/>
+                <outlet property="genreName" destination="cL9-dN-IVX" id="O97-tK-ZwM"/>
                 <outlet property="moviePoster" destination="NTa-Nh-Wzk" id="Xhn-Yx-fIi"/>
                 <outlet property="releaseDate" destination="546-YL-A8c" id="39f-uS-UWR"/>
                 <outlet property="shareButton" destination="4Id-zd-Cdl" id="dOM-IV-DIc"/>

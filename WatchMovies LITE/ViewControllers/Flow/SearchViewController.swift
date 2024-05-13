@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var segmentBarView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var yearPicker: UIPickerView!
-    @IBOutlet weak var ganrePicker: UIPickerView!
+    @IBOutlet weak var genrePicker: UIPickerView!
     
     var searchButtonEnabled: Bool {
         return selectedYear != nil && selectedGenre != nil
@@ -82,9 +82,9 @@ class SearchViewController: UIViewController {
         yearPicker.delegate = self
         yearPicker.selectRow(0, inComponent: 0, animated: true)
         
-        ganrePicker.dataSource = self
-        ganrePicker.delegate = self
-        ganrePicker.selectRow(0, inComponent: 0, animated: true)
+        genrePicker.dataSource = self
+        genrePicker.delegate = self
+        genrePicker.selectRow(0, inComponent: 0, animated: true)
         
     }
     
@@ -96,7 +96,7 @@ class SearchViewController: UIViewController {
     
     @IBAction func searchAction(_ sender: Any) {
         let selectedYearRow = yearPicker.selectedRow(inComponent: 0)
-        let selectedGenreRow = ganrePicker.selectedRow(inComponent: 0)
+        let selectedGenreRow = genrePicker.selectedRow(inComponent: 0)
         
         if selectedYearRow != 0 {
             selectedYear = String(Calendar.current.component(.year, from: Date()) - selectedYearRow + 1)
@@ -113,9 +113,9 @@ class SearchViewController: UIViewController {
                 print("Error searching: \(error.localizedDescription)")
             } else if let result = result {
                 if let movies = result as? [Movie] {
-                    self?.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
+                    self?.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, genreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
                 } else if let tvSeries = result as? [TVSeries] {
-                    self?.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, ganreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
+                    self?.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, genreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
                 }
             }
         }
@@ -170,7 +170,7 @@ extension SearchViewController: FilterViewDelegate {
                 case .western: return "Western"
                 }
             }
-            ganrePicker.reloadAllComponents()
+            genrePicker.reloadAllComponents()
         } else {
             tvGenres = TVGenreID.allCases.map { genreID in
                 switch genreID {
@@ -192,7 +192,7 @@ extension SearchViewController: FilterViewDelegate {
                 case .western: return "Western"
                 }
             }
-            ganrePicker.reloadAllComponents()
+            genrePicker.reloadAllComponents()
         }
     }
 }
@@ -207,7 +207,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         if pickerView == yearPicker {
             let currentYear = Calendar.current.component(.year, from: Date())
             return currentYear - 1900 + 1
-        } else if pickerView == ganrePicker {
+        } else if pickerView == genrePicker {
             if currentSegmentIndex == 0 {
                 return MovieGenreID.allCases.count
             } else {
@@ -240,7 +240,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
                 label.backgroundColor = UIColor.black
                 label.textColor = UIColor.white
             }
-        } else if pickerView == ganrePicker {
+        } else if pickerView == genrePicker {
             if currentSegmentIndex == 0 {
                 if row == 0 {
                     label.attributedText = NSAttributedString(string: "Select Genre", attributes: attributes)
@@ -270,7 +270,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         if pickerView == yearPicker {
             let currentYear = Calendar.current.component(.year, from: Date())
             selectedYear = String(currentYear - row)
-        } else if pickerView == ganrePicker {
+        } else if pickerView == genrePicker {
             selectedGenre = row == 0 ? nil : currentSegmentIndex == 0 ? movieGenres[row] : tvGenres[row]
         }
         searchButton.isEnabled = selectedYear != nil || selectedGenre != nil
@@ -281,7 +281,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         let page = 1
 
         if currentSegmentIndex == 0 {
-            APIManager.shared.fetchSearchMovies(page: page, primaryReleaseYear: year, ganre: genre) { [weak self] (movies, error) in
+            APIManager.shared.fetchSearchMovies(page: page, primaryReleaseYear: year, genre: genre) { [weak self] (movies, error) in
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription )
                     completion(nil, error)
