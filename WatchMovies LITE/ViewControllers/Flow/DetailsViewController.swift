@@ -190,10 +190,10 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    private func checkIfInFavorites(mediaId: Int) -> Bool {
+    private func checkIfInFavorites(id: Int) -> Bool {
         let context = CoreDataManager.shared.context
         let fetchRequest: NSFetchRequest<Favorites> = Favorites.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "mediaId == %ld", Int64(mediaId))
+        fetchRequest.predicate = NSPredicate(format: "id == %ld", Int64(id))
         do {
             let result = try context.fetch(fetchRequest)
             return !result.isEmpty
@@ -239,10 +239,8 @@ extension DetailsViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionTableViewCell", for: indexPath) as! DescriptionTableViewCell
             if let movieDetails = movieDetails {
                 cell.fill(with: movieDetails)
-                cell.updateFavoriteStatus(isFavorite: checkIfInFavorites(mediaId: Int(Int64(movieDetails.id))))
             } else if let tvSeriesDetails = tvSeriesDetails {
                 cell.fill(with: tvSeriesDetails)
-                cell.updateFavoriteStatus(isFavorite: checkIfInFavorites(mediaId: Int(Int64(tvSeriesDetails.id))))
             }
             return cell
         } else if indexPath.row == 1 {

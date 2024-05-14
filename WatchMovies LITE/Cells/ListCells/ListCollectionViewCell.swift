@@ -17,7 +17,10 @@ class ListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-
+    @IBOutlet weak var watchedImage: UIImageView!
+    @IBOutlet weak var isToWatchImage: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareUI()
@@ -37,6 +40,9 @@ class ListCollectionViewCell: UICollectionViewCell {
         posterImageView.clipsToBounds = true
         blurView.backgroundColor = UIColor(white: 1, alpha: 0.4)
         contentView.isUserInteractionEnabled = true
+        
+        watchedImage.isHidden = true
+        isToWatchImage.isHidden = true
     }
     
     func fill(withData data: Any) {
@@ -46,6 +52,18 @@ class ListCollectionViewCell: UICollectionViewCell {
             let posterURL = URL(string: baseURL + (tvShow.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
         } else if let movie = data as? Movie {
+            if let favorite = FavoritesManager.shared.fetchFavoriteMedia(for: movie) {
+                 if favorite.isWatchingType {
+                     watchedImage.isHidden = false
+                     isToWatchImage.isHidden = true
+                 } else if !favorite.isWatchingType {
+                     watchedImage.isHidden = true
+                     isToWatchImage.isHidden = false
+                 }
+             } else {
+                 watchedImage.isHidden = true
+                 isToWatchImage.isHidden = true
+             }
             titleLabel.text = movie.title
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (movie.posterPath ?? ""))
@@ -60,12 +78,14 @@ class ListCollectionViewCell: UICollectionViewCell {
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (tvCast.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
-        } else if let favorite = data as? Favorites {
-            titleLabel.text = favorite.title
-            let baseURL = "https://image.tmdb.org/t/p/w500"
-            let posterURL = URL(string: baseURL + (favorite.posterPath ?? ""))
-            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
-        }
+        } 
+        
+//        else if let favorite = data as? Favorites {
+//            titleLabel.text = favorite.title
+//            let baseURL = "https://image.tmdb.org/t/p/w500"
+//            let posterURL = URL(string: baseURL + (favorite.posterPath ?? ""))
+//            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder_image"))
+//        }
     }
 }
 

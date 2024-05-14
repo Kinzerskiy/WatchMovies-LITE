@@ -71,30 +71,30 @@ class FavoriteMoviesViewController: UIViewController {
       
     
     func fetchFavoriteMedia() {
-           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-               return
-           }
-           let context = appDelegate.persistentContainer.viewContext
-           
-           do {
-               let allFavorites = try context.fetch(Favorites.fetchRequest())
-               
-               for favorite in allFavorites {
-                   if let genre = favorite.genre {
-                       if favoritesByGenre[genre] == nil {
-                           genres.append(genre)
-                           favoritesByGenre[genre] = []
-                       }
-                       favoritesByGenre[genre]?.append(favorite)
-                   }
-               }
-               
-               genres.sort()
-               tableView.reloadData()
-               updateEmptyLabelVisibility()
-           } catch {
-               print("Error fetching favorite movies: \(error)")
-           }
+//           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//               return
+//           }
+//           let context = appDelegate.persistentContainer.viewContext
+//           
+//           do {
+//               let allFavorites = try context.fetch(Favorites.fetchRequest())
+//               
+//               for favorite in allFavorites {
+//                   if let genre = favorite.genre {
+//                       if favoritesByGenre[genre] == nil {
+//                           genres.append(genre)
+//                           favoritesByGenre[genre] = []
+//                       }
+//                       favoritesByGenre[genre]?.append(favorite)
+//                   }
+//               }
+//               
+//               genres.sort()
+//               tableView.reloadData()
+//               updateEmptyLabelVisibility()
+//           } catch {
+//               print("Error fetching favorite movies: \(error)")
+//           }
        }
     
     func handleFavoriteAction(for indexPath: IndexPath) {
@@ -151,7 +151,6 @@ extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelega
         let genre = genres[section]
         return favoritesByGenre[genre]?.count ?? 0
     }
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell

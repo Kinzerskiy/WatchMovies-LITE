@@ -8,60 +8,64 @@
 import Foundation
 import CoreData
 
+enum WatchlistType: String {
+    case toWatch = "isToWatch"
+    case hasWatched = "hasWatched"
+}
+
 class FavoritesManager {
     static let shared = FavoritesManager()
     
     private init() {}
     
-    func saveToFavorites(data: MediaDetails) {
+    func saveToWatchlist(data: Any, watchlistType: WatchlistType) {
         let context = CoreDataManager.shared.context
         let favorite = Favorites(context: context)
         
         if let movieDetails = data as? MovieDetails {
-            favorite.posterPath = movieDetails.posterPath
-            favorite.mediaId = Int64(movieDetails.id)
-            favorite.title = movieDetails.title
-            let genres = movieDetails.genres.map { $0.name }.joined(separator: ", ")
-              favorite.genre = genres
-              print("Saving favorite with genres: \(genres)")
-
+            favorite.id = Int64(movieDetails.id)
             favorite.isMovie = true
-            favorite.isFavorite = true
+            switch watchlistType {
+            case .toWatch:
+                favorite.isWatchingType = true
+            case .hasWatched:
+                favorite.isWatchingType = false
+            }
         } else if let tvSeriesDetails = data as? TVSeriesDetails {
-            favorite.posterPath = tvSeriesDetails.posterPath
-            let genres = tvSeriesDetails.genres.map { $0.name }.joined(separator: ", ")
-              favorite.genre = genres
-              print("Saving favorite with genres: \(genres)")
-            favorite.mediaId = Int64(tvSeriesDetails.id)
-            favorite.title = tvSeriesDetails.name
+            favorite.id = Int64(tvSeriesDetails.id)
             favorite.isMovie = false
-            favorite.isFavorite = true
+            switch watchlistType {
+            case .toWatch:
+                favorite.isWatchingType = true
+            case .hasWatched:
+                favorite.isWatchingType = false
+            }
         } else if let movie = data as? Movie {
-            favorite.posterPath = movie.posterPath
-            let genres = movie.genres.map { $0.name }.joined(separator: ", ")
-              favorite.genre = genres
-              print("Saving favorite with genres: \(genres)")
-            favorite.mediaId = Int64(movie.id)
-            favorite.title = movie.title
+            favorite.id = Int64(movie.id)
             favorite.isMovie = true
-            favorite.isFavorite = true
+            switch watchlistType {
+            case .toWatch:
+                favorite.isWatchingType = true
+            case .hasWatched:
+                favorite.isWatchingType = false
+            }
         } else if let  tvSeries = data as? TVSeries {
-            favorite.posterPath =  tvSeries.posterPath
-            favorite.genre = tvSeries.genres.map { $0.name }.joined(separator: ", ")
-            favorite.mediaId = Int64( tvSeries.id)
-            favorite.title =  tvSeries.name
+            favorite.id = Int64(tvSeries.id)
             favorite.isMovie = false
-            favorite.isFavorite = true
+            switch watchlistType {
+            case .toWatch:
+                favorite.isWatchingType = true
+            case .hasWatched:
+                favorite.isWatchingType = false
+            }
         }
-        
         CoreDataManager.shared.saveContext()
-        
     }
     
-    func isMediaFavorite(media: MediaDetails) -> Bool {
+    func isMediaFavorite(media: MediaId) -> Bool {
         let context = CoreDataManager.shared.context
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
-        request.predicate = NSPredicate(format: "mediaId == %ld", media.id)
+        request.predicate = NSPredicate(format: "id == %ld", media.id)
         request.fetchLimit = 1
         
         do {
@@ -73,10 +77,10 @@ class FavoritesManager {
         }
     }
     
-    func fetchFavoriteMedia(for data: MediaDetails) -> Favorites? {
+    func fetchFavoriteMedia(for data: MediaId) -> Favorites? {
         let context = CoreDataManager.shared.context
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
-        request.predicate = NSPredicate(format: "mediaId == %ld", data.id)
+        request.predicate = NSPredicate(format: "id == %ld", data.id)
         request.fetchLimit = 1
         
         do {
@@ -88,8 +92,43 @@ class FavoritesManager {
         }
     }
     
+    func saveToHasWatched(data: Any) {
+        saveToWatchlist(data: data, watchlistType: .hasWatched)
+    }
+
+    func isMediaInWatchlist(media: MediaId, watchlistType: WatchlistType) -> Bool {
+        let context = CoreDataManager.shared.context
+        let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %ld AND \(watchlistType.rawValue) == true", media.id)
+        request.fetchLimit = 1
+
+        do {
+            let favorites = try context.fetch(request)
+            return !favorites.isEmpty
+        } catch {
+            print("Error fetching favorite media: \(error)")
+            return false
+        }
+    }
+
+    
     func deleteFavorite(favorite: Favorites) {
         CoreDataManager.shared.context.delete(favorite)
         CoreDataManager.shared.saveContext()
+    }
+    
+    func deleteAllFavorites() {
+        let context = CoreDataManager.shared.context
+        let fetchRequest: NSFetchRequest<Favorites> = Favorites.fetchRequest()
+        
+        do {
+            let favorites = try context.fetch(fetchRequest)
+            for favorite in favorites {
+                context.delete(favorite)
+            }
+            CoreDataManager.shared.saveContext()
+        } catch {
+            print("Error deleting favorites: \(error)")
+        }
     }
 }

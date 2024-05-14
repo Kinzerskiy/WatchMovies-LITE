@@ -30,6 +30,11 @@ class MovieListViewController: UIViewController {
         prepareCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+    
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
         navigationView.titleLabel.text = "MOVIES"
@@ -207,7 +212,7 @@ extension MovieListViewController: FilterViewDelegate {
             showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")
             return
         }
-
+        
         self.movies = movies
 
         DispatchQueue.main.async {

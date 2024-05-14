@@ -7,11 +7,14 @@
 
 import Foundation
 
-//protocol MediaDetails {
-//    var id: Int { get }
-//    var isMovie: Bool? { get }
-//    var isWatched: Bool? { get }
-//}
+protocol MediaId {
+    var id: Int { get }
+}
+
+extension MovieDetails: MediaId {}
+extension TVSeriesDetails: MediaId {}
+extension Movie: MediaId {}
+extension TVSeries: MediaId {}
 
 //MARK: - TVSeries
 
@@ -105,7 +108,7 @@ enum OriginalLanguage: String, Codable {
 
 //MARK: - TVSeriesDetails
 
-struct TVSeriesDetails: Codable /*MediaDetails*/ {
+struct TVSeriesDetails: Codable {
     var firstAirDate: String?
     
     var releaseDate: String?

@@ -24,7 +24,7 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
     @IBOutlet weak var shareButton: UIButton!
     
     var favorite: Favorites?
-    var data: MediaDetails?
+    var data: MediaId?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,63 +48,67 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
         
         shareButton.tintColor = .orange
         shareButton.isSelected = false
+        
+        bookMark.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        shareButton.setImage(UIImage(systemName: "eye"), for: .normal)
     }
     
-    func updateFavoriteStatus(isFavorite: Bool) {
-        bookMark.isSelected = isFavorite
-        bookMark.setImage(isFavorite ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
-    }
+
     
     @IBAction func bookmarkDidTap(_ sender: UIButton) {
-        sender.isSelected.toggle()
         guard let data = data else { return }
         
-        if let existingFavorite = FavoritesManager.shared.fetchFavoriteMedia(for: data) {
-            FavoritesManager.shared.deleteFavorite(favorite: existingFavorite)
-        } else {
-            FavoritesManager.shared.saveToFavorites(data: data)
-        }
-        updateFavoriteStatus(isFavorite: sender.isSelected)
+        if let favorite = FavoritesManager.shared.fetchFavoriteMedia(for: data) {
+               FavoritesManager.shared.deleteFavorite(favorite: favorite)
+               bookMark.setImage(UIImage(systemName: "bookmark"), for: .normal)
+               shareButton.isHidden = false
+           } else {
+               FavoritesManager.shared.saveToWatchlist(data: data, watchlistType: .hasWatched)
+               bookMark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+               shareButton.isHidden = true
+           }
     }
     
-    @IBAction func shareAction(_ sender: Any) {
-        guard let posterImage = moviePoster.image else { return }
-        let activityViewController = UIActivityViewController(activityItems: [posterImage], applicationActivities: nil)
-        if let popoverController = activityViewController.popoverPresentationController {
-            popoverController.sourceView = self
-            popoverController.sourceRect = self.bounds
-        }
-        if let viewController = self.parentViewController {
-            viewController.present(activityViewController, animated: true, completion: nil)
-        }
+    @IBAction func shareAction(_ sender: UIButton) {
+        guard let data = data else { return }
+        
+        if let favorite = FavoritesManager.shared.fetchFavoriteMedia(for: data) {
+               FavoritesManager.shared.deleteFavorite(favorite: favorite)
+               shareButton.setImage(UIImage(systemName: "eye"), for: .normal)
+               bookMark.isHidden = false
+           } else {
+               FavoritesManager.shared.saveToWatchlist(data: data, watchlistType: .toWatch)
+               shareButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+               bookMark.isHidden = true
+           }
     }
     
-    func fill(with data: MediaDetails) {
-        self.data = data
-        
-        if let posterPath = data.posterPath, let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
-            moviePoster.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
-        }
-        
-        let orangeTextColor = UIColor.orange
-        let blackColor = UIColor.black
-        
-        let font = UIFont.lotaBold(ofSize: 14)
-        let orangeAttributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: orangeTextColor]
-        let blackAttributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: blackColor]
-        
-        let genreText = NSMutableAttributedString(string: "Genres: ", attributes: orangeAttributes)
-        let genres = data.genres.map({ $0.name }).joined(separator: ", ")
-        let genresText = NSAttributedString(string: genres, attributes: blackAttributes)
-        genreText.append(genresText)
-        genreName.attributedText = genreText
-        
-        let rateText = NSMutableAttributedString(string: "Rate: ", attributes: orangeAttributes)
-        let rateValue = NSAttributedString(string: "\(data.voteAverage)", attributes: blackAttributes)
-        rateText.append(rateValue)
-        voteAverage.attributedText = rateText
-        
+    func fill(with data: Any) {
         if let movieDetails = data as? MovieDetails {
+            self.data = movieDetails
+            
+            if let posterPath = movieDetails.posterPath, let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
+                moviePoster.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
+            }
+            
+            let orangeTextColor = UIColor.orange
+            let blackColor = UIColor.black
+            
+            let font = UIFont.lotaBold(ofSize: 14)
+            let orangeAttributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: orangeTextColor]
+            let blackAttributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: blackColor]
+            
+            let genreText = NSMutableAttributedString(string: "Genres: ", attributes: orangeAttributes)
+            let genres = movieDetails.genres.map({ $0.name }).joined(separator: ", ")
+            let genresText = NSAttributedString(string: genres, attributes: blackAttributes)
+            genreText.append(genresText)
+            genreName.attributedText = genreText
+            
+            let rateText = NSMutableAttributedString(string: "Rate: ", attributes: orangeAttributes)
+            let rateValue = NSAttributedString(string: "\(movieDetails.voteAverage)", attributes: blackAttributes)
+            rateText.append(rateValue)
+            voteAverage.attributedText = rateText
+            
             if let logoPath = movieDetails.productionCompanies.first?.logoPath, let logoURL = URL(string: "https://image.tmdb.org/t/p/w500\(logoPath)") {
                 companyLogo.sd_setImage(with: logoURL, placeholderImage: UIImage(named: "Popcorn"))
             }
@@ -114,12 +118,31 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
             releaseDateText.append(releaseDateValue)
             releaseDate.attributedText = releaseDateText
             
-            if let favorite = favorite, favorite.mediaId == Int64(movieDetails.id) {
-                bookMark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-            } else {
-                bookMark.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            }
         } else if let tvSeriesDetails = data as? TVSeriesDetails {
+            self.data = tvSeriesDetails
+            
+            if let posterPath = tvSeriesDetails.posterPath, let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
+                moviePoster.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
+            }
+            
+            let orangeTextColor = UIColor.orange
+            let blackColor = UIColor.black
+            
+            let font = UIFont.lotaBold(ofSize: 14)
+            let orangeAttributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: orangeTextColor]
+            let blackAttributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: blackColor]
+            
+            let genreText = NSMutableAttributedString(string: "Genres: ", attributes: orangeAttributes)
+            let genres = tvSeriesDetails.genres.map({ $0.name }).joined(separator: ", ")
+            let genresText = NSAttributedString(string: genres, attributes: blackAttributes)
+            genreText.append(genresText)
+            genreName.attributedText = genreText
+            
+            let rateText = NSMutableAttributedString(string: "Rate: ", attributes: orangeAttributes)
+            let rateValue = NSAttributedString(string: "\(tvSeriesDetails.voteAverage)", attributes: blackAttributes)
+            rateText.append(rateValue)
+            voteAverage.attributedText = rateText
+            
             if let logoPath = tvSeriesDetails.productionCompanies.first?.logoPath, let logoURL = URL(string: "https://image.tmdb.org/t/p/w500\(logoPath)") {
                 companyLogo.sd_setImage(with: logoURL, placeholderImage: UIImage(named: "Popcorn"))
             }
@@ -128,12 +151,22 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
             let releaseDateValue = NSAttributedString(string: tvSeriesDetails.firstAirDate ?? "", attributes: blackAttributes)
             releaseDateText.append(releaseDateValue)
             releaseDate.attributedText = releaseDateText
-            
-            if let favorite = favorite, favorite.mediaId == Int64(tvSeriesDetails.id) {
-                bookMark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-            } else {
-                bookMark.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            }
+        }
+        
+        guard let favorite = FavoritesManager.shared.fetchFavoriteMedia(for: data as! MediaId) else {
+            bookMark.isHidden = false
+            shareButton.isHidden = false
+            return
+        }
+        
+        if !favorite.isWatchingType {
+            shareButton.isHidden = true
+            bookMark.isHidden = false
+            bookMark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        } else {
+            bookMark.isHidden = true
+            shareButton.isHidden = false
+            shareButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
         }
     }
 }

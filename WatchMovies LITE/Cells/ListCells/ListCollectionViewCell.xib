@@ -43,6 +43,21 @@
                             <constraint firstAttribute="height" constant="30" id="t0s-Z6-XyS"/>
                         </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="S16-28-yq1">
+                        <rect key="frame" x="60" y="105" width="40" height="36"/>
+                        <color key="tintColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="LCb-BR-MCr"/>
+                            <constraint firstAttribute="height" constant="40" id="fIf-lj-c26"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="6fw-c4-lfa">
+                        <rect key="frame" x="15" y="15" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="TaL-wM-v0h"/>
+                            <constraint firstAttribute="height" constant="40" id="m2n-ER-99g"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -50,20 +65,28 @@
                 <constraint firstItem="KMc-ib-e81" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="82r-74-fa5"/>
                 <constraint firstAttribute="trailing" secondItem="KMc-ib-e81" secondAttribute="trailing" id="9ba-fq-uQ3"/>
                 <constraint firstItem="oKA-20-30v" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="EVm-Ra-lQV"/>
+                <constraint firstItem="S16-28-yq1" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="I5M-N9-yNg"/>
                 <constraint firstItem="KMc-ib-e81" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Mq9-bh-wyb"/>
                 <constraint firstAttribute="bottom" secondItem="oKA-20-30v" secondAttribute="bottom" id="Tmp-D9-EAf"/>
+                <constraint firstItem="6fw-c4-lfa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="dlj-dF-AtU"/>
+                <constraint firstItem="S16-28-yq1" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="fdq-qi-bWm"/>
                 <constraint firstAttribute="trailing" secondItem="oKA-20-30v" secondAttribute="trailing" id="tAL-b8-SeU"/>
+                <constraint firstItem="6fw-c4-lfa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="wKp-KG-VoO"/>
             </constraints>
             <size key="customSize" width="160" height="245"/>
             <connections>
                 <outlet property="blurView" destination="oKA-20-30v" id="udD-FC-os7"/>
+                <outlet property="isToWatchImage" destination="6fw-c4-lfa" id="uVX-P8-p60"/>
                 <outlet property="posterImageView" destination="KMc-ib-e81" id="2UB-Zo-e7W"/>
                 <outlet property="titleLabel" destination="0UG-0G-Kxd" id="cpF-hO-uqi"/>
+                <outlet property="watchedImage" destination="S16-28-yq1" id="KxD-dw-t0H"/>
             </connections>
             <point key="canvasLocation" x="54.961832061068698" y="87.676056338028175"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="bookmark" width="2899" height="3000"/>
+        <image name="eye" catalog="system" width="128" height="79"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - MovieList
 
-struct Movie: Codable, MediaDetails {
+struct Movie: Codable {
     var genres: [Genre]
     var firstAirDate: String?
     
@@ -76,7 +76,7 @@ struct Dates: Codable {
 
 // MARK: - MovieDetails
 
-struct MovieDetails: Codable, MediaDetails {
+struct MovieDetails: Codable {
     var firstAirDate: String?
     var genres: [Genre]
     var releaseDate: String?
@@ -200,9 +200,8 @@ struct SimilarMoviesResponse: Codable {
     }
 }
 
-struct SimilarMovie: Codable, MediaDetails {
+struct SimilarMovie: Codable {
     var firstAirDate: String?
-    
     var genres: [Genre]
     let id: Int
     let title: String

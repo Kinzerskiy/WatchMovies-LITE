@@ -86,6 +86,8 @@ class CardViewController: UIViewController {
         prepareUI()
         makeNavigationBar()
         prepareSegmenBar()
+        
+        FavoritesManager.shared.deleteAllFavorites() 
     }
     
     func fetchRandomPage() -> Int {
@@ -96,7 +98,7 @@ class CardViewController: UIViewController {
         let group = DispatchGroup()
         
         group.enter()
-        fetchMovies(page: fetchRandomPage()) { [weak self] movies, error in
+        fetchMovies(page: 1) { [weak self] movies, error in
             self?.handleMovieResponse(movies: movies, error: error)
             group.leave()
         }
@@ -279,7 +281,7 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
 
     
     func willSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
-        var media: MediaDetails?
+        var media: MediaId?
         
         switch currentSegmentIndex {
         case 0:
@@ -296,12 +298,15 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
         
         if swipeDirection == .Right, let media = media {
             if !FavoritesManager.shared.isMediaFavorite(media: media) {
-                FavoritesManager.shared.saveToFavorites(data: media)
+                FavoritesManager.shared.saveToWatchlist(data: media, watchlistType: .toWatch)
             }
             minusImageView.isHidden = true
             plusImageView.isHidden = false
             animatePlusImage()
-        } else if swipeDirection == .Left {
+        } else if swipeDirection == .Left, let media = media {
+            if !FavoritesManager.shared.isMediaFavorite(media: media) {
+                FavoritesManager.shared.saveToWatchlist(data: media, watchlistType: .hasWatched)
+            }
             plusImageView.isHidden = true
             minusImageView.isHidden = false
             animateMinusImage()
@@ -347,7 +352,7 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
     }
     
     func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
-          var mediaDetails: MediaDetails?
+          var mediaDetails: MediaId?
           
           switch currentSegmentIndex {
           case 0:
