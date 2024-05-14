@@ -368,8 +368,8 @@
 				CEC285702BD97CC400189979 /* SearchViewController.swift */,
 				CE78C7532BDD367500C4221D /* SearchResultViewController.swift */,
 				CED28F8E2B6CF22A007DB4A8 /* DetailsViewController.swift */,
-				CED28F932B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift */,
 				CEACE52E2BE91D1F00B81A63 /* PersonViewController.swift */,
+				CED28F932B6CF43C007DB4A8 /* FavoriteMoviesViewController.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";

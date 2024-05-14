@@ -28,6 +28,11 @@ class TVSeriesViewController: UIViewController {
         prepareUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+    
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true

@@ -24,8 +24,8 @@ class CardViewController: UIViewController {
     
     private var currentSegmentIndex = 0
     
-    let plusImage = UIImage(systemName: "heart.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 60, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
-    let minusImage = UIImage(systemName: "hand.thumbsdown.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 60, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
+    let plusImage = UIImage(systemName: "bookmark.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 80, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
+    let minusImage = UIImage(systemName: "eye.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 80, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
     
     lazy var loadMoreButton: UIButton = {
         let button = UIButton(type: .system)
@@ -55,21 +55,23 @@ class CardViewController: UIViewController {
     }()
     
     func animatePlusImage() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.plusImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        UIView.animate(withDuration: 0.4, animations: {
+            self.plusImageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         }) { _ in
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.4) {
                 self.plusImageView.transform = .identity
             }
         }
     }
 
     func animateMinusImage() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.minusImageView.center.y -= 20
+        UIView.animate(withDuration: 0.4, animations: {
+            self.minusImageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+           
         }) { _ in
-            UIView.animate(withDuration: 0.3) {
-                self.minusImageView.center.y += 20
+            UIView.animate(withDuration: 0.4) {
+                
+                self.minusImageView.transform = .identity
             }
         }
     }
@@ -86,8 +88,7 @@ class CardViewController: UIViewController {
         prepareUI()
         makeNavigationBar()
         prepareSegmenBar()
-        
-        FavoritesManager.shared.deleteAllFavorites() 
+                FavoritesManager.shared.deleteAllFavorites()
     }
     
     func fetchRandomPage() -> Int {
@@ -298,14 +299,14 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
         
         if swipeDirection == .Right, let media = media {
             if !FavoritesManager.shared.isMediaFavorite(media: media) {
-                FavoritesManager.shared.saveToWatchlist(data: media, watchlistType: .toWatch)
+                FavoritesManager.shared.saveToWatchlist(data: media, watchlistType: .hasWatched)
             }
             minusImageView.isHidden = true
             plusImageView.isHidden = false
             animatePlusImage()
         } else if swipeDirection == .Left, let media = media {
             if !FavoritesManager.shared.isMediaFavorite(media: media) {
-                FavoritesManager.shared.saveToWatchlist(data: media, watchlistType: .hasWatched)
+                FavoritesManager.shared.saveToWatchlist(data: media, watchlistType: .toWatch)
             }
             plusImageView.isHidden = true
             minusImageView.isHidden = false

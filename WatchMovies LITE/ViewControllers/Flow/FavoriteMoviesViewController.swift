@@ -11,33 +11,43 @@ import CoreData
 class FavoriteMoviesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var favoritesByGenre: [String: [Favorites]] = [:]
-    var genres: [String] = []
+    @IBOutlet weak var segmentBarView: UIView!
     
     let navigationView = NavigationHeaderView.loadView()
+    let filterView = FilterView.loadView()
+    var currentSegmentIndex: Int = 0
+    
     var router: FavoritesRouting?
     
+    var favoriteMoviesIDs: [Int] = []
+    var favoriteTVSeriesIDs: [Int] = []
+    
+    var movieDetails: [MovieDetails] = []
+    var tvSeriesDetails: [TVSeriesDetails] = []
+    
     let emptyLabel: UILabel = {
-          let label = UILabel()
-          label.text = "Nothing here yet"
-          label.textAlignment = .center
-          label.textColor = .gray
-          label.font = UIFont.lotaBold(ofSize: 25)
-          label.translatesAutoresizingMaskIntoConstraints = false
-          return label
-      }()
+        let label = UILabel()
+        label.text = "Nothing here yet"
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.font = UIFont.lotaBold(ofSize: 25)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupEmptyLabel()
-        fetchFavoriteMedia()
+        prepareSegmenBar()
         makeNavigationBar()
+        fetchFavoriteMediaIDs()
+        segment1()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchFavoriteMedia()
+        fetchFavoriteMediaIDs()
     }
     
     
@@ -50,6 +60,24 @@ class FavoriteMoviesViewController: UIViewController {
         navigationView.delegate = self
     }
     
+    func prepareSegmenBar() {
+        segmentBarView.addSubview(filterView)
+        filterView.delegate = self
+        let segmentTitles = ["Movie", "TV"]
+        let font = UIFont.lotaBold(ofSize: 12)
+        let color = UIColor.black
+        filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
+        
+        filterView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            filterView.topAnchor.constraint(equalTo: segmentBarView.topAnchor),
+            filterView.leadingAnchor.constraint(equalTo: segmentBarView.leadingAnchor),
+            filterView.bottomAnchor.constraint(equalTo: segmentBarView.bottomAnchor),
+            filterView.trailingAnchor.constraint(equalTo: segmentBarView.trailingAnchor)
+        ])
+        filterView.setupView()
+    }
+    
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -57,8 +85,8 @@ class FavoriteMoviesViewController: UIViewController {
     }
     
     func updateEmptyLabelVisibility() {
-            emptyLabel.isHidden = !favoritesByGenre.isEmpty
-        }
+        
+    }
     
     func setupEmptyLabel() {
         view.addSubview(emptyLabel)
@@ -68,78 +96,37 @@ class FavoriteMoviesViewController: UIViewController {
         ])
         emptyLabel.isHidden = true
     }
-      
     
-    func fetchFavoriteMedia() {
-//           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//               return
-//           }
-//           let context = appDelegate.persistentContainer.viewContext
-//           
-//           do {
-//               let allFavorites = try context.fetch(Favorites.fetchRequest())
-//               
-//               for favorite in allFavorites {
-//                   if let genre = favorite.genre {
-//                       if favoritesByGenre[genre] == nil {
-//                           genres.append(genre)
-//                           favoritesByGenre[genre] = []
-//                       }
-//                       favoritesByGenre[genre]?.append(favorite)
-//                   }
-//               }
-//               
-//               genres.sort()
-//               tableView.reloadData()
-//               updateEmptyLabelVisibility()
-//           } catch {
-//               print("Error fetching favorite movies: \(error)")
-//           }
-       }
-    
-    func handleFavoriteAction(for indexPath: IndexPath) {
-        let genre = genres[indexPath.section]
-        if let favoritesInSection = favoritesByGenre[genre] {
-            let selectedMedia = favoritesInSection[indexPath.row]
-            deleteFavoriteFromCoreData(selectedMedia) { [weak self] success in
-                if success {
-                    self?.fetchFavoriteMedia()
-                }
-            }
+    func fetchFavoriteMediaIDs() {
+        if let favoriteMovies = FavoritesManager.shared.fetchFavoritesForMovies() {
+            favoriteMoviesIDs = favoriteMovies.map { Int($0.id) }
+            print("Favorite Movie IDs: \(favoriteMoviesIDs)")
         }
-    }
-
-
-    func deleteFavoriteFromCoreData(_ favorite: Favorites, completion: @escaping (Bool) -> Void) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            completion(false)
-            return
-        }
-        let context = appDelegate.persistentContainer.viewContext
         
-        context.perform {
-            do {
-                context.delete(favorite)
-                try context.save()
-                completion(true)
-            } catch {
-                print("Error deleting movie from Core Data: \(error)")
-                completion(false)
-            }
+        if let favoriteTVSeries = FavoritesManager.shared.fetchFavoritesForTVSeries() {
+            favoriteTVSeriesIDs = favoriteTVSeries.map { Int($0.id) }
+            print("Favorite TV Series IDs: \(favoriteTVSeriesIDs)")
         }
+        
+        tableView.reloadData()
+        updateEmptyLabelVisibility()
     }
     
-    func saveChanges() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let context = appDelegate.persistentContainer.viewContext
-        
-        do {
-            try context.save()
-        } catch {
-            print("Error saving changes: \(error)")
+    func fetchMediaDetails(isMovie: Bool, mediaId: Int, completion: @escaping () -> Void) {
+        if isMovie {
+            APIManager.shared.fetchMovieDetails(movieId: mediaId) { [weak self] (response, error) in
+                guard let self = self, let response = response else { return }
+                print(response)
+                self.movieDetails.append(response)
+                completion()
+            }
+        } else {
+            APIManager.shared.fetchTVSeriesDetails(seriesId: mediaId) { [weak self] (response, error) in
+                guard let self = self, let response = response else { return }
+                print(response)
+                self.tvSeriesDetails.append(response)
+                completion()
+            }
         }
     }
 }
@@ -148,54 +135,34 @@ class FavoriteMoviesViewController: UIViewController {
 extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let genre = genres[section]
-        return favoritesByGenre[genre]?.count ?? 0
+        if currentSegmentIndex == 0 {
+            return movieDetails.count
+        } else if currentSegmentIndex == 1 {
+            return tvSeriesDetails.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
-
-        let genre = genres[indexPath.section]
-               if let favorites = favoritesByGenre[genre] {
-                   cell.favorites = favorites
-               }
+        
+        if currentSegmentIndex == 0 {
+            cell.movieDetails = movieDetails
+        } else if currentSegmentIndex == 1 {
+            cell.tvSeriesDetails = tvSeriesDetails
+        }
         return cell
     }
-
-
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//           return genres[section]
-//       }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let favorite = favorites[indexPath.row]
-//        let id = favorite.mediaId
-//        router?.showDetailForm(with: Int(id), isMovie: favorite.isMovie, viewController: self, animated: true)
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let favoriteToDelete = favorites[indexPath.row]
-//            deleteFavoriteFromCoreData(favoriteToDelete) { [weak self] success in
-//                if success {
-//                    self?.fetchFavoriteMedia()
-//                }
-//                
-//            }
-//            favorites.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//    }
 }
 
 extension FavoriteMoviesViewController: NavigationHeaderViewDelegate {
@@ -204,3 +171,46 @@ extension FavoriteMoviesViewController: NavigationHeaderViewDelegate {
     }
     func leftButtonTapped() { }
 }
+
+
+extension FavoriteMoviesViewController: FilterViewDelegate {
+    func segment1() {
+        currentSegmentIndex = 0
+        for id in favoriteMoviesIDs {
+            fetchMediaDetails(isMovie: true, mediaId: id) {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func segment2() {
+        currentSegmentIndex = 1
+        for id in favoriteTVSeriesIDs {
+            fetchMediaDetails(isMovie: false, mediaId: id) {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func segment3() { }
+    
+    func segment4() {  }
+}
+
+
+//        FavoritesManager.shared.deleteAllFavorites()
+
+
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let favoriteToDelete = favorites[indexPath.row]
+//            deleteFavoriteFromCoreData(favoriteToDelete) { [weak self] success in
+//                if success {
+//                    self?.fetchFavoriteMedia()
+//                }
+//
+//            }
+//            favorites.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//    }

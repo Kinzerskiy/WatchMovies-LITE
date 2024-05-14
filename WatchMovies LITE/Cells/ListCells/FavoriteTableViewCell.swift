@@ -11,13 +11,19 @@ class FavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-  
-       var favorites: [Favorites] = [] {
-           didSet {
-               collectionView.reloadData()
-           }
-       }
     
+    var movieDetails: [MovieDetails] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    var tvSeriesDetails: [TVSeriesDetails] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+
     var genre: String? {
            didSet {
                genreLabel.text = genre
@@ -52,7 +58,7 @@ class FavoriteTableViewCell: UITableViewCell {
 extension FavoriteTableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favorites.count
+        return !movieDetails.isEmpty ? movieDetails.count : tvSeriesDetails.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -70,10 +76,11 @@ extension FavoriteTableViewCell:  UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCollectionViewCell", for: indexPath) as! ListCollectionViewCell
         
-        let favorite = favorites[indexPath.item]
-        cell.fill(withData: favorite)
-        
-        
+        if !movieDetails.isEmpty {
+            cell.fill(withData: movieDetails[indexPath.row])
+        } else {
+            cell.fill(withData: tvSeriesDetails[indexPath.row])
+        }
         return cell
     }
 }

@@ -18,26 +18,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FavoriteMovieCell" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ2-q2-7bM">
-                                <rect key="frame" x="0.0" y="74" width="393" height="744"/>
+                                <rect key="frame" x="0.0" y="114" width="393" height="704"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlP-7c-7Be">
+                                <rect key="frame" x="10" y="64" width="373" height="45"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="9bA-qG-YIG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zbQ-yF-pkt"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ZQ2-q2-7bM" firstAttribute="top" secondItem="dlP-7c-7Be" secondAttribute="bottom" constant="5" id="34Q-Kc-3KU"/>
                             <constraint firstItem="ZQ2-q2-7bM" firstAttribute="leading" secondItem="zbQ-yF-pkt" secondAttribute="leading" id="8NE-hb-Cct"/>
-                            <constraint firstItem="ZQ2-q2-7bM" firstAttribute="top" secondItem="zbQ-yF-pkt" secondAttribute="top" constant="15" id="BXk-gD-hHQ"/>
+                            <constraint firstItem="dlP-7c-7Be" firstAttribute="leading" secondItem="zbQ-yF-pkt" secondAttribute="leading" constant="10" id="8SL-zd-LEp"/>
+                            <constraint firstItem="dlP-7c-7Be" firstAttribute="top" secondItem="zbQ-yF-pkt" secondAttribute="top" constant="5" id="Dyb-pY-fJq"/>
                             <constraint firstItem="zbQ-yF-pkt" firstAttribute="trailing" secondItem="ZQ2-q2-7bM" secondAttribute="trailing" id="k8J-Cp-2LL"/>
                             <constraint firstItem="zbQ-yF-pkt" firstAttribute="bottom" secondItem="ZQ2-q2-7bM" secondAttribute="bottom" id="wXx-Sh-GEf"/>
+                            <constraint firstItem="zbQ-yF-pkt" firstAttribute="trailing" secondItem="dlP-7c-7Be" secondAttribute="trailing" constant="10" id="xFV-a2-bFz"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="segmentBarView" destination="dlP-7c-7Be" id="YbT-lB-GsO"/>
                         <outlet property="tableView" destination="ZQ2-q2-7bM" id="o7u-Gj-Jj1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7D-J1-9Vv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-671" y="-2"/>
+            <point key="canvasLocation" x="-672.51908396946567" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>
