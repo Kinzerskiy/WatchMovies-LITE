@@ -25,6 +25,8 @@ class FavoriteMoviesViewController: UIViewController {
     var movieDetails: [MovieDetails] = []
     var tvSeriesDetails: [TVSeriesDetails] = []
     
+    var genreDetails: [GenreDetails] = []
+    
     let emptyLabel: UILabel = {
         let label = UILabel()
         label.text = "Nothing here yet"
@@ -41,14 +43,13 @@ class FavoriteMoviesViewController: UIViewController {
         setupEmptyLabel()
         prepareSegmenBar()
         makeNavigationBar()
-        fetchFavoriteMediaIDs()
+//        fetchFavoriteMediaIDs()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchFavoriteMediaIDs()
     }
-    
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
@@ -121,22 +122,57 @@ class FavoriteMoviesViewController: UIViewController {
     func fetchMediaDetails(isMovie: Bool, mediaId: Int, completion: @escaping () -> Void) {
         
         if isMovie {
-            self.movieDetails.removeAll()
             APIManager.shared.fetchMovieDetails(movieId: mediaId) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
-                print(response)
+               
                 self.movieDetails.append(response)
                 completion()
+                self.tableView.reloadData()
             }
         } else {
-            self.tvSeriesDetails.removeAll()
             APIManager.shared.fetchTVSeriesDetails(seriesId: mediaId) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
-                print(response)
+                
                 self.tvSeriesDetails.append(response)
                 completion()
+                self.tableView.reloadData()
             }
         }
+    }
+    
+    func groupByGenre() -> [GenreDetails] {
+        var genreDetails: [GenreDetails] = []
+        
+        let details: [Any] = currentSegmentIndex == 0 ? movieDetails : tvSeriesDetails
+        
+        for detail in details {
+            if let movieDetail = detail as? MovieDetails {
+                if let firstGenre = movieDetail.genres.first {
+                    // Check if the movie already exists in another genre
+                    let existsInAnotherGenre = genreDetails.contains { $0.movies.contains { $0.id == movieDetail.id } }
+                    if !existsInAnotherGenre {
+                        if let index = genreDetails.firstIndex(where: { $0.genre == firstGenre.name }) {
+                            genreDetails[index].movies.append(movieDetail)
+                        } else {
+                            genreDetails.append(GenreDetails(genre: firstGenre.name, movies: [movieDetail], tvSeries: []))
+                        }
+                    }
+                }
+            } else if let tvSeriesDetail = detail as? TVSeriesDetails {
+                if let firstGenre = tvSeriesDetail.genres.first {
+                    // Check if the TV series already exists in another genre
+                    let existsInAnotherGenre = genreDetails.contains { $0.tvSeries.contains { $0.id == tvSeriesDetail.id } }
+                    if !existsInAnotherGenre {
+                        if let index = genreDetails.firstIndex(where: { $0.genre == firstGenre.name }) {
+                            genreDetails[index].tvSeries.append(tvSeriesDetail)
+                        } else {
+                            genreDetails.append(GenreDetails(genre: firstGenre.name, movies: [], tvSeries: [tvSeriesDetail]))
+                        }
+                    }
+                }
+            }
+        }
+        return genreDetails
     }
 }
 
@@ -144,27 +180,21 @@ class FavoriteMoviesViewController: UIViewController {
 extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if currentSegmentIndex == 0 {
-            return Set(movieDetails.compactMap { $0.genres.map { $0.name } }).count
-        } else if currentSegmentIndex == 1 {
-            return Set(tvSeriesDetails.compactMap { $0.genres.map { $0.name } }).count
-        }
-        return 0
+        let genres = currentSegmentIndex == 0 ? movieDetails.compactMap { $0.genres.first?.name } : tvSeriesDetails.compactMap { $0.genres.first?.name }
+        return Set(genres).count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
         cell.segmentIndex = currentSegmentIndex
-        
-        if currentSegmentIndex == 0 {
-            cell.movieDetails = movieDetails
-        } else if currentSegmentIndex == 1 {
-            cell.tvSeriesDetails = tvSeriesDetails
-        }
+
+        let genreDetails = groupByGenre()[indexPath.row]
+        cell.genre = genreDetails.genre
+        cell.movieDetails = genreDetails.movies
+        cell.tvSeriesDetails = genreDetails.tvSeries
         return cell
     }
-    
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
@@ -201,7 +231,6 @@ extension FavoriteMoviesViewController: FilterViewDelegate {
 
 
 //        FavoritesManager.shared.deleteAllFavorites()
-
 
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //        if editingStyle == .delete {

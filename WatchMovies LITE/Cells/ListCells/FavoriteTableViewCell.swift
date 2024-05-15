@@ -7,6 +7,12 @@
 
 import UIKit
 
+struct GenreDetails {
+    let genre: String
+    var movies: [MovieDetails]
+    var tvSeries: [TVSeriesDetails]
+}
+
 class FavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var genreLabel: UILabel!
@@ -43,18 +49,6 @@ class FavoriteTableViewCell: UITableViewCell {
         genreLabel.textColor = UIColor.orange
   
     }
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//    }
-//    
-//    @IBAction func favoriteAction(_ sender: UIButton) {
-//        if sender.isSelected {
-//            sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-//        } else {
-//            sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
-//        }
-//    }
 }
 
 extension FavoriteTableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
