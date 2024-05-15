@@ -158,16 +158,16 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="muB-uB-Czo"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53a-hD-PJh" customClass="GradientView" customModule="AISpace" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies &amp; TVSeries Lists" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eE9-Hz-Gbn">
-                                        <rect key="frame" x="0.0" y="600.66666666666663" width="393" height="22.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="629.66666666666663" width="393" height="22.333333333333371"/>
                                         <fontDescription key="fontDescription" name="LotaGrotesqueAlt1-Regular" family="Lota Grotesque Alt 1" pointSize="17"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23T-QZ-CTh">
-                                        <rect key="frame" x="40" y="673" width="313" height="56"/>
+                                        <rect key="frame" x="40" y="712" width="313" height="56"/>
                                         <color key="backgroundColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="07K-5w-0Ic"/>
@@ -185,9 +185,9 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to WatchMovies!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-4t-YJ5">
-                                        <rect key="frame" x="0.0" y="551" width="393" height="33.666666666666629"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="585" width="393" height="36.666666666666629"/>
+                                        <fontDescription key="fontDescription" name="LotaGrotesque-Bold" family="Lota Grotesque" pointSize="28"/>
+                                        <color key="textColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -197,17 +197,17 @@
                                     <constraint firstItem="9Wt-4t-YJ5" firstAttribute="leading" secondItem="53a-hD-PJh" secondAttribute="leading" id="JjY-0y-gIu"/>
                                     <constraint firstAttribute="trailing" secondItem="eE9-Hz-Gbn" secondAttribute="trailing" id="Lnx-Z0-4qh"/>
                                     <constraint firstItem="23T-QZ-CTh" firstAttribute="leading" secondItem="53a-hD-PJh" secondAttribute="leading" constant="40" id="MVM-Wo-qVq"/>
-                                    <constraint firstItem="eE9-Hz-Gbn" firstAttribute="top" secondItem="9Wt-4t-YJ5" secondAttribute="bottom" constant="16" id="YWe-ro-vfr"/>
+                                    <constraint firstItem="eE9-Hz-Gbn" firstAttribute="top" secondItem="9Wt-4t-YJ5" secondAttribute="bottom" constant="8" id="YWe-ro-vfr"/>
                                     <constraint firstAttribute="trailing" secondItem="9Wt-4t-YJ5" secondAttribute="trailing" id="icd-ZC-VFw"/>
                                     <constraint firstItem="eE9-Hz-Gbn" firstAttribute="leading" secondItem="53a-hD-PJh" secondAttribute="leading" id="njY-wB-lCl"/>
-                                    <constraint firstItem="23T-QZ-CTh" firstAttribute="top" secondItem="eE9-Hz-Gbn" secondAttribute="bottom" constant="50" id="ocM-uM-Ry6"/>
+                                    <constraint firstItem="23T-QZ-CTh" firstAttribute="top" secondItem="eE9-Hz-Gbn" secondAttribute="bottom" constant="60" id="ocM-uM-Ry6"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -215,14 +215,14 @@
                         <viewLayoutGuide key="safeArea" id="BQj-A2-1EE"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BQj-A2-1EE" firstAttribute="bottom" secondItem="23T-QZ-CTh" secondAttribute="bottom" constant="30" id="2gx-PJ-3Vg"/>
+                            <constraint firstItem="BQj-A2-1EE" firstAttribute="bottom" secondItem="23T-QZ-CTh" secondAttribute="bottom" constant="50" id="2gx-PJ-3Vg"/>
                             <constraint firstItem="BQj-A2-1EE" firstAttribute="trailing" secondItem="53a-hD-PJh" secondAttribute="trailing" id="92R-Lx-E3l"/>
                             <constraint firstItem="uT0-uv-IAm" firstAttribute="trailing" secondItem="BQj-A2-1EE" secondAttribute="trailing" id="Aeb-Qy-uoj"/>
                             <constraint firstItem="BMY-c8-9W8" firstAttribute="width" secondItem="Wa3-iq-OPR" secondAttribute="width" id="DOe-GE-Kbb"/>
                             <constraint firstItem="uT0-uv-IAm" firstAttribute="leading" secondItem="BQj-A2-1EE" secondAttribute="leading" id="Dxl-77-NwY"/>
                             <constraint firstItem="Pa4-pZ-5jb" firstAttribute="width" secondItem="Wa3-iq-OPR" secondAttribute="width" id="Lj5-DT-jLe"/>
                             <constraint firstItem="uT0-uv-IAm" firstAttribute="top" secondItem="Wa3-iq-OPR" secondAttribute="top" id="SkS-B3-LGS"/>
-                            <constraint firstItem="53a-hD-PJh" firstAttribute="top" secondItem="BQj-A2-1EE" secondAttribute="top" id="c9Y-u7-2ay"/>
+                            <constraint firstItem="53a-hD-PJh" firstAttribute="top" secondItem="Wa3-iq-OPR" secondAttribute="top" id="c9Y-u7-2ay"/>
                             <constraint firstAttribute="bottom" secondItem="53a-hD-PJh" secondAttribute="bottom" id="hh2-7q-HOz"/>
                             <constraint firstItem="53a-hD-PJh" firstAttribute="leading" secondItem="BQj-A2-1EE" secondAttribute="leading" id="uz2-Xm-qZf"/>
                         </constraints>

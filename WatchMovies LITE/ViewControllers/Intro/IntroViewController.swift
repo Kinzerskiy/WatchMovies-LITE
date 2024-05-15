@@ -62,7 +62,7 @@ class IntroViewController: UIViewController {
     
     private func setupPlayers() {
         
-        players = [ setupPlayer(name: "OpenClassic"), setupPlayer(name: "OpenChristmas"), setupPlayer(name: "OpenOffice")]
+        players = [ setupPlayer(name: "OpenMovie"), setupPlayer(name: "OpenSwipe"), setupPlayer(name: "OpenShare")]
     }
     
     private func setupView() {
@@ -104,16 +104,16 @@ class IntroViewController: UIViewController {
     
     private func setupSecondView() -> UIView {
         
-        titleLabel.text = "Add fils or tv series in watchlist!"
-        subtitleLabel.text = "Make your own collection"
+        titleLabel.text = "Swipe cards"
+        subtitleLabel.text = "Choose what you watching or add to watchlist"
         
         return secondVideoView
     }
     
     private func setupThirdView() -> UIView {
         
-        titleLabel.text = "Share your list with friends"
-        subtitleLabel.text = "Make life better"
+        titleLabel.text = "Have fun!"
+        subtitleLabel.text = "Make your collection & share with friends"
         
         return thirdVideoView
     }

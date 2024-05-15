@@ -28,7 +28,6 @@
 		CE96C52A2BD18CB8000ECB7B /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C5292BD18CB8000ECB7B /* MovieModel.swift */; };
 		CE96C52C2BD18D63000ECB7B /* TVSeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C52B2BD18D63000ECB7B /* TVSeriesModel.swift */; };
 		CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6602BE1089200694428 /* UIViewController+extension.swift */; };
-		CE96C6632BE1136C00694428 /* Movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CE96C6622BE1136700694428 /* Movie.mp4 */; };
 		CE9868F52BF4D30D000C2BD4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868F42BF4D30D000C2BD4 /* GradientView.swift */; };
 		CE9868F72BF4D46F000C2BD4 /* AVFoundation+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868F62BF4D46F000C2BD4 /* AVFoundation+Asset.swift */; };
 		CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */; };
@@ -109,7 +108,6 @@
 		CE96C5292BD18CB8000ECB7B /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		CE96C52B2BD18D63000ECB7B /* TVSeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSeriesModel.swift; sourceTree = "<group>"; };
 		CE96C6602BE1089200694428 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
-		CE96C6622BE1136700694428 /* Movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie.mp4; sourceTree = "<group>"; };
 		CE9868F42BF4D30D000C2BD4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CE9868F62BF4D46F000C2BD4 /* AVFoundation+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVFoundation+Asset.swift"; sourceTree = "<group>"; };
 		CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
@@ -295,7 +293,6 @@
 				CEA6B13F2BE3668700A14530 /* Extensions */,
 				CEAE15102BDE799C00958CCC /* Favorites.xcdatamodeld */,
 				CECC78AF2B6CE396008815EF /* Assets.xcassets */,
-				CE96C6622BE1136700694428 /* Movie.mp4 */,
 				CECC78B12B6CE396008815EF /* LaunchScreen.storyboard */,
 				CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */,
 				CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */,
@@ -498,7 +495,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE96C6632BE1136C00694428 /* Movie.mp4 in Resources */,
 				CED28FAC2B6D5225007DB4A8 /* ListCollectionViewCell.xib in Resources */,
 				CE96C5282BD11665000ECB7B /* FilterView.xib in Resources */,
 				CEADF1042BD6C12500A6B542 /* SimilarCollectionViewCell.xib in Resources */,
