@@ -12,6 +12,8 @@ class FavoriteTableViewCell: UITableViewCell {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var segmentIndex: Int = 0
+
     var movieDetails: [MovieDetails] = [] {
         didSet {
             collectionView.reloadData()
@@ -42,23 +44,23 @@ class FavoriteTableViewCell: UITableViewCell {
   
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    @IBAction func favoriteAction(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-        } else {
-            sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        }
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//    }
+//    
+//    @IBAction func favoriteAction(_ sender: UIButton) {
+//        if sender.isSelected {
+//            sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+//        } else {
+//            sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
+//        }
+//    }
 }
 
 extension FavoriteTableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return !movieDetails.isEmpty ? movieDetails.count : tvSeriesDetails.count
+        return segmentIndex == 0 ? movieDetails.count : tvSeriesDetails.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -76,7 +78,7 @@ extension FavoriteTableViewCell:  UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCollectionViewCell", for: indexPath) as! ListCollectionViewCell
         
-        if !movieDetails.isEmpty {
+        if segmentIndex == 0 {
             cell.fill(withData: movieDetails[indexPath.row])
         } else {
             cell.fill(withData: tvSeriesDetails[indexPath.row])

@@ -42,7 +42,6 @@ class FavoriteMoviesViewController: UIViewController {
         prepareSegmenBar()
         makeNavigationBar()
         fetchFavoriteMediaIDs()
-        segment1()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,20 +99,29 @@ class FavoriteMoviesViewController: UIViewController {
     func fetchFavoriteMediaIDs() {
         if let favoriteMovies = FavoritesManager.shared.fetchFavoritesForMovies() {
             favoriteMoviesIDs = favoriteMovies.map { Int($0.id) }
-            print("Favorite Movie IDs: \(favoriteMoviesIDs)")
+            for id in favoriteMoviesIDs {
+                fetchMediaDetails(isMovie: true, mediaId: id) {
+                    self.tableView.reloadData()
+                }
+            }
         }
         
         if let favoriteTVSeries = FavoritesManager.shared.fetchFavoritesForTVSeries() {
             favoriteTVSeriesIDs = favoriteTVSeries.map { Int($0.id) }
-            print("Favorite TV Series IDs: \(favoriteTVSeriesIDs)")
+            for id in favoriteTVSeriesIDs {
+                fetchMediaDetails(isMovie: false, mediaId: id) {
+                    self.tableView.reloadData()
+                }
+            }
         }
-        
         tableView.reloadData()
         updateEmptyLabelVisibility()
     }
     
     func fetchMediaDetails(isMovie: Bool, mediaId: Int, completion: @escaping () -> Void) {
+        
         if isMovie {
+            self.movieDetails.removeAll()
             APIManager.shared.fetchMovieDetails(movieId: mediaId) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 print(response)
@@ -121,6 +129,7 @@ class FavoriteMoviesViewController: UIViewController {
                 completion()
             }
         } else {
+            self.tvSeriesDetails.removeAll()
             APIManager.shared.fetchTVSeriesDetails(seriesId: mediaId) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 print(response)
@@ -136,15 +145,16 @@ extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentSegmentIndex == 0 {
-            return movieDetails.count
+            return Set(movieDetails.compactMap { $0.genres.map { $0.name } }).count
         } else if currentSegmentIndex == 1 {
-            return tvSeriesDetails.count
+            return Set(tvSeriesDetails.compactMap { $0.genres.map { $0.name } }).count
         }
         return 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
+        cell.segmentIndex = currentSegmentIndex
         
         if currentSegmentIndex == 0 {
             cell.movieDetails = movieDetails
@@ -176,20 +186,12 @@ extension FavoriteMoviesViewController: NavigationHeaderViewDelegate {
 extension FavoriteMoviesViewController: FilterViewDelegate {
     func segment1() {
         currentSegmentIndex = 0
-        for id in favoriteMoviesIDs {
-            fetchMediaDetails(isMovie: true, mediaId: id) {
-                self.tableView.reloadData()
-            }
-        }
+        tableView.reloadData()
     }
     
     func segment2() {
         currentSegmentIndex = 1
-        for id in favoriteTVSeriesIDs {
-            fetchMediaDetails(isMovie: false, mediaId: id) {
-                self.tableView.reloadData()
-            }
-        }
+        tableView.reloadData()
     }
     
     func segment3() { }
