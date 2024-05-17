@@ -53,34 +53,32 @@ class DescriptionTableViewCell: UITableViewCell, DescribableCell {
         shareButton.setImage(UIImage(systemName: "eye"), for: .normal)
     }
     
-
-    
     @IBAction func bookmarkDidTap(_ sender: UIButton) {
         guard let data = data else { return }
         
         if let favorite = FavoritesManager.shared.fetchFavoriteMedia(for: data) {
-               FavoritesManager.shared.deleteFavorite(favorite: favorite)
-               bookMark.setImage(UIImage(systemName: "bookmark"), for: .normal)
-               shareButton.isHidden = false
-           } else {
-               FavoritesManager.shared.saveToWatchlist(data: data, watchlistType: .hasWatched)
-               bookMark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-               shareButton.isHidden = true
-           }
+            FavoritesManager.shared.deleteFavorite(favorite: favorite)
+            bookMark.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            shareButton.isHidden = false
+        } else {
+            FavoritesManager.shared.saveToWatchlist(data: data, watchlistType: .hasWatched)
+            bookMark.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            shareButton.isHidden = true
+        }
     }
     
-    @IBAction func shareAction(_ sender: UIButton) {
+    @IBAction func hasWatchedDidTapped(_ sender: UIButton) {
         guard let data = data else { return }
         
         if let favorite = FavoritesManager.shared.fetchFavoriteMedia(for: data) {
-               FavoritesManager.shared.deleteFavorite(favorite: favorite)
-               shareButton.setImage(UIImage(systemName: "eye"), for: .normal)
-               bookMark.isHidden = false
-           } else {
-               FavoritesManager.shared.saveToWatchlist(data: data, watchlistType: .toWatch)
-               shareButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
-               bookMark.isHidden = true
-           }
+            FavoritesManager.shared.deleteFavorite(favorite: favorite)
+            shareButton.setImage(UIImage(systemName: "eye"), for: .normal)
+            bookMark.isHidden = false
+        } else {
+            FavoritesManager.shared.saveToWatchlist(data: data, watchlistType: .toWatch)
+            shareButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            bookMark.isHidden = true
+        }
     }
     
     func fill(with data: Any) {

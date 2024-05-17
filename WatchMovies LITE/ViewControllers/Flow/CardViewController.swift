@@ -18,7 +18,7 @@ class CardViewController: UIViewController {
     
     let filterView = FilterView.loadView()
     let navigationView = NavigationHeaderView.loadView()
-
+    
     var movies: [Movie] = []
     var tvSeries: [TVSeries] = []
     
@@ -35,8 +35,15 @@ class CardViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
-
+    
+    lazy var loadingView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .orange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    
     @objc func loadMoreButtonTapped() {
         switch currentSegmentIndex {
         case 0:
@@ -47,7 +54,7 @@ class CardViewController: UIViewController {
             break
         }
     }
-
+    
     lazy var plusImageView: UIImageView = {
         let imageView = UIImageView(image: self.plusImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,35 +67,35 @@ class CardViewController: UIViewController {
         }) { _ in
             UIView.animate(withDuration: 0.4) {
                 self.plusImageView.transform = .identity
+                self.plusImageView.isHidden = true
             }
         }
     }
-
+    
     func animateMinusImage() {
         UIView.animate(withDuration: 0.4, animations: {
             self.minusImageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-           
+            
         }) { _ in
             UIView.animate(withDuration: 0.4) {
-                
                 self.minusImageView.transform = .identity
+                self.minusImageView.isHidden = true
             }
         }
     }
-
+    
     lazy var minusImageView: UIImageView = {
         let imageView = UIImageView(image: self.minusImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchInitialData()
         prepareUI()
         makeNavigationBar()
         prepareSegmenBar()
-                FavoritesManager.shared.deleteAllFavorites()
     }
     
     func fetchRandomPage() -> Int {
@@ -96,10 +103,12 @@ class CardViewController: UIViewController {
     }
     
     func fetchInitialData() {
+        loadingView.startAnimating() // Start the loading indicator
+        
         let group = DispatchGroup()
         
         group.enter()
-        fetchMovies(page: 1) { [weak self] movies, error in
+        fetchMovies(page: fetchRandomPage()) { [weak self] movies, error in
             self?.handleMovieResponse(movies: movies, error: error)
             group.leave()
         }
@@ -111,9 +120,11 @@ class CardViewController: UIViewController {
         }
         
         group.notify(queue: .main) {
+            self.loadingView.stopAnimating() // Stop the loading indicator
             self.cardSwiper.reloadData()
         }
     }
+
     
     func prepareUI() {
         cardSwiper.frame = view.bounds
@@ -148,6 +159,7 @@ class CardViewController: UIViewController {
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
+        navigationView.shareButton.isHidden = true
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.titleLabel.text = "Let's roll"
@@ -178,16 +190,19 @@ class CardViewController: UIViewController {
             completion(tvSeries, error)
             if let error = error {
                 self?.showAlertDialog(title: "Error", message: error.localizedDescription)
+            } else {
+                self?.cardSwiper.reloadData()
             }
         }
     }
     
     private func fetchMovies(page: Int? = nil, completion: @escaping ([Movie]?, Error?) -> Void) {
-        
         APIManager.shared.fetchPopularMovies(page: fetchRandomPage()) { [weak self] movies, error in
             completion(movies, error)
             if let error = error {
                 self?.showAlertDialog(title: "Error", message: error.localizedDescription)
+            } else {
+                self?.cardSwiper.reloadData()
             }
         }
     }
@@ -195,6 +210,7 @@ class CardViewController: UIViewController {
     private func handleMovieResponse(movies: [Movie]?, error: Error?) {
         guard let movies = movies else {
             showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")
+            loadingView.stopAnimating() // Stop the loading indicator
             return
         }
         
@@ -204,10 +220,11 @@ class CardViewController: UIViewController {
             self.cardSwiper.reloadData()
         }
     }
-    
+
     private func handleTVResponse(tvSeries: [TVSeries]?, error: Error?) {
         guard let tvSeries = tvSeries else {
             showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")
+            loadingView.stopAnimating() // Stop the loading indicator
             return
         }
         
@@ -217,6 +234,7 @@ class CardViewController: UIViewController {
             self.cardSwiper.reloadData()
         }
     }
+
     
     private func loadMoreMovies(for segmentIndex: Int) {
         fetchMovies(page: fetchRandomPage()) { movies, error in
@@ -224,10 +242,7 @@ class CardViewController: UIViewController {
                 return
             }
             DispatchQueue.main.async {
-                let startIndex = self.movies.count
                 self.movies += newMovies
-                let indexes = (startIndex..<self.movies.count).map { $0 }
-                self.cardSwiper.insertCards(at: indexes)
                 self.cardSwiper.reloadData()
                 self.loadMoreButton.isHidden = true
             }
@@ -235,16 +250,15 @@ class CardViewController: UIViewController {
     }
     
     private func loadMoreTVSeries(for segmentIndex: Int) {
-        fetchTVSeries(page: fetchRandomPage()) { tvSeries, error in
+        fetchMovies(page: fetchRandomPage()) { tvSeries, error in
             guard let newTVSeries = tvSeries else {
                 return
             }
-            let startIndex = self.tvSeries.count
-            self.tvSeries += newTVSeries
-            let indexes = (startIndex..<self.tvSeries.count).map { $0 }
-            self.cardSwiper.insertCards(at: indexes)
-            self.cardSwiper.reloadData()
-            self.loadMoreButton.isHidden = true
+            DispatchQueue.main.async {
+                self.movies += newTVSeries
+                self.cardSwiper.reloadData()
+                self.loadMoreButton.isHidden = true
+            }
         }
     }
 }
@@ -263,24 +277,32 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
     }
     
     func cardForItemAt(verticalCardSwiperView: VerticalCardSwiperView, cardForItemAt index: Int) -> CardCell {
-        if let cardCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: index) as? CardCollectionViewCell {
-            
-            switch currentSegmentIndex {
-            case 0:
-                let movie = movies[index]
-                cardCell.fill(withData: movie)
-            case 1:
-                let tvSeries = tvSeries[index]
-                cardCell.fill(withData: tvSeries)
-            default:
-                break
-            }
-            return cardCell
+        guard index >= 0 else {
+            self.cardSwiper.reloadData()
+            return CardCollectionViewCell()
         }
-        return CardCollectionViewCell()
+
+        switch currentSegmentIndex {
+        case 0:
+            if index < movies.count {
+                let movie = movies[index]
+                let cardCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: index) as! CardCollectionViewCell
+                cardCell.fill(withData: movie)
+                return cardCell
+            }
+        case 1:
+            if index < tvSeries.count {
+                let tvSeries = tvSeries[index]
+                let cardCell = verticalCardSwiperView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: index) as! CardCollectionViewCell
+                cardCell.fill(withData: tvSeries)
+                return cardCell
+            }
+        default:
+            break
+        }
+     return CardCollectionViewCell()
     }
 
-    
     func willSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
         var media: MediaId?
         
@@ -326,8 +348,7 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
             break
         }
     }
-    
-    
+
     func didSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
         let threshold = 5
         
@@ -353,32 +374,36 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
     }
     
     func didTapCard(verticalCardSwiperView: VerticalCardSwiperView, index: Int) {
-          var mediaDetails: MediaId?
-          
-          switch currentSegmentIndex {
-          case 0:
-              if index < movies.count {
-                  mediaDetails = movies[index]
-                  router?.showDetailForm(with: mediaDetails!.id, isMovie: true, viewController: self, animated: false)
-              }
-          case 1:
-              if index < tvSeries.count {
-                  mediaDetails = tvSeries[index]
-                  router?.showDetailForm(with: mediaDetails!.id, isMovie: false, viewController: self, animated: false)
-              }
-          default:
-              break
-          }
+        var mediaDetails: MediaId?
+        
+        switch currentSegmentIndex {
+        case 0:
+            if index < movies.count {
+                mediaDetails = movies[index]
+                router?.showDetailForm(with: mediaDetails!.id, isMovie: true, viewController: self, animated: false)
+            }
+        case 1:
+            if index < tvSeries.count {
+                mediaDetails = tvSeries[index]
+                router?.showDetailForm(with: mediaDetails!.id, isMovie: false, viewController: self, animated: false)
+            }
+        default:
+            break
+        }
         loadMoreButton.removeFromSuperview()
-      }
+    }
 }
 
 extension CardViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
-        showRateAndSupportActionSheet()
+        showRateAndSupportActionSheet {
+            
+        }
     }
     
     func leftButtonTapped() { }
+    
+    func shareButtonTapped() { }
 }
 
 extension CardViewController: FilterViewDelegate {

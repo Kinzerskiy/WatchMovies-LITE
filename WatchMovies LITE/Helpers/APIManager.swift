@@ -63,9 +63,9 @@ class APIManager {
         }
     }
     
-    func fetchSearchMovies(page: Int, includeAdult: Bool? = nil, primaryReleaseYear: String? = nil, genre: String? = nil, completion: @escaping ([Movie], Error?) -> Void) {
+    func fetchSearchMovies(page: Int, /*includeAdult: Bool? = nil,*/ primaryReleaseYear: String? = nil, genre: String? = nil, completion: @escaping ([Movie], Error?) -> Void) {
         let urlString = "https://api.themoviedb.org/3/discover/movie"
-        fetchData(urlString: urlString, includeAdult: includeAdult, primaryReleaseYear: primaryReleaseYear, genre: genre, page: page) { (response: SearchMovieResponse?, error) in
+        fetchData(urlString: urlString, /*includeAdult: includeAdult,*/ primaryReleaseYear: primaryReleaseYear, genre: genre, page: page) { (response: SearchMovieResponse?, error) in
             guard let response = response else {
                 completion([], error)
                 return
@@ -152,9 +152,9 @@ class APIManager {
         }
     }
     
-    func fetchSearchTVSeries(page: Int, includeAdult: Bool? = nil, firstAirDateYear: String? = nil, genre: String? = nil, completion: @escaping ([TVSeries], Error?) -> Void) {
+    func fetchSearchTVSeries(page: Int,/* includeAdult: Bool? = nil,*/ firstAirDateYear: String? = nil, genre: String? = nil, completion: @escaping ([TVSeries], Error?) -> Void) {
         let urlString = "https://api.themoviedb.org/3/discover/tv"
-        fetchData(urlString: urlString, includeAdult: includeAdult, firstAirDateYear: firstAirDateYear, genre: genre, page: page) { (response: SearchTVResponse?, error) in
+        fetchData(urlString: urlString,/* includeAdult: includeAdult,*/ firstAirDateYear: firstAirDateYear, genre: genre, page: page) { (response: SearchTVResponse?, error) in
             guard let response = response else {
                 completion([], error)
                 return
@@ -242,14 +242,14 @@ class APIManager {
         fetchData(urlString: urlString, page: nil, completion: completion)
     }
     
-    func fetchData<T: Codable>(urlString: String, includeAdult: Bool? = nil, primaryReleaseYear: String? = nil,  firstAirDateYear: String? = nil, genre: String? = nil, page: Int? = nil, completion: @escaping (T?, Error?) -> Void) {
+    func fetchData<T: Codable>(urlString: String, /*includeAdult: Bool? = nil,*/ primaryReleaseYear: String? = nil,  firstAirDateYear: String? = nil, genre: String? = nil, page: Int? = nil, completion: @escaping (T?, Error?) -> Void) {
         if var urlComponents = URLComponents(string: urlString) {
             var queryItems = [
                 URLQueryItem(name: "api_key", value: apiKey)
             ]
-            if let includeAdult = includeAdult {
-                queryItems.append(URLQueryItem(name: "include_adult", value: String(includeAdult)))
-            }
+//            if let includeAdult = includeAdult {
+//                queryItems.append(URLQueryItem(name: "include_adult", value: String(includeAdult)))
+//            }
             if let primaryReleaseYear = primaryReleaseYear {
                 queryItems.append(URLQueryItem(name: "primary_release_year", value: primaryReleaseYear))
             }

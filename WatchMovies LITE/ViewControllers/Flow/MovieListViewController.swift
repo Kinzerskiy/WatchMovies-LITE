@@ -39,6 +39,7 @@ class MovieListViewController: UIViewController {
         navigationItem.titleView = navigationView
         navigationView.titleLabel.text = "MOVIES"
         navigationView.titleName.isHidden = true
+        navigationView.shareButton.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
@@ -123,10 +124,13 @@ extension MovieListViewController: UICollectionViewDataSource, UICollectionViewD
 
 extension MovieListViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
-        showRateAndSupportActionSheet()
+        showRateAndSupportActionSheet {
+            self.collectionView.reloadData()
+        }
     }
     
     func leftButtonTapped() { }
+    func shareButtonTapped() { }
 }
 
 extension MovieListViewController: FilterViewDelegate {

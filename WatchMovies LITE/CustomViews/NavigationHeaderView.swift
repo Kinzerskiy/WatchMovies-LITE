@@ -10,6 +10,7 @@ import UIKit
 protocol NavigationHeaderViewDelegate: AnyObject {
     func leftButtonTapped()
     func rightButtonTapped()
+    func shareButtonTapped()
 }
 
 class NavigationHeaderView: UICollectionViewCell {
@@ -19,7 +20,7 @@ class NavigationHeaderView: UICollectionViewCell {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    
+    @IBOutlet weak var shareButton: UIButton!
     
     weak var delegate: NavigationHeaderViewDelegate?
     
@@ -33,7 +34,6 @@ class NavigationHeaderView: UICollectionViewCell {
     
     override func awakeFromNib() {
         setupView()
-        
     }
     
     override var intrinsicContentSize: CGSize {
@@ -52,6 +52,7 @@ class NavigationHeaderView: UICollectionViewCell {
         backButton.setImage(UIImage(systemName: "arrowshape.turn.up.backward.fill"), for: .normal)
         backButton.tintColor = .black
         optionsButton.tintColor = .black
+        shareButton.tintColor = .black
     }
     
     @IBAction func leftButtonTapped(_ sender: Any) {
@@ -62,4 +63,7 @@ class NavigationHeaderView: UICollectionViewCell {
         delegate?.rightButtonTapped()
     }
     
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        delegate?.shareButtonTapped()
+    }
 }

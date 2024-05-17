@@ -13,12 +13,19 @@ struct GenreDetails {
     var tvSeries: [TVSeriesDetails]
 }
 
+
+protocol FavoriteTableViewCellDelegate: AnyObject {
+    func didSelectId(_ movie: MovieDetails)
+    func didSelectId(_ tvSeries: TVSeriesDetails)
+}
+
 class FavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var segmentIndex: Int = 0
+    weak var delegate: FavoriteTableViewCellDelegate?
 
     var movieDetails: [MovieDetails] = [] {
         didSet {
@@ -67,6 +74,16 @@ extension FavoriteTableViewCell:  UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !movieDetails.isEmpty {
+            let movie = movieDetails[indexPath.item]
+            delegate?.didSelectId(movie)
+        } else if !tvSeriesDetails.isEmpty {
+            let tvSeries = tvSeriesDetails[indexPath.item]
+            delegate?.didSelectId(tvSeries)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

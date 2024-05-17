@@ -41,6 +41,7 @@ class SearchResultViewController: UIViewController {
         navigationView.delegate = self
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
+        navigationView.shareButton.isHidden = true
         navigationItem.titleView = navigationView
         navigationView.titleLabel.isHidden = true
         navigationView.titleImage.isHidden = true
@@ -63,14 +64,14 @@ class SearchResultViewController: UIViewController {
 
         switch mediaType {
         case .movie:
-            APIManager.shared.fetchSearchMovies(page: page, includeAdult: includeAdult, primaryReleaseYear: year, genre: genreID) { [weak self] movies, error in
+            APIManager.shared.fetchSearchMovies(page: page, /*includeAdult: includeAdult,*/ primaryReleaseYear: year, genre: genreID) { [weak self] movies, error in
                 completion(movies, error)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case .tvSeries:
-            APIManager.shared.fetchSearchTVSeries(page: page, includeAdult: includeAdult, firstAirDateYear: year, genre: genreID) { [weak self] tvSeries, error in
+            APIManager.shared.fetchSearchTVSeries(page: page, /*includeAdult: includeAdult,*/ firstAirDateYear: year, genre: genreID) { [weak self] tvSeries, error in
                 completion(tvSeries as [Any], nil)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
@@ -142,10 +143,14 @@ extension SearchResultViewController: UICollectionViewDataSource, UICollectionVi
 
 extension SearchResultViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
-        showRateAndSupportActionSheet()
+        showRateAndSupportActionSheet {
+            self.collectionView.reloadData()
+        }
     }
     
     func leftButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func shareButtonTapped() { }
 }

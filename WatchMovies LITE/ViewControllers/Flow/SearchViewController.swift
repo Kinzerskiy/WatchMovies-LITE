@@ -43,6 +43,7 @@ class SearchViewController: UIViewController {
         navigationItem.titleView = navigationView
         navigationItem.hidesBackButton = true
         navigationView.titleName.isHidden = true
+        navigationView.shareButton.isHidden = true
         navigationView.titleLabel.text = "SEARCH"
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.backButton.isHidden = true
@@ -124,10 +125,13 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
-        showRateAndSupportActionSheet()
+        showRateAndSupportActionSheet {
+            
+        }
     }
     
     func leftButtonTapped() { }
+    func shareButtonTapped() { }
 }
 
 extension SearchViewController: FilterViewDelegate {

@@ -36,6 +36,7 @@ class TVSeriesViewController: UIViewController {
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
+        navigationView.shareButton.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.titleLabel.text = "TV SERIES"
         navigationView.backButton.isHidden = true
@@ -122,10 +123,13 @@ extension TVSeriesViewController: UICollectionViewDataSource, UICollectionViewDe
 
 extension TVSeriesViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
-        showRateAndSupportActionSheet()
+        showRateAndSupportActionSheet {
+            self.collectionView.reloadData()
+        }
     }
     
     func leftButtonTapped() { }
+    func shareButtonTapped() { }
 }
 
 extension TVSeriesViewController: FilterViewDelegate {

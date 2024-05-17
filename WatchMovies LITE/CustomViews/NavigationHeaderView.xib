@@ -56,6 +56,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYf-eI-8sg">
+                        <rect key="frame" x="232" y="7.6666666666666679" width="49" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
+                        <connections>
+                            <action selector="shareButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Udw-SS-hrp"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -67,10 +75,12 @@
                 <constraint firstItem="ifI-Tf-Tfy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8Ia-sb-kUF"/>
                 <constraint firstItem="bPK-tY-3DC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EzH-zh-cbO"/>
                 <constraint firstItem="bPK-tY-3DC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Lf1-kj-ogA"/>
+                <constraint firstItem="4ah-cC-cuL" firstAttribute="leading" secondItem="SYf-eI-8sg" secondAttribute="trailing" constant="-11" id="Pkp-7L-3Z3"/>
                 <constraint firstItem="sk5-5B-Ltf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="X2T-Wu-LRg"/>
                 <constraint firstAttribute="bottom" secondItem="sk5-5B-Ltf" secondAttribute="bottom" constant="5" id="ZP7-RV-DXU"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aVX-6O-nRe" secondAttribute="trailing" constant="10" id="b3t-0c-5Kp"/>
                 <constraint firstItem="aVX-6O-nRe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sk5-5B-Ltf" secondAttribute="trailing" constant="10" id="cU8-lF-aQh"/>
+                <constraint firstItem="SYf-eI-8sg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="ioT-lG-CZd"/>
                 <constraint firstAttribute="bottom" secondItem="bPK-tY-3DC" secondAttribute="bottom" id="jdd-vl-EfP"/>
                 <constraint firstItem="4ah-cC-cuL" firstAttribute="leading" secondItem="sk5-5B-Ltf" secondAttribute="trailing" constant="240" id="js2-SP-FeD"/>
                 <constraint firstItem="sk5-5B-Ltf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="mxm-rE-gYo"/>
@@ -82,6 +92,7 @@
             <connections>
                 <outlet property="backButton" destination="sk5-5B-Ltf" id="sto-Nh-P20"/>
                 <outlet property="optionsButton" destination="4ah-cC-cuL" id="Jck-9c-hgh"/>
+                <outlet property="shareButton" destination="SYf-eI-8sg" id="aPV-ev-Ji7"/>
                 <outlet property="titleImage" destination="bPK-tY-3DC" id="ZFF-F1-Vx0"/>
                 <outlet property="titleLabel" destination="ifI-Tf-Tfy" id="QVG-Ar-udl"/>
                 <outlet property="titleName" destination="aVX-6O-nRe" id="0qP-PJ-3Ga"/>
@@ -92,5 +103,6 @@
     <resources>
         <image name="Movie LIST" width="1000" height="200"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
     </resources>
 </document>

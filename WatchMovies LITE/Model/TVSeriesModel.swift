@@ -21,11 +21,11 @@ extension TVSeries: MediaId {}
 struct TVSeries: Codable {
     var isMovie: Bool?
     var isWatched: Bool?
-    var voteAverage: Double
+    var voteAverage: Double?
     var genres: [Genre]
     var releaseDate: String?
     var firstAirDate: String?
-    let adult: Bool
+    let adult: Bool?
     let backdropPath: String?
     let genreIds: [Int]
     let id: Int
@@ -33,7 +33,7 @@ struct TVSeries: Codable {
     let originalLanguage: String?
     let originalTitle: String?
     let originalName: String?
-    let overview: String
+    let overview: String?
     let popularity: Double?
     let posterPath: String?
     let name: String?
@@ -110,42 +110,43 @@ enum OriginalLanguage: String, Codable {
 
 struct TVSeriesDetails: Codable {
     var firstAirDate: String?
-    
+    var title: String?
     var releaseDate: String?
-    let adult: Bool
+    let adult: Bool?
     let backdropPath: String?
     let createdBy: [Creator]
-    let episodeRunTime: [Int]
+    let episodeRunTime: [Int]?
     let genres: [Genre]
-    let homepage: String
+    let homepage: String?
     let id: Int
-    let inProduction: Bool
-    let languages: [String]
-    let lastAirDate: String
-    let lastEpisodeToAir: EpisodeDetails
-    let name: String
+    let inProduction: Bool?
+    let languages: [String]?
+    let lastAirDate: String?
+    let lastEpisodeToAir: EpisodeDetails?
+ 
     let nextEpisodeToAir: EpisodeDetails?
-    let networks: [Network]
-    let numberOfEpisodes: Int
-    let numberOfSeasons: Int
-    let originCountry: [String]
-    let originalLanguage: String
-    let originalName: String
-    let overview: String
-    let popularity: Double
+    let networks: [Network]?
+    let numberOfEpisodes: Int?
+    let numberOfSeasons: Int?
+    let originCountry: [String]?
+    let originalLanguage: String?
+    let originalName: String?
+    let overview: String?
+    let popularity: Double?
     let posterPath: String?
     let productionCompanies: [ProductionCompany]
     let productionCountries: [ProductionCountry]
-    let seasons: [Season]
-    let spokenLanguages: [SpokenLanguage]
-    let status: String
+    let seasons: [Season]?
+    let spokenLanguages: [SpokenLanguage]?
+    let status: String?
     let tagline: String?
-    let type: String
-    let voteAverage: Double
-    let voteCount: Int
+    let type: String?
+    let voteAverage: Double?
+    let voteCount: Int?
 
     enum CodingKeys: String, CodingKey {
         case adult
+        case title = "name"
         case backdropPath = "backdrop_path"
         case createdBy = "created_by"
         case episodeRunTime = "episode_run_time"
@@ -157,7 +158,7 @@ struct TVSeriesDetails: Codable {
         case languages
         case lastAirDate = "last_air_date"
         case lastEpisodeToAir = "last_episode_to_air"
-        case name
+       
         case nextEpisodeToAir = "next_episode_to_air"
         case networks
         case numberOfEpisodes = "number_of_episodes"

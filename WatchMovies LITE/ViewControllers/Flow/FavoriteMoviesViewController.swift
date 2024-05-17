@@ -43,12 +43,12 @@ class FavoriteMoviesViewController: UIViewController {
         setupEmptyLabel()
         prepareSegmenBar()
         makeNavigationBar()
-//        fetchFavoriteMediaIDs()
+        fetchFavoriteMediaIDs(forSection: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchFavoriteMediaIDs()
+        fetchFavoriteMediaIDs(forSection: currentSegmentIndex)
     }
     
     func makeNavigationBar() {
@@ -85,7 +85,14 @@ class FavoriteMoviesViewController: UIViewController {
     }
     
     func updateEmptyLabelVisibility() {
-        
+        let isEmpty: Bool
+        if currentSegmentIndex == 0 {
+            isEmpty = favoriteMoviesIDs.isEmpty
+        } else {
+            isEmpty = favoriteTVSeriesIDs.isEmpty
+        }
+        emptyLabel.isHidden = !isEmpty
+        tableView.isHidden = isEmpty
     }
     
     func setupEmptyLabel() {
@@ -97,37 +104,50 @@ class FavoriteMoviesViewController: UIViewController {
         emptyLabel.isHidden = true
     }
     
-    func fetchFavoriteMediaIDs() {
-        if let favoriteMovies = FavoritesManager.shared.fetchFavoritesForMovies() {
-            favoriteMoviesIDs = favoriteMovies.map { Int($0.id) }
-            for id in favoriteMoviesIDs {
-                fetchMediaDetails(isMovie: true, mediaId: id) {
-                    self.tableView.reloadData()
+    func fetchFavoriteMediaIDs(forSection section: Int) {
+        let group = DispatchGroup()
+
+        if section == 0 {
+            favoriteMoviesIDs.removeAll()
+            movieDetails.removeAll()
+
+            if let favoriteMovies = FavoritesManager.shared.fetchFavoritesForMovies() {
+                favoriteMoviesIDs = favoriteMovies.map { Int($0.id) }
+                for id in favoriteMoviesIDs {
+                    group.enter()
+                    fetchMediaDetails(isMovie: true, mediaId: id) {
+                        group.leave()
+                    }
+                }
+            }
+        } else {
+            favoriteTVSeriesIDs.removeAll()
+            tvSeriesDetails.removeAll()
+
+            if let favoriteTVSeries = FavoritesManager.shared.fetchFavoritesForTVSeries() {
+                favoriteTVSeriesIDs = favoriteTVSeries.map { Int($0.id) }
+                for id in favoriteTVSeriesIDs {
+                    group.enter()
+                    fetchMediaDetails(isMovie: false, mediaId: id) {
+                        group.leave()
+                    }
                 }
             }
         }
-        
-        if let favoriteTVSeries = FavoritesManager.shared.fetchFavoritesForTVSeries() {
-            favoriteTVSeriesIDs = favoriteTVSeries.map { Int($0.id) }
-            for id in favoriteTVSeriesIDs {
-                fetchMediaDetails(isMovie: false, mediaId: id) {
-                    self.tableView.reloadData()
-                }
-            }
+
+        group.notify(queue: .main) {
+            self.updateEmptyLabelVisibility()
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
-        updateEmptyLabelVisibility()
     }
-    
     func fetchMediaDetails(isMovie: Bool, mediaId: Int, completion: @escaping () -> Void) {
         
         if isMovie {
             APIManager.shared.fetchMovieDetails(movieId: mediaId) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
-               
+                
                 self.movieDetails.append(response)
                 completion()
-                self.tableView.reloadData()
             }
         } else {
             APIManager.shared.fetchTVSeriesDetails(seriesId: mediaId) { [weak self] (response, error) in
@@ -135,7 +155,6 @@ class FavoriteMoviesViewController: UIViewController {
                 
                 self.tvSeriesDetails.append(response)
                 completion()
-                self.tableView.reloadData()
             }
         }
     }
@@ -148,7 +167,6 @@ class FavoriteMoviesViewController: UIViewController {
         for detail in details {
             if let movieDetail = detail as? MovieDetails {
                 if let firstGenre = movieDetail.genres.first {
-                    // Check if the movie already exists in another genre
                     let existsInAnotherGenre = genreDetails.contains { $0.movies.contains { $0.id == movieDetail.id } }
                     if !existsInAnotherGenre {
                         if let index = genreDetails.firstIndex(where: { $0.genre == firstGenre.name }) {
@@ -160,7 +178,6 @@ class FavoriteMoviesViewController: UIViewController {
                 }
             } else if let tvSeriesDetail = detail as? TVSeriesDetails {
                 if let firstGenre = tvSeriesDetail.genres.first {
-                    // Check if the TV series already exists in another genre
                     let existsInAnotherGenre = genreDetails.contains { $0.tvSeries.contains { $0.id == tvSeriesDetail.id } }
                     if !existsInAnotherGenre {
                         if let index = genreDetails.firstIndex(where: { $0.genre == firstGenre.name }) {
@@ -174,8 +191,35 @@ class FavoriteMoviesViewController: UIViewController {
         }
         return genreDetails
     }
-}
+    
+    private func generateListButtonTapped() {
+         let genreDetails = groupByGenre()
+         var formattedList = ""
+         for genreDetail in genreDetails {
+             formattedList += "\(genreDetail.genre):\n"
+             if currentSegmentIndex == 0 {
+                 for movieDetail in genreDetail.movies {
+                     formattedList += "\(movieDetail.title)\n"
+                 }
+             } else {
+                 for tvSeriesDetail in genreDetail.tvSeries {
+                     formattedList += "\(tvSeriesDetail.title ?? "")\n"
+                 }
+             }
+             formattedList += "\n"
+         }
+         print(formattedList)
 
+         let activityViewController = UIActivityViewController(activityItems: [formattedList], applicationActivities: nil)
+
+         activityViewController.popoverPresentationController?.sourceView = self.view
+         activityViewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+         activityViewController.popoverPresentationController?.permittedArrowDirections = []
+         present(activityViewController, animated: true, completion: nil)
+     }
+
+     
+}
 
 extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -183,18 +227,19 @@ extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelega
         let genres = currentSegmentIndex == 0 ? movieDetails.compactMap { $0.genres.first?.name } : tvSeriesDetails.compactMap { $0.genres.first?.name }
         return Set(genres).count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
         cell.segmentIndex = currentSegmentIndex
-
+        cell.delegate = self
+        
         let genreDetails = groupByGenre()[indexPath.row]
         cell.genre = genreDetails.genre
         cell.movieDetails = genreDetails.movies
         cell.tvSeriesDetails = genreDetails.tvSeries
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
@@ -207,20 +252,32 @@ extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelega
 
 extension FavoriteMoviesViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
-        showRateAndSupportActionSheet()
+        showRateAndSupportActionSheet {
+            self.movieDetails.removeAll()
+            self.tvSeriesDetails.removeAll()
+            
+            self.fetchFavoriteMediaIDs(forSection: self.currentSegmentIndex)
+            self.tableView.reloadData()
+        }
     }
     func leftButtonTapped() { }
+    
+    func shareButtonTapped() {
+        generateListButtonTapped()
+    }
 }
 
 
 extension FavoriteMoviesViewController: FilterViewDelegate {
     func segment1() {
         currentSegmentIndex = 0
+        fetchFavoriteMediaIDs(forSection: currentSegmentIndex)
         tableView.reloadData()
     }
     
     func segment2() {
         currentSegmentIndex = 1
+        fetchFavoriteMediaIDs(forSection: currentSegmentIndex)
         tableView.reloadData()
     }
     
@@ -229,19 +286,12 @@ extension FavoriteMoviesViewController: FilterViewDelegate {
     func segment4() {  }
 }
 
-
-//        FavoritesManager.shared.deleteAllFavorites()
-
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let favoriteToDelete = favorites[indexPath.row]
-//            deleteFavoriteFromCoreData(favoriteToDelete) { [weak self] success in
-//                if success {
-//                    self?.fetchFavoriteMedia()
-//                }
-//
-//            }
-//            favorites.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//    }
+extension FavoriteMoviesViewController: FavoriteTableViewCellDelegate {
+    func didSelectId(_ movie: MovieDetails) {
+        router?.showDetailForm(with: movie.id, isMovie: true, viewController: self, animated: true)
+    }
+    
+    func didSelectId(_ tvSeries: TVSeriesDetails) {
+        router?.showDetailForm(with: tvSeries.id, isMovie: true, viewController: self, animated: true)
+    }
+}

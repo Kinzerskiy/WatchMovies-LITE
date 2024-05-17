@@ -96,7 +96,7 @@ class ListCollectionViewCell: UICollectionViewCell {
             let posterURL = URL(string: baseURL + (movie.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
         } else if let tvSeries = data as? TVSeriesDetails {
-            titleLabel.text = tvSeries.name
+            titleLabel.text = tvSeries.title
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let posterURL = URL(string: baseURL + (tvSeries.posterPath ?? ""))
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))

@@ -149,10 +149,10 @@ struct BelongsToCollection: Codable {
 }
 
  struct ProductionCompany: Codable {
-    let id: Int
+    let id: Int?
     let logoPath: String?
-    let name: String
-    let originCountry: String
+    let name: String?
+    let originCountry: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -163,8 +163,8 @@ struct BelongsToCollection: Codable {
 }
 
  struct ProductionCountry: Codable {
-    let iso31661: String
-    let name: String
+    let iso31661: String?
+    let name: String?
 
     enum CodingKeys: String, CodingKey {
         case iso31661 = "iso_3166_1"

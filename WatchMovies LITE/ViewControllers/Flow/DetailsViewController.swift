@@ -89,13 +89,14 @@ class DetailsViewController: UIViewController {
         navigationView.optionsButton?.isHidden = true
         navigationView.titleLabel.isHidden = true
         navigationItem.hidesBackButton = true
+        navigationView.shareButton.isHidden = true
         navigationItem.leftBarButtonItem = nil
         navigationItem.titleView = navigationView
         
         if isMovie! {
             navigationView.titleName.text = movieDetails?.title
         } else {
-            navigationView.titleName.text = tvSeriesDetails?.name
+            navigationView.titleName.text = tvSeriesDetails?.title
         }
         navigationView.titleImage.isHidden = true
         navigationView.titleName.textAlignment = .center
@@ -292,6 +293,8 @@ extension DetailsViewController: NavigationHeaderViewDelegate {
     func leftButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func shareButtonTapped() { }
 }
 
 extension DetailsViewController: SimilarTableViewCellDelegate {

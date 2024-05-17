@@ -22,7 +22,7 @@ extension UIViewController {
 import StoreKit
 
 extension UIViewController {
-    func showRateAndSupportActionSheet() {
+    func showRateAndSupportActionSheet(completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let rateAction = UIAlertAction(title: "Rate Us", style: .default) { [weak self] _ in
             self?.openAppStoreForRating()
@@ -30,10 +30,17 @@ extension UIViewController {
         let contactSupportAction = UIAlertAction(title: "Contact Support", style: .default) { [weak self] _ in
             self?.openSupportPage()
         }
+        let deleteBookmarksAction = UIAlertAction(title: "Delete All Bookmarks", style: .destructive) { [weak self] _ in
+            FavoritesManager.shared.deleteAllFavorites {
+                completion?() 
+                self?.showAlertDialog(title: "Success", message: "All bookmarks have been deleted.")
+            }
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alertController.addAction(rateAction)
         alertController.addAction(contactSupportAction)
+        alertController.addAction(deleteBookmarksAction)
         alertController.addAction(cancelAction)
         
         if let popoverController = alertController.popoverPresentationController {

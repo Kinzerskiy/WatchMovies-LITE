@@ -134,7 +134,7 @@ class FavoritesManager {
         CoreDataManager.shared.saveContext()
     }
     
-    func deleteAllFavorites() {
+    func deleteAllFavorites(completion: @escaping () -> Void) {
         let context = CoreDataManager.shared.context
         let fetchRequest: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         
@@ -144,6 +144,7 @@ class FavoritesManager {
                 context.delete(favorite)
             }
             CoreDataManager.shared.saveContext()
+            completion()
         } catch {
             print("Error deleting favorites: \(error)")
         }
