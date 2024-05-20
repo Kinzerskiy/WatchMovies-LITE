@@ -19,7 +19,7 @@ class MovieListViewController: UIViewController {
     let filterView = FilterView.loadView()
     
     var movies: [Movie] = []
-    private var currentPage = [0, 0, 0, 0]
+    private var currentPage = [0, 0, 0]
     private var currentSegmentIndex = 0
 
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class MovieListViewController: UIViewController {
         navigationItem.titleView = navigationView
         navigationView.titleLabel.text = "MOVIES"
         navigationView.titleName.isHidden = true
-        navigationView.shareButton.isHidden = true
+        navigationView.actionButton.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.backButton.isHidden = true
         navigationView.delegate = self
@@ -60,7 +60,7 @@ class MovieListViewController: UIViewController {
     func prepareSegmenBar() {
         segmentBarView.addSubview(filterView)
         filterView.delegate = self
-        let segmentTitles = ["Now playing", "Popular", "Top", "Upcoming"]
+        let segmentTitles = ["NOW PLAYING", "UPCOMING", "TOP"]
         let font = UIFont.lotaBold(ofSize: 12)
         let color = UIColor.black
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
@@ -131,7 +131,7 @@ extension MovieListViewController: NavigationHeaderViewDelegate {
     }
     
     func leftButtonTapped() { }
-    func shareButtonTapped() { }
+    func actionButtonTapped() { }
 }
 
 extension MovieListViewController: FilterViewDelegate {
@@ -166,15 +166,7 @@ extension MovieListViewController: FilterViewDelegate {
         }
     }
 
-    func segment4() {
-        currentSegmentIndex = 3
-        fetchMovies(for: currentSegmentIndex, page: 1) { movies, error, segmentIndex in
-            self.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
-        }
-        DispatchQueue.main.async {
-            self.collectionView.setContentOffset(CGPoint.zero, animated: true)
-        }
-    }
+    func segment4() { }
     
     
     private func fetchMovies(for segmentIndex: Int, page: Int, completion: @escaping ([Movie]?, Error?, Int) -> Void) {
@@ -187,7 +179,7 @@ extension MovieListViewController: FilterViewDelegate {
                 }
             }
         case 1:
-            APIManager.shared.fetchPopularMovies(page: page) { [weak self] movies, error in
+            APIManager.shared.fetchUpcomingMovies(page: page) { [weak self] movies, error in
                 completion(movies, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
@@ -198,13 +190,6 @@ extension MovieListViewController: FilterViewDelegate {
                 completion(movies, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
-                }
-            }
-        case 3:
-            APIManager.shared.fetchUpcomingMovies(page: page) { movies, error in
-                completion(movies, error, segmentIndex)
-                if let error = error {
-                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         default:

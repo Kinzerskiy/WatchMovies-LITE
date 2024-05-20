@@ -43,7 +43,7 @@ class SearchViewController: UIViewController {
         navigationItem.titleView = navigationView
         navigationItem.hidesBackButton = true
         navigationView.titleName.isHidden = true
-        navigationView.shareButton.isHidden = true
+        navigationView.actionButton.isHidden = true
         navigationView.titleLabel.text = "SEARCH"
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.backButton.isHidden = true
@@ -53,7 +53,7 @@ class SearchViewController: UIViewController {
     func prepareSegmenBar() {
         segmentBarView.addSubview(filterView)
         filterView.delegate = self
-        let segmentTitles = ["Movie", "TV"]
+        let segmentTitles = ["MOVIE", "TV"]
         let font = UIFont.lotaBold(ofSize: 12)
         let color = UIColor.black
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
@@ -131,7 +131,7 @@ extension SearchViewController: NavigationHeaderViewDelegate {
     }
     
     func leftButtonTapped() { }
-    func shareButtonTapped() { }
+    func actionButtonTapped() { }
 }
 
 extension SearchViewController: FilterViewDelegate {

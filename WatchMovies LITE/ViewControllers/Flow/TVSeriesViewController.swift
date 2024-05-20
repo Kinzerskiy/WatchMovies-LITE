@@ -17,7 +17,7 @@ class TVSeriesViewController: UIViewController {
     let filterView = FilterView.loadView()
     
     var tvSeries: [TVSeries] = []
-    private var currentPage = [0, 0, 0, 0]
+    private var currentPage = [0, 0, 0]
     private var currentSegmentIndex = 0
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class TVSeriesViewController: UIViewController {
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
         navigationView.titleName.isHidden = true
-        navigationView.shareButton.isHidden = true
+        navigationView.actionButton.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.titleLabel.text = "TV SERIES"
         navigationView.backButton.isHidden = true
@@ -44,7 +44,7 @@ class TVSeriesViewController: UIViewController {
     }
     
     func prepareSegmenBar() {
-        let segmentTitles = ["Today", "On the air", "Top", "Popular"]
+        let segmentTitles = ["AIRING TODAY", "TOP RATED", "POPULAR"]
         let font = UIFont.lotaBold(ofSize: 12)
         let color = UIColor.black
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
@@ -130,7 +130,7 @@ extension TVSeriesViewController: NavigationHeaderViewDelegate {
     }
     
     func leftButtonTapped() { }
-    func shareButtonTapped() { }
+    func actionButtonTapped() { }
 }
 
 extension TVSeriesViewController: FilterViewDelegate {
@@ -165,15 +165,7 @@ extension TVSeriesViewController: FilterViewDelegate {
         }
     }
 
-    func segment4() {
-        currentSegmentIndex = 3
-        fetchTVSeries(for: currentSegmentIndex, page: 1) { tvSeries, error, segmentIndex in
-            self.handleFetchResponse(tvSeries: tvSeries, error: error, segmentIndex: segmentIndex)
-        }
-        DispatchQueue.main.async {
-            self.collectionView.setContentOffset(CGPoint.zero, animated: true)
-        }
-    }
+    func segment4() { }
     
     private func fetchTVSeries(for segmentIndex: Int, page: Int, completion: @escaping ([TVSeries]?, Error?, Int) -> Void) {
         switch segmentIndex {
@@ -185,20 +177,13 @@ extension TVSeriesViewController: FilterViewDelegate {
                 }
             }
         case 1:
-            APIManager.shared.fetchOnTheAirSeries(page: page) { [weak self] tvSeries, error in
-                completion(tvSeries, error, segmentIndex)
-                if let error = error {
-                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
-                }
-            }
-        case 2:
             APIManager.shared.fetchPopularSeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
-        case 3:
+        case 2:
             APIManager.shared.fetchTopRatedSeries(page: page) { [weak self] tvSeries, error in
                 completion(tvSeries, error, segmentIndex)
                 if let error = error {

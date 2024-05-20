@@ -36,7 +36,7 @@ class CardsRouter: BaseRouter, CardsRouting {
             let activeImage = UIImage(systemName: symbol)?.withTintColor(.orange, renderingMode: .alwaysOriginal)
             let inactiveImage = UIImage(systemName: symbol)?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
             
-            vc.tabBarItem.title = "Random"
+            vc.tabBarItem.title = "Let's roll"
             vc.tabBarItem.image = inactiveImage
             vc.tabBarItem.selectedImage = activeImage
             UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)

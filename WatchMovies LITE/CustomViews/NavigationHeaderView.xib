@@ -61,7 +61,7 @@
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
                         <connections>
-                            <action selector="shareButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Udw-SS-hrp"/>
+                            <action selector="actionButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Udw-SS-hrp"/>
                         </connections>
                     </button>
                 </subviews>
@@ -91,9 +91,9 @@
             </constraints>
             <size key="customSize" width="318" height="50"/>
             <connections>
+                <outlet property="actionButton" destination="SYf-eI-8sg" id="aPV-ev-Ji7"/>
                 <outlet property="backButton" destination="sk5-5B-Ltf" id="sto-Nh-P20"/>
                 <outlet property="optionsButton" destination="4ah-cC-cuL" id="Jck-9c-hgh"/>
-                <outlet property="shareButton" destination="SYf-eI-8sg" id="aPV-ev-Ji7"/>
                 <outlet property="titleImage" destination="bPK-tY-3DC" id="ZFF-F1-Vx0"/>
                 <outlet property="titleLabel" destination="ifI-Tf-Tfy" id="QVG-Ar-udl"/>
                 <outlet property="titleName" destination="aVX-6O-nRe" id="0qP-PJ-3Ga"/>

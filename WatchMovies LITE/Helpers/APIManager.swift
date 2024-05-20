@@ -38,7 +38,6 @@ class APIManager {
                 completion([], error)
                 return
             }
-            
             let movies = response.results
             completion(movies, nil)
         }

@@ -41,7 +41,7 @@ class SearchResultViewController: UIViewController {
         navigationView.delegate = self
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
-        navigationView.shareButton.isHidden = true
+        navigationView.actionButton.isHidden = true
         navigationItem.titleView = navigationView
         navigationView.titleLabel.isHidden = true
         navigationView.titleImage.isHidden = true
@@ -153,5 +153,5 @@ extension SearchResultViewController: NavigationHeaderViewDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func shareButtonTapped() { }
+    func actionButtonTapped() { }
 }

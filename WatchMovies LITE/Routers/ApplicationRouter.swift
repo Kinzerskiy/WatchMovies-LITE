@@ -60,9 +60,9 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
         let rootItem: Array<UIViewController> = [
             intialialViewControllerForItem(with: .cards),
             intialialViewControllerForItem(with: .movieList),
+            intialialViewControllerForItem(with: .favorites),
             intialialViewControllerForItem(with: .tvSeriesList),
-            intialialViewControllerForItem(with: .search),
-            intialialViewControllerForItem(with: .favorites)
+            intialialViewControllerForItem(with: .search)
         ]
         
         rootContentController = navigationAssembly().assemblyTabbarController(with: rootItem)
@@ -141,7 +141,6 @@ class ApplicationRouter: ApplicationRouting, MainRouterDelegate {
     }
     
     private func intialialViewControllerForItem(with type: ApplicationStoryType) -> UIViewController {
-        
         switch type {
         case .movieList:
             return (movieListRouter?.initialViewController())!

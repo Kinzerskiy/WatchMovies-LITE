@@ -90,7 +90,7 @@ class DetailsViewController: UIViewController {
         navigationView.optionsButton?.isHidden = true
         navigationView.titleLabel.isHidden = true
         navigationItem.hidesBackButton = true
-        navigationView.shareButton.isHidden = true
+        navigationView.actionButton.isHidden = true
         navigationItem.leftBarButtonItem = nil
         navigationItem.titleView = navigationView
         
@@ -295,7 +295,7 @@ extension DetailsViewController: NavigationHeaderViewDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func shareButtonTapped() { }
+    func actionButtonTapped() { }
 }
 
 extension DetailsViewController: SimilarTableViewCellDelegate {

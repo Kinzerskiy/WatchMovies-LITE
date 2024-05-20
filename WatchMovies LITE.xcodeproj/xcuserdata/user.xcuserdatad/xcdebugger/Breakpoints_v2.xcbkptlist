@@ -2024,10 +2024,10 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "fetchPersonTVPersonCredits(personId:completion:)"
-            landmarkType = "7">
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "APIManager"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2040,8 +2040,8 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "fetchPersonTVPersonCredits(personId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2050,6 +2050,22 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7F429DC9-80B7-40C6-B4E2-1579B6AEDAC0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchMovies LITE/Helpers/APIManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "fetchPersonMoviePersonCredits(personId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D274BBD8-94B5-4204-8C7B-99AD518A8A38"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -2065,7 +2081,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D274BBD8-94B5-4204-8C7B-99AD518A8A38"
+            uuid = "A6F1CCF3-AC36-4AE9-8FA0-97B3EE6B3134"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -2081,22 +2097,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A6F1CCF3-AC36-4AE9-8FA0-97B3EE6B3134"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WatchMovies LITE/Helpers/APIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "fetchPersonMoviePersonCredits(personId:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "DAC1B1B5-4498-4779-8C22-CA407D8093B8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2104,8 +2104,8 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "fetchPersonMoviePersonCredits(personId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2660,8 +2660,8 @@
             filePath = "WatchMovies LITE/Helpers/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "fetchData(urlString:primaryReleaseYear:firstAirDateYear:genre:page:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2788,8 +2788,8 @@
             filePath = "WatchMovies LITE/ViewControllers/Flow/CardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "loadMoreMovies(for:)"
             landmarkType = "7">
             <Locations>
@@ -2903,6 +2903,118 @@
             startingLineNumber = "262"
             endingLineNumber = "262"
             landmarkName = "rightButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C6C42C6E-7C36-423B-8CD2-F1BB3C487A93"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchMovies LITE/ViewControllers/Flow/FavoritesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "fetchFavoriteMediaIDs(forSection:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C6C42C6E-7C36-423B-8CD2-F1BB3C487A93 - ae1b3760494b3340"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchMovies_LITE.FavoritesViewController.fetchFavoriteMediaIDs(forSection: Swift.Int) -&gt; ()"
+                  moduleName = "WatchMovies LITE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/WatchMovies%20LITE/WatchMovies%20LITE/ViewControllers/Flow/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "908">
+               </Location>
+               <Location
+                  uuid = "C6C42C6E-7C36-423B-8CD2-F1BB3C487A93 - 7477a41522b17cc7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in WatchMovies_LITE.FavoritesViewController.fetchFavoriteMediaIDs(forSection: Swift.Int) -&gt; ()"
+                  moduleName = "WatchMovies LITE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/WatchMovies%20LITE/WatchMovies%20LITE/ViewControllers/Flow/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3DD2114-811C-4593-BBA0-7C29E8D61B87"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchMovies LITE/ViewControllers/Flow/FavoritesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "fetchMediaDetails(isMovie:mediaId:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E3DD2114-811C-4593-BBA0-7C29E8D61B87 - c10cdb342ba1e694"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchMovies_LITE.FavoritesViewController.fetchMediaDetails(isMovie: Swift.Bool, mediaId: Swift.Int, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "WatchMovies LITE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/WatchMovies%20LITE/WatchMovies%20LITE/ViewControllers/Flow/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "E3DD2114-811C-4593-BBA0-7C29E8D61B87 - dd3cc961f7573d1f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;WatchMovies_LITE.MovieDetails&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in WatchMovies_LITE.FavoritesViewController.fetchMediaDetails(isMovie: Swift.Bool, mediaId: Swift.Int, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "WatchMovies LITE"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/Projects/apps/WatchMovies%20LITE/WatchMovies%20LITE/ViewControllers/Flow/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C0BE2835-EDF0-44DE-A67A-EC33C3E44BAB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchMovies LITE/ViewControllers/Flow/FavoritesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "fetchMediaDetails(isMovie:mediaId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

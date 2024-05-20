@@ -99,11 +99,11 @@ class CardViewController: UIViewController {
     }
     
     func fetchRandomPage() -> Int {
-        return Int.random(in: 1...100)
+        return Int.random(in: 1...60)
     }
     
     func fetchInitialData() {
-        loadingView.startAnimating() // Start the loading indicator
+        loadingView.startAnimating()
         
         let group = DispatchGroup()
         
@@ -120,11 +120,10 @@ class CardViewController: UIViewController {
         }
         
         group.notify(queue: .main) {
-            self.loadingView.stopAnimating() // Stop the loading indicator
+            self.loadingView.stopAnimating()
             self.cardSwiper.reloadData()
         }
     }
-
     
     func prepareUI() {
         cardSwiper.frame = view.bounds
@@ -159,7 +158,8 @@ class CardViewController: UIViewController {
     
     func makeNavigationBar() {
         navigationItem.titleView = navigationView
-        navigationView.shareButton.isHidden = true
+        navigationView.actionButton.setImage(UIImage(systemName: "arrow.counterclockwise"), for: .normal)
+        navigationView.actionButton.isHidden = false
         navigationView.titleName.isHidden = true
         navigationView.titleImage.contentMode = .scaleAspectFit
         navigationView.titleLabel.text = "Let's roll"
@@ -168,7 +168,7 @@ class CardViewController: UIViewController {
     }
     
     func prepareSegmenBar() {
-        let segmentTitles = ["Movies", "TV"]
+        let segmentTitles = ["POPULAR MOVIES", "TV ON THE AIR"]
         let font = UIFont.lotaBold(ofSize: 12)
         let color = UIColor.black
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
@@ -186,7 +186,7 @@ class CardViewController: UIViewController {
     }
     
     private func fetchTVSeries(page: Int? = nil, completion: @escaping ([TVSeries]?, Error?) -> Void) {
-        APIManager.shared.fetchPopularSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
+        APIManager.shared.fetchOnTheAirSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
             completion(tvSeries, error)
             if let error = error {
                 self?.showAlertDialog(title: "Error", message: error.localizedDescription)
@@ -210,7 +210,7 @@ class CardViewController: UIViewController {
     private func handleMovieResponse(movies: [Movie]?, error: Error?) {
         guard let movies = movies else {
             showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")
-            loadingView.stopAnimating() // Stop the loading indicator
+            loadingView.stopAnimating()
             return
         }
         
@@ -224,7 +224,7 @@ class CardViewController: UIViewController {
     private func handleTVResponse(tvSeries: [TVSeries]?, error: Error?) {
         guard let tvSeries = tvSeries else {
             showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")
-            loadingView.stopAnimating() // Stop the loading indicator
+            loadingView.stopAnimating()
             return
         }
         
@@ -234,7 +234,6 @@ class CardViewController: UIViewController {
             self.cardSwiper.reloadData()
         }
     }
-
     
     private func loadMoreMovies(for segmentIndex: Int) {
         fetchMovies(page: fetchRandomPage()) { movies, error in
@@ -308,11 +307,11 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
         
         switch currentSegmentIndex {
         case 0:
-            if index < movies.count {
+            if index < movies.count && index >= 0 {
                 media = movies[index]
             }
         case 1:
-            if index < tvSeries.count {
+            if index < tvSeries.count && index >= 0 {
                 media = tvSeries[index]
             }
         default:
@@ -403,7 +402,32 @@ extension CardViewController: NavigationHeaderViewDelegate {
     
     func leftButtonTapped() { }
     
-    func shareButtonTapped() { }
+    func actionButtonTapped() {
+        switch currentSegmentIndex {
+        case 0:
+            fetchMovies(page: fetchRandomPage()) { [weak self] movies, error in
+                guard let newMovies = movies else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.movies = newMovies
+                    self?.cardSwiper.reloadData()
+                }
+            }
+        case 1:
+            fetchTVSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
+                guard let newTVSeries = tvSeries else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.tvSeries = newTVSeries
+                    self?.cardSwiper.reloadData()
+                }
+            }
+        default:
+            break
+        }
+    }
 }
 
 extension CardViewController: FilterViewDelegate {

@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ivu-fF-x3D">
-                                <rect key="frame" x="15" y="64" width="363" height="45"/>
+                                <rect key="frame" x="10" y="64" width="373" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Crf-Jg-8Fo"/>
@@ -58,11 +58,11 @@
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="3jt-tA-OZy" secondAttribute="bottom" constant="30" id="10G-9f-oYG"/>
                             <constraint firstAttribute="trailing" secondItem="6j8-ns-cSt" secondAttribute="trailing" id="9rL-9D-6nb"/>
-                            <constraint firstItem="Ivu-fF-x3D" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="BOz-hH-SoR"/>
+                            <constraint firstItem="Ivu-fF-x3D" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="BOz-hH-SoR"/>
                             <constraint firstItem="6j8-ns-cSt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LNk-bq-Njg"/>
                             <constraint firstItem="3jt-tA-OZy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="LWh-Tr-lEL"/>
                             <constraint firstItem="6j8-ns-cSt" firstAttribute="top" secondItem="Ivu-fF-x3D" secondAttribute="bottom" constant="60" id="Z2R-Ia-5lj"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ivu-fF-x3D" secondAttribute="trailing" constant="15" id="Zn9-Eo-hmd"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ivu-fF-x3D" secondAttribute="trailing" constant="10" id="Zn9-Eo-hmd"/>
                             <constraint firstItem="Ivu-fF-x3D" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="bTl-1r-5dl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3jt-tA-OZy" secondAttribute="trailing" constant="40" id="uVb-Nm-xLG"/>
                         </constraints>

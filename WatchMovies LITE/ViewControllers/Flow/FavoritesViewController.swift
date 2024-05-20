@@ -63,7 +63,7 @@ class FavoritesViewController: UIViewController {
     func prepareSegmenBar() {
         segmentBarView.addSubview(filterView)
         filterView.delegate = self
-        let segmentTitles = ["Movie", "TV"]
+        let segmentTitles = ["MOVIES BY GENRES", "CALENDAR TV TO WATCH"]
         let font = UIFont.lotaBold(ofSize: 12)
         let color = UIColor.black
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
@@ -142,6 +142,7 @@ class FavoritesViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
     func fetchMediaDetails(isMovie: Bool, mediaId: Int, completion: @escaping () -> Void) {
         
         if isMovie {
@@ -219,8 +220,6 @@ class FavoritesViewController: UIViewController {
          activityViewController.popoverPresentationController?.permittedArrowDirections = []
          present(activityViewController, animated: true, completion: nil)
      }
-
-     
 }
 
 extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -235,7 +234,10 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.segmentIndex = currentSegmentIndex
         cell.delegate = self
         
-        let genreDetails = groupByGenre()[indexPath.row]
+        let genres = groupByGenre()
+        guard indexPath.row < genres.count else { return UITableViewCell() }
+        
+        let genreDetails = genres[indexPath.row]
         cell.genre = genreDetails.genre
         cell.movieDetails = genreDetails.movies
         cell.tvSeriesDetails = genreDetails.tvSeries
@@ -264,11 +266,10 @@ extension FavoritesViewController: NavigationHeaderViewDelegate {
     }
     func leftButtonTapped() { }
     
-    func shareButtonTapped() {
+    func actionButtonTapped() {
         generateListButtonTapped()
     }
 }
-
 
 extension FavoritesViewController: FilterViewDelegate {
     func segment1() {
