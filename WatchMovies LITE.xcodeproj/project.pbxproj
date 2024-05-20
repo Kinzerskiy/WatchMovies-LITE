@@ -30,7 +30,6 @@
 		CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6602BE1089200694428 /* UIViewController+extension.swift */; };
 		CE9868F52BF4D30D000C2BD4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868F42BF4D30D000C2BD4 /* GradientView.swift */; };
 		CE9868F72BF4D46F000C2BD4 /* AVFoundation+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868F62BF4D46F000C2BD4 /* AVFoundation+Asset.swift */; };
-		CE9868FA2BFB7914000C2BD4 /* JTAppleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = CE9868F92BFB7914000C2BD4 /* JTAppleCalendar */; };
 		CE9868FD2BFB8354000C2BD4 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868FB2BFB8353000C2BD4 /* CalendarTableViewCell.swift */; };
 		CE9868FE2BFB8354000C2BD4 /* CalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9868FC2BFB8353000C2BD4 /* CalendarTableViewCell.xib */; };
 		CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */; };
@@ -179,7 +178,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5015372BECD8940086887A /* VerticalCardSwiper in Frameworks */,
-				CE9868FA2BFB7914000C2BD4 /* JTAppleCalendar in Frameworks */,
 				CED28FB22B6D5602007DB4A8 /* SDWebImageMapKit in Frameworks */,
 				CED28FB02B6D5602007DB4A8 /* SDWebImage in Frameworks */,
 				CE838D9A2BE7C56200298CEF /* YouTubeiOSPlayerHelper in Frameworks */,
@@ -455,7 +453,6 @@
 				CED28FB12B6D5602007DB4A8 /* SDWebImageMapKit */,
 				CE838D992BE7C56200298CEF /* YouTubeiOSPlayerHelper */,
 				CE5015362BECD8940086887A /* VerticalCardSwiper */,
-				CE9868F92BFB7914000C2BD4 /* JTAppleCalendar */,
 			);
 			productName = test_movieList;
 			productReference = CECC78A02B6CE38C008815EF /* WatchMovies LITE.app */;
@@ -489,7 +486,6 @@
 				CED28FAE2B6D5602007DB4A8 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 				CE5015352BECD8930086887A /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */,
-				CE9868F82BFB7913000C2BD4 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */,
 			);
 			productRefGroup = CECC78A12B6CE38C008815EF /* Products */;
 			projectDirPath = "";
@@ -842,14 +838,6 @@
 				minimumVersion = 1.0.4;
 			};
 		};
-		CE9868F82BFB7913000C2BD4 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/patchthecode/JTAppleCalendar";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.5;
-			};
-		};
 		CED28FAE2B6D5602007DB4A8 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -870,11 +858,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
 			productName = YouTubeiOSPlayerHelper;
-		};
-		CE9868F92BFB7914000C2BD4 /* JTAppleCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE9868F82BFB7913000C2BD4 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */;
-			productName = JTAppleCalendar;
 		};
 		CED28FAF2B6D5602007DB4A8 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
