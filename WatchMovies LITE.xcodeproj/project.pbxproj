@@ -30,6 +30,9 @@
 		CE96C6612BE1089200694428 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C6602BE1089200694428 /* UIViewController+extension.swift */; };
 		CE9868F52BF4D30D000C2BD4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868F42BF4D30D000C2BD4 /* GradientView.swift */; };
 		CE9868F72BF4D46F000C2BD4 /* AVFoundation+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868F62BF4D46F000C2BD4 /* AVFoundation+Asset.swift */; };
+		CE9868FA2BFB7914000C2BD4 /* JTAppleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = CE9868F92BFB7914000C2BD4 /* JTAppleCalendar */; };
+		CE9868FD2BFB8354000C2BD4 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868FB2BFB8353000C2BD4 /* CalendarTableViewCell.swift */; };
+		CE9868FE2BFB8354000C2BD4 /* CalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9868FC2BFB8353000C2BD4 /* CalendarTableViewCell.xib */; };
 		CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */; };
 		CEACE5252BE8DE6E00B81A63 /* CastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5232BE8DE6E00B81A63 /* CastTableViewCell.swift */; };
 		CEACE5262BE8DE6E00B81A63 /* CastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */; };
@@ -110,6 +113,8 @@
 		CE96C6602BE1089200694428 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
 		CE9868F42BF4D30D000C2BD4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CE9868F62BF4D46F000C2BD4 /* AVFoundation+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVFoundation+Asset.swift"; sourceTree = "<group>"; };
+		CE9868FB2BFB8353000C2BD4 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
+		CE9868FC2BFB8353000C2BD4 /* CalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarTableViewCell.xib; sourceTree = "<group>"; };
 		CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		CEACE5232BE8DE6E00B81A63 /* CastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTableViewCell.swift; sourceTree = "<group>"; };
 		CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastTableViewCell.xib; sourceTree = "<group>"; };
@@ -174,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5015372BECD8940086887A /* VerticalCardSwiper in Frameworks */,
+				CE9868FA2BFB7914000C2BD4 /* JTAppleCalendar in Frameworks */,
 				CED28FB22B6D5602007DB4A8 /* SDWebImageMapKit in Frameworks */,
 				CED28FB02B6D5602007DB4A8 /* SDWebImage in Frameworks */,
 				CE838D9A2BE7C56200298CEF /* YouTubeiOSPlayerHelper in Frameworks */,
@@ -235,6 +241,8 @@
 				CED28FAA2B6D5225007DB4A8 /* ListCollectionViewCell.xib */,
 				CE88E89B2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift */,
 				CE88E89C2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib */,
+				CE9868FB2BFB8353000C2BD4 /* CalendarTableViewCell.swift */,
+				CE9868FC2BFB8353000C2BD4 /* CalendarTableViewCell.xib */,
 			);
 			path = ListCells;
 			sourceTree = "<group>";
@@ -447,6 +455,7 @@
 				CED28FB12B6D5602007DB4A8 /* SDWebImageMapKit */,
 				CE838D992BE7C56200298CEF /* YouTubeiOSPlayerHelper */,
 				CE5015362BECD8940086887A /* VerticalCardSwiper */,
+				CE9868F92BFB7914000C2BD4 /* JTAppleCalendar */,
 			);
 			productName = test_movieList;
 			productReference = CECC78A02B6CE38C008815EF /* WatchMovies LITE.app */;
@@ -480,6 +489,7 @@
 				CED28FAE2B6D5602007DB4A8 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 				CE5015352BECD8930086887A /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */,
+				CE9868F82BFB7913000C2BD4 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */,
 			);
 			productRefGroup = CECC78A12B6CE38C008815EF /* Products */;
 			projectDirPath = "";
@@ -497,6 +507,7 @@
 			files = (
 				CED28FAC2B6D5225007DB4A8 /* ListCollectionViewCell.xib in Resources */,
 				CE96C5282BD11665000ECB7B /* FilterView.xib in Resources */,
+				CE9868FE2BFB8354000C2BD4 /* CalendarTableViewCell.xib in Resources */,
 				CEADF1042BD6C12500A6B542 /* SimilarCollectionViewCell.xib in Resources */,
 				CE5015392BECD9650086887A /* Cards.storyboard in Resources */,
 				CEADF0EF2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf in Resources */,
@@ -560,6 +571,7 @@
 				CED28FA82B6D4975007DB4A8 /* APIManager.swift in Sources */,
 				CECC78BB2B6CE41B008815EF /* ApplicationAssembly.swift in Sources */,
 				CED28F8F2B6CF22A007DB4A8 /* DetailsViewController.swift in Sources */,
+				CE9868FD2BFB8354000C2BD4 /* CalendarTableViewCell.swift in Sources */,
 				CEC285712BD97CC400189979 /* SearchViewController.swift in Sources */,
 				CE96C52C2BD18D63000ECB7B /* TVSeriesModel.swift in Sources */,
 				CE838D9C2BE7EB3800298CEF /* UIView+extension.swift in Sources */,
@@ -830,6 +842,14 @@
 				minimumVersion = 1.0.4;
 			};
 		};
+		CE9868F82BFB7913000C2BD4 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/patchthecode/JTAppleCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.5;
+			};
+		};
 		CED28FAE2B6D5602007DB4A8 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -850,6 +870,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
 			productName = YouTubeiOSPlayerHelper;
+		};
+		CE9868F92BFB7914000C2BD4 /* JTAppleCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE9868F82BFB7913000C2BD4 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */;
+			productName = JTAppleCalendar;
 		};
 		CED28FAF2B6D5602007DB4A8 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;

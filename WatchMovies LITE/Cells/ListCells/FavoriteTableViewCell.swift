@@ -16,7 +16,7 @@ struct GenreDetails {
 
 protocol FavoriteTableViewCellDelegate: AnyObject {
     func didSelectId(_ movie: MovieDetails)
-    func didSelectId(_ tvSeries: TVSeriesDetails)
+//    func didSelectId(_ tvSeries: TVSeriesDetails)
 }
 
 class FavoriteTableViewCell: UITableViewCell {
@@ -26,24 +26,24 @@ class FavoriteTableViewCell: UITableViewCell {
     
     var segmentIndex: Int = 0
     weak var delegate: FavoriteTableViewCellDelegate?
-
+    
     var movieDetails: [MovieDetails] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
     
-    var tvSeriesDetails: [TVSeriesDetails] = [] {
+    //    var tvSeriesDetails: [TVSeriesDetails] = [] {
+    //        didSet {
+    //            collectionView.reloadData()
+    //        }
+    //    }
+    
+    var genre: String? {
         didSet {
-            collectionView.reloadData()
+            genreLabel.text = genre
         }
     }
-
-    var genre: String? {
-           didSet {
-               genreLabel.text = genre
-           }
-       }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,16 +61,16 @@ class FavoriteTableViewCell: UITableViewCell {
 extension FavoriteTableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return segmentIndex == 0 ? movieDetails.count : tvSeriesDetails.count
+        return movieDetails.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-          return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-      }
+        return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-          return CGSize(width: 160, height: 240)
-      }
+        return CGSize(width: 160, height: 240)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
@@ -80,20 +80,13 @@ extension FavoriteTableViewCell:  UICollectionViewDelegate, UICollectionViewData
         if !movieDetails.isEmpty {
             let movie = movieDetails[indexPath.item]
             delegate?.didSelectId(movie)
-        } else if !tvSeriesDetails.isEmpty {
-            let tvSeries = tvSeriesDetails[indexPath.item]
-            delegate?.didSelectId(tvSeries)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCollectionViewCell", for: indexPath) as! ListCollectionViewCell
+        cell.fill(withData: movieDetails[indexPath.row])
         
-        if segmentIndex == 0 {
-            cell.fill(withData: movieDetails[indexPath.row])
-        } else {
-            cell.fill(withData: tvSeriesDetails[indexPath.row])
-        }
         return cell
     }
 }
