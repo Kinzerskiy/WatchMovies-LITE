@@ -54,7 +54,7 @@ class FavoriteTableViewCell: UITableViewCell {
         collectionView.showsVerticalScrollIndicator = false
         genreLabel.font = UIFont.lotaBold(ofSize: 18)
         genreLabel.textColor = UIColor.orange
-  
+        collectionView.backgroundColor = .white
     }
 }
 

@@ -35,6 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="R4P-Gh-RDO" secondAttribute="trailing" constant="15" id="HJs-8I-eUR"/>
                     <constraint firstAttribute="trailing" secondItem="yhZ-7G-Rxf" secondAttribute="trailing" id="Mp8-hb-nl8"/>
@@ -46,6 +47,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="collectionView" destination="yhZ-7G-Rxf" id="MKj-4r-aZ7"/>
                 <outlet property="genreLabel" destination="R4P-Gh-RDO" id="3HF-E1-Bxv"/>

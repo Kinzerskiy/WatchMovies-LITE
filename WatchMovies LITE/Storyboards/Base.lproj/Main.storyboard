@@ -24,7 +24,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bdV-ZY-n1J">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lf6-zD-awc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -45,7 +47,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MM7-dw-y9y"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MM7-dw-y9y" firstAttribute="trailing" secondItem="jDu-W2-tpP" secondAttribute="trailing" id="5zj-FB-zmw"/>
                             <constraint firstItem="MM7-dw-y9y" firstAttribute="bottom" secondItem="jDu-W2-tpP" secondAttribute="bottom" id="Vsg-8C-Nc4"/>

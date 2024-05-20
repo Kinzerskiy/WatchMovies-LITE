@@ -17,7 +17,7 @@ class FavoritesRouter: BaseRouter, FavoritesRouting {
     var mainRouter: MainRouting?
     var listRouter: MovieListRouting?
     
-    private var favoritesMoviesViewController: FavoriteMoviesViewController?
+    private var favoritesMoviesViewController: FavoritesViewController?
     private var navigationController: UINavigationController?
     
     // MARK: - Memory management
@@ -31,7 +31,7 @@ class FavoritesRouter: BaseRouter, FavoritesRouting {
     override func initialViewController() -> UIViewController {
         
         if navigationController == nil {
-            let vc: FavoriteMoviesViewController = assembly.assemblyFavoriteMoviesViewController(with: self)
+            let vc: FavoritesViewController = assembly.assemblyFavoritesViewController(with: self)
             
             let symbol = "heart.circle.fill"
             let activeImage = UIImage(systemName: symbol)?.withTintColor(.orange, renderingMode: .alwaysOriginal)

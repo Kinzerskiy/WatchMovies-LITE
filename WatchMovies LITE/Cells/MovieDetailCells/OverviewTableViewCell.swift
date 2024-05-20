@@ -19,6 +19,8 @@ class OverviewTableViewCell: UITableViewCell, DescribableCell {
         overviewText.font = UIFont.lotaRegular(ofSize: 16)
         overviewText.isEditable = false
         overviewText.showsVerticalScrollIndicator = false
+        overviewText.backgroundColor = .white
+        overviewText.textColor = .black
     }
     
     func fill(with data: Any) {

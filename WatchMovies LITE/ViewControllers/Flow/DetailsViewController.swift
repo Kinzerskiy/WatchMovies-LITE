@@ -82,6 +82,7 @@ class DetailsViewController: UIViewController {
         tableView.isUserInteractionEnabled = true
         tableView.rowHeight = 0
         tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        tableView.backgroundColor = .white
     }
     
     func makeNavigationBar() {

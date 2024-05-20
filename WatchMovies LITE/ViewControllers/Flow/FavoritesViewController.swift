@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class FavoriteMoviesViewController: UIViewController {
+class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentBarView: UIView!
@@ -82,6 +82,8 @@ class FavoriteMoviesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
+        tableView.backgroundColor = .white
+        tableView.separatorStyle = .none
     }
     
     func updateEmptyLabelVisibility() {
@@ -221,7 +223,7 @@ class FavoriteMoviesViewController: UIViewController {
      
 }
 
-extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelegate {
+extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let genres = currentSegmentIndex == 0 ? movieDetails.compactMap { $0.genres.first?.name } : tvSeriesDetails.compactMap { $0.genres.first?.name }
@@ -250,7 +252,7 @@ extension FavoriteMoviesViewController: UITableViewDataSource, UITableViewDelega
     }
 }
 
-extension FavoriteMoviesViewController: NavigationHeaderViewDelegate {
+extension FavoritesViewController: NavigationHeaderViewDelegate {
     func rightButtonTapped() {
         showRateAndSupportActionSheet {
             self.movieDetails.removeAll()
@@ -268,7 +270,7 @@ extension FavoriteMoviesViewController: NavigationHeaderViewDelegate {
 }
 
 
-extension FavoriteMoviesViewController: FilterViewDelegate {
+extension FavoritesViewController: FilterViewDelegate {
     func segment1() {
         currentSegmentIndex = 0
         fetchFavoriteMediaIDs(forSection: currentSegmentIndex)
@@ -286,12 +288,12 @@ extension FavoriteMoviesViewController: FilterViewDelegate {
     func segment4() {  }
 }
 
-extension FavoriteMoviesViewController: FavoriteTableViewCellDelegate {
+extension FavoritesViewController: FavoriteTableViewCellDelegate {
     func didSelectId(_ movie: MovieDetails) {
         router?.showDetailForm(with: movie.id, isMovie: true, viewController: self, animated: true)
     }
     
     func didSelectId(_ tvSeries: TVSeriesDetails) {
-        router?.showDetailForm(with: tvSeries.id, isMovie: true, viewController: self, animated: true)
+        router?.showDetailForm(with: tvSeries.id, isMovie: false, viewController: self, animated: true)
     }
 }

@@ -53,6 +53,7 @@ class MovieListViewController: UIViewController {
         collectionView.allowsMultipleSelection = false
         collectionView.isUserInteractionEnabled = true
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .white
     }
     
     

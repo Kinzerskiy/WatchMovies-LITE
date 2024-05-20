@@ -57,6 +57,7 @@ class SearchResultViewController: UIViewController {
         collectionView.allowsMultipleSelection = false
         collectionView.isUserInteractionEnabled = true
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .white
     }
     
     func fetchSearchResults(page: Int, genreName: String? = nil, genreID: String? = nil, completion: @escaping ([Any]?, Error?) -> Void) {

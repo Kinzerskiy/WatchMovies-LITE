@@ -36,6 +36,7 @@ class CastTableViewCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "CastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CastCollectionViewCell")
+        collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
         castAndCrewLabel.font = UIFont.lotaBold(ofSize: 18)
         castAndCrewLabel.textColor = UIColor.orange

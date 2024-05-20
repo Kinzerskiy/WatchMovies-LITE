@@ -5,25 +5,24 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorite Movies View Controller-->
+        <!--Favorites View Controller-->
         <scene sceneID="Wea-kb-ig2">
             <objects>
-                <viewController restorationIdentifier="FavoriteMoviesViewController" storyboardIdentifier="FavoriteMoviesViewController" id="Nvk-D8-tIq" customClass="FavoriteMoviesViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="FavoritesViewController" storyboardIdentifier="FavoritesViewController" id="Nvk-D8-tIq" customClass="FavoritesViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x7S-aG-yXT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FavoriteMovieCell" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ2-q2-7bM">
                                 <rect key="frame" x="0.0" y="114" width="393" height="704"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlP-7c-7Be">
                                 <rect key="frame" x="10" y="64" width="373" height="45"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="9bA-qG-YIG"/>
                                 </constraints>
@@ -51,9 +50,4 @@
             <point key="canvasLocation" x="-672.51908396946567" y="-2.1126760563380285"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

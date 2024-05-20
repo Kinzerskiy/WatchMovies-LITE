@@ -40,6 +40,7 @@ class SimilarTableViewCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         similarLabel.font = UIFont.lotaBold(ofSize: 18)
         similarLabel.textColor = UIColor.orange
+        collectionView.backgroundColor = .white
     }
 }
 

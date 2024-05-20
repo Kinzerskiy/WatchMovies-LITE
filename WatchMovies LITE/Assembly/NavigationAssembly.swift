@@ -32,7 +32,7 @@ protocol SearchNavigationAssemblyProtocol {
 }
 
 protocol FavoritesNavigationAssemblyProtocol {
-    func assemblyFavoriteMoviesViewController(with router: FavoritesRouting) -> FavoriteMoviesViewController
+    func assemblyFavoritesViewController (with router: FavoritesRouting) -> FavoritesViewController
 }
 
 protocol CardNavigationAssemblyProtocol {
@@ -51,7 +51,7 @@ protocol NavigationAssemblyProtocol: CommonNavigationAssemblyProtocol,
 }
 
 class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
-   
+    
     private static let mainStoryboardName = "Main"
     private static let movieListStoryboardName = "MovieList"
     private static let tvSeriesListStoryboardName = "TVSeriesList"
@@ -162,8 +162,8 @@ class NavigationAssembly: BaseAssembly, NavigationAssemblyProtocol {
     
     // MARK: Favorites
     
-    func assemblyFavoriteMoviesViewController(with router: FavoritesRouting) -> FavoriteMoviesViewController {
-        let vc: FavoriteMoviesViewController = favoritesStoryboard().instantiateViewController(withIdentifier: String(describing: FavoriteMoviesViewController.self)) as! FavoriteMoviesViewController
+    func assemblyFavoritesViewController(with router: FavoritesRouting) -> FavoritesViewController {
+        let vc: FavoritesViewController = favoritesStoryboard().instantiateViewController(withIdentifier: String(describing: FavoritesViewController.self)) as! FavoritesViewController
         vc.router = router
         
         return vc

@@ -7,11 +7,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="LotaGrotesque-Bold.otf">
-            <string>LotaGrotesque-Bold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,18 +20,27 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Popcorn" translatesAutoresizingMaskIntoConstraints="NO" id="jip-Cr-gjR">
                         <rect key="frame" x="0.0" y="0.0" width="260" height="350"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKS-03-iEf">
-                        <rect key="frame" x="14.999999999999996" y="302.33333333333331" width="63.666666666666657" height="32.666666666666686"/>
-                        <fontDescription key="fontDescription" name="LotaGrotesque-Bold" family="Lota Grotesque" pointSize="25"/>
-                        <color key="textColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKS-03-iEf">
+                        <rect key="frame" x="15" y="297.33333333333331" width="235" height="32.666666666666686"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Label">
+                                <attributes>
+                                    <color key="NSColor" red="0.92895358800000005" green="0.43020647760000003" blue="0.30582553150000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="25" name="LotaGrotesque-Bold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="SKS-03-iEf" secondAttribute="trailing" constant="10" id="0Pf-b0-hP5"/>
                 <constraint firstAttribute="trailing" secondItem="jip-Cr-gjR" secondAttribute="trailing" id="4yO-g9-mHv"/>
-                <constraint firstAttribute="bottom" secondItem="SKS-03-iEf" secondAttribute="bottom" constant="15" id="Lmk-ex-u8c"/>
+                <constraint firstAttribute="bottom" secondItem="SKS-03-iEf" secondAttribute="bottom" constant="20" id="Lmk-ex-u8c"/>
                 <constraint firstItem="SKS-03-iEf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="TkR-n3-rcD"/>
                 <constraint firstItem="jip-Cr-gjR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="b7n-db-q1V"/>
                 <constraint firstItem="jip-Cr-gjR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kIH-q9-B4t"/>
