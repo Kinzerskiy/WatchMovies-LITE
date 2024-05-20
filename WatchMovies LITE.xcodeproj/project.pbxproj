@@ -32,6 +32,8 @@
 		CE9868F72BF4D46F000C2BD4 /* AVFoundation+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868F62BF4D46F000C2BD4 /* AVFoundation+Asset.swift */; };
 		CE9868FD2BFB8354000C2BD4 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9868FB2BFB8353000C2BD4 /* CalendarTableViewCell.swift */; };
 		CE9868FE2BFB8354000C2BD4 /* CalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9868FC2BFB8353000C2BD4 /* CalendarTableViewCell.xib */; };
+		CE9869052BFB9645000C2BD4 /* TVCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9869032BFB9645000C2BD4 /* TVCalendarTableViewCell.swift */; };
+		CE9869062BFB9646000C2BD4 /* TVCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9869042BFB9645000C2BD4 /* TVCalendarTableViewCell.xib */; };
 		CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */; };
 		CEACE5252BE8DE6E00B81A63 /* CastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5232BE8DE6E00B81A63 /* CastTableViewCell.swift */; };
 		CEACE5262BE8DE6E00B81A63 /* CastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */; };
@@ -114,6 +116,8 @@
 		CE9868F62BF4D46F000C2BD4 /* AVFoundation+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVFoundation+Asset.swift"; sourceTree = "<group>"; };
 		CE9868FB2BFB8353000C2BD4 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		CE9868FC2BFB8353000C2BD4 /* CalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarTableViewCell.xib; sourceTree = "<group>"; };
+		CE9869032BFB9645000C2BD4 /* TVCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCalendarTableViewCell.swift; sourceTree = "<group>"; };
+		CE9869042BFB9645000C2BD4 /* TVCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVCalendarTableViewCell.xib; sourceTree = "<group>"; };
 		CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		CEACE5232BE8DE6E00B81A63 /* CastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTableViewCell.swift; sourceTree = "<group>"; };
 		CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastTableViewCell.xib; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 				CE88E89C2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib */,
 				CE9868FB2BFB8353000C2BD4 /* CalendarTableViewCell.swift */,
 				CE9868FC2BFB8353000C2BD4 /* CalendarTableViewCell.xib */,
+				CE9869032BFB9645000C2BD4 /* TVCalendarTableViewCell.swift */,
+				CE9869042BFB9645000C2BD4 /* TVCalendarTableViewCell.xib */,
 			);
 			path = ListCells;
 			sourceTree = "<group>";
@@ -508,6 +514,7 @@
 				CE5015392BECD9650086887A /* Cards.storyboard in Resources */,
 				CEADF0EF2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf in Resources */,
 				CEC2856D2BD97C3700189979 /* Search.storyboard in Resources */,
+				CE9869062BFB9646000C2BD4 /* TVCalendarTableViewCell.xib in Resources */,
 				CEADF1022BD6C12500A6B542 /* SimilarTableViewCell.xib in Resources */,
 				CE838D972BE7C34B00298CEF /* VideoTableViewCell.xib in Resources */,
 				CECC78B32B6CE396008815EF /* LaunchScreen.storyboard in Resources */,
@@ -542,6 +549,7 @@
 				CED28F8B2B6CF157007DB4A8 /* MainTabBarViewController.swift in Sources */,
 				CECC78C52B6CE693008815EF /* ApplicationRouter.swift in Sources */,
 				CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */,
+				CE9869052BFB9645000C2BD4 /* TVCalendarTableViewCell.swift in Sources */,
 				CECC78C32B6CE677008815EF /* BaseRouter.swift in Sources */,
 				CEACE52F2BE91D1F00B81A63 /* PersonViewController.swift in Sources */,
 				CEACE52D2BE8F75400B81A63 /* PersonModel.swift in Sources */,

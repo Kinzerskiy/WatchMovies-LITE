@@ -27,6 +27,9 @@ class FavoritesViewController: UIViewController {
     
     var genreDetails: [GenreDetails] = []
     
+    var markDates: [Date] = []
+
+    
     let emptyLabel: UILabel = {
         let label = UILabel()
         label.text = "Nothing here yet"
@@ -141,6 +144,23 @@ class FavoritesViewController: UIViewController {
         group.notify(queue: .main) {
             self.updateEmptyLabelVisibility()
             self.tableView.reloadData()
+            if self.currentSegmentIndex == 1 {
+                self.updateMarkDatesForTVSeries()
+            }
+        }
+    }
+
+    
+    func updateMarkDatesForTVSeries() {
+        markDates.removeAll()
+        for tvSeriesDetail in tvSeriesDetails {
+            if let airDate = tvSeriesDetail.nextEpisodeToAir?.airDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                if let date = dateFormatter.date(from: airDate) {
+                    markDates.append(date)
+                }
+            }
         }
     }
     
@@ -156,7 +176,6 @@ class FavoritesViewController: UIViewController {
         } else {
             APIManager.shared.fetchTVSeriesDetails(seriesId: mediaId) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
-                
                 self.tvSeriesDetails.append(response)
                 completion()
             }
@@ -233,16 +252,18 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
             return 1
         }
     }
+   
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
+
         if currentSegmentIndex == 0 {
             let favoriteCell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
             favoriteCell.segmentIndex = currentSegmentIndex
             favoriteCell.delegate = self
 
             let genres = groupByGenre()
-            guard indexPath.row < genres.count else { return UITableViewCell() }
+            guard indexPath.row < genres.count else { fatalError("index out of range") }
 
             let genreDetails = genres[indexPath.row]
             favoriteCell.genre = genreDetails.genre
@@ -251,16 +272,28 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             if #available(iOS 16.0, *) {
                 let calendarCell = tableView.dequeueReusableCell(withIdentifier: "CalendarTableViewCell", for: indexPath) as! CalendarTableViewCell
-                cell = calendarCell
+                
+                if currentSegmentIndex == 1 && indexPath.row < tvSeriesDetails.count {
+                    let tvSeriesDetail = tvSeriesDetails[indexPath.row]
+                    if let airDate = tvSeriesDetail.nextEpisodeToAir?.airDate {
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        if let date = dateFormatter.date(from: airDate) {
+                            calendarCell.markDates.append(date)
+                            calendarCell.markDates = markDates
+                        }
+                    }
+                    return calendarCell
+                } else {
+                    cell = UITableViewCell()
+                }
             } else {
-                // Fallback on earlier versions
-                cell = UITableViewCell() // or handle this case accordingly
+                fatalError("iOS 16.0 or later is required")
             }
         }
-
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if currentSegmentIndex == 0 {
             return 300
@@ -316,7 +349,7 @@ extension FavoritesViewController: FavoriteTableViewCellDelegate {
         router?.showDetailForm(with: movie.id, isMovie: true, viewController: self, animated: true)
     }
     
-//    func didSelectId(_ tvSeries: TVSeriesDetails) {
+    func didSelectId(_ tvSeries: TVSeriesDetails) {
 //        router?.showDetailForm(with: tvSeries.id, isMovie: false, viewController: self, animated: true)
-//    }
+    }
 }

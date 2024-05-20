@@ -16,7 +16,7 @@ struct GenreDetails {
 
 protocol FavoriteTableViewCellDelegate: AnyObject {
     func didSelectId(_ movie: MovieDetails)
-//    func didSelectId(_ tvSeries: TVSeriesDetails)
+    func didSelectId(_ tvSeries: TVSeriesDetails)
 }
 
 class FavoriteTableViewCell: UITableViewCell {
@@ -32,12 +32,6 @@ class FavoriteTableViewCell: UITableViewCell {
             collectionView.reloadData()
         }
     }
-    
-    //    var tvSeriesDetails: [TVSeriesDetails] = [] {
-    //        didSet {
-    //            collectionView.reloadData()
-    //        }
-    //    }
     
     var genre: String? {
         didSet {

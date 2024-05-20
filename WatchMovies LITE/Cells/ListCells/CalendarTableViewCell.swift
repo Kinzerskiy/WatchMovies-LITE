@@ -10,15 +10,26 @@ import UIKit
 @available(iOS 16.0, *)
 class CalendarTableViewCell: UITableViewCell {
     
-    
-
     @IBOutlet weak var calendarView: UICalendarView!
     
+    var markDates: [Date] = [] {
+        didSet {
+            calendarView.setNeedsDisplay()
+            print(markDates)
+        }
+    }
+    
+    var tvSeriesDetails: [TVSeriesDetails] = [] {
+        didSet {
+           
+        }
+    }
+    
     override func awakeFromNib() {
-            super.awakeFromNib()
+        super.awakeFromNib()
         prepareUI()
         calendarView.delegate = self
-        }
+    }
     
     func prepareUI() {
         let gregorianCalendar = Calendar(identifier: .gregorian)
@@ -33,20 +44,33 @@ class CalendarTableViewCell: UITableViewCell {
         calendarView.selectionBehavior = dateSelection
         
         calendarView.availableDateRange = DateInterval.init(start: Date.now, end: Date.distantFuture)
-
     }
-
 }
 
 @available(iOS 16.0, *)
-extension CalendarTableViewCell:  UICalendarViewDelegate{
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        let font = UIFont.systemFont(ofSize: 10)
-        let configuration = UIImage.SymbolConfiguration(font: font)
-        let image = UIImage(systemName: "star.fill", withConfiguration: configuration)?.withRenderingMode(.alwaysOriginal)
-        return .image(image)
-    }
+extension CalendarTableViewCell:  UICalendarViewDelegate {
     
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        let date = calendarView.calendar.date(from: dateComponents)!
+        
+        for markedDate in markDates {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: markedDate)
+            
+            let calendarDateFormatter = DateFormatter()
+            calendarDateFormatter.dateFormat = "dd-MM-yyyy"
+            if let calendarDate = calendarDateFormatter.date(from: dateString),
+               Calendar.current.isDate(calendarDate, inSameDayAs: date) {
+                let font = UIFont.systemFont(ofSize: 10)
+                let configuration = UIImage.SymbolConfiguration(font: font)
+                let image = UIImage(systemName: "star.fill", withConfiguration: configuration)?.withRenderingMode(.alwaysOriginal)
+                
+                return .image(image)
+            }
+        }
+        return nil
+    } 
 }
 
 @available(iOS 16.0, *)

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="126" id="KGk-i7-Jjw" customClass="TVCalendarTableViewCell" customModule="WatchMovies_LITE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="396" height="126"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="396" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="brH-Fn-qYz">
+                        <rect key="frame" x="10" y="28" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="VXv-ex-f0I"/>
+                            <constraint firstAttribute="height" constant="70" id="f2q-6i-uwy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKu-eo-Ce0">
+                        <rect key="frame" x="95" y="52.666666666666664" width="286" height="20.999999999999993"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q10-SJ-NRe">
+                        <rect key="frame" x="306" y="45.666666666666664" width="75" height="34.999999999999993"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <connections>
+                            <action selector="dateSelected:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="swH-F2-Ojh"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Q10-SJ-NRe" firstAttribute="centerY" secondItem="WKu-eo-Ce0" secondAttribute="centerY" id="Lfz-hs-TBB"/>
+                    <constraint firstItem="WKu-eo-Ce0" firstAttribute="leading" secondItem="brH-Fn-qYz" secondAttribute="trailing" constant="15" id="Mck-fx-DRa"/>
+                    <constraint firstAttribute="trailing" secondItem="WKu-eo-Ce0" secondAttribute="trailing" constant="15" id="efl-Ic-EDD"/>
+                    <constraint firstItem="brH-Fn-qYz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="guy-K1-KDu"/>
+                    <constraint firstItem="WKu-eo-Ce0" firstAttribute="centerY" secondItem="brH-Fn-qYz" secondAttribute="centerY" id="gxB-wp-d3d"/>
+                    <constraint firstAttribute="trailing" secondItem="Q10-SJ-NRe" secondAttribute="trailing" constant="15" id="kJE-Vg-HUh"/>
+                    <constraint firstItem="brH-Fn-qYz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="naw-4d-vo6"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="posterImage" destination="brH-Fn-qYz" id="Pxq-J6-PlI"/>
+                <outlet property="tvSeriesDate" destination="Q10-SJ-NRe" id="E7z-S6-Y4W"/>
+                <outlet property="tvSeriesTitle" destination="WKu-eo-Ce0" id="AwF-Eo-POa"/>
+            </connections>
+            <point key="canvasLocation" x="196.94656488549617" y="48.591549295774648"/>
+        </tableViewCell>
+    </objects>
+</document>
