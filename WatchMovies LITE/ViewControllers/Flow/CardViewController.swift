@@ -326,15 +326,13 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
         }
         
         if swipeDirection == .Right, let media = media {
+            
             if !FavoritesManager.shared.isMediaFavorite(media: media) {
                 FavoritesManager.shared.saveToWatchlist(data: media, watchlistType: .hasWatched)
             }
             minusImageView.isHidden = true
             plusImageView.isHidden = false
             animatePlusImage()
-            if currentSegmentIndex == 1 {
-                plusImageView.image = UIImage(systemName: "calendar.badge.checkmark")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 80, weight: .regular)).withTintColor(.orange, renderingMode: .alwaysOriginal)
-            }
         } else if swipeDirection == .Left, let media = media {
             if !FavoritesManager.shared.isMediaFavorite(media: media) {
                 FavoritesManager.shared.saveToWatchlist(data: media, watchlistType: .toWatch)
