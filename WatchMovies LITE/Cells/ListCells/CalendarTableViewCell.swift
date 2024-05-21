@@ -17,6 +17,9 @@ class CalendarTableViewCell: UITableViewCell {
     var markDates: [Date] = [] {
         didSet {
             updateDecorations()
+            for date in markDates {
+                scheduleNotification(for: date)
+            }
         }
     }
     
@@ -49,10 +52,10 @@ class CalendarTableViewCell: UITableViewCell {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         calendarView.calendar = gregorianCalendar
         
-        calendarView.backgroundColor = .secondarySystemBackground
+        calendarView.backgroundColor = .white
         calendarView.layer.cornerCurve = .continuous
         calendarView.layer.cornerRadius = 10.0
-        calendarView.tintColor = UIColor.systemTeal
+        calendarView.tintColor = UIColor.orange
         
         let dateSelection = UICalendarSelectionSingleDate(delegate: self)
         calendarView.selectionBehavior = dateSelection
