@@ -68,6 +68,7 @@ class CalendarTableViewCell: UITableViewCell {
         let uniqueMarkDates = Array(Set(markDates))
         
         calendarView.reloadDecorations(forDateComponents: [], animated: true)
+        clearAllNotifications()
         
         for date in uniqueMarkDates {
             calendarView.reloadDecorations(forDateComponents: uniqueMarkDates.map {
@@ -82,6 +83,10 @@ class CalendarTableViewCell: UITableViewCell {
         markDates.removeAll()
         updateDecorations()
     }
+    
+    func clearAllNotifications() {
+           UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+       }
 }
 
 @available(iOS 16.0, *)
