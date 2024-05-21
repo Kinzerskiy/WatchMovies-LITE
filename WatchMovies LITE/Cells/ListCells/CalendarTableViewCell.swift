@@ -17,9 +17,7 @@ class CalendarTableViewCell: UITableViewCell {
     var markDates: [Date] = [] {
         didSet {
             updateDecorations()
-            for date in markDates {
-                scheduleNotification(for: date)
-            }
+           
         }
     }
     
@@ -30,23 +28,26 @@ class CalendarTableViewCell: UITableViewCell {
     }
     
     func scheduleNotification(for date: Date) {
-           let content = UNMutableNotificationContent()
-           content.title = "Upcoming Episode"
-           content.body = "A new episode of a TV series in your favorites is airing tomorrow!"
-           content.sound = .default
-           
-           let triggerDate = Calendar.current.date(byAdding: .day, value: -1, to: date)!
-           let triggerDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: triggerDate)
-           let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
-           
-           let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-           
-           UNUserNotificationCenter.current().add(request) { error in
-               if let error = error {
-                   print("Failed to schedule notification: \(error)")
-               }
-           }
-       }
+        let content = UNMutableNotificationContent()
+        content.title = "Upcoming Episode"
+        content.body = "A new episode of a TV series in your favorites is airing tomorrow!"
+        content.sound = .default
+        
+        let triggerDate = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+        let triggerDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: triggerDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Failed to schedule notification: \(error)")
+            } else {
+                print("Notification scheduled for date: \(date)")
+            }
+        }
+    }
+
     
     func prepareUI() {
         let gregorianCalendar = Calendar(identifier: .gregorian)
@@ -69,13 +70,14 @@ class CalendarTableViewCell: UITableViewCell {
         
         calendarView.reloadDecorations(forDateComponents: [], animated: true)
         
-        if !uniqueMarkDates.isEmpty {
+        for date in uniqueMarkDates {
             calendarView.reloadDecorations(forDateComponents: uniqueMarkDates.map {
                 Calendar.current.dateComponents([.year, .month, .day], from: $0)
             }, animated: true)
-        }
+               scheduleNotification(for: date)
+            
+           }
     }
-    
     
     func clearMarkDates() {
         markDates.removeAll()
