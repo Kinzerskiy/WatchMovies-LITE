@@ -32,7 +32,15 @@ extension UIViewController {
         }
         let deleteBookmarksAction = UIAlertAction(title: "Delete All Bookmarks", style: .destructive) { [weak self] _ in
             FavoritesManager.shared.deleteAllFavorites {
-                completion?() 
+                if #available(iOS 16.0, *) {
+                    if let calendarCell = self?.findCalendarTableViewCell() {
+                        calendarCell.clearMarkDates()
+                    }
+                } else {
+                    
+                }
+                
+                completion?()
                 self?.showAlertDialog(title: "Success", message: "All bookmarks have been deleted.")
             }
         }
@@ -63,5 +71,19 @@ extension UIViewController {
             let safariViewController = SFSafariViewController(url: url)
             present(safariViewController, animated: true, completion: nil)
         }
+    }
+    
+    @available(iOS 16.0, *)
+    private func findCalendarTableViewCell() -> CalendarTableViewCell? {
+        for view in self.view.subviews {
+            if let tableView = view as? UITableView {
+                for cell in tableView.visibleCells {
+                    if let calendarCell = cell as? CalendarTableViewCell {
+                        return calendarCell
+                    }
+                }
+            }
+        }
+        return nil
     }
 }

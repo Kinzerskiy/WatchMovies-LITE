@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 @available(iOS 16.0, *)
 class CalendarTableViewCell: UITableViewCell {
     
@@ -14,14 +15,7 @@ class CalendarTableViewCell: UITableViewCell {
     
     var markDates: [Date] = [] {
         didSet {
-            calendarView.setNeedsDisplay()
-            print(markDates)
-        }
-    }
-    
-    var tvSeriesDetails: [TVSeriesDetails] = [] {
-        didSet {
-           
+            updateDecorations()
         }
     }
     
@@ -45,38 +39,56 @@ class CalendarTableViewCell: UITableViewCell {
         
         calendarView.availableDateRange = DateInterval.init(start: Date.now, end: Date.distantFuture)
     }
+    
+    private func updateDecorations() {
+        
+        let uniqueMarkDates = Array(Set(markDates))
+        
+        
+        calendarView.reloadDecorations(forDateComponents: [], animated: true)
+        
+        
+        if !uniqueMarkDates.isEmpty {
+            calendarView.reloadDecorations(forDateComponents: uniqueMarkDates.map {
+                Calendar.current.dateComponents([.year, .month, .day], from: $0)
+            }, animated: true)
+        }
+    }
+    
+    
+    func clearMarkDates() {
+        markDates.removeAll()
+        updateDecorations()
+    }
 }
 
 @available(iOS 16.0, *)
 extension CalendarTableViewCell:  UICalendarViewDelegate {
     
+    
     func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        let date = calendarView.calendar.date(from: dateComponents)!
+        guard let date = Calendar.current.date(from: dateComponents) else {
+            return nil
+        }
         
-        for markedDate in markDates {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            let dateString = dateFormatter.string(from: markedDate)
-            
-            let calendarDateFormatter = DateFormatter()
-            calendarDateFormatter.dateFormat = "dd-MM-yyyy"
-            if let calendarDate = calendarDateFormatter.date(from: dateString),
-               Calendar.current.isDate(calendarDate, inSameDayAs: date) {
-                let font = UIFont.systemFont(ofSize: 10)
-                let configuration = UIImage.SymbolConfiguration(font: font)
-                let image = UIImage(systemName: "star.fill", withConfiguration: configuration)?.withRenderingMode(.alwaysOriginal)
-                
-                return .image(image)
-            }
+        if markDates.contains(where: { Calendar.current.isDate($0, inSameDayAs: date) }) {
+            let font = UIFont.systemFont(ofSize: 10)
+            let configuration = UIImage.SymbolConfiguration(font: font)
+            let image = UIImage(systemName: "star.fill", withConfiguration: configuration)?.withRenderingMode(.alwaysOriginal)
+            return .image(image)
         }
         return nil
-    } 
+    }
 }
 
 @available(iOS 16.0, *)
 extension CalendarTableViewCell: UICalendarSelectionSingleDateDelegate {
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        print("Selected Date:", dateComponents)
+        guard let dateComponents = dateComponents,
+              let selectedDate = Calendar.current.date(from: dateComponents) else { return }
+        
+        
+        NotificationCenter.default.post(name: .dateSelected, object: selectedDate)
     }
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, canSelectDate dateComponents: DateComponents?) -> Bool {

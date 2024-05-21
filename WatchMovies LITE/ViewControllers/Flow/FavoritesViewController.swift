@@ -28,7 +28,11 @@ class FavoritesViewController: UIViewController {
     var genreDetails: [GenreDetails] = []
     
     var markDates: [Date] = []
-
+    
+    var selectedDate: Date?
+    var filteredTVSeriesDetails: [TVSeriesDetails] = []
+    
+    
     
     let emptyLabel: UILabel = {
         let label = UILabel()
@@ -47,6 +51,25 @@ class FavoritesViewController: UIViewController {
         prepareSegmenBar()
         makeNavigationBar()
         fetchFavoriteMediaIDs(forSection: 0)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDateSelected(_:)), name: .dateSelected, object: nil)
+    }
+    
+    @objc func handleDateSelected(_ notification: Notification) {
+        guard let selectedDate = notification.object as? Date else { return }
+        self.selectedDate = selectedDate
+        filterTVSeriesByDate(selectedDate)
+    }
+    
+    func filterTVSeriesByDate(_ date: Date) {
+        filteredTVSeriesDetails = tvSeriesDetails.filter { tvSeriesDetail in
+            guard let airDateString = tvSeriesDetail.nextEpisodeToAir?.airDate else { return false }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            guard let airDate = dateFormatter.date(from: airDateString) else { return false }
+            return Calendar.current.isDate(airDate, inSameDayAs: date)
+        }
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +109,7 @@ class FavoritesViewController: UIViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
         tableView.register(UINib(nibName: "CalendarTableViewCell", bundle: nil), forCellReuseIdentifier: "CalendarTableViewCell")
+        tableView.register(UINib(nibName: "TVCalendarTableViewCell", bundle: nil), forCellReuseIdentifier: "TVCalendarTableViewCell")
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
     }
@@ -112,11 +136,11 @@ class FavoritesViewController: UIViewController {
     
     func fetchFavoriteMediaIDs(forSection section: Int) {
         let group = DispatchGroup()
-
+        
         if section == 0 {
             favoriteMoviesIDs.removeAll()
             movieDetails.removeAll()
-
+            
             if let favoriteMovies = FavoritesManager.shared.fetchFavoritesForMovies() {
                 favoriteMoviesIDs = favoriteMovies.map { Int($0.id) }
                 for id in favoriteMoviesIDs {
@@ -129,7 +153,7 @@ class FavoritesViewController: UIViewController {
         } else {
             favoriteTVSeriesIDs.removeAll()
             tvSeriesDetails.removeAll()
-
+            
             if let favoriteTVSeries = FavoritesManager.shared.fetchFavoritesForTVSeries() {
                 favoriteTVSeriesIDs = favoriteTVSeries.map { Int($0.id) }
                 for id in favoriteTVSeriesIDs {
@@ -140,7 +164,7 @@ class FavoritesViewController: UIViewController {
                 }
             }
         }
-
+        
         group.notify(queue: .main) {
             self.updateEmptyLabelVisibility()
             self.tableView.reloadData()
@@ -149,7 +173,7 @@ class FavoritesViewController: UIViewController {
             }
         }
     }
-
+    
     
     func updateMarkDatesForTVSeries() {
         markDates.removeAll()
@@ -216,30 +240,30 @@ class FavoritesViewController: UIViewController {
     }
     
     private func generateListButtonTapped() {
-         let genreDetails = groupByGenre()
-         var formattedList = ""
-         for genreDetail in genreDetails {
-             formattedList += "\(genreDetail.genre):\n"
-             if currentSegmentIndex == 0 {
-                 for movieDetail in genreDetail.movies {
-                     formattedList += "\(movieDetail.title)\n"
-                 }
-             } else {
-                 for tvSeriesDetail in genreDetail.tvSeries {
-                     formattedList += "\(tvSeriesDetail.title ?? "")\n"
-                 }
-             }
-             formattedList += "\n"
-         }
-         print(formattedList)
-
-         let activityViewController = UIActivityViewController(activityItems: [formattedList], applicationActivities: nil)
-
-         activityViewController.popoverPresentationController?.sourceView = self.view
-         activityViewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-         activityViewController.popoverPresentationController?.permittedArrowDirections = []
-         present(activityViewController, animated: true, completion: nil)
-     }
+        let genreDetails = groupByGenre()
+        var formattedList = ""
+        for genreDetail in genreDetails {
+            formattedList += "\(genreDetail.genre):\n"
+            if currentSegmentIndex == 0 {
+                for movieDetail in genreDetail.movies {
+                    formattedList += "\(movieDetail.title)\n"
+                }
+            } else {
+                for tvSeriesDetail in genreDetail.tvSeries {
+                    formattedList += "\(tvSeriesDetail.title ?? "")\n"
+                }
+            }
+            formattedList += "\n"
+        }
+        print(formattedList)
+        
+        let activityViewController = UIActivityViewController(activityItems: [formattedList], applicationActivities: nil)
+        
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+        activityViewController.popoverPresentationController?.permittedArrowDirections = []
+        present(activityViewController, animated: true, completion: nil)
+    }
 }
 
 extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -249,56 +273,52 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
             let genres = movieDetails.compactMap { $0.genres.first?.name }
             return Set(genres).count
         } else {
-            return 1
+            
+            return 1 +  filteredTVSeriesDetails.count
         }
     }
-   
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
-
         if currentSegmentIndex == 0 {
             let favoriteCell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
             favoriteCell.segmentIndex = currentSegmentIndex
             favoriteCell.delegate = self
-
+            
             let genres = groupByGenre()
             guard indexPath.row < genres.count else { fatalError("index out of range") }
-
+            
             let genreDetails = genres[indexPath.row]
             favoriteCell.genre = genreDetails.genre
             favoriteCell.movieDetails = genreDetails.movies
-            cell = favoriteCell
+            return favoriteCell
         } else {
-            if #available(iOS 16.0, *) {
-                let calendarCell = tableView.dequeueReusableCell(withIdentifier: "CalendarTableViewCell", for: indexPath) as! CalendarTableViewCell
-                
-                if currentSegmentIndex == 1 && indexPath.row < tvSeriesDetails.count {
-                    let tvSeriesDetail = tvSeriesDetails[indexPath.row]
-                    if let airDate = tvSeriesDetail.nextEpisodeToAir?.airDate {
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "yyyy-MM-dd"
-                        if let date = dateFormatter.date(from: airDate) {
-                            calendarCell.markDates.append(date)
-                            calendarCell.markDates = markDates
-                        }
-                    }
+            if indexPath.row == 0 {
+                if #available(iOS 16.0, *) {
+                    let calendarCell = tableView.dequeueReusableCell(withIdentifier: "CalendarTableViewCell", for: indexPath) as! CalendarTableViewCell
+                    calendarCell.markDates = markDates
                     return calendarCell
                 } else {
-                    cell = UITableViewCell()
+                    fatalError("iOS 16.0 or later is required")
                 }
             } else {
-                fatalError("iOS 16.0 or later is required")
+                let tvSeriesCell = tableView.dequeueReusableCell(withIdentifier: "TVCalendarTableViewCell", for: indexPath) as! TVCalendarTableViewCell
+                let tvSeriesDetail = filteredTVSeriesDetails[indexPath.row - 1] // -1 because the first row is the calendar cell
+                tvSeriesCell.fill(with: tvSeriesDetail)
+                return tvSeriesCell
             }
         }
-        return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if currentSegmentIndex == 0 {
             return 300
         } else {
-            return 500
+            if indexPath.row == 0 {
+                return 500
+            } else {
+                return 150
+            }
         }
     }
     
@@ -350,6 +370,6 @@ extension FavoritesViewController: FavoriteTableViewCellDelegate {
     }
     
     func didSelectId(_ tvSeries: TVSeriesDetails) {
-//        router?.showDetailForm(with: tvSeries.id, isMovie: false, viewController: self, animated: true)
+        //        router?.showDetailForm(with: tvSeries.id, isMovie: false, viewController: self, animated: true)
     }
 }

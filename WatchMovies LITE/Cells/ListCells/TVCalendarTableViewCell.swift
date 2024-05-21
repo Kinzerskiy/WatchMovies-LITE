@@ -7,19 +7,19 @@
 
 import UIKit
 
-class TVCalendarTableViewCell: UITableViewCell {
 
+class TVCalendarTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var tvSeriesTitle: UILabel!
-    @IBOutlet weak var tvSeriesDate: UIButton!
-
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    func fill(with tvSeries: TVSeriesDetails) {
+        let baseURL = "https://image.tmdb.org/t/p/w500"
         
+        let posterURL = URL(string: baseURL + (tvSeries.posterPath ?? ""))
+        posterImage.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Popcorn"))
+        
+        tvSeriesTitle.text = tvSeries.title
     }
     
-    @IBAction func dateSelected(_ sender: Any) {
-        
-    }
 }

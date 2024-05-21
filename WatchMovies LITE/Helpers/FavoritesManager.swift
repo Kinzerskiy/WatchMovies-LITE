@@ -179,5 +179,19 @@ class FavoritesManager {
             return nil
         }
     }
-
+    
+    func fetchFavoriteTVSeriesIdsForDate(date: Date) -> [Int64]? {
+        let context = CoreDataManager.shared.context
+        let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
+        request.predicate = NSPredicate(format: "isMovie == false")
+        
+        do {
+            let favorites = try context.fetch(request)
+            let tvSeriesIds = favorites.compactMap { Int64($0.id) }
+            return tvSeriesIds
+        } catch {
+            print("Error fetching favorite TV series IDs: \(error)")
+            return nil
+        }
+    }
 }

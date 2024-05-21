@@ -191,6 +191,17 @@ class APIManager {
         }
     }
     
+    func fetchTVSeriesNextEpisodeDate(seriesId: Int, completion: @escaping (String?, Error?) -> Void) {
+        fetchTVSeriesDetails(seriesId: seriesId) { (tvSeriesDetails: TVSeriesDetails?, error: Error?) in
+            guard let tvSeriesDetails = tvSeriesDetails, error == nil else {
+                completion(nil, error)
+                return
+            }
+            let nextEpisodeDate = tvSeriesDetails.nextEpisodeToAir?.airDate
+            completion(nextEpisodeDate, nil)
+        }
+    }
+    
     //MARK: Person
     
     func fetchPersonDetails(personId: Int, completion: @escaping (Person?, Error?) -> Void) {
