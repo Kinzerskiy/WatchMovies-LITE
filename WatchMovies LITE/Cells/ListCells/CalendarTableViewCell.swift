@@ -47,7 +47,6 @@ class CalendarTableViewCell: UITableViewCell {
             }
         }
     }
-
     
     func prepareUI() {
         let gregorianCalendar = Calendar(identifier: .gregorian)

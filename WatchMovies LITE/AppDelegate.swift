@@ -36,18 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     func applicationWillTerminate(_ application: UIApplication) {
-        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.favoritesContext)
-        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.datesContext)
+        CoreDataManager.shared.saveContext()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.favoritesContext)
-        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.datesContext)
+        CoreDataManager.shared.saveContext()
     }
-
     // MARK: - Core Data stack
     
-    lazy var favoritesContainer: NSPersistentContainer = {
+    lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Favorites")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -56,17 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-    
-    lazy var datesContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "SelectedDate")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
