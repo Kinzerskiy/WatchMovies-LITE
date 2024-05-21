@@ -19,7 +19,7 @@ class FavoritesManager {
     private init() {}
     
     func saveToWatchlist(data: Any, watchlistType: WatchlistType) {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let favorite = Favorites(context: context)
         
         if let movieDetails = data as? MovieDetails {
@@ -59,11 +59,11 @@ class FavoritesManager {
                 favorite.isWatchingType = false
             }
         }
-        CoreDataManager.shared.saveContext()
+        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.favoritesContext)
     }
     
     func isMediaFavorite(media: MediaId) -> Bool {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         request.predicate = NSPredicate(format: "id == %ld", media.id)
         request.fetchLimit = 1
@@ -78,7 +78,7 @@ class FavoritesManager {
     }
     
     func fetchFavoriteMedia(for data: MediaId) -> Favorites? {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         request.predicate = NSPredicate(format: "id == %ld", data.id)
         request.fetchLimit = 1
@@ -98,7 +98,7 @@ class FavoritesManager {
     }
     
     func isMediaInWatchlist(media: MediaId, watchlistType: WatchlistType) -> Bool {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         var predicates: [NSPredicate] = [
             NSPredicate(format: "id == %ld", media.id),
@@ -130,12 +130,12 @@ class FavoritesManager {
 
     
     func deleteFavorite(favorite: Favorites) {
-        CoreDataManager.shared.context.delete(favorite)
-        CoreDataManager.shared.saveContext()
+        CoreDataManager.shared.favoritesContext.delete(favorite)
+        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.favoritesContext)
     }
     
     func deleteAllFavorites(completion: @escaping () -> Void) {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let fetchRequest: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         
         do {
@@ -143,7 +143,7 @@ class FavoritesManager {
             for favorite in favorites {
                 context.delete(favorite)
             }
-            CoreDataManager.shared.saveContext()
+            CoreDataManager.shared.saveContext(context: CoreDataManager.shared.favoritesContext)
             completion()
         } catch {
             print("Error deleting favorites: \(error)")
@@ -151,7 +151,7 @@ class FavoritesManager {
     }
     
     func fetchFavoritesForMovies() -> [Favorites]? {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         request.predicate = NSPredicate(format: "isMovie == true")
         
@@ -166,7 +166,7 @@ class FavoritesManager {
     }
 
     func fetchFavoritesForTVSeries() -> [Favorites]? {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         request.predicate = NSPredicate(format: "isMovie == false")
         
@@ -181,7 +181,7 @@ class FavoritesManager {
     }
     
     func fetchFavoriteTVSeriesIdsForDate(date: Date) -> [Int64]? {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         request.predicate = NSPredicate(format: "isMovie == false")
         

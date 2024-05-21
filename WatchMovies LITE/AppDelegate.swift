@@ -36,15 +36,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     func applicationWillTerminate(_ application: UIApplication) {
-        CoreDataManager.shared.saveContext()
+        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.favoritesContext)
+        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.datesContext)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        CoreDataManager.shared.saveContext()
+        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.favoritesContext)
+        CoreDataManager.shared.saveContext(context: CoreDataManager.shared.datesContext)
     }
+
     // MARK: - Core Data stack
     
-    lazy var persistentContainer: NSPersistentContainer = {
+    lazy var favoritesContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Favorites")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -53,5 +56,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    
+    lazy var datesContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "SelectedDate")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        
+        if let message = userInfo["aps"] {
+            print("Message: \(message)")
+        }
+        
+        completionHandler()
+    }
 }
 

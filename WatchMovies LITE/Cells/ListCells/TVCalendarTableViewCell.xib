@@ -36,6 +36,7 @@
                         </subviews>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="brH-Fn-qYz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="guy-K1-KDu"/>
                     <constraint firstItem="XWi-Yq-sWm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nSP-yw-4gy"/>
@@ -45,6 +46,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="posterImage" destination="brH-Fn-qYz" id="Pxq-J6-PlI"/>
                 <outlet property="tvSeriesTitle" destination="WKu-eo-Ce0" id="AwF-Eo-POa"/>

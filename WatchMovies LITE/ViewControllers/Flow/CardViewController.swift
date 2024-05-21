@@ -92,6 +92,7 @@ class CardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notificationRequest()
         fetchInitialData()
         prepareUI()
         makeNavigationBar()
@@ -259,6 +260,12 @@ class CardViewController: UIViewController {
                 self.loadMoreButton.isHidden = true
             }
         }
+    }
+    
+    fileprivate func notificationRequest() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+        UIApplication.shared.registerForRemoteNotifications()
     }
 }
 

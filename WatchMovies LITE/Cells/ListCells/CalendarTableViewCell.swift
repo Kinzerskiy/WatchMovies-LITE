@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import UserNotifications
+import CoreData
 
 @available(iOS 16.0, *)
 class CalendarTableViewCell: UITableViewCell {
@@ -24,6 +25,25 @@ class CalendarTableViewCell: UITableViewCell {
         prepareUI()
         calendarView.delegate = self
     }
+    
+    func scheduleNotification(for date: Date) {
+           let content = UNMutableNotificationContent()
+           content.title = "Upcoming Episode"
+           content.body = "A new episode of a TV series in your favorites is airing tomorrow!"
+           content.sound = .default
+           
+           let triggerDate = Calendar.current.date(byAdding: .day, value: -1, to: date)!
+           let triggerDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: triggerDate)
+           let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+           
+           let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+           
+           UNUserNotificationCenter.current().add(request) { error in
+               if let error = error {
+                   print("Failed to schedule notification: \(error)")
+               }
+           }
+       }
     
     func prepareUI() {
         let gregorianCalendar = Calendar(identifier: .gregorian)
@@ -44,9 +64,7 @@ class CalendarTableViewCell: UITableViewCell {
         
         let uniqueMarkDates = Array(Set(markDates))
         
-        
         calendarView.reloadDecorations(forDateComponents: [], animated: true)
-        
         
         if !uniqueMarkDates.isEmpty {
             calendarView.reloadDecorations(forDateComponents: uniqueMarkDates.map {
@@ -86,7 +104,6 @@ extension CalendarTableViewCell: UICalendarSelectionSingleDateDelegate {
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         guard let dateComponents = dateComponents,
               let selectedDate = Calendar.current.date(from: dateComponents) else { return }
-        
         
         NotificationCenter.default.post(name: .dateSelected, object: selectedDate)
     }

@@ -24,6 +24,7 @@
 		CE88E89D2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88E89B2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift */; };
 		CE88E89E2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE88E89C2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib */; };
 		CE8BD7072BFCB9CD00F240D2 /* Notification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8BD7062BFCB9CC00F240D2 /* Notification+extension.swift */; };
+		CE8BD70A2BFCC82500F240D2 /* SelectedDate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE8BD7082BFCC82400F240D2 /* SelectedDate.xcdatamodeld */; };
 		CE96C5242BD11638000ECB7B /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C5232BD11638000ECB7B /* FilterView.swift */; };
 		CE96C5282BD11665000ECB7B /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE96C5272BD11665000ECB7B /* FilterView.xib */; };
 		CE96C52A2BD18CB8000ECB7B /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96C5292BD18CB8000ECB7B /* MovieModel.swift */; };
@@ -109,6 +110,7 @@
 		CE88E89B2B6E8B3200AFAF95 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		CE88E89C2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		CE8BD7062BFCB9CC00F240D2 /* Notification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+extension.swift"; sourceTree = "<group>"; };
+		CE8BD7092BFCC82400F240D2 /* SelectedDate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SelectedDate.xcdatamodel; sourceTree = "<group>"; };
 		CE96C5232BD11638000ECB7B /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		CE96C5272BD11665000ECB7B /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		CE96C5292BD18CB8000ECB7B /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				CED28F9B2B6CFB8B007DB4A8 /* Helpers */,
 				CEA6B13F2BE3668700A14530 /* Extensions */,
 				CEAE15102BDE799C00958CCC /* Favorites.xcdatamodeld */,
+				CE8BD7082BFCC82400F240D2 /* SelectedDate.xcdatamodeld */,
 				CECC78AF2B6CE396008815EF /* Assets.xcassets */,
 				CECC78B12B6CE396008815EF /* LaunchScreen.storyboard */,
 				CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */,
@@ -598,6 +601,7 @@
 				CE0F05DC2BD27BFC003BF2AD /* TVSeriesListRouter.swift in Sources */,
 				CECC78BF2B6CE598008815EF /* BaseAssembly.swift in Sources */,
 				CE50153B2BECEDBA0086887A /* CardViewController.swift in Sources */,
+				CE8BD70A2BFCC82500F240D2 /* SelectedDate.xcdatamodeld in Sources */,
 				CECC78A62B6CE38C008815EF /* SceneDelegate.swift in Sources */,
 				CEACE5252BE8DE6E00B81A63 /* CastTableViewCell.swift in Sources */,
 			);
@@ -759,7 +763,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -792,7 +796,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -884,6 +888,16 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
+		CE8BD7082BFCC82400F240D2 /* SelectedDate.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE8BD7092BFCC82400F240D2 /* SelectedDate.xcdatamodel */,
+			);
+			currentVersion = CE8BD7092BFCC82400F240D2 /* SelectedDate.xcdatamodel */;
+			path = SelectedDate.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		CEAE15102BDE799C00958CCC /* Favorites.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

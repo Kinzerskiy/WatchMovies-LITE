@@ -7,12 +7,12 @@
 
 import UIKit
 
-
 class TVCalendarTableViewCell: UITableViewCell {
     
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var tvSeriesTitle: UILabel!
-    
+    weak var delegate: FavoriteTableViewCellDelegate?
+
     func fill(with tvSeries: TVSeriesDetails) {
         let baseURL = "https://image.tmdb.org/t/p/w500"
         
@@ -21,5 +21,4 @@ class TVCalendarTableViewCell: UITableViewCell {
         
         tvSeriesTitle.text = tvSeries.title
     }
-    
 }

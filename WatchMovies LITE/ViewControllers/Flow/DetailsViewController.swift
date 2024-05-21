@@ -193,7 +193,7 @@ class DetailsViewController: UIViewController {
     }
     
     private func checkIfInFavorites(id: Int) -> Bool {
-        let context = CoreDataManager.shared.context
+        let context = CoreDataManager.shared.favoritesContext
         let fetchRequest: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %ld", Int64(id))
         do {

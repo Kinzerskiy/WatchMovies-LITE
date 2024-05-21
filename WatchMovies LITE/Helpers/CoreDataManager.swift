@@ -12,18 +12,23 @@ import UIKit
 class CoreDataManager {
     static var shared = CoreDataManager()
     
-    var persistentContainer: NSPersistentContainer
+    var favoritesContainer: NSPersistentContainer
+    var datesContainer: NSPersistentContainer
     
-    var context: NSManagedObjectContext {
-         return persistentContainer.viewContext
-     }
-    
-    init() {
-        self.persistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    var favoritesContext: NSManagedObjectContext {
+        return favoritesContainer.viewContext
     }
     
-    func saveContext() {
-        let context = persistentContainer.viewContext
+    var datesContext: NSManagedObjectContext {
+        return datesContainer.viewContext
+    }
+    
+    init() {
+        self.favoritesContainer = (UIApplication.shared.delegate as! AppDelegate).favoritesContainer
+        self.datesContainer = (UIApplication.shared.delegate as! AppDelegate).datesContainer
+    }
+    
+    func saveContext(context: NSManagedObjectContext) {
         if context.hasChanges {
             do {
                 try context.save()
