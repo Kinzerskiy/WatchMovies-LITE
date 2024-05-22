@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         
         UIWindow.appearance().overrideUserInterfaceStyle = .light
+       
         
         setupRouting()
         setupWindow()
