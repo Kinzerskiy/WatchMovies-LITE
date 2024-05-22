@@ -36,6 +36,7 @@
 		CE9869052BFB9645000C2BD4 /* TVCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9869032BFB9645000C2BD4 /* TVCalendarTableViewCell.swift */; };
 		CE9869062BFB9646000C2BD4 /* TVCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9869042BFB9645000C2BD4 /* TVCalendarTableViewCell.xib */; };
 		CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */; };
+		CEA6FCBE2BFE1E6E00105BF1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA6FCBD2BFE1E6E00105BF1 /* Info.plist */; };
 		CEACE5252BE8DE6E00B81A63 /* CastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5232BE8DE6E00B81A63 /* CastTableViewCell.swift */; };
 		CEACE5262BE8DE6E00B81A63 /* CastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */; };
 		CEACE5292BE8DF4C00B81A63 /* CastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5272BE8DF4C00B81A63 /* CastCollectionViewCell.swift */; };
@@ -121,6 +122,7 @@
 		CE9869032BFB9645000C2BD4 /* TVCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		CE9869042BFB9645000C2BD4 /* TVCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVCalendarTableViewCell.xib; sourceTree = "<group>"; };
 		CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		CEA6FCBD2BFE1E6E00105BF1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../../Info.plist; sourceTree = "<group>"; };
 		CEACE5232BE8DE6E00B81A63 /* CastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTableViewCell.swift; sourceTree = "<group>"; };
 		CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastTableViewCell.xib; sourceTree = "<group>"; };
 		CEACE5272BE8DF4C00B81A63 /* CastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -153,7 +155,6 @@
 		CECC78AA2B6CE38C008815EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CECC78AF2B6CE396008815EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CECC78B22B6CE396008815EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CECC78B42B6CE396008815EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "WatchMovies LITE/Info.plist"; sourceTree = SOURCE_ROOT; };
 		CECC78BA2B6CE41B008815EF /* ApplicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
 		CECC78BC2B6CE4A7008815EF /* NavigationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAssembly.swift; sourceTree = "<group>"; };
 		CECC78BE2B6CE598008815EF /* BaseAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAssembly.swift; sourceTree = "<group>"; };
@@ -311,7 +312,7 @@
 				CECC78B12B6CE396008815EF /* LaunchScreen.storyboard */,
 				CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */,
 				CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */,
-				CECC78B42B6CE396008815EF /* Info.plist */,
+				CEA6FCBD2BFE1E6E00105BF1 /* Info.plist */,
 			);
 			path = "WatchList Movie Hub ";
 			sourceTree = "<group>";
@@ -530,6 +531,7 @@
 				CED28F822B6CEE8D007DB4A8 /* MovieList.storyboard in Resources */,
 				CEFE35F02B6D61D500451F55 /* NavigationHeaderView.xib in Resources */,
 				CEACE5382BE9711200B81A63 /* CastMediaTableViewCell.xib in Resources */,
+				CEA6FCBE2BFE1E6E00105BF1 /* Info.plist in Resources */,
 				CE0F05DE2BD28028003BF2AD /* TVSeriesList.storyboard in Resources */,
 				CE88E89E2B6E8B3200AFAF95 /* FavoriteTableViewCell.xib in Resources */,
 				CEADF0FC2BD6C10900A6B542 /* DescriptionTableViewCell.xib in Resources */,
