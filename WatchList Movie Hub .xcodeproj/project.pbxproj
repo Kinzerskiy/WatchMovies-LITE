@@ -482,7 +482,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CECC789B2B6CE38C008815EF /* Build configuration list for PBXProject "WatchMovies LITE" */;
+			buildConfigurationList = CECC789B2B6CE38C008815EF /* Build configuration list for PBXProject "WatchList Movie Hub " */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -765,7 +765,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kinzerskiy.lite-watchMovies";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hub.watchlist.movie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -798,7 +798,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "kinzerskiy.lite-watchMovies";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hub.watchlist.movie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -813,7 +813,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CECC789B2B6CE38C008815EF /* Build configuration list for PBXProject "WatchMovies LITE" */ = {
+		CECC789B2B6CE38C008815EF /* Build configuration list for PBXProject "WatchList Movie Hub " */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CECC78B52B6CE396008815EF /* Debug */,
