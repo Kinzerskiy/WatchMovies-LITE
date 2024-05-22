@@ -38,7 +38,7 @@ class SimilarTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "SimilarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SimilarCollectionViewCell")
         collectionView.showsHorizontalScrollIndicator = false
-        similarLabel.font = UIFont.lotaBold(ofSize: 18)
+        similarLabel.font = UIFont.lotaBold(ofSize: 20)
         similarLabel.textColor = UIColor.orange
         collectionView.backgroundColor = .white
     }
