@@ -13,6 +13,7 @@ struct Movie: Codable {
     var genres: [Genre]
     var firstAirDate: String?
     
+    
     var releaseDate: String?
     let title: String
     let overview: String
