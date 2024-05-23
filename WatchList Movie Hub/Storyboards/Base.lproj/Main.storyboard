@@ -20,7 +20,7 @@
         <!--Main Tab Bar View Controller-->
         <scene sceneID="i0Y-Wd-Yoh">
             <objects>
-                <tabBarController restorationIdentifier="MainTabBarViewController" storyboardIdentifier="MainTabBarViewController" id="DRh-PM-dGa" customClass="MainTabBarViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="MainTabBarViewController" storyboardIdentifier="MainTabBarViewController" id="DRh-PM-dGa" customClass="MainTabBarViewController" customModule="WatchList_Movie_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bdV-ZY-n1J">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -36,7 +36,7 @@
         <!--Details View Controller-->
         <scene sceneID="8Tm-Wx-Zkf">
             <objects>
-                <viewController restorationIdentifier="DetailsViewController" storyboardIdentifier="DetailsViewController" hidesBottomBarWhenPushed="YES" id="DPP-mj-7Wt" customClass="DetailsViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="DetailsViewController" storyboardIdentifier="DetailsViewController" hidesBottomBarWhenPushed="YES" id="DPP-mj-7Wt" customClass="DetailsViewController" customModule="WatchList_Movie_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z1F-i3-sPT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,7 +66,7 @@
         <!--Person View Controller-->
         <scene sceneID="veh-Ua-gug">
             <objects>
-                <viewController restorationIdentifier="PersonViewController" storyboardIdentifier="PersonViewController" id="dw9-qa-M9A" customClass="PersonViewController" customModule="WatchMovies_LITE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="PersonViewController" storyboardIdentifier="PersonViewController" id="dw9-qa-M9A" customClass="PersonViewController" customModule="WatchList_Movie_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zcX-hB-RAf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
         <!--Intro View Controller-->
         <scene sceneID="C9s-kc-Xa3">
             <objects>
-                <viewController storyboardIdentifier="IntroViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="XGf-jA-Sd0" customClass="IntroViewController" customModule="WatchMovies_LITE" sceneMemberID="viewController">
+                <viewController restorationIdentifier="IntroViewController" storyboardIdentifier="IntroViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="XGf-jA-Sd0" customClass="IntroViewController" customModule="WatchList_Movie_Hub" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wa3-iq-OPR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,7 +105,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="692"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mf5-be-5M8">
-                                        <rect key="frame" x="0.0" y="3" width="1179" height="692"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1179" height="692"/>
                                         <subviews>
                                             <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jt2-vs-15o">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="692"/>
@@ -159,7 +159,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="oin-Vu-95C"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="muB-uB-Czo"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53a-hD-PJh" customClass="GradientView" customModule="AISpace" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="53a-hD-PJh" customClass="GradientView" customModule="WatchList_Movie_Hub" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies &amp; TVSeries Lists" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eE9-Hz-Gbn">
