@@ -223,7 +223,6 @@ extension MovieListViewController: FilterViewDelegate {
 
     private func handleFetchResponse(movies: [Movie]?, error: Error?, segmentIndex: Int) {
         guard let movies = movies else {
-            showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")
             return
         }
         

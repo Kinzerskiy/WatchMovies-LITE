@@ -117,8 +117,7 @@ class DetailsViewController: UIViewController {
                     self.fetchCast()
                 case .failure(let error):
                     print("Error fetching movie details: \(error.localizedDescription)")
-                    self.showAlertDialog(title: "Error", message: "!!!!")
-                    completion()
+                    self.showErrorAlertAndDismiss()
                 }
             }
         } else {
@@ -132,7 +131,7 @@ class DetailsViewController: UIViewController {
                     self.fetchCast()
                 case .failure(let error):
                     print("Error fetching TV series details: \(error.localizedDescription)")
-                    self.showAlertDialog(title: "Error", message: "!!!!")
+                    self.showErrorAlertAndDismiss()
                     completion()
                 }
             }
@@ -246,6 +245,16 @@ class DetailsViewController: UIViewController {
             print("Error checking if in favorites: \(error)")
             return false
         }
+    }
+    
+    private func showErrorAlertAndDismiss() {
+        let alert = UIAlertController(title: "Error", message: "Unknown error", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.router?.dissmiss(viewController: self, animated: true, completion: nil)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
