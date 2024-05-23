@@ -73,9 +73,14 @@ class TVSeriesViewController: UIViewController {
     }
     
     func prepareUI() {
-        fetchTVSeries(for: currentSegmentIndex, page: 1) { tvSeries, error, segmentIndex in
-               self.handleFetchResponse(tvSeries: tvSeries, error: error, segmentIndex: segmentIndex)
-           }
+        fetchTVSeries(for: currentSegmentIndex, page: 1) { [weak self] result in
+            switch result {
+            case .success(let tvSeries):
+                self?.handleFetchResponse(tvSeries: tvSeries, error: nil, segmentIndex: self?.currentSegmentIndex ?? 1)
+            case .failure(let error):
+                self?.handleFetchResponse(tvSeries: nil, error: error, segmentIndex: self?.currentSegmentIndex ?? 1)
+            }
+        }
     }
 }
 
@@ -137,8 +142,13 @@ extension TVSeriesViewController: FilterViewDelegate {
     
     func segment1() {
         currentSegmentIndex = 0
-        fetchTVSeries(for: currentSegmentIndex, page: 1) { tvSeries, error, segmentIndex in
-            self.handleFetchResponse(tvSeries: tvSeries, error: error, segmentIndex: segmentIndex)
+        fetchTVSeries(for: currentSegmentIndex, page: 1) { result in
+            switch result {
+            case .success(let tvSeries):
+                self.handleFetchResponse(tvSeries: tvSeries, error: nil, segmentIndex: self.currentSegmentIndex)
+            case .failure(let error):
+                self.handleFetchResponse(tvSeries: nil, error: error, segmentIndex: self.currentSegmentIndex)
+            }
         }
         DispatchQueue.main.async {
             self.collectionView.setContentOffset(CGPoint.zero, animated: true)
@@ -147,8 +157,13 @@ extension TVSeriesViewController: FilterViewDelegate {
 
     func segment2() {
         currentSegmentIndex = 1
-        fetchTVSeries(for: currentSegmentIndex, page: 1) { tvSeries, error, segmentIndex in
-            self.handleFetchResponse(tvSeries: tvSeries, error: error, segmentIndex: segmentIndex)
+        fetchTVSeries(for: currentSegmentIndex, page: 1) { result in
+            switch result {
+            case .success(let tvSeries):
+                self.handleFetchResponse(tvSeries: tvSeries, error: nil, segmentIndex: self.currentSegmentIndex)
+            case .failure(let error):
+                self.handleFetchResponse(tvSeries: nil, error: error, segmentIndex: self.currentSegmentIndex)
+            }
         }
         DispatchQueue.main.async {
             self.collectionView.setContentOffset(CGPoint.zero, animated: true)
@@ -157,36 +172,41 @@ extension TVSeriesViewController: FilterViewDelegate {
 
     func segment3() {
         currentSegmentIndex = 2
-        fetchTVSeries(for: currentSegmentIndex, page: 1) { tvSeries, error, segmentIndex in
-            self.handleFetchResponse(tvSeries: tvSeries, error: error, segmentIndex: segmentIndex)
+        fetchTVSeries(for: currentSegmentIndex, page: 1) { result in
+            switch result {
+            case .success(let tvSeries):
+                self.handleFetchResponse(tvSeries: tvSeries, error: nil, segmentIndex: self.currentSegmentIndex)
+            case .failure(let error):
+                self.handleFetchResponse(tvSeries: nil, error: error, segmentIndex: self.currentSegmentIndex)
+            }
         }
         DispatchQueue.main.async {
             self.collectionView.setContentOffset(CGPoint.zero, animated: true)
         }
     }
-
+    
     func segment4() { }
     
-    private func fetchTVSeries(for segmentIndex: Int, page: Int, completion: @escaping ([TVSeries]?, Error?, Int) -> Void) {
+    private func fetchTVSeries(for segmentIndex: Int, page: Int, completion: @escaping (Result<[TVSeries], Error>) -> Void)  {
         switch segmentIndex {
         case 0:
-            APIManager.shared.fetchAiringTodaySeries(page: page) { [weak self] tvSeries, error in
-                completion(tvSeries, error, segmentIndex)
-                if let error = error {
+            APIManager.shared.fetchAiringTodaySeries(page: page) {  [weak self] result in
+                completion(result)
+                if case let .failure(error) = result {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 1:
-            APIManager.shared.fetchPopularSeries(page: page) { [weak self] tvSeries, error in
-                completion(tvSeries, error, segmentIndex)
-                if let error = error {
+            APIManager.shared.fetchPopularSeries(page: page) {  [weak self] result in
+                completion(result)
+                if case let .failure(error) = result {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 2:
-            APIManager.shared.fetchTopRatedSeries(page: page) { [weak self] tvSeries, error in
-                completion(tvSeries, error, segmentIndex)
-                if let error = error {
+            APIManager.shared.fetchTopRatedSeries(page: page) {  [weak self] result in
+                completion(result)
+                if case let .failure(error) = result {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
@@ -215,11 +235,15 @@ extension TVSeriesViewController: FilterViewDelegate {
 
         if lastVisibleIndexPath.item >= tvSeries.count - 4 {
             currentPage[segmentIndex] += 1
-            fetchTVSeries(for: segmentIndex, page: currentPage[segmentIndex]) { tvSeries, error, segmentIndex in
-                guard let tvSeries = tvSeries else { return }
-                self.tvSeries += tvSeries
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+            fetchTVSeries(for: segmentIndex, page: currentPage[segmentIndex]) { result in
+                switch result {
+                case .success(let tvSeries):
+                    self.tvSeries += tvSeries
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                case .failure(let error):
+                    self.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         }

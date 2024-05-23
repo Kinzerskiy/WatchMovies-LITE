@@ -3111,5 +3111,178 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28AFD82B-1609-4DD9-BBA6-0BC773C44391"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchList Movie Hub/ViewControllers/Flow/CardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "CardViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "28AFD82B-1609-4DD9-BBA6-0BC773C44391 - 6506ab844ef8c912"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchList_Movie_Hub.CardViewController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; WatchList_Movie_Hub.CardViewController"
+                  moduleName = "WatchList Movie Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/3333/WatchList%20Movie%20Hub/WatchList%20Movie%20Hub/ViewControllers/Flow/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  uuid = "28AFD82B-1609-4DD9-BBA6-0BC773C44391 - 76eb6caeaa2db41b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchList_Movie_Hub.CardViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; WatchList_Movie_Hub.CardViewController"
+                  moduleName = "WatchList Movie Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/3333/WatchList%20Movie%20Hub/WatchList%20Movie%20Hub/ViewControllers/Flow/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "261">
+               </Location>
+               <Location
+                  uuid = "28AFD82B-1609-4DD9-BBA6-0BC773C44391 - c5f29f2a006f9ba4"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchList_Movie_Hub.CardViewController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;WatchList_Movie_Hub.CardViewController&gt;"
+                  moduleName = "WatchList Movie Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/3333/WatchList%20Movie%20Hub/WatchList%20Movie%20Hub/ViewControllers/Flow/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  uuid = "28AFD82B-1609-4DD9-BBA6-0BC773C44391 - 780c750017c5c981"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchList_Movie_Hub.CardViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;WatchList_Movie_Hub.CardViewController&gt;"
+                  moduleName = "WatchList Movie Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/3333/WatchList%20Movie%20Hub/WatchList%20Movie%20Hub/ViewControllers/Flow/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "209">
+               </Location>
+               <Location
+                  uuid = "28AFD82B-1609-4DD9-BBA6-0BC773C44391 - 674324e3f4fc15fa"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchList_Movie_Hub.CardViewController.__deallocating_deinit"
+                  moduleName = "WatchList Movie Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/3333/WatchList%20Movie%20Hub/WatchList%20Movie%20Hub/ViewControllers/Flow/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "685E5229-30C6-424B-884E-40153AE63BE5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchList Movie Hub/ViewControllers/Flow/CardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "notificationRequest()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86DDF750-95CB-47F9-AE2A-3B9054F373A4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchList Movie Hub/ViewControllers/Flow/CardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "handleMovieResponse(movies:error:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "86DDF750-95CB-47F9-AE2A-3B9054F373A4 - d424d3185fb03127"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchList_Movie_Hub.CardViewController.handleMovieResponse(movies: Swift.Optional&lt;Swift.Array&lt;WatchList_Movie_Hub.Movie&gt;&gt;, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "WatchList Movie Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/3333/WatchList%20Movie%20Hub/WatchList%20Movie%20Hub/ViewControllers/Flow/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "237"
+                  endingLineNumber = "237"
+                  offsetFromSymbolStart = "252">
+               </Location>
+               <Location
+                  uuid = "86DDF750-95CB-47F9-AE2A-3B9054F373A4 - d424d3185fb03106"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WatchList_Movie_Hub.CardViewController.handleMovieResponse(movies: Swift.Optional&lt;Swift.Array&lt;WatchList_Movie_Hub.Movie&gt;&gt;, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
+                  moduleName = "WatchList Movie Hub"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Desktop/3333/WatchList%20Movie%20Hub/WatchList%20Movie%20Hub/ViewControllers/Flow/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "238"
+                  endingLineNumber = "238"
+                  offsetFromSymbolStart = "252">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9968A0CF-177D-4A0B-AC11-AD956FAAA7F8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchList Movie Hub/ViewControllers/Flow/CardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "handleMovieResponse(movies:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

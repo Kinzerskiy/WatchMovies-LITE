@@ -107,38 +107,61 @@ class DetailsViewController: UIViewController {
         guard let id = selectedId else { return }
         
         if isMovie {
-            APIManager.shared.fetchMovieDetails(movieId: id) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                print(response)
-                self.movieDetails = response
-                self.fetchSimilarMedia(completion: completion)
-                self.fetchVideos()
-                self.fetchCast()
+            APIManager.shared.fetchMovieDetails(movieId: id) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    self.movieDetails = response
+                    self.fetchSimilarMedia(completion: completion)
+                    self.fetchVideos()
+                    self.fetchCast()
+                case .failure(let error):
+                    print("Error fetching movie details: \(error.localizedDescription)")
+                    self.showAlertDialog(title: "Error", message: "!!!!")
+                    completion()
+                }
             }
         } else {
-            APIManager.shared.fetchTVSeriesDetails(seriesId: id) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                self.tvSeriesDetails = response
-                self.fetchSimilarMedia(completion: completion)
-                self.fetchVideos()
-                self.fetchCast()
+            APIManager.shared.fetchTVSeriesDetails(seriesId: id) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    self.tvSeriesDetails = response
+                    self.fetchSimilarMedia(completion: completion)
+                    self.fetchVideos()
+                    self.fetchCast()
+                case .failure(let error):
+                    print("Error fetching TV series details: \(error.localizedDescription)")
+                    self.showAlertDialog(title: "Error", message: "!!!!")
+                    completion()
+                }
             }
         }
     }
-    
+
     func fetchSimilarMedia(completion: @escaping () -> Void) {
         guard let id = selectedId else { return }
         
         if isMovie == true {
-            APIManager.shared.fetchSimilarMovies(movieId: id) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                self.similarMovies = response.results
+            APIManager.shared.fetchSimilarMovies(movieId: id) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    self.similarMovies = response.results
+                case .failure(let error):
+                    print("Error fetching similar movies: \(error.localizedDescription)")
+                }
                 completion()
             }
         } else {
-            APIManager.shared.fetchSimilarTVSeries(seriesId: id) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                self.similarTVSeries = response.results
+            APIManager.shared.fetchSimilarTVSeries(seriesId: id) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    self.similarTVSeries = response.results
+                case .failure(let error):
+                    print("Error fetching similar TV series: \(error.localizedDescription)")
+                }
                 completion()
             }
         }
@@ -147,22 +170,32 @@ class DetailsViewController: UIViewController {
     private func fetchVideos() {
         guard let id = selectedId else { return }
         if isMovie == true {
-            APIManager.shared.fetchMovieVideos(movieId: id) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                let trailers = response.results.filter { $0.type.lowercased() == "trailer" }
-                if let trailer = trailers.first {
-                    self.videoId = trailer.key
+            APIManager.shared.fetchMovieVideos(movieId: id) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    let trailers = response.results.filter { $0.type.lowercased() == "trailer" }
+                    if let trailer = trailers.first {
+                        self.videoId = trailer.key
+                    }
+                case .failure(let error):
+                    print("Error fetching movie videos: \(error.localizedDescription)")
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         } else {
-            APIManager.shared.fetchTVVideos(tvSeriesId: id) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                let trailers = response.results.filter { $0.type.lowercased() == "trailer" }
-                if let trailer = trailers.first {
-                    self.videoId = trailer.key
+            APIManager.shared.fetchTVVideos(tvSeriesId: id) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    let trailers = response.results.filter { $0.type.lowercased() == "trailer" }
+                    if let trailer = trailers.first {
+                        self.videoId = trailer.key
+                    }
+                case .failure(let error):
+                    print("Error fetching TV series videos: \(error.localizedDescription)")
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -173,18 +206,28 @@ class DetailsViewController: UIViewController {
     
     private func fetchCast() {
         guard let id = selectedId else { return }
-        if isMovie ?? false {
-            APIManager.shared.fetchMovieCredits(movieId: id) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                self.movieCast = response.cast
+        if isMovie == true {
+            APIManager.shared.fetchMovieCredits(movieId: id) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    self.movieCast = response.cast
+                case .failure(let error):
+                    print("Error fetching movie credits: \(error.localizedDescription)")
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         } else {
-            APIManager.shared.fetchTVSeriesCredits(tvSeriesId: id) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                self.tvSeriesCast = response.cast
+            APIManager.shared.fetchTVSeriesCredits(tvSeriesId: id) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    self.tvSeriesCast = response.cast
+                case .failure(let error):
+                    print("Error fetching TV series credits: \(error.localizedDescription)")
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

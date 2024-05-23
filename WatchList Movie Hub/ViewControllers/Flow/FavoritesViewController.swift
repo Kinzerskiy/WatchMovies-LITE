@@ -189,18 +189,26 @@ class FavoritesViewController: UIViewController {
     }
     
     func fetchMediaDetails(isMovie: Bool, mediaId: Int, completion: @escaping () -> Void) {
-        
         if isMovie {
-            APIManager.shared.fetchMovieDetails(movieId: mediaId) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                
-                self.movieDetails.append(response)
+            APIManager.shared.fetchMovieDetails(movieId: mediaId) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    self.movieDetails.append(response)
+                case .failure(let error):
+                    print("Error fetching movie details: \(error.localizedDescription)")
+                }
                 completion()
             }
         } else {
-            APIManager.shared.fetchTVSeriesDetails(seriesId: mediaId) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                self.tvSeriesDetails.append(response)
+            APIManager.shared.fetchTVSeriesDetails(seriesId: mediaId) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success(let response):
+                    self.tvSeriesDetails.append(response)
+                case .failure(let error):
+                    print("Error fetching TV series details: \(error.localizedDescription)")
+                }
                 completion()
             }
         }

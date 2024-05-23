@@ -65,17 +65,21 @@ class SearchResultViewController: UIViewController {
 
         switch mediaType {
         case .movie:
-            APIManager.shared.fetchSearchMovies(page: page, /*includeAdult: includeAdult,*/ primaryReleaseYear: year, genre: genreID) { [weak self] movies, error in
-                completion(movies, error)
-                if let error = error {
-                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
+            APIManager.shared.fetchSearchMovies(page: page, primaryReleaseYear: year, genre: genreID) { result in
+                switch result {
+                case .success(let movies):
+                    completion(movies, nil)
+                case .failure(let error):
+                    completion(nil, error)
                 }
             }
         case .tvSeries:
-            APIManager.shared.fetchSearchTVSeries(page: page, /*includeAdult: includeAdult,*/ firstAirDateYear: year, genre: genreID) { [weak self] tvSeries, error in
-                completion(tvSeries as [Any], nil)
-                if let error = error {
-                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
+            APIManager.shared.fetchSearchTVSeries(page: page, firstAirDateYear: year, genre: genreID) { result in
+                switch result {
+                case .success(let tvSeries):
+                    completion(tvSeries, nil)
+                case .failure(let error):
+                    completion(nil, error)
                 }
             }
         }

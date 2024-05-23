@@ -21,7 +21,7 @@ class MovieListViewController: UIViewController {
     var movies: [Movie] = []
     private var currentPage = [0, 0, 0]
     private var currentSegmentIndex = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
@@ -66,19 +66,24 @@ class MovieListViewController: UIViewController {
         filterView.setSegmentTitles(titles: segmentTitles, font: font, color: color)
         
         filterView.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               filterView.topAnchor.constraint(equalTo: segmentBarView.topAnchor),
-               filterView.leadingAnchor.constraint(equalTo: segmentBarView.leadingAnchor),
-               filterView.bottomAnchor.constraint(equalTo: segmentBarView.bottomAnchor),
-               filterView.trailingAnchor.constraint(equalTo: segmentBarView.trailingAnchor)
-           ])
+        NSLayoutConstraint.activate([
+            filterView.topAnchor.constraint(equalTo: segmentBarView.topAnchor),
+            filterView.leadingAnchor.constraint(equalTo: segmentBarView.leadingAnchor),
+            filterView.bottomAnchor.constraint(equalTo: segmentBarView.bottomAnchor),
+            filterView.trailingAnchor.constraint(equalTo: segmentBarView.trailingAnchor)
+        ])
         filterView.setupView()
     }
     
     func prepareUI() {
-        fetchMovies(for: currentSegmentIndex, page: 1) { [weak self]  movies, error, segmentIndex in
-               self?.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
-           }
+        fetchMovies(for: currentSegmentIndex, page: 1) { [weak self] result in
+            switch result {
+            case .success(let movies):
+                self?.handleFetchResponse(movies: movies, error: nil, segmentIndex: self?.currentSegmentIndex ?? 1)
+            case .failure(let error):
+                self?.handleFetchResponse(movies: nil, error: error, segmentIndex: self?.currentSegmentIndex ?? 1)
+            }
+        }
     }
 }
 
@@ -138,57 +143,75 @@ extension MovieListViewController: FilterViewDelegate {
     
     func segment1() {
         currentSegmentIndex = 0
-        fetchMovies(for: currentSegmentIndex, page: 1) { movies, error, segmentIndex in
-            self.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
+        fetchMovies(for: currentSegmentIndex, page: 1) { result in
+            switch result {
+            case .success(let movies):
+                self.handleFetchResponse(movies: movies, error: nil, segmentIndex: self.currentSegmentIndex)
+            case .failure(let error):
+                self.handleFetchResponse(movies: nil, error: error, segmentIndex: self.currentSegmentIndex)
+            }
         }
         DispatchQueue.main.async {
             self.collectionView.setContentOffset(CGPoint.zero, animated: true)
         }
     }
+
 
     func segment2() {
         currentSegmentIndex = 1
-        fetchMovies(for: currentSegmentIndex, page: 1) { movies, error, segmentIndex in
-            self.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
+        fetchMovies(for: currentSegmentIndex, page: 1) { result in
+            switch result {
+            case .success(let movies):
+                self.handleFetchResponse(movies: movies, error: nil, segmentIndex: self.currentSegmentIndex)
+            case .failure(let error):
+                self.handleFetchResponse(movies: nil, error: error, segmentIndex: self.currentSegmentIndex)
+            }
         }
         DispatchQueue.main.async {
             self.collectionView.setContentOffset(CGPoint.zero, animated: true)
         }
     }
 
+
     func segment3() {
         currentSegmentIndex = 2
-        fetchMovies(for: currentSegmentIndex, page: 1) { movies, error, segmentIndex in
-            self.handleFetchResponse(movies: movies, error: error, segmentIndex: segmentIndex)
+        fetchMovies(for: currentSegmentIndex, page: 1) { result in
+            switch result {
+            case .success(let movies):
+                self.handleFetchResponse(movies: movies, error: nil, segmentIndex: self.currentSegmentIndex)
+            case .failure(let error):
+                self.handleFetchResponse(movies: nil, error: error, segmentIndex: self.currentSegmentIndex)
+            }
         }
         DispatchQueue.main.async {
             self.collectionView.setContentOffset(CGPoint.zero, animated: true)
         }
     }
+
 
     func segment4() { }
     
     
-    private func fetchMovies(for segmentIndex: Int, page: Int, completion: @escaping ([Movie]?, Error?, Int) -> Void) {
+    private func fetchMovies(for segmentIndex: Int, page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
         switch segmentIndex {
         case 0:
-            APIManager.shared.fetchNowPlayingMovies(page: page) { [weak self] movies, error in
-                completion(movies, error, segmentIndex)
-                if let error = error {
+            APIManager.shared.fetchNowPlayingMovies(page: page) {  [weak self] result in
+                completion(result)
+                if case let .failure(error) = result {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 1:
-            APIManager.shared.fetchUpcomingMovies(page: page) { [weak self] movies, error in
-                completion(movies, error, segmentIndex)
-                if let error = error {
+            APIManager.shared.fetchUpcomingMovies(page: page) {  [weak self] result in
+                completion(result)
+                if case let .failure(error) = result {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
         case 2:
-            APIManager.shared.fetchTopRatedMovies(page: page) { [weak self] movies, error in
-                completion(movies, error, segmentIndex)
-                if let error = error {
+            APIManager.shared.fetchTopRatedMovies(page: page) {  [weak self] result in
+                completion(result)
+                if case let .failure(error) = result {
                     self?.showAlertDialog(title: "Error", message: error.localizedDescription)
                 }
             }
@@ -196,6 +219,7 @@ extension MovieListViewController: FilterViewDelegate {
             break
         }
     }
+
 
     private func handleFetchResponse(movies: [Movie]?, error: Error?, segmentIndex: Int) {
         guard let movies = movies else {
@@ -216,11 +240,14 @@ extension MovieListViewController: FilterViewDelegate {
 
         if lastVisibleIndexPath.item >= movies.count - 4 {
             currentPage[segmentIndex] += 1
-            fetchMovies(for: segmentIndex, page: currentPage[segmentIndex]) { movies, error, segmentIndex in
-                guard let movies = movies else { return }
-                self.movies += movies
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+            fetchMovies(for: segmentIndex, page: currentPage[segmentIndex]) { result in
+                switch result {
+                case .success(let newMovies):
+                    self.movies += newMovies
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                case .failure(let error): break
                 }
             }
         }

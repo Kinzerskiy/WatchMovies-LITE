@@ -109,18 +109,24 @@ class SearchViewController: UIViewController {
         
         let genreName = currentSegmentIndex == 0 ? movieGenres[selectedGenreRow] : tvGenres[selectedGenreRow]
         
-        searchMoviesOrTVSeries(year: selectedYear, genre: selectedGenre) { [weak self] (result, error) in
-            if let error = error {
-                print("Error searching: \(error.localizedDescription)")
-            } else if let result = result {
-                if let movies = result as? [Movie] {
-                    self?.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, genreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
-                } else if let tvSeries = result as? [TVSeries] {
-                    self?.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, genreID: self?.selectedGenre, year: self?.selectedYear, viewController: self!, animated: true)
+        searchMoviesOrTVSeries(year: selectedYear, genre: selectedGenre) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let value):
+                if let movies = value as? [Movie] {
+                    self.router?.showSearchResultForm(with: movies, isMovie: true, genreName: genreName, genreID: self.selectedGenre, year: self.selectedYear, viewController: self, animated: true)
+                } else if let tvSeries = value as? [TVSeries] {
+                    self.router?.showSearchResultForm(with: tvSeries, isMovie: false, genreName: genreName, genreID: self.selectedGenre, year: self.selectedYear, viewController: self, animated: true)
+                } else {
+                    print("Unexpected result type")
                 }
+            case .failure(let error):
+                print("Error searching: \(error.localizedDescription)")
             }
         }
     }
+    
 }
 
 extension SearchViewController: NavigationHeaderViewDelegate {
@@ -206,7 +212,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == yearPicker {
             let currentYear = Calendar.current.component(.year, from: Date())
@@ -220,18 +226,18 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         return 0
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.layer.cornerRadius = 10
         label.clipsToBounds = true
-
+        
         let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont.lotaBold(ofSize: 15)
         ]
-
+        
         if pickerView == yearPicker {
             let currentYear = Calendar.current.component(.year, from: Date())
             let year = currentYear - row + 1
@@ -269,7 +275,7 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         return label
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == yearPicker {
             let currentYear = Calendar.current.component(.year, from: Date())
@@ -279,33 +285,30 @@ extension SearchViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         searchButton.isEnabled = selectedYear != nil || selectedGenre != nil
     }
-
     
-    func searchMoviesOrTVSeries(year: String?, genre: String?, completion: @escaping ([Any]?, Error?) -> Void) {
+    
+    func searchMoviesOrTVSeries(year: String?, genre: String?, completion: @escaping (Result<[Any], Error>) -> Void) {
         let page = 1
-
+        
         if currentSegmentIndex == 0 {
-            APIManager.shared.fetchSearchMovies(page: page, primaryReleaseYear: year, genre: genre) { [weak self] (movies, error) in
-                if let error = error {
-                    self?.showAlertDialog(title: "Error", message: error.localizedDescription )
-                    completion(nil, error)
-                } else {
-                    DispatchQueue.main.async {
-                        completion(movies, nil)
-                    }
+            APIManager.shared.fetchSearchMovies(page: page, primaryReleaseYear: year, genre: genre) { (result) in
+                switch result {
+                case .success(let movies):
+                    completion(.success(movies))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
         } else {
-            APIManager.shared.fetchSearchTVSeries(page: page, firstAirDateYear: year, genre: genre) { [weak self] (tvSeries, error) in
-                if let error = error {
-                    self?.showAlertDialog(title: "Error", message: error.localizedDescription)
-                    completion(nil, error)
-                } else {
-                    DispatchQueue.main.async {
-                        completion(tvSeries, nil)
-                    }
+            APIManager.shared.fetchSearchTVSeries(page: page, firstAirDateYear: year, genre: genre) { (result) in
+                switch result {
+                case .success(let tvSeries):
+                    completion(.success(tvSeries))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
             }
         }
     }
+    
 }

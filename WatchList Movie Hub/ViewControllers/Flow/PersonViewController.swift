@@ -30,11 +30,17 @@ class PersonViewController: UIViewController {
     func fetchPersonDetailsAndCast() {
         guard let id = pesonId else { return }
         
-        APIManager.shared.fetchPersonDetails(personId: id) { [weak self] (response, error) in
-            guard let self = self, let response = response else { return }
-            self.person = response
-            if let isMovie = isMovie {
-                self.fetchCast(isMovie: isMovie)
+        APIManager.shared.fetchPersonDetails(personId: id) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let person):
+                self.person = person
+                if let isMovie = self.isMovie {
+                    self.fetchCast(isMovie: isMovie)
+                }
+            case .failure(let error):
+                print("Failed to fetch person details: \(error)")
             }
         }
     }
@@ -43,24 +49,34 @@ class PersonViewController: UIViewController {
         guard let id = pesonId else { return }
         
         if isMovie {
-            APIManager.shared.fetchPersonMoviePersonCredits(personId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchPersonMoviePersonCredits(personId: id) { [weak self] result in
                 guard let self = self else { return }
-                if let cast = response?.cast {
-                    self.movieCastMember = cast
-                    self.tableView.reloadData()
+                switch result {
+                case .success(let response):
+                    if !response.cast.isEmpty {
+                        self.movieCastMember = response.cast
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print("Failed to fetch person movie credits: \(error)")
                 }
             }
         } else {
-            APIManager.shared.fetchPersonTVPersonCredits(personId: id) { [weak self] (response, error) in
+            APIManager.shared.fetchPersonTVPersonCredits(personId: id) { [weak self] result in
                 guard let self = self else { return }
-                if let cast = response?.cast {
-                    self.tvCastMember = cast
-                    self.tableView.reloadData()
+                switch result {
+                case .success(let response):
+                    if !response.cast.isEmpty {
+                        self.tvCastMember = response.cast
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print("Failed to fetch person movie credits: \(error)")
                 }
             }
         }
     }
-    
+        
     func prepareTableView() {
         tableView.dataSource = self
         tableView.delegate = self

@@ -92,11 +92,17 @@ class CardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        notificationRequest()
         fetchInitialData()
         prepareUI()
         makeNavigationBar()
         prepareSegmenBar()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        
+        notificationRequest()
     }
     
     func fetchRandomPage() -> Int {
@@ -109,23 +115,38 @@ class CardViewController: UIViewController {
         let group = DispatchGroup()
         
         group.enter()
-        fetchMovies(page: fetchRandomPage()) { [weak self] movies, error in
-            self?.handleMovieResponse(movies: movies, error: error)
+        fetchMovies(page: fetchRandomPage()) { [weak self] result in
+            switch result {
+            case .success(let movies):
+                self?.handleMovieResponse(movies: movies, error: nil)
+            case .failure(let error):
+                self?.handleMovieResponse(movies: nil, error: error)
+            }
+            print("Movies fetch completed")
             group.leave()
         }
         
         group.enter()
-        fetchTVSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
-            self?.handleTVResponse(tvSeries: tvSeries, error: error)
+        fetchTVSeries(page: fetchRandomPage()) { [weak self] result in
+            switch result {
+            case .success(let tvSeries):
+                self?.handleTVResponse(tvSeries: tvSeries, error: nil)
+            case .failure(let error):
+                self?.handleTVResponse(tvSeries: nil, error: error)
+            }
+            print("TV Series fetch completed")
             group.leave()
         }
         
         group.notify(queue: .main) {
+            print("All fetch requests completed")
             self.loadingView.stopAnimating()
             self.cardSwiper.reloadData()
         }
     }
-    
+
+
+
     func prepareUI() {
         cardSwiper.frame = view.bounds
         cardSwiper.datasource = self
@@ -186,31 +207,43 @@ class CardViewController: UIViewController {
         filterView.setupView()
     }
     
-    private func fetchTVSeries(page: Int? = nil, completion: @escaping ([TVSeries]?, Error?) -> Void) {
-        APIManager.shared.fetchOnTheAirSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
-            completion(tvSeries, error)
-            if let error = error {
-                self?.showAlertDialog(title: "Error", message: error.localizedDescription)
-            } else {
-                self?.cardSwiper.reloadData()
+    func fetchTVSeries(page: Int? = nil, completion: @escaping (Result<[TVSeries], Error>) -> Void) {
+        print("Fetching TV series...")
+
+        APIManager.shared.fetchOnTheAirSeries(page: page ?? fetchRandomPage()) { [weak self] result in
+            switch result {
+            case .success(let tvSeries):
+
+                
+                self?.tvSeries = tvSeries
+                completion(.success(tvSeries))
+            case .failure(let error):
+                print("Error fetching TV series: \(error.localizedDescription)")
+
+                self?.tvSeries = []
+                completion(.success([]))
             }
         }
     }
     
-    private func fetchMovies(page: Int? = nil, completion: @escaping ([Movie]?, Error?) -> Void) {
-        APIManager.shared.fetchPopularMovies(page: fetchRandomPage()) { [weak self] movies, error in
-            completion(movies, error)
-            if let error = error {
-                self?.showAlertDialog(title: "Error", message: error.localizedDescription)
-            } else {
-                self?.cardSwiper.reloadData()
+    func fetchMovies(page: Int? = nil, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        print("Fetching movies...")
+
+        APIManager.shared.fetchPopularMovies(page: page ?? fetchRandomPage()) { [weak self] result in
+            switch result {
+            case .success(let movies):
+                self?.movies = movies
+                completion(.success(movies))
+            case .failure(let error):
+                self?.movies = []
+                completion(.success([]))
             }
         }
     }
+    
     
     private func handleMovieResponse(movies: [Movie]?, error: Error?) {
         guard let movies = movies else {
-            showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")
             loadingView.stopAnimating()
             return
         }
@@ -221,10 +254,9 @@ class CardViewController: UIViewController {
             self.cardSwiper.reloadData()
         }
     }
-
+    
     private func handleTVResponse(tvSeries: [TVSeries]?, error: Error?) {
         guard let tvSeries = tvSeries else {
-            showAlertDialog(title: "Error", message: error?.localizedDescription ?? "Unknown error")
             loadingView.stopAnimating()
             return
         }
@@ -237,36 +269,57 @@ class CardViewController: UIViewController {
     }
     
     private func loadMoreMovies(for segmentIndex: Int) {
-        fetchMovies(page: fetchRandomPage()) { movies, error in
-            guard let newMovies = movies else {
-                return
-            }
-            DispatchQueue.main.async {
-                self.movies += newMovies
-                self.cardSwiper.reloadData()
-                self.loadMoreButton.isHidden = true
+        fetchMovies(page: fetchRandomPage()) { [weak self] result in
+            switch result {
+            case .success(let newMovies):
+                DispatchQueue.main.async {
+                    self?.movies += newMovies
+                    self?.cardSwiper.reloadData()
+                    self?.loadMoreButton.isHidden = true
+                }
+            case .failure(let error):
+                print("Error fetching movies: \(error.localizedDescription)")
             }
         }
     }
     
     private func loadMoreTVSeries(for segmentIndex: Int) {
-        fetchMovies(page: fetchRandomPage()) { tvSeries, error in
-            guard let newTVSeries = tvSeries else {
-                return
-            }
-            DispatchQueue.main.async {
-                self.movies += newTVSeries
-                self.cardSwiper.reloadData()
-                self.loadMoreButton.isHidden = true
+        fetchTVSeries(page: fetchRandomPage()) { [weak self] result in
+            switch result {
+            case .success(let newTVSeries):
+                DispatchQueue.main.async {
+                    self?.tvSeries += newTVSeries
+                    self?.cardSwiper.reloadData()
+                    self?.loadMoreButton.isHidden = true
+                }
+            case .failure(let error):
+                print("Error fetching movies: \(error.localizedDescription)")
             }
         }
     }
     
     fileprivate func notificationRequest() {
         let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+            
+            if granted && !UserDefaults.standard.bool(forKey: "notificationConfirmationShown") {
+                UserDefaults.standard.set(true, forKey: "notificationConfirmationShown")
+                DispatchQueue.main.async {
+                    self.showNotificationConfirmationAlert()
+                }
+            }
+        }
         UIApplication.shared.registerForRemoteNotifications()
     }
+    
+    fileprivate func showNotificationConfirmationAlert() {
+        let alert = UIAlertController(title: "Notifications Enabled",
+                                      message: "You will now receive notifications about new TV episodes from favorites.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDelegate {
@@ -287,7 +340,7 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
             self.cardSwiper.reloadData()
             return CardCollectionViewCell()
         }
-
+        
         switch currentSegmentIndex {
         case 0:
             if index < movies.count {
@@ -306,9 +359,9 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
         default:
             break
         }
-     return CardCollectionViewCell()
+        return CardCollectionViewCell()
     }
-
+    
     func willSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
         var media: MediaId?
         
@@ -355,7 +408,7 @@ extension CardViewController: VerticalCardSwiperDatasource, VerticalCardSwiperDe
             break
         }
     }
-
+    
     func didSwipeCardAway(card: CardCell, index: Int, swipeDirection: SwipeDirection) {
         let threshold = 5
         
@@ -413,23 +466,30 @@ extension CardViewController: NavigationHeaderViewDelegate {
     func actionButtonTapped() {
         switch currentSegmentIndex {
         case 0:
-            fetchMovies(page: fetchRandomPage()) { [weak self] movies, error in
-                guard let newMovies = movies else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self?.movies = newMovies
-                    self?.cardSwiper.reloadData()
+            fetchMovies(page: fetchRandomPage()) { [weak self] result in
+                switch result {
+                case .success(let newMovies):
+                    DispatchQueue.main.async {
+                        self?.movies += newMovies
+                        self?.cardSwiper.reloadData()
+                        self?.loadMoreButton.isHidden = true
+                    }
+                case .failure(let error):
+                    print("Error fetching movies: \(error.localizedDescription)")
                 }
             }
+            
         case 1:
-            fetchTVSeries(page: fetchRandomPage()) { [weak self] tvSeries, error in
-                guard let newTVSeries = tvSeries else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self?.tvSeries = newTVSeries
-                    self?.cardSwiper.reloadData()
+            fetchTVSeries(page: fetchRandomPage()) { [weak self] result in
+                switch result {
+                case .success(let newTVSeries):
+                    DispatchQueue.main.async {
+                        self?.tvSeries += newTVSeries
+                        self?.cardSwiper.reloadData()
+                        self?.loadMoreButton.isHidden = true
+                    }
+                case .failure(let error):
+                    print("Error fetching movies: \(error.localizedDescription)")
                 }
             }
         default:
@@ -441,21 +501,32 @@ extension CardViewController: NavigationHeaderViewDelegate {
 extension CardViewController: FilterViewDelegate {
     func segment1() {
         currentSegmentIndex = 0
-        fetchMovies(page: fetchRandomPage()) { movies, error in
-            self.handleMovieResponse(movies: movies, error: error)
-        }
-        DispatchQueue.main.async {
-            self.cardSwiper.reloadData()
+        fetchMovies(page: fetchRandomPage()) { [weak self] result in
+            switch result {
+            case .success(let movies):
+                self?.handleMovieResponse(movies: movies, error: nil)
+            case .failure(let error):
+                self?.handleMovieResponse(movies: nil, error: error)
+            }
+            DispatchQueue.main.async {
+                self?.cardSwiper.reloadData()
+            }
         }
     }
     
     func segment2() {
         currentSegmentIndex = 1
-        fetchTVSeries(page: fetchRandomPage()) { tvSeries, error in
-            self.handleTVResponse(tvSeries: tvSeries, error: error)
-        }
-        DispatchQueue.main.async {
-            self.cardSwiper.reloadData()
+        fetchTVSeries(page: fetchRandomPage()) { [weak self] result in
+            
+            switch result {
+            case .success(let tvSeries):
+                self?.handleTVResponse(tvSeries: tvSeries, error: nil)
+            case .failure(let error):
+                self?.handleMovieResponse(movies: nil, error: error)
+            }
+            DispatchQueue.main.async {
+                self?.cardSwiper.reloadData()
+            }
         }
     }
     
