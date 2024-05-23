@@ -1,6 +1,6 @@
 workflows:
   unity-ios-workflow:
-    name: WatchMovies LITE
+    name: WatchList Movie Hub
     max_build_duration: 120
     integrations:
       app_store_connect: "corp 40"
