@@ -36,6 +36,8 @@
 		CE9869052BFB9645000C2BD4 /* TVCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9869032BFB9645000C2BD4 /* TVCalendarTableViewCell.swift */; };
 		CE9869062BFB9646000C2BD4 /* TVCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9869042BFB9645000C2BD4 /* TVCalendarTableViewCell.xib */; };
 		CEA6B13C2BE363E300A14530 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */; };
+		CEAC4B6D2C0746A800525BF8 /* PredoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CEAC4B6C2C0746A800525BF8 /* PredoSDK */; };
+		CEAC4B6F2C0746C400525BF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEAC4B6E2C0746C400525BF8 /* GoogleService-Info.plist */; };
 		CEACE5252BE8DE6E00B81A63 /* CastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5232BE8DE6E00B81A63 /* CastTableViewCell.swift */; };
 		CEACE5262BE8DE6E00B81A63 /* CastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */; };
 		CEACE5292BE8DF4C00B81A63 /* CastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE5272BE8DF4C00B81A63 /* CastCollectionViewCell.swift */; };
@@ -121,6 +123,8 @@
 		CE9869032BFB9645000C2BD4 /* TVCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		CE9869042BFB9645000C2BD4 /* TVCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVCalendarTableViewCell.xib; sourceTree = "<group>"; };
 		CEA6B13B2BE363E300A14530 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		CEAC4B6E2C0746C400525BF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEAC4B702C07496400525BF8 /* WatchList Movie Hub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchList Movie Hub.entitlements"; sourceTree = "<group>"; };
 		CEACE5232BE8DE6E00B81A63 /* CastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTableViewCell.swift; sourceTree = "<group>"; };
 		CEACE5242BE8DE6E00B81A63 /* CastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastTableViewCell.xib; sourceTree = "<group>"; };
 		CEACE5272BE8DF4C00B81A63 /* CastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5015372BECD8940086887A /* VerticalCardSwiper in Frameworks */,
+				CEAC4B6D2C0746A800525BF8 /* PredoSDK in Frameworks */,
 				CED28FB22B6D5602007DB4A8 /* SDWebImageMapKit in Frameworks */,
 				CED28FB02B6D5602007DB4A8 /* SDWebImage in Frameworks */,
 				CE838D9A2BE7C56200298CEF /* YouTubeiOSPlayerHelper in Frameworks */,
@@ -295,6 +300,7 @@
 		CECC78A22B6CE38C008815EF /* WatchList Movie Hub */ = {
 			isa = PBXGroup;
 			children = (
+				CEAC4B702C07496400525BF8 /* WatchList Movie Hub.entitlements */,
 				CECC78A32B6CE38C008815EF /* AppDelegate.swift */,
 				CECC78A52B6CE38C008815EF /* SceneDelegate.swift */,
 				CED28F972B6CF4B2007DB4A8 /* ViewControllers */,
@@ -311,6 +317,7 @@
 				CECC78B12B6CE396008815EF /* LaunchScreen.storyboard */,
 				CEADF0EE2BD66B3100A6B542 /* LotaGrotesque-Bold.otf */,
 				CEADF0ED2BD66B3100A6B542 /* LotaGrotesqueAlt1-Regular.otf */,
+				CEAC4B6E2C0746C400525BF8 /* GoogleService-Info.plist */,
 				CECC78B42B6CE396008815EF /* Info.plist */,
 			);
 			path = "WatchList Movie Hub";
@@ -462,6 +469,7 @@
 				CED28FB12B6D5602007DB4A8 /* SDWebImageMapKit */,
 				CE838D992BE7C56200298CEF /* YouTubeiOSPlayerHelper */,
 				CE5015362BECD8940086887A /* VerticalCardSwiper */,
+				CEAC4B6C2C0746A800525BF8 /* PredoSDK */,
 			);
 			productName = test_movieList;
 			productReference = CECC78A02B6CE38C008815EF /* WatchList Movie Hub.app */;
@@ -495,6 +503,7 @@
 				CED28FAE2B6D5602007DB4A8 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 				CE5015352BECD8930086887A /* XCRemoteSwiftPackageReference "VerticalCardSwiper" */,
+				CEAC4B6B2C0746A700525BF8 /* XCRemoteSwiftPackageReference "PredoSDK" */,
 			);
 			productRefGroup = CECC78A12B6CE38C008815EF /* Products */;
 			projectDirPath = "";
@@ -521,6 +530,7 @@
 				CEADF1022BD6C12500A6B542 /* SimilarTableViewCell.xib in Resources */,
 				CE838D972BE7C34B00298CEF /* VideoTableViewCell.xib in Resources */,
 				CECC78B32B6CE396008815EF /* LaunchScreen.storyboard in Resources */,
+				CEAC4B6F2C0746C400525BF8 /* GoogleService-Info.plist in Resources */,
 				CEADF0F02BD66B3100A6B542 /* LotaGrotesque-Bold.otf in Resources */,
 				CE5015432BED19BC0086887A /* CardCell.xib in Resources */,
 				CEADF0FA2BD6C10900A6B542 /* OverviewTableViewCell.xib in Resources */,
@@ -749,11 +759,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "WatchList Movie Hub/WatchList Movie Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = P724DK85JV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchList Movie Hub/Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Select \"Allow\" for better experience. Your location will be used to order to user engagement.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Select \"Allow\" for better experience. This identifier will be used to order to functionalities and user engagement.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -782,11 +795,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "WatchList Movie Hub/WatchList Movie Hub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = P724DK85JV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchList Movie Hub/Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Select \"Allow\" for better experience. Your location will be used to order to user engagement.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Select \"Allow\" for better experience. This identifier will be used to order to functionalities and user engagement.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -850,6 +866,14 @@
 				minimumVersion = 1.0.4;
 			};
 		};
+		CEAC4B6B2C0746A700525BF8 /* XCRemoteSwiftPackageReference "PredoSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dm384ok/PredoSDK";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		CED28FAE2B6D5602007DB4A8 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -870,6 +894,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE838D982BE7C56200298CEF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
 			productName = YouTubeiOSPlayerHelper;
+		};
+		CEAC4B6C2C0746A800525BF8 /* PredoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEAC4B6B2C0746A700525BF8 /* XCRemoteSwiftPackageReference "PredoSDK" */;
+			productName = PredoSDK;
 		};
 		CED28FAF2B6D5602007DB4A8 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
